@@ -1,0 +1,20 @@
+name: maestro
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pyyaml
+  - pydantic
+  - python-dotenv
+  - openai
+  - anthropic
+  - radon
+  - bandit
+  # - memory-profiler  <- 이 줄을 삭제하거나 주석 처리
+  - pytest
+  - pytest-cov
+  - black
+  - flake8
+  - pip: # pip 섹션 추가
+    - memory-profiler # pip로 설치할 패키지 지정
