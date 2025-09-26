@@ -54,3 +54,9 @@ class IntegratedExecutionPlan(BaseModel):
     work_order_id: str
     synthesis_goal: Literal["Balance", "Security_Focus", "Performance_Focus"]
     instructions: List[InstructionStep]
+
+class DeveloperAgentOutput(BaseModel):
+    """Developer 에이전트의 최종 출력 스키마를 정의하는 모델"""
+    status: Literal["SUCCESS", "PARTIAL_SUCCESS", "FAILURE"] = Field(description="작업 실행 상태")
+    final_code: str = Field(description="모든 지시가 적용된 최종 코드")
+    log: List[str] = Field(description="각 단계별 실행 성공/실패 기록")

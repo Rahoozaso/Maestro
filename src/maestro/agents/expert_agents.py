@@ -19,7 +19,7 @@ class PerformanceExpert(BaseAgent):
             print(f"에러: 프롬프트 파일을 찾을 수 없습니다: {prompt_path}")
             return []
 
-        prompt = prompt_template.format(v_base=code_to_analyze)
+        prompt = prompt_template.format(v_gen=code_to_analyze)
         messages = [
             {"role": "system", "content": "You are a world-class expert in Python code performance optimization."},
             {"role": "user", "content": prompt}
@@ -58,7 +58,7 @@ class ReadabilityExpert(BaseAgent):
             print(f"에러: 프롬프트 파일을 찾을 수 없습니다: {prompt_path}")
             return []
 
-        prompt = prompt_template.format(v_base=code_to_analyze)
+        prompt = prompt_template.format(v_gen=code_to_analyze)
         messages = [
             {"role": "system", "content": "You are a world-class expert in Python code readability optimization."},
             {"role": "user", "content": prompt}
@@ -83,7 +83,7 @@ class ReadabilityExpert(BaseAgent):
             print(f"LLM 원본 응답:\n---\n{response_str}\n---")
             return []
 
-class ReadabilityExpert(BaseAgent):
+class SecurityExpert(BaseAgent):
 
     def run(self, code_to_analyze: str) -> List[ExpertReviewReport]:
         print("보안 전문가 에이전트 실행")
@@ -97,7 +97,7 @@ class ReadabilityExpert(BaseAgent):
             print(f"에러: 프롬프트 파일을 찾을 수 없습니다: {prompt_path}")
             return []
 
-        prompt = prompt_template.format(v_base=code_to_analyze)
+        prompt = prompt_template.format(v_gen=code_to_analyze)
         messages = [
             {"role": "system", "content": "You are a world-class expert in Python code security optimization."},
             {"role": "user", "content": prompt}
