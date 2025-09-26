@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, DiscriminatedUnion
+from pydantic import BaseModel, Field
 from typing import List, Literal, Optional, Union
 
 class ExpertReviewReport(BaseModel):
@@ -26,10 +26,7 @@ class RenameVariableArgs(BaseModel):
     new_name: str
 
 #모든 인자 모델을 하나로 묶는 Union 
-RefactorArguments = DiscriminatedUnion(
-    union=[ExtractFunctionArgs, RenameVariableArgs],
-    discriminator="refactor_type"
-)
+RefactorArguments = Union[ExtractFunctionArgs, RenameVariableArgs]
 
 
 class InstructionStep(BaseModel):

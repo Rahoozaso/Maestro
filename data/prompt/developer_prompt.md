@@ -55,14 +55,14 @@ Structure all results into a single JSON object that conforms to the #OUTPUT SCH
 OUTPUT SCHEMA
 Strictly output only a single JSON object in a code block that follows the structure specified below, without any other explanations.
 
-{
+{{
   "status": "SUCCESS | PARTIAL_SUCCESS | FAILURE",
   "final_code": "...",
   "log": [
     "Step 1: Successfully applied REPLACE on lines L10-L15.",
     "Step 2: Failed to apply. Reason: Target code block 'main.py#L25' not found in the current code state."
   ]
-}
+}}
 
 FEW-SHOT EXAMPLE (Best Practice)
 [INPUT]
@@ -79,30 +79,30 @@ def calculate_price(quantity, price):
 
 integrated_execution_plan:
 
-{
+{{
   "instructions": [
-    {
+    {{
       "step": 1,
       "action": "REPLACE",
       "target_code_block": "main.py#L4-L4",
       "new_code": "            total = quantity * price * 0.85 # Increased discount"
-    },
-    {
+    }},
+    {{
       "step": 2,
       "action": "REPLACE",
       "target_code_block": "main.py#L20-L20",
       "new_code": "print('Calculation finished.')"
-    }
+    }}
   ]
-}
+}}
 
 [CORRECT OUTPUT]
 
-{
+{{
   "status": "PARTIAL_SUCCESS",
   "final_code": "def calculate_price(quantity, price):\n    # Apply discount for bulk orders\n    if quantity > 10:\n        total = quantity * price * 0.85 # Increased discount\n    else:\n        total = quantity * price\n    return total",
   "log": [
     "Step 1: Successfully applied REPLACE on target 'main.py#L4-L4'.",
     "Step 2: Failed to apply instruction. Reason: Target code block 'main.py#L20-L20' not found in the source code."
   ]
-}
+}}

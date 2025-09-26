@@ -25,7 +25,7 @@ class DeveloperAgent(BaseAgent):
         print("개발자 에이전트 실행 중...")
 
         # 1. 프롬프트 로드 및 생성
-        prompt_path = self.config['paths']['prompt_template_dir'] + "final_developer_agent_prompt.md"
+        prompt_path = self.config['paths']['prompt_template_dir'] + "developer_prompt.md"
         try:
             with open(prompt_path, "r", encoding="utf-8") as f:
                 prompt_template = f.read()
