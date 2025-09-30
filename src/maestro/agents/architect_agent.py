@@ -6,6 +6,7 @@ from typing import List, Optional
 from .base_agent import BaseAgent
 from maestro.core.data_models import ExpertReviewReport, IntegratedExecutionPlan
 from maestro.utils.llm_handler import call_llm
+from maestro.utils.file_io import read_text_file
 
 class ArchitectAgent(BaseAgent):
     """
@@ -50,12 +51,11 @@ class ArchitectAgent(BaseAgent):
         print("아키텍트 에이전트 실행...")
 
         # 1. 프롬프트 로드 및 생성
-        prompt_path = self.config['paths']['prompt_template_dir'] + "architect_prompt.md"
+        prompt_path = self.config['paths']['prompt_template_dir'] + "architect_agent_prompt.md"
         try:
-            with open(prompt_path, "r", encoding="utf-8") as f:
-                prompt_template = f.read()
+            prompt_template = read_text_file(prompt_path)
         except FileNotFoundError:
-            print(f"오류: 아키텍트 프롬프트 파일을 찾을 수 없습니다: {prompt_path}")
+            print(f"오류: 프롬프트 파일을 찾을 수 없습니다: {prompt_path}")
             return None
 
         # 전문가 리포트 리스트를 JSON 문자열로 직렬화합니다.

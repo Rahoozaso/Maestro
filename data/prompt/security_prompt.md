@@ -43,7 +43,7 @@ def get_user(username):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     # Vulnerable line learned from insecure examples
-    cursor.execute(f"SELECT * FROM users WHERE username = '{username}'")
+    cursor.execute(f"SELECT * FROM users WHERE username = '{{username}}'")
     user = cursor.fetchone()
     conn.close()
     return user
@@ -56,7 +56,7 @@ assert get_user('alice') is not None
 [CORRECT OUTPUT]
 
 [
-  {
+  {{
     "suggestion_id": "SEC-001",
     "agent_role": "SecurityExpert",
     "title": "Use Parameterized Queries to Prevent SQL Injection",
@@ -67,7 +67,7 @@ assert get_user('alice') is not None
     "proposed_change": "cursor.execute(\"SELECT * FROM users WHERE username = ?\", (username,))",
     "expected_impact": "Completely mitigates the SQL injection attack vector, protecting the integrity and confidentiality of the database.",
     "potential_tradeoffs": "None. (This is a mandatory security requirement, and its impact on performance is negligible.)"
-  }
+  }}
 ]
 
 INPUT SCHEMA
@@ -86,7 +86,7 @@ OUTPUT SCHEMA
 Strictly output only a single JSON array (Array of Objects) in a code block that follows the structure specified below, without any other explanations.
 
 [
-  {
+  {{
     "suggestion_id": "string",
     "agent_role": "SecurityExpert",
     "title": "string",
@@ -97,5 +97,5 @@ Strictly output only a single JSON array (Array of Objects) in a code block that
     "proposed_change": "string (A specific, actionable code snippet)",
     "expected_impact": "string",
     "potential_tradeoffs": "string"
-  }
+  }}
 ]

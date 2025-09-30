@@ -1,5 +1,3 @@
-# maestro/agents/evaluator_agent.py
-
 from typing import Dict, Any, Literal
 
 # Pydantic 모델을 사용하여 입출력 데이터 구조를 명확히 정의합니다.

@@ -2,8 +2,9 @@ import json
 from pydantic import ValidationError
 from typing import Dict, Any, Optional
 from .base_agent import BaseAgent
-from maestro.core.data_models import DeveloperAgentOutput  # 이 모델은 data_models.py에 정의되어야 합니다.
+from maestro.core.data_models import DeveloperAgentOutput  
 from maestro.utils.llm_handler import call_llm
+from maestro.utils.file_io import read_text_file
 
 class DeveloperAgent(BaseAgent):
     """
@@ -27,10 +28,8 @@ class DeveloperAgent(BaseAgent):
         # 1. 프롬프트 로드 및 생성
         prompt_path = self.config['paths']['prompt_template_dir'] + "developer_prompt.md"
         try:
-            with open(prompt_path, "r", encoding="utf-8") as f:
-                prompt_template = f.read()
+            prompt_template = read_text_file(prompt_path)
         except FileNotFoundError:
-            print(f"에러: 프롬프트 파일을 찾을 수 없습니다: {prompt_path}")
             return None
 
         # 실행 계획(dict)을 프롬프트에 삽입하기 위해 JSON 문자열로 변환
