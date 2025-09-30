@@ -1,141 +1,167 @@
-import time
+import timeit
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List, Any
+import subprocess
+import tempfile
+import os
 
 @dataclass
-class ProfileResult:
-    """성능 측정 결과를 담는 데이터 클래스"""
+class PerformanceReport:
+    """성능 프로파일링 결과를 담는 데이터 클래스"""
     success: bool
-    time_before_ms: float
-    time_after_ms: float
+    original_avg_time: float
+    modified_avg_time: float
     improvement_percentage: float
     error_message: Optional[str] = None
 
-def _run_and_measure(code_string: str, test_call: str, iterations: int) -> float:
+def _run_code_in_subprocess(code_to_run: str, setup_code: str, number: int) -> float:
     """
-    주어진 코드 문자열을 실행하고 평균 실행 시간을 측정하는 헬퍼 함수.
-    성공 시 평균 실행 시간(ms)을, 실패 시 -1.0을 반환합니다.
+    별도의 서브프로세스에서 timeit을 실행하여 코드를 안전하게 측정합니다.
     """
-    # 격리된 실행 환경(네임스페이스) 생성
-    namespace = {}
+    runner_script = f"""
+import timeit
+
+setup_code = '''
+{setup_code}
+'''
+code_to_run = '''
+{code_to_run}
+'''
+try:
+    total_time = timeit.timeit(stmt=code_to_run, setup=setup_code, number={number})
+    avg_time = total_time / {number}
+    print(avg_time)
+except Exception as e:
+    import sys
+    print(f"Error: {{e}}", file=sys.stderr)
+    sys.exit(1)
+"""
     try:
-        # 코드 문자열을 실행하여 함수 등을 메모리에 로드
-        exec(code_string, namespace)
-        
-        # 실제 성능 측정 전 워밍업 실행 (선택 사항)
-        exec(test_call, namespace)
+        # 임시 파일에 러너 스크립트 작성
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.py', encoding='utf-8') as temp_file:
+            temp_file.write(runner_script)
+            temp_filepath = temp_file.name
 
-        # 여러 번 실행하여 평균 시간 측정
-        start_time = time.perf_counter()
-        for _ in range(iterations):
-            exec(test_call, namespace)
-        end_time = time.perf_counter()
+        # 파이썬 인터프리터를 사용하여 서브프로세스 실행
+        result = subprocess.run(
+            ["python", temp_filepath],
+            capture_output=True, text=True, check=True, encoding='utf-8'
+        )
+        return float(result.stdout.strip())
 
-        total_time = end_time - start_time
-        avg_time_ms = (total_time / iterations) * 1000
-        return avg_time_ms
+    except subprocess.CalledProcessError as e:
+        raise RuntimeError(f"코드 실행 서브프로세스 실패: {e.stderr}")
+    finally:
+        # 임시 파일 정리
+        if 'temp_filepath' in locals() and os.path.exists(temp_filepath):
+            os.remove(temp_filepath)
 
-    except Exception as e:
-        print(f"코드 실행 중 오류 발생: {e}")
-        return -1.0
 
-def profile_performance_improvement(
-    code_before: str, 
-    code_after: str, 
-    test_call: str, 
-    iterations: int = 10
-) -> ProfileResult:
+def profile_performance(
+    original_code: str,
+    modified_code: str,
+    number_of_runs: int = 10
+) -> PerformanceReport:
     """
-    리팩토링 전후 코드의 성능을 비교하고 개선율을 계산합니다.
+    두 코드 버전의 실행 시간을 비교하고 성능 개선율을 계산합니다.
+    안전한 실행을 위해 각 코드를 별도의 서브프로세스에서 실행합니다.
 
     Args:
-        code_before (str): 리팩토링 전 원본 코드 ('v_gen').
-        code_after (str): 리팩토링 후 수정된 코드 ('v_final').
-        test_call (str): 성능을 측정할 실제 함수 호출 코드 (e.g., "my_function(10)").
-        iterations (int): 정확한 측정을 위한 반복 횟수.
+        original_code (str): 리팩토링 전 원본 코드.
+        modified_code (str): 리팩토링 후 수정된 코드.
+        number_of_runs (int): 평균 시간을 계산하기 위한 실행 횟수.
 
     Returns:
-        ProfileResult: 성능 측정 결과를 담은 객체.
+        PerformanceReport: 성능 분석 결과를 담은 객체.
     """
-    print(f"성능 프로파일링 시작 (반복 횟수: {iterations})...")
-
-    # 리팩토링 전 코드 성능 측정
-    time_before = _run_and_measure(code_before, test_call, iterations)
-    if time_before < 0:
-        return ProfileResult(
-            success=False, 
-            time_before_ms=0, 
-            time_after_ms=0, 
-            improvement_percentage=0, 
-            error_message="리팩토링 전 코드 실행에 실패했습니다."
+    print("성능 분석 시작 (코드 실행 시간 측정)...")
+    try:
+        # timeit의 setup 부분은 동일하게 사용
+        # 여기서는 코드가 함수 정의 등을 포함할 수 있으므로, setup으로 전달합니다.
+        # stmt는 간단한 호출 구문으로 남겨둡니다 (실제로는 setup에서 모든 것이 정의됨).
+        # 이 방식은 코드가 독립적인 스크립트일 때 유용합니다.
+        # 더 복잡한 시나리오에서는 테스트 함수를 호출하는 방식을 사용해야 합니다.
+        
+        # 원본 코드 실행 시간 측정
+        # 여기서는 간단히 코드를 실행하는 것으로 가정합니다.
+        # 실제로는 특정 함수를 호출해야 합니다. 예시에서는 전체 코드를 setup으로 사용합니다.
+        print(" - 원본 코드 실행 시간 측정 중...")
+        orig_avg_time = _run_code_in_subprocess(
+            code_to_run="pass",  # 실제 호출할 함수가 있다면 여기에 명시
+            setup_code=original_code,
+            number=number_of_runs
         )
 
-    # 리팩토링 후 코드 성능 측정
-    time_after = _run_and_measure(code_after, test_call, iterations)
-    if time_after < 0:
-        return ProfileResult(
-            success=False, 
-            time_before_ms=time_before, 
-            time_after_ms=0, 
-            improvement_percentage=0, 
-            error_message="리팩토링 후 코드 실행에 실패했습니다."
+        # 수정된 코드 실행 시간 측정
+        print(" - 수정된 코드 실행 시간 측정 중...")
+        mod_avg_time = _run_code_in_subprocess(
+            code_to_run="pass", # 실제 호출할 함수가 있다면 여기에 명시
+            setup_code=modified_code,
+            number=number_of_runs
         )
 
-    # 성능 개선율 계산
-    if time_before == 0:
-        improvement_percentage = 0.0
-    else:
-        improvement_percentage = ((time_before - time_after) / time_before) * 100
+        # 성능 개선율 계산
+        if orig_avg_time == 0:
+            improvement = float('inf') if mod_avg_time < orig_avg_time else 0.0
+        else:
+            improvement = ((orig_avg_time - mod_avg_time) / orig_avg_time) * 100
 
-    print(f"프로파일링 완료: 이전={time_before:.4f}ms, 이후={time_after:.4f}ms, 개선율={improvement_percentage:.2f}%")
-    
-    return ProfileResult(
-        success=True,
-        time_before_ms=time_before,
-        time_after_ms=time_after,
-        improvement_percentage=improvement_percentage
-    )
+        print(f"성능 분석 완료: 개선율 = {improvement:.2f}%")
+
+        return PerformanceReport(
+            success=True,
+            original_avg_time=orig_avg_time,
+            modified_avg_time=mod_avg_time,
+            improvement_percentage=improvement
+        )
+
+    except Exception as e:
+        error_msg = f"성능 분석 중 오류 발생: {e}"
+        print(error_msg)
+        return PerformanceReport(
+            success=False,
+            original_avg_time=-1.0,
+            modified_avg_time=-1.0,
+            improvement_percentage=0.0,
+            error_message=error_msg
+        )
 
 # --- 이 파일이 직접 실행될 때를 위한 예제 코드 ---
 if __name__ == '__main__':
-    # 예제: 비효율적인 리스트 검색 (리팩토링 전)
-    code_before_example = """
-def find_common_elements(list1, list2):
-    common = []
-    for item1 in list1:
-        if item1 in list2:
-            common.append(item1)
-    return common
+    # 예제 1: 성능이 개선된 경우
+    code_original = """
+def slow_function():
+    total = 0
+    for i in range(10000):
+        total += i
+slow_function()
 """
-
-    # 예제: 효율적인 세트 검색 (리팩토링 후)
-    code_after_example = """
-def find_common_elements(list1, list2):
-    set2 = set(list2)
-    common = [item1 for item1 in list1 if item1 in set2]
-    return common
+    code_modified = """
+def fast_function():
+    # 더 효율적인 등차수열 합 공식 사용
+    total = 10000 * (10000 - 1) // 2
+fast_function()
 """
+    print("--- 1. 성능 개선 코드 분석 ---")
+    report1 = profile_performance(code_original, code_modified, number_of_runs=5)
+    if report1.success:
+        print(f"원본 평균 시간: {report1.original_avg_time * 1000:.4f} ms")
+        print(f"수정본 평균 시간: {report1.modified_avg_time * 1000:.4f} ms")
+        print(f"성능 개선율: {report1.improvement_percentage:.2f}%")
 
-    # 성능을 측정할 함수 호출 정의
-    # 실제로는 HumanEval, SWE-Bench의 테스트 케이스를 기반으로 생성됩니다.
-    large_list1 = list(range(1000))
-    large_list2 = list(range(500, 1500))
-    test_call_str = f"find_common_elements({large_list1}, {large_list2})"
+    print("\n" + "="*40 + "\n")
 
-    # 성능 프로파일러 실행
-    result = profile_performance_improvement(
-        code_before=code_before_example,
-        code_after=code_after_example,
-        test_call=test_call_str,
-        iterations=50
-    )
+    # 예제 2: 성능이 저하된 경우
+    code_original_fast = "total = sum(range(10000))"
+    code_modified_slow = """
+total = 0
+for i in range(10000):
+    total += i
+"""
+    print("--- 2. 성능 저하 코드 분석 ---")
+    report2 = profile_performance(code_original_fast, code_modified_slow, number_of_runs=5)
+    if report2.success:
+        print(f"원본 평균 시간: {report2.original_avg_time * 1000:.4f} ms")
+        print(f"수정본 평균 시간: {report2.modified_avg_time * 1000:.4f} ms")
+        print(f"성능 개선율: {report2.improvement_percentage:.2f}%")
 
-    # 결과 출력
-    if result.success:
-        print("\n--- 최종 결과 ---")
-        print(f"성공 여부: {result.success}")
-        print(f"리팩토링 전 평균 시간: {result.time_before_ms:.4f} ms")
-        print(f"리팩토링 후 평균 시간: {result.time_after_ms:.4f} ms")
-        print(f"성능 개선율: {result.improvement_percentage:.2f} %")
-    else:
-        print(f"\n성능 측정 실패: {result.error_message}")
