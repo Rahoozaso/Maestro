@@ -9,39 +9,52 @@ from .base_agent import BaseAgent
 
 # --- 입출력 데이터 모델 정의 ---
 
+
 class SecurityData(BaseModel):
     """보안 점수 계산에 필요한 입력 데이터 모델"""
+
     highest_severity: Literal["High", "Medium", "Low", "None"]
+
 
 class ReadabilityData(BaseModel):
     """가독성 점수 계산에 필요한 입력 데이터 모델"""
+
     cyclomatic_complexity: int
+
 
 class PerformanceData(BaseModel):
     """성능 점수 계산에 필요한 입력 데이터 모델"""
+
     improvement_percentage: float
+
 
 class QuantitativeDataReport(BaseModel):
     """품질 게이트 에이전트의 전체 입력 데이터 모델"""
+
     security: SecurityData
     readability: ReadabilityData
     performance: PerformanceData
 
+
 class Scores(BaseModel):
     """산출된 NFR 점수 모델"""
+
     security: int
     readability: int
     performance: int
     total: int
 
+
 class EvaluationResult(BaseModel):
     """품질 게이트 에이전트의 최종 출력 데이터 모델"""
+
     scores: Scores
     decision: Literal["HIGH_QUALITY_SUCCESS", "FINAL_FAILURE"]
     rationale: str = Field(description="최종 결정에 대한 논리적 근거")
 
 
 # --- EvaluatorAgent 클래스 ---
+
 
 class EvaluatorAgent(BaseAgent):
     """
@@ -99,20 +112,26 @@ class EvaluatorAgent(BaseAgent):
             return EvaluationResult(
                 scores=Scores(security=0, readability=0, performance=0, total=0),
                 decision="FINAL_FAILURE",
-                rationale=f"입력 데이터 형식 오류: {e}"
+                rationale=f"입력 데이터 형식 오류: {e}",
             )
 
         # 2. 각 NFR 점수 계산
-        security_score = self._calculate_security_score(report.security.highest_severity)
-        readability_score = self._calculate_readability_score(report.readability.cyclomatic_complexity)
-        performance_score = self._calculate_performance_score(report.performance.improvement_percentage)
+        security_score = self._calculate_security_score(
+            report.security.highest_severity
+        )
+        readability_score = self._calculate_readability_score(
+            report.readability.cyclomatic_complexity
+        )
+        performance_score = self._calculate_performance_score(
+            report.performance.improvement_percentage
+        )
         total_score = security_score + readability_score + performance_score
 
         scores = Scores(
             security=security_score,
             readability=readability_score,
             performance=performance_score,
-            total=total_score
+            total=total_score,
         )
 
         # 3. 최종 결정

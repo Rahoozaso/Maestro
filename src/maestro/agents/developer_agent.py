@@ -2,9 +2,10 @@ import json
 from pydantic import ValidationError
 from typing import Dict, Any, Optional
 from .base_agent import BaseAgent
-from maestro.core.data_models import DeveloperAgentOutput  
+from maestro.core.data_models import DeveloperAgentOutput
 from maestro.utils.llm_handler import call_llm
 from maestro.utils.file_io import read_text_file
+
 
 class DeveloperAgent(BaseAgent):
     """
@@ -12,7 +13,9 @@ class DeveloperAgent(BaseAgent):
     그 결과물을 검증하는 개발자 에이전트.
     """
 
-    def run(self, v_gen: str, integrated_execution_plan: Dict[str, Any]) -> Optional[DeveloperAgentOutput]:
+    def run(
+        self, v_gen: str, integrated_execution_plan: Dict[str, Any]
+    ) -> Optional[DeveloperAgentOutput]:
         """
         개발자 에이전트의 메인 실행 로직입니다.
 
@@ -26,7 +29,9 @@ class DeveloperAgent(BaseAgent):
         print("개발자 에이전트 실행 중...")
 
         # 1. 프롬프트 로드 및 생성
-        prompt_path = self.config['paths']['prompt_template_dir'] + "developer_prompt.md"
+        prompt_path = (
+            self.config["paths"]["prompt_template_dir"] + "developer_prompt.md"
+        )
         try:
             prompt_template = read_text_file(prompt_path)
         except FileNotFoundError:
@@ -35,15 +40,18 @@ class DeveloperAgent(BaseAgent):
         # 실행 계획(dict)을 프롬프트에 삽입하기 위해 JSON 문자열로 변환
         plan_str = json.dumps(integrated_execution_plan, indent=2, ensure_ascii=False)
         prompt = prompt_template.format(v_gen=v_gen, integrated_execution_plan=plan_str)
-        
+
         messages = [
-            {"role": "system", "content": "You are a precise instruction-following expert engine for code modification."},
-            {"role": "user", "content": prompt}
+            {
+                "role": "system",
+                "content": "You are a precise instruction-following expert engine for code modification.",
+            },
+            {"role": "user", "content": prompt},
         ]
 
         # 2. LLM 호출
         try:
-            response_str = call_llm(messages, self.config['llm'])
+            response_str = call_llm(messages, self.config["llm"])
             print("LLM 응답을 수신했습니다.")
         except Exception as e:
             print(f"에러: LLM API 호출에 실패했습니다: {e}")
@@ -54,10 +62,12 @@ class DeveloperAgent(BaseAgent):
             # LLM 응답에서 JSON 코드 블록만 추출
             json_block = self._extract_json_from_response(response_str)
             parsed_data = json.loads(json_block)
-            
+
             # Pydantic 모델로 검증
             validated_output = DeveloperAgentOutput.model_validate(parsed_data)
-            print(f"개발자 에이전트 실행 결과 검증 완료 (상태: {validated_output.status})")
+            print(
+                f"개발자 에이전트 실행 결과 검증 완료 (상태: {validated_output.status})"
+            )
             return validated_output
         except (json.JSONDecodeError, ValidationError, ValueError) as e:
             print(f"에러: LLM 응답 검증에 실패했습니다: {e}")
@@ -73,6 +83,7 @@ class DeveloperAgent(BaseAgent):
             return response[start_index:end_index].strip()
         except ValueError:
             # 코드 블록이 없는 경우, 전체 문자열을 JSON으로 간주
-            print("경고: JSON 코드 블록 마커를 찾을 수 없습니다. 전체 응답을 파싱합니다.")
+            print(
+                "경고: JSON 코드 블록 마커를 찾을 수 없습니다. 전체 응답을 파싱합니다."
+            )
             return response
-

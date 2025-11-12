@@ -1,0 +1,60 @@
+#  LLM API 설정
+llm:
+  #provider: "openai"
+  provider: "mock"
+  model: "gpt-5"
+  parameters:
+    temperature: 0.3    
+    max_tokens: 4096    
+    timeout: 120       
+
+#  파일 및 디렉토리 경로 설정
+paths:
+  benchmarks: "./data/benchmarks/"
+  prompts: "./data/prompts/"
+  outputs: "./outputs/"
+  logs: "./outputs/logs/"
+
+#  MAESTRO 프레임워크 핵심 파라미터
+maestro_framework:
+  quality_gate:
+    success_threshold: 85  
+    max_retries: 1         
+
+  # NFR 품질 점수 계산을 위한 상세 기준 (Rubric)
+  scoring_rubric:
+    weights:               
+      security: 40
+      readability: 30
+      performance: 30
+
+    security:
+      high_severity_score: 0    
+      medium_severity_score: 15 
+      low_severity_score: 30    
+      no_issues_score: 40     
+
+    readability:
+      thresholds:
+        - max_complexity: 10
+          points: 30
+        - max_complexity: 20
+          points: 15
+        # 그 이상이면 0점 (기본값)
+
+    performance:
+      improvement_thresholds:
+        - min_improvement_percent: 15
+          points: 30
+        - min_improvement_percent: 5
+          points: 15
+        - min_improvement_percent: 0
+          points: 5
+        # 성능 저하 시 0점 (기본값)
+
+#  로깅 설정
+logging:
+  level: "INFO" 
+  file_path: "./results/logs/maestro_run.log"
+
+

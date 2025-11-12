@@ -1,7 +1,8 @@
 import json
 import os
 import yaml
-from typing import Any, Dict, List
+from typing import Any, Dict
+
 
 def read_text_file(filepath: str) -> str:
     """
@@ -13,7 +14,7 @@ def read_text_file(filepath: str) -> str:
 
     Returns:
         str: 파일의 전체 내용.
-    
+
     Raises:
         FileNotFoundError: 파일이 존재하지 않을 경우.
     """
@@ -23,6 +24,7 @@ def read_text_file(filepath: str) -> str:
     except FileNotFoundError:
         print(f"오류: 파일을 찾을 수 없습니다: {filepath}")
         raise
+
 
 def write_text_file(filepath: str, content: str) -> None:
     """
@@ -38,12 +40,13 @@ def write_text_file(filepath: str, content: str) -> None:
         dir_path = os.path.dirname(filepath)
         # 폴더가 존재하지 않으면 생성합니다.
         os.makedirs(dir_path, exist_ok=True)
-        
+
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(content)
         print(f"파일 저장 완료: {filepath}")
     except IOError as e:
         print(f"파일 쓰기 중 오류 발생: {e}")
+
 
 def read_yaml_file(filepath: str) -> Dict:
     """
@@ -56,7 +59,7 @@ def read_yaml_file(filepath: str) -> Dict:
         Dict: YAML 파일의 내용.
     """
     try:
-        with open(filepath, 'r', encoding="utf-8") as stream:
+        with open(filepath, "r", encoding="utf-8") as stream:
             return yaml.safe_load(stream)
     except FileNotFoundError:
         print(f"오류: YAML 파일을 찾을 수 없습니다: {filepath}")
@@ -65,10 +68,11 @@ def read_yaml_file(filepath: str) -> Dict:
         print(f"YAML 파싱 중 오류 발생: {e}")
         raise
 
+
 def write_json_file(filepath: str, data: Any, indent: int = 4) -> None:
     """
     파이썬 객체(딕셔너리, 리스트 등)를 JSON 파일로 저장합니다.
-    
+
     Args:
         filepath (str): 저장할 JSON 파일의 경로.
         data (Any): 저장할 파이썬 객체.
@@ -78,7 +82,7 @@ def write_json_file(filepath: str, data: Any, indent: int = 4) -> None:
         dir_path = os.path.dirname(filepath)
         os.makedirs(dir_path, exist_ok=True)
 
-        with open(filepath, 'w', encoding='utf-8') as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             # ensure_ascii=False를 통해 한글이 깨지지 않도록 합니다.
             json.dump(data, f, ensure_ascii=False, indent=indent)
         print(f"JSON 파일 저장 완료: {filepath}")

@@ -2,14 +2,17 @@ from dataclasses import dataclass, field
 from typing import List, Tuple, Optional
 from radon.complexity import cc_visit
 
+
 @dataclass
 class ReadabilityReport:
     """가독성 분석 결과를 담는 데이터 클래스"""
+
     success: bool
     average_complexity: float
     # (함수/메서드 이름, 복잡도 점수) 형태의 튜플 리스트
     complexities: List[Tuple[str, int]] = field(default_factory=list)
     error_message: Optional[str] = None
+
 
 def analyze_readability(code_string: str) -> ReadabilityReport:
     """
@@ -25,10 +28,12 @@ def analyze_readability(code_string: str) -> ReadabilityReport:
     try:
         # radon을 사용하여 코드 블록들의 복잡도 분석
         blocks = cc_visit(code_string)
-        
+
         if not blocks:
             # 분석할 함수나 클래스가 없는 경우
-            return ReadabilityReport(success=True, average_complexity=1.0, complexities=[])
+            return ReadabilityReport(
+                success=True, average_complexity=1.0, complexities=[]
+            )
 
         total_complexity = 0
         detailed_complexities = []
@@ -37,15 +42,15 @@ def analyze_readability(code_string: str) -> ReadabilityReport:
             block_name = f"{block.name} ({block.type})"
             detailed_complexities.append((block_name, block.complexity))
             total_complexity += block.complexity
-        
+
         average_complexity = total_complexity / len(blocks)
-        
+
         print(f"가독성 분석 완료: 평균 복잡도={average_complexity:.2f}")
-        
+
         return ReadabilityReport(
             success=True,
             average_complexity=average_complexity,
-            complexities=detailed_complexities
+            complexities=detailed_complexities,
         )
 
     except Exception as e:
@@ -53,13 +58,12 @@ def analyze_readability(code_string: str) -> ReadabilityReport:
         error_msg = f"가독성 분석 중 오류 발생: {e}"
         print(error_msg)
         return ReadabilityReport(
-            success=False,
-            average_complexity=-1.0,
-            error_message=error_msg
+            success=False, average_complexity=-1.0, error_message=error_msg
         )
 
+
 # --- 이 파일이 직접 실행될 때를 위한 예제 코드 ---
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 예제 1: 가독성이 좋은 코드 (낮은 복잡도)
     code_good_example = """
 def is_eligible(age):
@@ -98,7 +102,7 @@ def process_data(user_type, age, country, has_coupon):
         for name, score in report_good.complexities:
             print(f" - {name}: {score}")
 
-    print("\n" + "="*40 + "\n")
+    print("\n" + "=" * 40 + "\n")
 
     print("--- 2. 가독성 나쁜 코드 분석 ---")
     report_bad = analyze_readability(code_bad_example)
