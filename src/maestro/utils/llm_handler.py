@@ -72,12 +72,25 @@ def call_llm(messages: List[Dict[str, str]], llm_config: Dict[str, Any]) -> str:
 
         # --- 👇 "카운터 기반" Mock 로직 시작 👇 ---
         elif _llm_provider == "mock":
+            
+            prompt_str = str(messages).lower()
+
+            # --- 💡 1순위: Group B 확인 (Group B의 고유 프롬프트) ---
+            if "nfr을 종합적으로" in prompt_str or "비기능적 요구사항" in prompt_str:
+                # (Group B는 '가짜 코드'를 원함)
+                fake_code = """
+# This is a mock code response for Group B (Simple LLM)
+def mock_group_b_function():
+    pass
+"""
+                return fake_code # 💡 JSON.DUMPS() 안 함! 순수 문자열 반환
+
+            # --- 💡 2순위: Group C, D, E (main_controller) 확인 ---
             global _mock_call_counter
             _mock_call_counter += 1
 
-            # --- 💡 1, 2, 3번째 호출은 "전문가" ---
+            # [호출 #1, #2, #3] 전문가
             if _mock_call_counter <= 3:
-                # 1단계 전문가용 '보고서(list)' 반환
                 mock_role = "MockExpert"
                 if _mock_call_counter == 1:
                     mock_role = "PerformanceExpert"
@@ -101,9 +114,8 @@ def call_llm(messages: List[Dict[str, str]], llm_config: Dict[str, Any]) -> str:
                 ]
                 return json.dumps(fake_report)
 
-            # --- 💡 4번째 호출은 "아키텍트" ---
+            # [호출 #4] 아키텍트
             elif _mock_call_counter == 4:
-                # 2단계 아키텍트용 '계획서(dict)' 반환
                 fake_plan = {
                     "work_order_id": "MOCK-WO-001", 
                     "synthesis_goal": "Balance",      
@@ -126,17 +138,16 @@ def call_llm(messages: List[Dict[str, str]], llm_config: Dict[str, Any]) -> str:
                 }
                 return json.dumps(fake_plan)
             
-            # --- 💡 5번째 호출은 "개발자" ---
+            # [호출 #5] 개발자
             elif _mock_call_counter == 5:
-                # 💡💡💡 [수정] 01:30 로그의 2개 에러를 잡기 위해 업그레이드! 💡💡💡
                 fake_dev_output = {
-                    "status": "SUCCESS", # <-- [수정] "MOCK_SUCCESS" -> "SUCCESS"
+                    "status": "SUCCESS", 
                     "final_code": "# This is mock code from the developer",
-                    "log": ["Mock Developer Agent ran successfully."] # <-- [수정] str -> list
+                    "log": ["Mock Developer Agent ran successfully."] 
                 }
                 return json.dumps(fake_dev_output)
 
-            # --- 💡 그 외 (자기 회고 등) ---
+            # [호출 #6+] 자기 회고 등
             else:
                 return '{"status": "mock_fallback_loop", "log": "Mock loop detected."}'
         # --- 👆 Mock 로직 끝 👆 ---
