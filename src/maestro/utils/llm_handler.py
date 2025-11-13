@@ -14,7 +14,7 @@ def set_llm_provider(config: Dict[str, Any]):
     main_controller에서 호출되어, 사용할 LLM 공급자와 API 키를 설정합니다.
     """
     global _llm_provider, _api_key, _client, _mock_call_counter
-    _mock_call_counter = 0 # <-- 💡 중요: 컨트롤러가 초기화될 때마다 카운터 리셋
+    _mock_call_counter = 0 # <-- 중요: 컨트롤러가 초기화될 때마다 카운터 리셋
 
     provider = config.get("provider")
     if not provider:

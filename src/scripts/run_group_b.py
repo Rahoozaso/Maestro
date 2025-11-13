@@ -3,7 +3,7 @@ import argparse
 import yaml
 from typing import Dict, Any
 
-# 💡 '본체'와 동일한 부품(LLM 핸들러, 파일 I/O)을 재활용합니다.
+# '본체'와 동일한 부품(LLM 핸들러, 파일 I/O)을 재활용합니다.
 # 이 import가 성공하려면, __init__.py 파일과 PYTHONPATH가 필수입니다.
 from maestro.utils.llm_handler import set_llm_provider, call_llm
 from maestro.utils.file_io import read_text_file, write_text_file
@@ -38,7 +38,7 @@ def main():
     # 1. 설정 및 LLM 로드
     config = load_config(args.config)
     
-    # 💡 '본체'와 동일하게 LLM 공급자를 설정합니다.
+    #  '본체'와 동일하게 LLM 공급자를 설정합니다.
     # (config.yml이 'mock'이면, 'llm_handler.py'의 _mock_call_counter가 0으로 리셋됩니다.)
     set_llm_provider(config["llm"])
 
@@ -65,18 +65,12 @@ def main():
         {"role": "user", "content": simple_prompt}
     ]
 
-    # 4. 💡 '원샷'으로 LLM 호출
+    # 4.  '원샷'으로 LLM 호출
     print("INFO (Group B): 'mock' API (호출 #1)에 요청을 보냅니다...")
     try:
-        # 💡 llm_handler.py의 '호출 카운터'가 1이 됩니다.
+        #  llm_handler.py의 '호출 카운터'가 1이 됩니다.
         llm_response_str = call_llm(messages, config["llm"])
-        
-        # --- (예상되는 다음 버그) ---
-        # 지금 'mock' 모드라면, 카운터 1번이라서 '전문가'용 가짜 보고서(list)가 반환될 겁니다.
-        # Group B는 '개선된 코드(str)'를 기대할 텐데 말이죠.
-        # 일단은 Pydantic 검증 없이 원본 응답을 그대로 저장해서 확인부터 해봅시다.
-        # ---
-        
+ 
         print("INFO (Group B): LLM 응답 수신 완료.")
 
         # 5. 결과 저장 (Pydantic 검증 없음)
