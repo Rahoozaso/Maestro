@@ -9,7 +9,7 @@ set -e
 
 # --- ⭐️ 수정된 부분: PYTHONPATH 설정 ---
 # 'src' 폴더를 Python 검색 경로에 추가하여 'maestro' 모듈을 찾을 수 있도록 함
-export PYTHONPATH="${PYTHONPATH}:./src"
+export PYTHONPATH="${PYTHONPATH}:."
 # ------------------------------------
 
 # --- 설정 변수 ---

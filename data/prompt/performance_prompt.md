@@ -60,7 +60,7 @@ assert find_common_elements([1, 2, 3], [3, 4, 5]) == [3]
 
 CORRECTOUTPUT
 [
-  {
+  {{
     "suggestion_id": "PERF-001",
     "agent_role": "PerformanceExpert",
     "title": "Improve intersection search performance by changing list lookup to set lookup",
@@ -70,7 +70,7 @@ CORRECTOUTPUT
     "proposed_change": "set2 = set(list2)\ncommon = []\nfor item1 in list1:\n    if item1 in set2:\n        common.append(item1)",
     "expected_impact": "The overall time complexity is significantly improved from O(n*m) to O(n+m), leading to an exponential reduction in execution time for large input lists.",
     "potential_tradeoffs": "There is an initial cost of O(m) to convert list2 to a set, but this is negligible compared to the inefficiency of the nested loop. If the order or duplicate elements of list2 were important, this method would be unsuitable, but it is not an issue in the current logic."
-  }
+  }}
 ]
 
 INPUT SCHEMA
@@ -89,7 +89,7 @@ OUTPUT SCHEMA
 Strictly output only a JSON array (Array of Objects) in a code block that follows the structure specified below, without any other explanations.
 
 [
-  {
+  {{
     "suggestion_id": "string",
     "agent_role": "PerformanceExpert",
     "title": "string",
@@ -99,5 +99,5 @@ Strictly output only a JSON array (Array of Objects) in a code block that follow
     "proposed_change": "string (code snippet)",
     "expected_impact": "string",
     "potential_tradeoffs": "string"
-  }
+  }}
 ]

@@ -196,7 +196,7 @@ class ArchitectAgent(BaseAgent):
         print("CoT 기반 아키텍트 로직 실행 중...")
         # 1. 프롬프트 로드
         prompt_path = (
-            self.config["paths"]["prompt_template_dir"] + "architect_agent_prompt.md"
+            self.config["paths"]["prompt_template_dir"] + "architect_prompt.md"
         )
         try:
             prompt_template = read_text_file(prompt_path)

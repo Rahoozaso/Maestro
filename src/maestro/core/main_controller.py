@@ -261,3 +261,59 @@ class MainController:
             self._save_results(run_id, v_final, final_report)  # 1차 시도 결과 저장
 
 
+import argparse
+import yaml # 'pip install pyyaml'이 필요할 수 있습니다 (아마 environment.yml에 이미 있을 겁니다)
+
+def load_config(config_path: str) -> Dict[str, Any]:
+    """YAML 설정 파일을 로드합니다."""
+    print(f"INFO: '{config_path}'에서 설정 파일을 로드합니다...")
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = yaml.safe_load(f)
+        print("INFO: 설정 로드 완료.")
+        return config
+    except FileNotFoundError:
+        print(f"[오류] 설정 파일 '{config_path}'를 찾을 수 없습니다.")
+        exit(1)
+    except Exception as e:
+        print(f"[오류] 설정 파일 로드 중 오류 발생: {e}")
+        exit(1)
+
+def main():
+    """
+    명령줄 인수를 파싱하고 MainController 워크플로우를 실행합니다.
+    """
+    parser = argparse.ArgumentParser(description="MAESTRO 워크플로우 컨트롤러")
+
+    parser.add_argument("--config", type=str, required=True, help="설정 파일 (config.yml) 경로")
+    parser.add_argument("--input_code", type=str, required=True, help="입력 소스 코드 파일 경로")
+    parser.add_argument("--unit_tests", type=str, required=True, help="유닛 테스트 파일 경로")
+    parser.add_argument("--output_dir", type=str, required=True, help="결과를 저장할 디렉토리")
+    parser.add_argument("--architect_mode", type=str, default="CoT", help="아키텍트 모드 (CoT, RuleBased)")
+
+    # 자기 회고 옵션 (활성화/비활성화)
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--enable_retrospection", action="store_true", dest="retrospection", default=True, help="자기 회고 활성화 (기본값)")
+    group.add_argument("--disable_retrospection", action="store_false", dest="retrospection", help="자기 회고 비활성화")
+
+    args = parser.parse_args()
+
+    # 1. 설정 로드
+    config = load_config(args.config)
+
+    # 2. 컨트롤러 초기화 (이제 "MainController 초기화 완료..." 메시지가 보여야 합니다)
+    controller = MainController(config)
+
+    # 3. 워크플로우 실행
+    print("INFO: MainController 워크플로우를 시작합니다...")
+    controller.run_workflow(
+        source_code_path=args.input_code,
+        unit_test_path=args.unit_tests,
+        output_dir=args.output_dir,
+        architect_mode=args.architect_mode,
+        enable_retrospection=args.retrospection
+    )
+    print("===== MAESTRO 워크플로우 종료 =====")
+
+if __name__ == "__main__":
+    main()

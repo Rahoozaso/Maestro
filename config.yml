@@ -10,9 +10,9 @@ llm:
 
 #  파일 및 디렉토리 경로 설정
 paths:
-  benchmarks: "./data/benchmarks/"
-  prompts: "./data/prompts/"
-  outputs: "./outputs/"
+  benchmarks: "./data/benchmark/"
+  prompt_template_dir: "./data/prompt/"
+  output_dir: "./outputs/"
   logs: "./outputs/logs/"
 
 #  MAESTRO 프레임워크 핵심 파라미터
@@ -54,7 +54,8 @@ maestro_framework:
 
 #  로깅 설정
 logging:
-  level: "INFO" 
-  file_path: "./results/logs/maestro_run.log"
+  #level: "INFO"
+  level: "DEBUG" 
+ # file_path: "./results/logs/maestro_run.log"
 
 

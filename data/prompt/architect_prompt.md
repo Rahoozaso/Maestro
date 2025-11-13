@@ -25,46 +25,46 @@ v_gen: (A function that processes a list of products)
 
 expert_reports:
 
-PerformanceExpert Report: [{ "suggestion_id": "PERF-001", "title": "Change List Lookup to Set Lookup", "target_code_block": "main.py#L8-L10", "severity": "High", ... }]
+PerformanceExpert Report: [{{ "suggestion_id": "PERF-001", "title": "Change List Lookup to Set Lookup", "target_code_block": "main.py#L8-L10", "severity": "High", ... }}]
 
-ReadabilityExpert Report: [{ "suggestion_id": "READ-001", "title": "Extract Complex Conditional into a Helper Function", "target_code_block": "main.py#L7-L12", "severity": "Medium", ... }]
+ReadabilityExpert Report: [{{ "suggestion_id": "READ-001", "title": "Extract Complex Conditional into a Helper Function", "target_code_block": "main.py#L7-L12", "severity": "Medium", ... }}]
 
 synthesis_goal: "Balance"
 
 [CORRECT OUTPUT]
 
-{
+{{
   "work_order_id": "WO-123",
   "target_version": "v_gen",
   "synthesis_goal": "Balance",
   "reasoning_log": "[Phase 1] Goal: Balance. Suggestions: PERF-001 (Set lookup), READ-001 (Helper function). [Phase 2] Conflict identified on lines L7-L12. [Phase 3] No critical security issues. Both suggestions preserve functionality. [Phase 4] Conflict Resolution: Both suggestions are valuable. PERF-001 addresses a common AI anti-pattern (O(n*m) complexity). READ-001 improves maintainability. A synergistic approach is best. I will first apply the larger structural change (extracting the helper function) and then incorporate the performance optimization within the new function. This satisfies both goals. [Phase 5] Execution order determined: First, refactor the function, then modify its internal logic.",
   "instructions": [
-    {
+    {{
       "step": 1,
       "action": "REFACTOR_EXTRACT_FUNCTION",
       "description": "READ-001: Extract complex conditional logic into an 'is_product_eligible' helper function for readability.",
       "target_code_block": "main.py#L7-L12",
-      "details": {
+      "details": {{
         "new_function_name": "is_product_eligible",
         "new_function_signature": "def is_product_eligible(product, valid_categories):",
         "original_call_site_replacement": "if is_product_eligible(product, valid_categories):"
-      },
+      }},
       "source_suggestion_ids": ["READ-001"],
       "rationale": "Based on the 'Principle of Synergistic Integration', apply the structural change first to lay the groundwork for subsequent optimization."
-    },
-    {
+    }},
+    {{
       "step": 2,
       "action": "MODIFY_IN_NEW_FUNCTION",
       "description": "PERF-001: Optimize the list lookup to a set lookup inside the newly created 'is_product_eligible' function.",
       "target_code_block": "is_product_eligible#L2-L2",
-      "details": {
+      "details": {{
          "modification": "category_set = set(valid_categories)\nreturn product['category'] in category_set and product['stock'] > 0"
-      },
+      }},
       "source_suggestion_ids": ["PERF-001"],
       "rationale": "Based on the 'Principle of AI Anti-Pattern Correction', improve performance by fixing the typical inefficient algorithm of AI within the extracted function."
-    }
+    }}
   ]
-}
+}}
 
 INPUT SCHEMA
 v_gen: (String) The original source code to be modified.
@@ -86,23 +86,23 @@ TASK DIRECTIVE (CHAIN OF THOUGHT BASED STRATEGY)
 OUTPUT SCHEMA
 Strictly output only a single JSON object in a code block that follows the structure specified below, without any other explanations.
 
-{
+{{
   "work_order_id": "string",
   "target_version": "string (e.g., v_gen)",
   "synthesis_goal": "string",
   "reasoning_log": "string (A brief summary of the architect's decision-making process)",
   "instructions": [
-    {
+    {{
       "step": "integer",
       "action": "REPLACE | REFACTOR_EXTRACT_FUNCTION | MODIFY_IN_NEW_FUNCTION | etc.",
       "description": "string (A human-readable summary of the change)",
       "target_code_block": "string (e.g., filename.py#L10-L15 or function_name#L1-L5)",
-      "details": {
+      "details": {{
           "key": "value",
           "...": "..."
-       },
+       }},
       "source_suggestion_ids": ["list of strings (e.g., READ-001, PERF-001)"],
       "rationale": "string (Justification based on a CONSTITUTIONAL PRINCIPLE)"
-    }
+    }}
   ]
-}
+}}

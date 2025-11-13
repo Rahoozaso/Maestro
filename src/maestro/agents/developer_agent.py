@@ -38,7 +38,7 @@ class DeveloperAgent(BaseAgent):
             return None
 
         # 실행 계획(dict)을 프롬프트에 삽입하기 위해 JSON 문자열로 변환
-        plan_str = json.dumps(integrated_execution_plan, indent=2, ensure_ascii=False)
+        plan_str = integrated_execution_plan.model_dump_json(indent=2)
         prompt = prompt_template.format(v_gen=v_gen, integrated_execution_plan=plan_str)
 
         messages = [

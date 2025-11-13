@@ -53,12 +53,12 @@ def check_access(d):
 
 unit_test_suite:
 
-assert check_access({'level': 10, 'name': 'admin'}) == True
+assert check_access({{'level': 10, 'name': 'admin'}}) == True
 
 [CORRECT OUTPUT]
 
 [
-  {
+  {{
     "suggestion_id": "READ-001",
     "agent_role": "ReadabilityExpert",
     "title": "Rename ambiguous variable 'd' to 'user'",
@@ -68,8 +68,8 @@ assert check_access({'level': 10, 'name': 'admin'}) == True
     "proposed_change": "def check_access(user):",
     "expected_impact": "Improves maintainability by allowing the intent of the input value to be clearly understood from the function's signature alone.",
     "potential_tradeoffs": "None."
-  },
-  {
+  }},
+  {{
     "suggestion_id": "READ-002",
     "agent_role": "ReadabilityExpert",
     "title": "Replace 'magic number' 5 with a named constant 'ADMIN_LEVEL_THRESHOLD'",
@@ -79,7 +79,7 @@ assert check_access({'level': 10, 'name': 'admin'}) == True
     "proposed_change": "ADMIN_LEVEL_THRESHOLD = 5\nif user['level'] > ADMIN_LEVEL_THRESHOLD:",
     "expected_impact": "The number 5 now has a clear meaning as the 'admin level threshold', significantly improving the code's readability and maintainability.",
     "potential_tradeoffs": "None."
-  }
+  }}
 ]
 
 INPUT SCHEMA
@@ -98,7 +98,7 @@ OUTPUT SCHEMA
 Strictly output only a single JSON array (Array of Objects) in a code block that follows the structure specified below, without any other explanations.
 
 [
-  {
+  {{
     "suggestion_id": "string",
     "agent_role": "ReadabilityExpert",
     "title": "string",
@@ -108,5 +108,5 @@ Strictly output only a single JSON array (Array of Objects) in a code block that
     "proposed_change": "string (A specific instruction for change, not a full code snippet)",
     "expected_impact": "string",
     "potential_tradeoffs": "string"
-  }
+  }}
 ]
