@@ -1,7 +1,7 @@
 #  LLM API 설정
 llm:
-  #provider: "openai"
-  provider: "mock"
+  provider: "openai"
+  #provider: "mock"
   model: "gpt-5"
   parameters:
     temperature: 0.3    

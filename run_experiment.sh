@@ -18,7 +18,7 @@ set -eu
 
 # 2. 핵심 파일 및 고정 출력 폴더
 CONFIG_FILE="config.yml"
-RESULTS_BASE_DIR="results/outputs" # 고정된 '깔끔한' 출력 폴더
+RESULTS_BASE_DIR="results/outputs" 
 
 # 3. HumanEval 설정
 HE_BENCHMARK_DIR="data/benchmark/HumanEval"
