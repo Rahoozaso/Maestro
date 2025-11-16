@@ -110,9 +110,10 @@ class MainController:
             },
         }
 
-    def _save_results(self, run_id: str, final_code: str, report: Dict[str, Any]):
+    def _save_results(self, output_dir: str, final_code: str, report: Dict[str, Any]):
         """실험 결과를 outputs 폴더에 저장합니다."""
-        output_dir = os.path.join(self.config["paths"]["output_dir"], run_id)
+        #  'run_id'를 'output_dir'로 명확히 바꾸고, config 경로와 합치지 않음.
+
         os.makedirs(output_dir, exist_ok=True)
 
         # 최종 코드 저장
@@ -169,7 +170,10 @@ class MainController:
 
         # --- 2단계: 아키텍트 의사결정 ---
         print("\n--- 2단계: 아키텍트 의사결정 시작 ---")
-        plan = self.architect_agent.run(v_gen, all_reports, unit_tests)
+        # 💡 'architect_mode' 인수를 아키텍트에게 전달하도록 수정
+        plan = self.architect_agent.run(
+            v_gen, all_reports, unit_tests, architect_mode=architect_mode
+        )
         if not plan:
             print(
                 "아키텍트가 실행 계획을 생성하지 못했습니다. 워크플로우를 종료합니다."

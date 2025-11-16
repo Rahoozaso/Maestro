@@ -12,8 +12,8 @@ llm:
 paths:
   benchmarks: "./data/benchmark/"
   prompt_template_dir: "./data/prompt/"
-  output_dir: "./outputs/"
-  logs: "./outputs/logs/"
+  output_dir: "./results/outputs/"
+  logs: "./results/logs/"
 
 #  MAESTRO 프레임워크 핵심 파라미터
 maestro_framework:

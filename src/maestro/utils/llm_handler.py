@@ -6,15 +6,13 @@ from typing import List, Dict, Any, Optional
 _llm_provider: Optional[str] = None
 _api_key: Optional[str] = None
 _client = None
-_mock_call_counter: int = 0 # <-- 호출 카운터
 
 
 def set_llm_provider(config: Dict[str, Any]):
     """
     main_controller에서 호출되어, 사용할 LLM 공급자와 API 키를 설정합니다.
     """
-    global _llm_provider, _api_key, _client, _mock_call_counter
-    _mock_call_counter = 0 # <-- 중요: 컨트롤러가 초기화될 때마다 카운터 리셋
+    global _llm_provider, _api_key, _client
 
     provider = config.get("provider")
     if not provider:
@@ -38,8 +36,18 @@ def set_llm_provider(config: Dict[str, Any]):
         print("LLM 공급자가 'openai'로 설정되었습니다.")
 
     elif _llm_provider == "anthropic":
-        # (Anthropic 로직 ... 생략)
-        pass
+        try:
+            from anthropic import Anthropic
+        except ImportError:
+            raise ImportError(
+                "Anthropic을 사용하려면 'pip install anthropic'를 실행해주세요."
+            )
+
+        _api_key = os.getenv("ANTHROPIC_API_KEY")
+        if not _api_key:
+            raise ValueError("'ANTHROPIC_API_KEY' 환경 변수가 설정되지 않았습니다.")
+        _client = Anthropic(api_key=_api_key)
+        print("LLM 공급자가 'anthropic'로 설정되었습니다.")
 
     elif _llm_provider == "mock":
         _client = "mock"
@@ -61,85 +69,50 @@ def call_llm(messages: List[Dict[str, str]], llm_config: Dict[str, Any]) -> str:
 
     try:
         if _llm_provider == "openai":
-            # (OpenAI 로직 ... 생략)
             model = llm_config.get("model", "gpt-5")
             response = _client.chat.completions.create(model=model, messages=messages)
             return response.choices[0].message.content or ""
         
         elif _llm_provider == "anthropic":
-            # (Anthropic 로직 ... 생략)
-            pass
+            model = llm_config.get("model", "claude-3-sonnet-20240229")
+            system_prompt = ""
+            if messages and messages[0]["role"] == "system":
+                system_prompt = messages[0]["content"]
+                user_messages = messages[1:]
+            else:
+                user_messages = messages
 
-        # --- 👇 "카운터 기반" Mock 로직 시작 👇 ---
+            response = _client.messages.create(
+                model=model,
+                system=system_prompt,
+                max_tokens=4096,
+                messages=user_messages,
+            )
+            return response.content[0].text
+
+       # --- "답안지 + 문제지 기반" Mock 로직 (최종판 v4) ---
         elif _llm_provider == "mock":
             
-            prompt_str = str(messages).lower()
+            # 💡 '시스템 프롬프트' (첫 번째 메시지)만 엿봅니다.
+            system_prompt_str = ""
+            if messages and messages[0]["role"] in ("system", "user"):
+                # 'content'가 None일 수 있는 엣지 케이스 방어
+                if messages[0].get("content"):
+                    system_prompt_str = messages[0].get("content", "").lower()
 
-            # --- 💡 1순위: Group B 확인 (Group B의 고유 프롬프트) ---
-            if "nfr을 종합적으로" in prompt_str or "비기능적 요구사항" in prompt_str:
-                # (Group B는 '가짜 코드'를 원함)
-                fake_code = """
-# This is a mock code response for Group B (Simple LLM)
-def mock_group_b_function():
-    pass
-"""
-                return fake_code # 💡 JSON.DUMPS() 안 함! 순수 문자열 반환
+            # --- (디버깅용 print 구문 제거) ---
 
-            # --- 💡 2순위: Group C, D, E (main_controller) 확인 ---
-            global _mock_call_counter
-            _mock_call_counter += 1
+            # --- 💡 1순위: Group B (단일 LLM) ---
+            if "nfr을 종합적으로" in system_prompt_str or "비기능적 요구사항" in system_prompt_str:
+                fake_code = """# This is a mock code response for Group B
+        def mock_group_b_function():
+            pass"""
+                return fake_code # 순수 문자열 반환
 
-            # [호출 #1, #2, #3] 전문가
-            if _mock_call_counter <= 3:
-                mock_role = "MockExpert"
-                if _mock_call_counter == 1:
-                    mock_role = "PerformanceExpert"
-                elif _mock_call_counter == 2:
-                    mock_role = "ReadabilityExpert"
-                else:
-                    mock_role = "SecurityExpert"
-                
-                fake_report = [
-                    {
-                        "suggestion_id": f"MOCK-00{_mock_call_counter}",
-                        "agent_role": mock_role, 
-                        "title": f"Mock suggestion from {mock_role}",
-                        "target_code_block": "main.py#L1-L1",
-                        "severity": "Low",
-                        "reasoning": "This is a mock response for an Expert.",
-                        "proposed_change": "pass",
-                        "expected_impact": "None. This is a mock.",
-                        "potential_tradeoffs": "None."
-                    }
-                ]
-                return json.dumps(fake_report)
-
-            # [호출 #4] 아키텍트
-            elif _mock_call_counter == 4:
-                fake_plan = {
-                    "work_order_id": "MOCK-WO-001", 
-                    "synthesis_goal": "Balance",      
-                    "reasoning_log": "This is a mock reasoning log to pass validation.",
-                    "instructions": [                 
-                        {
-                            "step": 1,
-                            "action": "REPLACE", 
-                            "description": "Mock step 1: Extract function (to pass validation).",
-                            "target_code_block": "main.py#L1-L1",
-                            "details": {
-                                "refactor_type": "EXTRACT_FUNCTION", 
-                                "new_function_name": "mock_extracted_function",
-                                "new_function_body": "def mock_extracted_function():\n    pass # Mock body"
-                            },
-                            "source_suggestion_ids": ["MOCK-001", "MOCK-002", "MOCK-003"],
-                            "rationale": "Mock rationale based on principles."
-                        }
-                    ]
-                }
-                return json.dumps(fake_plan)
-            
-            # [호출 #5] 개발자
-            elif _mock_call_counter == 5:
+            # --- 💡 2순위: 개발자 (Group C, D, E) ---
+            # (방금 "심문"으로 알아낸 '진짜' 키워드로 수정!)
+            elif "you are a precise instruction-following expert engine for code modification" in system_prompt_str:
+                # '답안지(models.py)'의 "DeveloperAgentOutput" 모델을 따름
                 fake_dev_output = {
                     "status": "SUCCESS", 
                     "final_code": "# This is mock code from the developer",
@@ -147,9 +120,65 @@ def mock_group_b_function():
                 }
                 return json.dumps(fake_dev_output)
 
-            # [호출 #6+] 자기 회고 등
+            # --- 💡 3순위: 아키텍트 (Group D, E) ---
+            # ('진짜' 키워드 적용 완료)
+            elif "you are a world-class ai software architect" in system_prompt_str:
+                # '답안지(models.py)'의 "IntegratedExecutionPlan" 모델을 따름
+                fake_plan = {
+                    "work_order_id": "MOCK-WO-001", 
+                    "synthesis_goal": "Balance",      
+                    "reasoning_log": "This is a mock reasoning log...",
+                    "instructions": [                 
+                        {
+                            "step": 1,
+                            "action": "REPLACE",
+                            "description": "Mock step 1...",
+                            "target_code_block": "main.py#L1-L1",
+                            "details": {
+                                "refactor_type": "EXTRACT_FUNCTION", 
+                                "new_function_name": "mock_extracted_function",
+                                "new_function_body": "def mock_extracted_function():\n    pass"
+                            },
+                            "source_suggestion_ids": ["MOCK-001"],
+                            "rationale": "Mock rationale.",
+                            "new_code": None
+                        }
+                    ]
+                }
+                return json.dumps(fake_plan)
+            
+            # --- 💡 4순위: 전문가 (Group C, D, E) ---
+            # ('진짜' 키워드 적용 완료)
+            mock_role = None
+            if "you are a world-class expert in python code performance optimization" in system_prompt_str:
+                mock_role = "PerformanceExpert"
+            elif "you are a world-class expert in python code readability optimization" in system_prompt_str:
+                mock_role = "ReadabilityExpert"
+            elif "you are a world-class expert in python code security optimization" in system_prompt_str:
+                mock_role = "SecurityExpert"
+
+            if mock_role:
+                # '답안지(models.py)'의 "ExpertReviewReport" 모델을 따름
+                fake_report = [
+                    {
+                        "suggestion_id": f"MOCK-001-{mock_role}",
+                        "agent_role": mock_role, 
+                        "title": f"Mock suggestion from {mock_role}",
+                        "target_code_block": "main.py#L1-L1",
+                        "severity": "Low",
+                        "reasoning": "This is a mock response for an Expert.",
+                        "proposed_change": "pass"
+                    }
+                ]
+                return json.dumps(fake_report)
+            
+            # --- 💡 5순위: 예외 처리 (어떤 키워드도 감지되지 않음) ---
             else:
-                return '{"status": "mock_fallback_loop", "log": "Mock loop detected."}'
+                fallback_response = {
+                    "status": "mock_fallback_unknown",
+                    "log": "Mock logic failed to identify prompt. No specific mock handler was triggered."
+                }
+                return json.dumps(fallback_response)
         # --- 👆 Mock 로직 끝 👆 ---
 
         return ""

@@ -14,11 +14,10 @@ export PYTHONPATH="${PYTHONPATH}:."
 
 # --- 설정 변수 ---
 BENCHMARK_BASE_DIR="./data/benchmark"
-OUTPUT_BASE_DIR="./outputs"
+OUTPUT_BASE_DIR="./results/outputs"
 CONFIG_FILE="config.yml"
-# --- ⭐️ 수정된 부분: 'src.' 접두사 제거 ---
-MAESTRO_MAIN_SCRIPT="maestro.core.main_controller" # "src.maestro..." -> "maestro..."
-GROUP_B_SCRIPT="scripts.run_group_b"            # "src.scripts..." -> "scripts..."
+MAESTRO_MAIN_SCRIPT="maestro.core.main_controller" 
+GROUP_B_SCRIPT="scripts.run_group_b"         
 # ---------------------------------------
 
 # 사용할 SOTA 생성 프레임워크 (Dry Run에서는 이름만 사용됨)
