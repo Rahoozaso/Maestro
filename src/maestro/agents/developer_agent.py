@@ -1,4 +1,5 @@
 import json
+import re  
 from pydantic import ValidationError
 from typing import Dict, Any, Optional
 from .base_agent import BaseAgent
@@ -18,13 +19,6 @@ class DeveloperAgent(BaseAgent):
     ) -> Optional[DeveloperAgentOutput]:
         """
         개발자 에이전트의 메인 실행 로직입니다.
-
-        Args:
-            v_gen (str): 수정 대상이 되는 원본 코드.
-            integrated_execution_plan (Dict[str, Any]): 아키텍트가 생성한 실행 계획.
-
-        Returns:
-            Optional[DeveloperAgentOutput]: 실행 성공 시 결과 데이터 모델, 실패 시 None.
         """
         print("개발자 에이전트 실행 중...")
 
@@ -59,12 +53,23 @@ class DeveloperAgent(BaseAgent):
 
         # 3. 결과 파싱 및 데이터 모델 검증
         try:
-            # LLM 응답에서 JSON 코드 블록만 추출
+            # [수정 1] 더 강력한 JSON 추출 로직 사용 (Regex)
             json_block = self._extract_json_from_response(response_str)
+            
+            # [방어] 빈 응답 처리
+            if not json_block:
+                 print("에러: LLM이 유효한 JSON을 반환하지 않았습니다.")
+                 return None
+
             parsed_data = json.loads(json_block)
 
             # Pydantic 모델로 검증
             validated_output = DeveloperAgentOutput.model_validate(parsed_data)
+            
+            # [수정 2] JSON 내부 'final_code' 필드에 있는 ```python 마커 제거
+            if validated_output.final_code:
+                validated_output.final_code = self._clean_markdown_code_fences(validated_output.final_code)
+
             print(
                 f"개발자 에이전트 실행 결과 검증 완료 (상태: {validated_output.status})"
             )
@@ -75,15 +80,29 @@ class DeveloperAgent(BaseAgent):
             return None
 
     def _extract_json_from_response(self, response: str) -> str:
-        """응답 문자열에서 JSON 코드 블록을 추출합니다."""
-        try:
-            # ```json ... ``` 패턴을 찾습니다.
-            start_index = response.index("```json") + len("```json")
-            end_index = response.rindex("```")
-            return response[start_index:end_index].strip()
-        except ValueError:
-            # 코드 블록이 없는 경우, 전체 문자열을 JSON으로 간주
-            print(
-                "경고: JSON 코드 블록 마커를 찾을 수 없습니다. 전체 응답을 파싱합니다."
-            )
-            return response
+        """
+        응답 문자열에서 JSON 코드 블록을 추출합니다.
+        (```json ... ```) 또는 (``` ... ```) 또는 (raw JSON)을 모두 처리합니다.
+        """
+        response = response.strip()
+        
+        # 1. ```json ... ``` 또는 ``` ... ``` 블록 찾기
+        # group(2)가 실제 내용이 됩니다.
+        match = re.search(r"```(json)?\s*\n(.*?)\n\s*```", response, re.DOTALL)
+        if match:
+            return match.group(2).strip() 
+
+        # 2. 블록이 없으면, 원본 문자열 자체가 유효한 JSON일 수 있다고 가정
+        return response
+
+    def _clean_markdown_code_fences(self, code_str: str) -> str:
+        """
+        코드 문자열 내부에 포함된 Markdown 코드 펜스(```python ... ```)를 제거합니다.
+        LLM이 JSON 필드 값 안에 코드를 넣을 때 가끔 마크다운 문법을 포함시키는 경우를 방어합니다.
+        """
+        code_str = code_str.strip()
+        # 문자열 전체가 ``` ... ``` 로 감싸져 있는지 확인 (python 옵션 포함)
+        match = re.search(r"^```(?:python)?\s*\n(.*?)\n\s*```$", code_str, re.DOTALL)
+        if match:
+            return match.group(1).strip()
+        return code_str

@@ -2,9 +2,17 @@ import argparse
 import yaml
 from typing import Dict, Any
 
-#  '본체'의 핵심 부품(MainController)과 헬퍼 함수를 import합니다.
-from maestro.core.main_controller import MainController, load_config
 from maestro.utils.llm_handler import set_llm_provider
+from maestro.core.main_controller import MainController
+
+def load_config(config_path: str):
+    """YAML 설정 파일을 로드합니다 (독립형)."""
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f)
+    except Exception as e:
+        print(f"[오류] 설정 파일 로드 실패: {e}")
+        exit(1)
 
 def main():
     """

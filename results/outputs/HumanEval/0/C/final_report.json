@@ -1,0 +1,38 @@
+{
+    "run_id": "20251118_215154",
+    "initial_attempt": {
+        "quality": {
+            "total_score": 40,
+            "scores": {
+                "security": 40,
+                "readability": 0,
+                "performance": 0
+            },
+            "details": {
+                "security": {
+                    "success": true,
+                    "highest_severity": null,
+                    "issues": [],
+                    "error_message": null
+                },
+                "readability": {
+                    "success": false,
+                    "average_complexity": -1.0,
+                    "complexities": [],
+                    "error_message": "가독성 분석 중 오류 발생: 'Function' object has no attribute 'type'"
+                },
+                "performance": {
+                    "success": false,
+                    "original_avg_time": -1.0,
+                    "modified_avg_time": -1.0,
+                    "improvement_percentage": 0.0,
+                    "error_message": "성능 분석 중 오류 발생: 코드 실행 서브프로세스 실패: Error: name 'List' is not defined\n"
+                }
+            }
+        },
+        "developer_log": [
+            "Step 1: Successfully applied REPLACE on target 'main.py#L1-L1'."
+        ]
+    },
+    "status": "FINAL_FAILURE_RULEBASED_NO_RETRO"
+}

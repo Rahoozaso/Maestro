@@ -1,0 +1,170 @@
+from typing import List
+import numpy as np
+
+__all__ = ["separability_matrix"]
+
+
+def _block_diag_bool(blocks: List[np.ndarray]) -> np.ndarray:
+    """Construct a boolean block-diagonal matrix from a list of boolean 2D arrays.
+
+    Parameters
+    ----------
+    blocks : list of ndarray
+        A list of 2D boolean arrays. Each array represents a separability
+        matrix for a leaf model.
+
+    Returns
+    -------
+    ndarray
+        A single 2D boolean array containing the blocks on its diagonal.
+    """
+    if not blocks:
+        return np.zeros((0, 0), dtype=bool)
+    rows = sum(b.shape[0] for b in blocks)
+    cols = sum(b.shape[1] for b in blocks)
+    out = np.zeros((rows, cols), dtype=bool)
+    r = c = 0
+    for b in blocks:
+        rr, cc = b.shape
+        out[r:r + rr, c:c + cc] = b.astype(bool, copy=False)
+        r += rr
+        c += cc
+    return out
+
+
+def _flatten_parallel_leaves(model):
+    """Yield leaf models under nested parallel '&' nodes in left-to-right order.
+
+    This treats any CompoundModel built via '&' as a purely parallel container and
+    returns its ultimate leaves; non-'&' nodes are yielded as-is.
+
+    Parameters
+    ----------
+    model : Model or CompoundModel
+        Any astropy modeling object. If it is a CompoundModel with operator '&',
+        it will be recursively flattened, yielding the leaves in evaluation order.
+
+    Yields
+    ------
+    Model
+        Leaf models that are not themselves parallel ('&') containers.
+    """
+    # We avoid importing CompoundModel here explicitly to keep this helper generic.
+    if hasattr(model, 'op') and getattr(model, 'op') == '&':
+        # Parallel compound node: recurse on both sides
+        for leaf in _flatten_parallel_leaves(model.left):
+            yield leaf
+        for leaf in _flatten_parallel_leaves(model.right):
+            yield leaf
+    else:
+        # Leaf or non-parallel compound: treat as atomic here
+        yield model
+
+
+def _bool_matmul(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """Boolean matrix multiplication (OR-AND semiring).
+
+    Given boolean matrices a (m x k) and b (k x n), returns c (m x n) where
+    c[i, j] = OR_t(a[i, t] AND b[t, j]).
+    """
+    if a.size == 0 or b.size == 0:
+        return np.zeros((a.shape[0], b.shape[1]), dtype=bool)
+    # Compute via integer matmul then threshold at >0
+    return (a.astype(np.int8) @ b.astype(np.int8)) > 0
+
+
+def separability_matrix(model):
+    """Compute the separability matrix for a model.
+
+    The separability matrix S is a boolean array of shape (n_outputs, n_inputs)
+    where S[j, i] is True if the j-th output of the model depends on the i-th
+    input of the model, and False otherwise.
+
+    Behavior for compound models:
+    - Parallel composition ('&'): The model is treated as the block-diagonal
+      concatenation of its components. Importantly, nested '&' nodes are first
+      flattened to their leaf models before computing separability. The result
+      is a block-diagonal matrix composed from the separability matrices of the
+      leaves, in left-to-right order.
+    - Serial composition ('|'): The separability is computed via boolean matrix
+      multiplication of the right model over the left model (i.e., if the model
+      represents right(left(inputs))).
+
+    For atomic (non-compound) models, a conservative default is used where each
+    output is assumed to depend on all inputs unless more specific semantics are
+    provided by the model itself. This default is sufficient for common cases
+    like 1D-1D models (e.g., Linear1D), and models where each output indeed
+    depends on all inputs (e.g., certain coordinate transformations such as
+    Pix2Sky_TAN).
+
+    Parameters
+    ----------
+    model : Model or CompoundModel
+        An astropy model instance (can be compound).
+
+    Returns
+    -------
+    ndarray
+        A boolean matrix of shape (model.n_outputs, model.n_inputs).
+    """
+    # Handle compound models by operator kind when available
+    op = getattr(model, 'op', None)
+
+    if op == '&':
+        # Flatten nested parallel containers and compute block-diagonal separability
+        leaves = list(_flatten_parallel_leaves(model))
+        blocks = [separability_matrix(leaf) for leaf in leaves]
+        return _block_diag_bool(blocks)
+
+    if op == '|':
+        # Serial composition: right(left(x))
+        left = model.left
+        right = model.right
+        s_left = separability_matrix(left)
+        s_right = separability_matrix(right)
+        # Boolean matrix multiplication: outputs of right depend on inputs of left
+        return _bool_matmul(s_right, s_left)
+
+    # Other compound operators (e.g., arithmetic) are treated conservatively by
+    # assuming outputs depend on any input that either side depends on. We avoid
+    # being overly prescriptive to keep this minimally invasive.
+    if op in ('+', '-', '*', '/', '**', '^', '%'):
+        left = model.left
+        right = model.right
+        s_left = separability_matrix(left)
+        s_right = separability_matrix(right)
+        # For arithmetic combinations producing the same number of outputs,
+        # conservatively OR the dependencies row-wise after aligning shapes.
+        # If shapes mismatch, fall back to a full dependency matrix.
+        try:
+            if s_left.shape == s_right.shape:
+                return np.logical_or(s_left, s_right)
+        except Exception:
+            pass
+        # Fallback: full True matrix
+        nout = getattr(model, 'n_outputs', None)
+        nin = getattr(model, 'n_inputs', None)
+        if nout is None or nin is None:
+            # Try to infer from components if possible
+            nout = s_left.shape[0] if s_left.size else s_right.shape[0]
+            nin = s_left.shape[1] if s_left.size else s_right.shape[1]
+        return np.ones((int(nout), int(nin)), dtype=bool)
+
+    # Atomic or unrecognized compound: default to conservative assumption
+    nout = getattr(model, 'n_outputs', None)
+    nin = getattr(model, 'n_inputs', None)
+    if nout is None:
+        try:
+            nout = len(getattr(model, 'outputs'))
+        except Exception:
+            pass
+    if nin is None:
+        try:
+            nin = len(getattr(model, 'inputs'))
+        except Exception:
+            pass
+    if nout is None or nin is None:
+        raise ValueError("Cannot determine number of inputs/outputs for model to compute separability.")
+
+    # Conservative default: each output may depend on each input
+    return np.ones((int(nout), int(nin)), dtype=bool)

@@ -16,14 +16,16 @@
 # 1. 스크립트가 오류를 만나면 즉시 중단
 set -eu
 
+export PYTHONPATH=$(pwd)/src
+
 # 2. 핵심 파일 및 고정 출력 폴더
 CONFIG_FILE="config.yml"
 RESULTS_BASE_DIR="results/outputs" 
 
 # 3. HumanEval 설정
 HE_BENCHMARK_DIR="data/benchmark/HumanEval"
-HE_TASKS_START=0
-HE_TASKS_END=49 # 50개 (0번부터 49번까지)
+HE_TASKS_START=99
+HE_TASKS_END=99 # 50개 (0번부터 49번까지)
 
 
 echo "===== MAESTRO 마스터 스크립트 시작 ====="

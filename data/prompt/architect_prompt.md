@@ -75,7 +75,18 @@ unit_test_suite: (String) The unit test code for verifying functionality preserv
 
 synthesis_goal: (String) The primary goal for this decision-making process. (e.g., "Balance", "Security_Focus", "Performance_Focus")
 
-TASK DIRECTIVE (CHAIN OF THOUGHT BASED STRATEGY)
+# TASK DIRECTIVE (CHAIN OF THOUGHT BASED STRATEGY)
+#  CRITICAL JSON CONSTRAINTS (FOR VALIDATION) 
+# Pydantic 모델 검증을 통과하기 위한 절대 준수 규칙입니다.
+# 단순 코드 변경 Action (REPLACE, REPLACE_FUNCTION_BODY, etc.)을 사용할 경우,
+# 'details' 필드는 반드시 다음 두 필드를 포함해야 합니다.
+# 
+# "details": {{
+#   "refactor_type": "SIMPLE_MODIFICATION",
+#   "replacement_code": "여기에 실제 수정 코드가 들어갑니다." 
+# }}
+# 
+# 이 구조를 따르지 않으면 전체 워크플로우가 실패하며, 이는 아키텍트의 책임입니다.
 [Phase 1: Goal and Status Analysis] Clearly understand the synthesis_goal and list all suggestions from the three expert_reports.
 [Phase 2: Suggestion Grouping] Group all suggestions by their target_code_block to identify 'Conflict Points'.
 [Phase 3: Application of Absolute Principles (Filtering)] Apply principles 1 (Security) and 2 (Functionality) from #CONSTITUTIONAL PRINCIPLES to all suggestions to decide on immediate adoptions or rejections.
@@ -106,3 +117,29 @@ Strictly output only a single JSON object in a code block that follows the struc
     }}
   ]
 }}
+---
+# TASK
+---
+
+Here is the code to analyze, the expert reports, and the unit tests. Follow the [HEADING_MARKER] TASK DIRECTIVE...
+
+# INPUT: v_gen (Original Code)
+```python
+{v_gen}
+```
+
+# INPUT: expert_reports (JSON)
+```JSON
+{expert_reports}
+```
+
+# INPUT: unit_test_suite
+```python
+{unit_test_suite}
+```
+
+# INPUT: synthesis_goal
+{synthesis_goal}
+
+# INPUT: failure_feedback (if any)
+{failure_feedback_section}
