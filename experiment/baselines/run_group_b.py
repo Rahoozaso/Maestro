@@ -8,13 +8,16 @@ from typing import Dict, Any
 from maestro.utils.llm_handler import set_llm_provider, call_llm
 from maestro.utils.file_io import read_text_file, write_text_file
 
-def load_config(config_path: str):
-    """YAML 설정 파일을 로드합니다 (독립형)."""
+def load_config(config_path: str) -> Dict[str, Any]:
+    """YAML 설정 파일을 로드합니다."""
+    print(f"INFO (Group B): '{config_path}'에서 설정 파일을 로드합니다...")
     try:
         with open(config_path, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f)
-    except Exception as e:
-        print(f"[오류] 설정 파일 로드 실패: {e}")
+            config = yaml.safe_load(f)
+        print("INFO (Group B): 설정 로드 완료.")
+        return config
+    except FileNotFoundError:
+        print(f"[오류] 설정 파일 '{config_path}'를 찾을 수 없습니다.")
         exit(1)
 
 def _extract_python_code(response_str: str) -> str:

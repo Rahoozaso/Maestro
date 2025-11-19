@@ -1,101 +1,66 @@
+from __future__ import annotations
+
 import numpy as np
-from functools import reduce
 from typing import Any
 
-try:
-    # Preferred relative import within astropy.modeling package
-    from .core import CompoundModel
-except Exception:  # pragma: no cover - fallback if layout changes
-    # Fallback import path
-    from astropy.modeling.core import CompoundModel  # type: ignore
-
-
-def _is_parallel(model: Any) -> bool:
-    """Return True if the model is a CompoundModel composed with the '&' operator."""
-    return isinstance(model, CompoundModel) and getattr(model, 'op', None) == '&'
-
-
-def _flatten_parallel(model: Any):
-    """
-    Flatten nested parallel ('&') CompoundModels to a single-level '&'-chain.
-
-    This preserves the associativity of '&' for the separability analysis so that
-    expressions like A & (B & C) behave the same as A & B & C.
-    """
-
-    if not _is_parallel(model):
-        return model
-
-    components = []
-
-    def _collect(m):
-        if _is_parallel(m):
-            _collect(m.left)
-            _collect(m.right)
-        else:
-            components.append(m)
-
-    _collect(model)
-
-    # Rebuild as a flat '&' chain, preserving left-to-right ordering
-    return reduce(lambda a, b: a & b, components)
-
-
-def _separability_matrix_impl(model: Any) -> np.ndarray:
-    """
-    Compute the separability matrix for a model.
-
-    For a general (atomic) model, this conservatively assumes that each output
-    depends on all inputs, yielding a full True matrix of shape
-    (model.n_outputs, model.n_inputs).
-
-    For parallel compositions using the '&' operator, the resulting separability
-    matrix is block-diagonal: inputs and outputs from different parallel branches
-    are independent of each other.
-
-    For other compound operations we conservatively assume full dependency.
-    """
-
-    def _matrix_for(m) -> np.ndarray:
-        # Compound parallel composition: block-diagonal combination
-        if isinstance(m, CompoundModel):
-            op = getattr(m, 'op', None)
-            if op == '&':
-                left = getattr(m, 'left')
-                right = getattr(m, 'right')
-                ml = _matrix_for(left)
-                mr = _matrix_for(right)
-                ol, il = ml.shape
-                or_, ir = mr.shape
-                out = np.zeros((ol + or_, il + ir), dtype=bool)
-                # Upper-left block for left branch
-                out[:ol, :il] = ml
-                # Lower-right block for right branch
-                out[ol:, il:] = mr
-                return out
-            else:
-                # For non-parallel compound operations (e.g., serial composition, arithmetic),
-                # conservatively assume all outputs depend on all inputs.
-                return np.ones((m.n_outputs, m.n_inputs), dtype=bool)
-
-        # Atomic model: assume full dependency by default
-        return np.ones((m.n_outputs, m.n_inputs), dtype=bool)
-
-    return _matrix_for(model)
+__all__ = ["separability_matrix"]
 
 
 def separability_matrix(model: Any) -> np.ndarray:
     """
-    Compute the separability matrix of a model.
+    Compute a boolean matrix M of shape (n_outputs, n_inputs) where
+    M[i, j] is True if output i depends on input j.
 
-    This wrapper first normalizes nested parallel ('&') CompoundModels to a flat
-    form to ensure associativity of '&' is respected, then delegates to the
-    original implementation now in _separability_matrix_impl.
+    This implementation correctly handles nested CompoundModels by using:
+      - block-diagonal composition for parallel combination ('&')
+      - boolean matrix multiplication for serial composition ('|')
+      - per-output union of dependencies for element-wise binary ops ('+', '-', '*', etc.)
+
+    For non-compound base models, conservatively assume each output depends on all inputs
+    (a full True matrix of shape (n_outputs, n_inputs)).
     """
-    # Normalize nested parallel structures like A & (B & C) => A & B & C
-    try:
-        normalized = _flatten_parallel(model)
-    except NameError:
-        # If helper is not yet available for any reason, fall back to original
-        normalized = model
-    return _separability_matrix_impl(normalized)
+
+    def _is_compound(m: Any) -> bool:
+        # Avoid importing CompoundModel directly to prevent circular deps
+        return hasattr(m, "op") and hasattr(m, "left") and hasattr(m, "right")
+
+    def _block_diag(A: np.ndarray, B: np.ndarray) -> np.ndarray:
+        out = np.zeros((A.shape[0] + B.shape[0], A.shape[1] + B.shape[1]), dtype=bool)
+        out[: A.shape[0], : A.shape[1]] = A
+        out[A.shape[0] :, A.shape[1] :] = B
+        return out
+
+    def _bool_matmul(R: np.ndarray, L: np.ndarray) -> np.ndarray:
+        # Boolean composition: (R ∘ L). Shapes: R: (o_r, i_r), L: (o_l, i_l) with i_r == o_l
+        # Use integer matmul and threshold to compute boolean reachability.
+        return (R.astype(np.uint8) @ L.astype(np.uint8)) > 0
+
+    if _is_compound(model):
+        Lm = separability_matrix(model.left)
+        Rm = separability_matrix(model.right)
+        op = model.op
+
+        if op == "&":
+            # Parallel composition: inputs/outputs concatenate; block-diagonal matrix
+            return _block_diag(Lm, Rm)
+        elif op == "|":
+            # Serial composition: right after left; boolean matrix multiplication
+            return _bool_matmul(Rm, Lm)
+        else:
+            # Element-wise binary ops (+, -, *, /, etc.)
+            # If both sides produce the same number of outputs, the resulting
+            # dependencies per output are the union of their dependencies and
+            # the inputs concatenate.
+            if Lm.shape[0] == Rm.shape[0]:
+                left_ext = np.hstack(
+                    [Lm, np.zeros((Lm.shape[0], Rm.shape[1]), dtype=bool)]
+                )
+                right_ext = np.hstack(
+                    [np.zeros((Rm.shape[0], Lm.shape[1]), dtype=bool), Rm]
+                )
+                return np.logical_or(left_ext, right_ext)
+            # Fallback: if outputs differ, treat as parallel in the dependency sense
+            return _block_diag(Lm, Rm)
+    else:
+        # Base model: conservatively assume each output depends on all inputs
+        return np.ones((model.n_outputs, model.n_inputs), dtype=bool)

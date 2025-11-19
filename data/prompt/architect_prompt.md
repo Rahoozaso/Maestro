@@ -18,6 +18,8 @@ Principle of Minimal Invasiveness: If two proposals have similar importance and 
 
 Principle of AI Anti-Pattern Correction: When resolving conflicts, if a particular flaw corresponds to a typical anti-pattern of AI-generated code (e.g., an inefficient algorithm), consider prioritizing its fix over a minor stylistic improvement, as it addresses a more fundamental issue.
 
+Principle of Path Verification: When referencing `target_code_block` or imports, assume the repository structure is standard. Do not invent file paths. If you are adding a new file (ADD_TEST_FILE), ensure the path is logical and does not overwrite critical existing files.
+
 FEW-SHOT EXAMPLE (Best Practice)
 [INPUT]
 

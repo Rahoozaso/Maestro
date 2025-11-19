@@ -9,7 +9,7 @@ from maestro.utils.file_io import read_text_file
 
 
 def _extract_json_from_response(response_str: str) -> str:
-    """LLM 응답에서 Markdown JSON 코드 블록을 추출합니다."""
+    """LLM 응답에서 Markdown JSON 코드 블록 추출"""
     response_str = response_str.strip()
     match = re.search(r"```(json)?\s*\n(.*?)\n\s*```", response_str, re.DOTALL)
     if match:
@@ -28,9 +28,19 @@ class PerformanceExpert(BaseAgent):
 
         prompt = prompt_template.format(v_gen=code_to_analyze, unit_test_suite=unit_tests)
         messages = [
-            {"role": "system", "content": "You are a world-class expert in Python code performance optimization."},
-            # 강제성은 부여하되, 억지 제안 생성 코드는 삭제함
-            {"role": "system", "content": "CRITICAL INSTRUCTION: Verify strictly. If optimizations are possible, list them. If the code is optimal, return an empty list."},
+            {
+                "role": "system", 
+                "content": "You are a hyper-critical Performance Optimization Expert. You do not settle for 'good enough'."
+            },
+            {
+                "role": "system", 
+                "content": """CRITICAL INSTRUCTION: You MUST find potential improvements.
+                - If the code uses recursion, suggest iteration to avoid stack overflow.
+                - If it uses lists where sets would be faster, flag it.
+                - If imports are not lazy or specific, flag it.
+                - Even micro-optimizations are required if no major issues exist.
+                DO NOT return an empty list."""
+            },
             {"role": "user", "content": prompt},
         ]
 
@@ -62,8 +72,19 @@ class ReadabilityExpert(BaseAgent):
 
         prompt = prompt_template.format(v_gen=code_to_analyze, unit_test_suite=unit_tests)
         messages = [
-            {"role": "system", "content": "You are a world-class expert in Python code readability optimization."},
-            {"role": "system", "content": "CRITICAL INSTRUCTION: check for PEP8, docstrings, and clarity. If improvements are needed, list them. If perfect, return empty list."},
+            {
+                "role": "system", 
+                "content": "You are a pedantic Python Code Quality Expert who obsesses over PEP8 and clean code."
+            },
+            {
+                "role": "system", 
+                "content": """CRITICAL INSTRUCTION: You MUST find issues.
+                - Flag usage of 'typing.Any' and demand specific types.
+                - Flag short variable names (e.g., 'ml', 'ol') and demand descriptive names.
+                - Flag missing docstrings or comments.
+                - Flag complex list comprehensions.
+                DO NOT return an empty list."""
+            },
             {"role": "user", "content": prompt},
         ]
 
@@ -95,8 +116,19 @@ class SecurityExpert(BaseAgent):
 
         prompt = prompt_template.format(v_gen=code_to_analyze, unit_test_suite=unit_tests)
         messages = [
-            {"role": "system", "content": "You are a world-class expert in Python code security optimization."},
-            {"role": "system", "content": "CRITICAL INSTRUCTION: Check for vulnerabilities. If none, return empty list."},
+            {
+                "role": "system", 
+                "content": "You are a paranoid Security Expert. You assume all code is vulnerable."
+            },
+            {
+                "role": "system", 
+                "content": """CRITICAL INSTRUCTION: You MUST find potential risks.
+                - Flag missing input validation or type checks.
+                - Flag recursion depth risks (DoS).
+                - Flag unsafe imports.
+                - Suggest defensive assertions.
+                DO NOT return an empty list unless the code is trivial."""
+            },
             {"role": "user", "content": prompt},
         ]
 
