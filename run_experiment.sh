@@ -24,8 +24,8 @@ RESULTS_BASE_DIR="results/outputs"
 
 # 3. HumanEval 설정
 HE_BENCHMARK_DIR="data/benchmark/HumanEval"
-HE_TASKS_START=99
-HE_TASKS_END=99 # 
+HE_TASKS_START=1
+HE_TASKS_END=1 # 
 
 
 echo "===== MAESTRO 마스터 스크립트 시작 ====="
@@ -45,7 +45,7 @@ for i in $(seq ${HE_TASKS_START} ${HE_TASKS_END}); do
     echo "--- [HumanEval ${i}] 처리 시작 ---"
 
     # 입/출력 경로 정의
-    INPUT_CODE_PATH="${HE_BENCHMARK_DIR}/${i}/prompt.txt"
+    INPUT_CODE_PATH="${HE_BENCHMARK_DIR}/${i}/v_gen.py"
     UNIT_TEST_PATH="${HE_BENCHMARK_DIR}/${i}/test.py"
 
     OUTPUT_B_DIR="${RESULTS_BASE_DIR}/HumanEval/${i}/B"

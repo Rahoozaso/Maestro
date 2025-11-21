@@ -11,8 +11,11 @@ def has_close_elements(numbers: List[float], threshold: float) -> bool:
     """
     if len(numbers) < 2:
         return False
+    if threshold <= 0:
+        return False
+
     sorted_nums = sorted(numbers)
-    for i in range(1, len(sorted_nums)):
-        if sorted_nums[i] - sorted_nums[i - 1] < threshold:
+    for a, b in zip(sorted_nums, sorted_nums[1:]):
+        if abs(a - b) < threshold:
             return True
     return False

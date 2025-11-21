@@ -1,0 +1,1 @@
+def broken_function(:: this is syntax error

@@ -1,0 +1,2 @@
+# Action required: Provide the generated source code (v_gen) and the unit_test_suite.
+# Once supplied, I will deliver a structured, data-driven JSON report with precise code edits (snippets), quantified impact, and trade-offs.

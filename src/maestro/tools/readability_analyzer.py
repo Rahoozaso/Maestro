@@ -1,112 +1,63 @@
-from dataclasses import dataclass, field
-from typing import List, Tuple, Optional
-from radon.complexity import cc_visit
-
+import subprocess
+import json
+import tempfile
+import os
+from dataclasses import dataclass
+from typing import List, Optional
 
 @dataclass
 class ReadabilityReport:
-    """가독성 분석 결과를 담는 데이터 클래스"""
-
     success: bool
     average_complexity: float
-    # (함수/메서드 이름, 복잡도 점수) 형태의 튜플 리스트
-    complexities: List[Tuple[str, int]] = field(default_factory=list)
+    complexities: List[dict]
     error_message: Optional[str] = None
 
-
-def analyze_readability(code_string: str) -> ReadabilityReport:
+def analyze_readability(code: str) -> ReadabilityReport:
     """
-    주어진 코드 문자열의 순환 복잡도를 분석합니다.
-
-    Args:
-        code_string (str): 분석할 Python 코드.
-
-    Returns:
-        ReadabilityReport: 가독성 분석 결과를 담은 객체.
+    Radon을 사용하여 코드의 순환 복잡도(Cyclomatic Complexity)를 측정합니다.
+    (Subprocess 격리 방식으로 안정성 강화)
     """
-    print("가독성 분석 시작 (순환 복잡도 측정)...")
+    if not code.strip():
+        return ReadabilityReport(False, 0.0, [], "Empty code")
+
+    # 임시 파일 생성 (Radon CLI는 파일을 입력으로 받음)
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as tmp:
+        tmp.write(code)
+        tmp_path = tmp.name
+
     try:
-        # radon을 사용하여 코드 블록들의 복잡도 분석
-        blocks = cc_visit(code_string)
-
-        if not blocks:
-            # 분석할 함수나 클래스가 없는 경우
-            return ReadabilityReport(
-                success=True, average_complexity=1.0, complexities=[]
-            )
-
-        total_complexity = 0
-        detailed_complexities = []
-        for block in blocks:
-            # 블록 타입(Function, Method 등)과 이름, 복잡도 점수를 저장
-            block_name = f"{block.name} ({block.type})"
-            detailed_complexities.append((block_name, block.complexity))
-            total_complexity += block.complexity
-
-        average_complexity = total_complexity / len(blocks)
-
-        print(f"가독성 분석 완료: 평균 복잡도={average_complexity:.2f}")
-
-        return ReadabilityReport(
-            success=True,
-            average_complexity=average_complexity,
-            complexities=detailed_complexities,
+        # radon cc <file> --json 명령 실행
+        result = subprocess.run(
+            ["radon", "cc", tmp_path, "--json"],
+            capture_output=True,
+            text=True,
+            timeout=10 # 10초 타임아웃
         )
 
+        if result.returncode != 0:
+            return ReadabilityReport(False, 0.0, [], f"Radon failed: {result.stderr}")
+
+        # JSON 파싱
+        # Radon output format: {"filename": [{"name": "func", "complexity": 1, ...}]}
+        data = json.loads(result.stdout)
+        
+        # 파일명 키로 데이터 접근 (임시 파일 경로)
+        file_data = data.get(tmp_path, [])
+        
+        if not file_data:
+            # 함수가 없거나 분석할 내용이 없는 경우 (복잡도 1로 간주)
+            return ReadabilityReport(True, 1.0, [], None)
+
+        total_complexity = sum(item['complexity'] for item in file_data)
+        avg_complexity = total_complexity / len(file_data)
+
+        return ReadabilityReport(True, avg_complexity, file_data, None)
+
+    except json.JSONDecodeError:
+        return ReadabilityReport(False, 0.0, [], "Failed to parse Radon JSON output")
     except Exception as e:
-        # 코드가 문법적으로 올바르지 않아 파싱에 실패하는 경우 등
-        error_msg = f"가독성 분석 중 오류 발생: {e}"
-        print(error_msg)
-        return ReadabilityReport(
-            success=False, average_complexity=-1.0, error_message=error_msg
-        )
-
-
-# --- 이 파일이 직접 실행될 때를 위한 예제 코드 ---
-if __name__ == "__main__":
-    # 예제 1: 가독성이 좋은 코드 (낮은 복잡도)
-    code_good_example = """
-def is_eligible(age):
-    if age < 18:
-        return False
-    return True
-
-def get_greeting(name):
-    return f"Hello, {name}!"
-"""
-
-    # 예제 2: 가독성이 나쁜 코드 (높은 복잡도)
-    code_bad_example = """
-def process_data(user_type, age, country, has_coupon):
-    if user_type == "premium":
-        if age > 18:
-            if country == "KR":
-                if has_coupon:
-                    return "Offer A"
-                else:
-                    return "Offer B"
-            else:
-                return "Offer C"
-        else:
-            return "Offer D"
-    else:
-        if age > 20 and (country == "US" or country == "KR"):
-            return "Offer E"
-    return "No Offer"
-"""
-
-    print("--- 1. 가독성 좋은 코드 분석 ---")
-    report_good = analyze_readability(code_good_example)
-    if report_good.success:
-        print(f"평균 복잡도: {report_good.average_complexity:.2f}")
-        for name, score in report_good.complexities:
-            print(f" - {name}: {score}")
-
-    print("\n" + "=" * 40 + "\n")
-
-    print("--- 2. 가독성 나쁜 코드 분석 ---")
-    report_bad = analyze_readability(code_bad_example)
-    if report_bad.success:
-        print(f"평균 복잡도: {report_bad.average_complexity:.2f}")
-        for name, score in report_bad.complexities:
-            print(f" - {name}: {score}")
+        return ReadabilityReport(False, 0.0, [], str(e))
+    finally:
+        # 임시 파일 삭제
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)

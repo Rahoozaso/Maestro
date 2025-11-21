@@ -1,188 +1,133 @@
 import os
 import json
 from typing import List, Dict, Any, Optional
+from openai import OpenAI, AuthenticationError
+
+# --- [Global Token Tracker] ---
+TOTAL_TOKENS = {"prompt": 0, "completion": 0}
+
+def reset_token_usage():
+    global TOTAL_TOKENS
+    TOTAL_TOKENS = {"prompt": 0, "completion": 0}
+
+def get_token_usage() -> Dict[str, int]:
+    return TOTAL_TOKENS
+# ------------------------------
 
 # --- 모듈 레벨 변수 ---
 _llm_provider: Optional[str] = None
 _api_key: Optional[str] = None
 _client = None
-
+_model_name = "gpt-4o" 
+_temperature = 0.7
 
 def set_llm_provider(config: Dict[str, Any]):
-    """
-    main_controller에서 호출되어, 사용할 LLM 공급자와 API 키를 설정합니다.
-    """
-    global _llm_provider, _api_key, _client
+    global _llm_provider, _api_key, _client, _model_name, _temperature
 
-    provider = config.get("provider")
-    if not provider:
-        raise ValueError(
-            "LLM 설정(config.yml)에 'provider'가 지정되지 않았습니다."
-        )
-
+    provider = config.get("provider", "openai")
     _llm_provider = provider
+    _model_name = config.get("model", "gpt-4o")
+    _temperature = config.get("parameters", {}).get("temperature", 0.7)
 
     if _llm_provider == "openai":
         try:
             from openai import OpenAI
         except ImportError:
-            raise ImportError(
-                "OpenAI를 사용하려면 'pip install openai'를 실행해주세요."
-            )
+            raise ImportError("OpenAI를 사용하려면 'pip install openai'를 실행해주세요.")
+        
         _api_key = os.getenv("OPENAI_API_KEY")
         if not _api_key:
             raise ValueError("'OPENAI_API_KEY' 환경 변수가 설정되지 않았습니다.")
         _client = OpenAI(api_key=_api_key)
-        print("LLM 공급자가 'openai'로 설정되었습니다.")
+        print(f"LLM 공급자가 'openai'로 설정되었습니다. (Model: {_model_name})")
 
     elif _llm_provider == "anthropic":
         try:
             from anthropic import Anthropic
         except ImportError:
-            raise ImportError(
-                "Anthropic을 사용하려면 'pip install anthropic'를 실행해주세요."
-            )
+            raise ImportError("Anthropic을 사용하려면 'pip install anthropic'를 실행해주세요.")
 
         _api_key = os.getenv("ANTHROPIC_API_KEY")
         if not _api_key:
             raise ValueError("'ANTHROPIC_API_KEY' 환경 변수가 설정되지 않았습니다.")
         _client = Anthropic(api_key=_api_key)
-        print("LLM 공급자가 'anthropic'로 설정되었습니다.")
+        print(f"LLM 공급자가 'anthropic'로 설정되었습니다. (Model: {_model_name})")
 
     elif _llm_provider == "mock":
         _client = "mock"
-        print(
-            "LLM 공급자가 'mock'으로 설정되었습니다. 실제 API 호출은 이루어지지 않습니다."
-        )
+        print("LLM 공급자가 'mock'으로 설정되었습니다. 실제 API 호출은 이루어지지 않습니다.")
     else:
         raise ValueError(f"지원되지 않는 LLM 공급자입니다: {_llm_provider}")
 
 
-def call_llm(messages: List[Dict[str, str]], llm_config: Dict[str, Any]) -> str:
-    """
-    설정된 LLM 공급자를 사용하여 API를 호출하고 응답을 문자열로 반환합니다.
-    """
-    if _client is None:
-        set_llm_provider(llm_config)
+def call_llm(messages: List[Dict[str, str]], llm_config: Dict[str, Any] = None) -> str:
+    global _client, TOTAL_TOKENS
 
-    print(f"'{_llm_provider}' API에 요청을 보냅니다...")
+    if _client is None:
+        if llm_config:
+            set_llm_provider(llm_config)
+        else:
+            set_llm_provider({"provider": "openai"})
+
+    print(f"'{_llm_provider}' API에 요청을 보냅니다... (Model: {_model_name})")
 
     try:
         if _llm_provider == "openai":
-            model = llm_config.get("model", "gpt-5")
-            response = _client.chat.completions.create(model=model, messages=messages)
-            return response.choices[0].message.content or ""
+            # 최신 모델(o1, gpt-5 등) 대응
+            is_new_model = "o1" in _model_name or "gpt-5" in _model_name
+            
+            params = {
+                "model": _model_name,
+                "messages": messages,
+            }
+            
+            # 💡 [수정] GPT-5/o1 모델은 temperature 설정을 지원하지 않거나 고정값이므로 제외
+            if not is_new_model:
+                params["temperature"] = _temperature
+
+            if is_new_model:
+                params["max_completion_tokens"] = 4096
+            else:
+                params["max_tokens"] = 4096
+
+            response = _client.chat.completions.create(**params)
+            
+            if response.usage:
+                TOTAL_TOKENS["prompt"] += response.usage.prompt_tokens
+                TOTAL_TOKENS["completion"] += response.usage.completion_tokens
+                
+            return response.choices[0].message.content.strip()
         
         elif _llm_provider == "anthropic":
-            model = llm_config.get("model", "claude-3-sonnet-20240229")
             system_prompt = ""
-            if messages and messages[0]["role"] == "system":
-                system_prompt = messages[0]["content"]
-                user_messages = messages[1:]
-            else:
-                user_messages = messages
+            user_messages = []
+            for msg in messages:
+                if msg["role"] == "system":
+                    system_prompt = msg["content"]
+                else:
+                    user_messages.append(msg)
 
             response = _client.messages.create(
-                model=model,
+                model=_model_name,
                 system=system_prompt,
                 max_tokens=4096,
                 messages=user_messages,
+                temperature=_temperature
             )
+            
+            if hasattr(response, 'usage'):
+                 TOTAL_TOKENS["prompt"] += response.usage.input_tokens
+                 TOTAL_TOKENS["completion"] += response.usage.output_tokens
+
             return response.content[0].text
 
-       # --- "답안지 + 문제지 기반" Mock 로직 (최종판 v4) ---
         elif _llm_provider == "mock":
-            
-            # 💡 '시스템 프롬프트' (첫 번째 메시지)만 엿봅니다.
-            system_prompt_str = ""
-            if messages and messages[0]["role"] in ("system", "user"):
-                # 'content'가 None일 수 있는 엣지 케이스 방어
-                if messages[0].get("content"):
-                    system_prompt_str = messages[0].get("content", "").lower()
-
-            # --- (디버깅용 print 구문 제거) ---
-
-            # --- 💡 1순위: Group B (단일 LLM) ---
-            if "nfr을 종합적으로" in system_prompt_str or "비기능적 요구사항" in system_prompt_str:
-                fake_code = """# This is a mock code response for Group B
-        def mock_group_b_function():
-            pass"""
-                return fake_code # 순수 문자열 반환
-
-            # --- 💡 2순위: 개발자 (Group C, D, E) ---
-            # (방금 "심문"으로 알아낸 '진짜' 키워드로 수정!)
-            elif "you are a precise instruction-following expert engine for code modification" in system_prompt_str:
-                # '답안지(models.py)'의 "DeveloperAgentOutput" 모델을 따름
-                fake_dev_output = {
-                    "status": "SUCCESS", 
-                    "final_code": "# This is mock code from the developer",
-                    "log": ["Mock Developer Agent ran successfully."] 
-                }
-                return json.dumps(fake_dev_output)
-
-            # --- 💡 3순위: 아키텍트 (Group D, E) ---
-            # ('진짜' 키워드 적용 완료)
-            elif "you are a world-class ai software architect" in system_prompt_str:
-                # '답안지(models.py)'의 "IntegratedExecutionPlan" 모델을 따름
-                fake_plan = {
-                    "work_order_id": "MOCK-WO-001", 
-                    "synthesis_goal": "Balance",      
-                    "reasoning_log": "This is a mock reasoning log...",
-                    "instructions": [                 
-                        {
-                            "step": 1,
-                            "action": "REPLACE",
-                            "description": "Mock step 1...",
-                            "target_code_block": "main.py#L1-L1",
-                            "details": {
-                                "refactor_type": "EXTRACT_FUNCTION", 
-                                "new_function_name": "mock_extracted_function",
-                                "new_function_body": "def mock_extracted_function():\n    pass"
-                            },
-                            "source_suggestion_ids": ["MOCK-001"],
-                            "rationale": "Mock rationale.",
-                            "new_code": None
-                        }
-                    ]
-                }
-                return json.dumps(fake_plan)
-            
-            # --- 💡 4순위: 전문가 (Group C, D, E) ---
-            # ('진짜' 키워드 적용 완료)
-            mock_role = None
-            if "you are a world-class expert in python code performance optimization" in system_prompt_str:
-                mock_role = "PerformanceExpert"
-            elif "you are a world-class expert in python code readability optimization" in system_prompt_str:
-                mock_role = "ReadabilityExpert"
-            elif "you are a world-class expert in python code security optimization" in system_prompt_str:
-                mock_role = "SecurityExpert"
-
-            if mock_role:
-                # '답안지(models.py)'의 "ExpertReviewReport" 모델을 따름
-                fake_report = [
-                    {
-                        "suggestion_id": f"MOCK-001-{mock_role}",
-                        "agent_role": mock_role, 
-                        "title": f"Mock suggestion from {mock_role}",
-                        "target_code_block": "main.py#L1-L1",
-                        "severity": "Low",
-                        "reasoning": "This is a mock response for an Expert.",
-                        "proposed_change": "pass"
-                    }
-                ]
-                return json.dumps(fake_report)
-            
-            # --- 💡 5순위: 예외 처리 (어떤 키워드도 감지되지 않음) ---
-            else:
-                fallback_response = {
-                    "status": "mock_fallback_unknown",
-                    "log": "Mock logic failed to identify prompt. No specific mock handler was triggered."
-                }
-                return json.dumps(fallback_response)
-        # --- 👆 Mock 로직 끝 👆 ---
+            return "Mock response: This is a simulated reply from the AI."
 
         return ""
 
+    except AuthenticationError:
+        raise ValueError("API 인증 실패. API 키를 확인하세요.")
     except Exception as e:
-        print(f"LLM API 호출 중 심각한 오류 발생: {e}")
+        print(f"LLM 호출 중 오류 발생: {e}")
         raise
