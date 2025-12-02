@@ -28,12 +28,19 @@ class ArchitectAgent(BaseAgent):
         """
         response_str = response_str.strip()
         
-        # 1. (```json ... ```) 또는 (``` ... ```) 블록 찾기
-        match = re.search(r"```(json)?\s*\n(.*?)\n\s*```", response_str, re.DOTALL)
+        # [수정] 1. ```json ... ``` (json 태그가 있든 없든, 공백 유무 무관하게 추출)
+        # re.DOTALL 플래그로 줄바꿈 포함
+        match = re.search(r"```(?:json)?\s*(.*?)```", response_str, re.DOTALL)
         if match:
-            return match.group(2).strip() 
+            return match.group(1).strip()
+            
+        # [수정] 2. 코드 블록이 없는 경우 (일반 텍스트 JSON)
+        # 중괄호({})로 둘러싸인 부분을 찾음
+        match = re.search(r"\{.*\}", response_str, re.DOTALL)
+        if match:
+             return match.group(0).strip()
 
-        # 2. 블록이 없으면, 원본 문자열 자체가 유효한 JSON일 수 있다고 가정
+        # 3. 최후의 수단: 원본 문자열 반환 (JSON일 수도 있으므로)
         return response_str
 
     def run(

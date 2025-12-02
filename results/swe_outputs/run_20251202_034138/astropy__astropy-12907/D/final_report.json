@@ -1,0 +1,9 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_FIRST_TRY",
+    "cost_analysis": {
+        "prompt_tokens": 10563,
+        "completion_tokens": 4284,
+        "estimated_cost_usd": 0.117075
+    }
+}

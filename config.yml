@@ -2,7 +2,7 @@
 llm:
   provider: "openai"
   #provider: "mock"
-  model: "gpt-5"
+  model: "gpt-5.1"
   parameters:
     temperature: 0.3    
     max_tokens: 4096    

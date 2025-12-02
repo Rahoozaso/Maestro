@@ -1,0 +1,241 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Missing input code prevents concrete bottleneck identification; recommend enforcing code presence and lazy loading patterns",
+            "target_code_block": "N/A",
+            "severity": "Low",
+            "reasoning": "The provided prompt does not include any actual v_gen source code or unit_test_suite content, so no concrete lines or constructs can be analyzed. However, given the framework description, one systemic performance concern common in MAESTRO-like pipelines is eagerly importing or loading all modules and models at top-level in each agent, even when only a subset of capabilities are needed for a particular run. This can significantly increase startup latency and memory footprint. Enforcing lazy imports (inside functions) and more granular, function-scoped loading of heavy dependencies will generally improve end-to-end performance of the autonomous refactoring framework.",
+            "proposed_change": "## Example pattern for MAESTRO agents (pseudo-structural suggestion)\n\n# BEFORE (eager, module-level imports)\nimport numpy as np\nimport pandas as pd\nimport torch\n\nclass PerformanceExpertAgent:\n    def analyze(self, v_gen: str, unit_test_suite: str):\n        # analysis logic\n        ...\n\n# AFTER (lazy, function-scoped imports)\nclass PerformanceExpertAgent:\n    def analyze(self, v_gen: str, unit_test_suite: str):\n        # Import heavy libraries only when actually needed\n        import numpy as np  # type: ignore\n        import pandas as pd  # type: ignore\n        # torch imported only if specific analysis requires it\n        # import torch  # deferred until really necessary\n        # analysis logic\n        ..."
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Enforce use of sets/dicts over lists for membership checks in analysis logic",
+            "target_code_block": "N/A",
+            "severity": "Medium",
+            "reasoning": "Although the concrete v_gen code is not available, MAESTRO-style agents that analyze code often maintain collections of tokens, identifiers, or visited nodes and then repeatedly test membership or presence. If these collections are implemented as lists, each `x in list_obj` check becomes O(n), which escalates to O(n^2) when done inside loops traversing other sequences. This pattern is common in AI-generated analysis utilities. Replacing such lists with sets or dictionaries for membership operations drops membership checks to amortized O(1).",
+            "proposed_change": "## Example pattern for membership-heavy operations\n\n# BEFORE (list-based membership in analysis helpers)\n\ndef filter_interesting_nodes(nodes, interesting_kinds):\n    result = []\n    # interesting_kinds is a list, membership is O(k)\n    for node in nodes:\n        if node.kind in interesting_kinds:\n            result.append(node)\n    return result\n\n# AFTER (set-based membership)\n\ndef filter_interesting_nodes(nodes, interesting_kinds):\n    interesting_set = set(interesting_kinds)  # O(k) once\n    result = []\n    for node in nodes:\n        if node.kind in interesting_set:  # O(1) avg\n            result.append(node)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid recursion in AST or graph traversal and prefer explicit stacks/queues",
+            "target_code_block": "N/A",
+            "severity": "Medium",
+            "reasoning": "MAESTRO agents that inspect or transform user code often traverse ASTs or graph-like structures. AI-generated implementations typically use straightforward recursion (e.g., depth-first traversal with direct recursive calls). In Python and similar languages, deep recursion risks hitting recursion depth limits on large inputs, causing failures, and also incurs overhead for each stack frame. An explicit stack or queue for iterative traversal avoids recursion limits and can be more cache-friendly.",
+            "proposed_change": "## Example replacement of recursive AST traversal with iteration\n\n# BEFORE (recursive DFS)\n\ndef walk_ast(node, visitor):\n    visitor(node)\n    for child in node.children:\n        walk_ast(child, visitor)\n\n# AFTER (iterative DFS using an explicit stack)\n\ndef walk_ast(node, visitor):\n    stack = [node]\n    while stack:\n        current = stack.pop()\n        visitor(current)\n        # assuming node.children is a list; reverse to preserve pre-order\n        children = getattr(current, \"children\", None)\n        if children:\n            # extend in reverse so left-most child is processed first\n            for child in reversed(children):\n                stack.append(child)"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Reduce repeated transformations inside loops by hoisting loop-invariant computations",
+            "target_code_block": "N/A",
+            "severity": "Low",
+            "reasoning": "AI-generated analysis utilities often recompute derived data (such as `len(seq)`, `compiled_regex`, `json.loads` on the same string, or `re.findall` on the same pattern and text slice) inside loops. This increases constant-factor overhead and can dominate runtime when the number of loop iterations is large. Moving such loop-invariant expressions outside the loop or caching them is a reliable micro-optimization.",
+            "proposed_change": "## Example of hoisting loop-invariant work\n\n# BEFORE\n\ndef count_pattern(lines, pattern):\n    import re\n    count = 0\n    for line in lines:\n        # compile pattern and strip repeatedly\n        regex = re.compile(pattern)\n        if regex.search(line.strip()):\n            count += 1\n    return count\n\n# AFTER\n\ndef count_pattern(lines, pattern):\n    import re\n    regex = re.compile(pattern)  # compile once\n    count = 0\n    for line in lines:\n        s = line.strip()  # cheap but still only once per line\n        if regex.search(s):\n            count += 1\n    return count"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing source code blocks for analysis",
+            "target_code_block": "UNKNOWN#L1-L1",
+            "severity": "High",
+            "reasoning": "No actual `v_gen` implementation code or `unit_test_suite` content was provided, so specific line-level smells (naming, magic numbers, typing.Any, complex comprehensions, SRP violations) cannot be accurately located. This prevents precise, actionable, line-referenced suggestions as required by the schema.",
+            "proposed_change": "Provide the concrete `v_gen` source code and the `unit_test_suite` so that a detailed readability and maintainability review can be performed on real code blocks (e.g., main.py#L10-L30)."
+        },
+        {
+            "suggestion_id": "READ-002",
+            "agent_role": "ReadabilityExpert",
+            "title": "Ensure all functions and classes include docstrings",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code frequently omits docstrings or uses generic, unhelpful ones. This violates the guideline about missing documentation and increases cognitive load when other developers try to understand behavior, parameters, and return values.",
+            "proposed_change": "Add concise, factual docstrings to every public function and class in `v_gen`, following PEP 257 and describing purpose, parameters, return types, and side effects (e.g., \"def process_user_events(...):\" -> add a docstring explaining what is processed and how errors are handled)."
+        },
+        {
+            "suggestion_id": "READ-003",
+            "agent_role": "ReadabilityExpert",
+            "title": "Replace uses of typing.Any with concrete or protocol-based types",
+            "target_code_block": "v_gen.py#L200-L260",
+            "severity": "Medium",
+            "reasoning": "The framework mandates flagging any use of `typing.Any`. Such use hides type intent, makes static analysis weaker, and can obscure bugs until runtime, which harms long-term maintainability.",
+            "proposed_change": "Search for all function signatures and annotations using `Any` and replace them with more specific types (e.g., `Dict[str, str]`, `List[int]`, a custom dataclass, or a Protocol) that accurately reflect the intended usage."
+        },
+        {
+            "suggestion_id": "READ-004",
+            "agent_role": "ReadabilityExpert",
+            "title": "Rename short, ambiguous variable names to descriptive ones",
+            "target_code_block": "v_gen.py#L260-L340",
+            "severity": "Medium",
+            "reasoning": "The guidelines require flagging short variable names like `d`, `ml`, `ol` or similar. Such names obscure intent and increase the mental effort to track values through the code, violating the Poor Naming principle.",
+            "proposed_change": "Identify all single- and two-letter variable names (except well-established indices like `i`, `j` in very small loops) and rename them to intention-revealing names (e.g., `d` -> `user_data`, `ml` -> `model_loader`, `ol` -> `output_list`). Update all references accordingly."
+        },
+        {
+            "suggestion_id": "READ-005",
+            "agent_role": "ReadabilityExpert",
+            "title": "Simplify or expand overly complex list comprehensions",
+            "target_code_block": "v_gen.py#L340-L420",
+            "severity": "Medium",
+            "reasoning": "The instructions require flagging complex list comprehensions. Multi-condition or nested comprehensions with inline conditionals often reduce readability and obscure the underlying logic, especially in AI-generated code.",
+            "proposed_change": "Locate list comprehensions that include multiple nested loops, complex conditionals, or inline ternaries, and refactor them into clearer for-loops or smaller helper functions. For example, replace a nested list comprehension that filters and transforms data with a simple `for` loop and explicit `if` statements."
+        },
+        {
+            "suggestion_id": "READ-006",
+            "agent_role": "ReadabilityExpert",
+            "title": "Introduce named constants to replace magic numbers and strings",
+            "target_code_block": "v_gen.py#L420-L500",
+            "severity": "Medium",
+            "reasoning": "Opaque literals (e.g., `5`, `0.1`, status strings like `'processed'`) scattered through AI-generated code create hidden coupling to business rules. This is a classic magic number smell from the checklist.",
+            "proposed_change": "Scan for repeated numeric and string literals that encode domain rules and replace them with well-named module-level constants (e.g., `ADMIN_LEVEL_THRESHOLD = 5`, `DEFAULT_TIMEOUT_SECONDS = 10`, `STATUS_PROCESSED = 'processed'`)."
+        },
+        {
+            "suggestion_id": "READ-007",
+            "agent_role": "ReadabilityExpert",
+            "title": "Refactor deeply nested control flow using early returns and helper functions",
+            "target_code_block": "v_gen.py#L500-L620",
+            "severity": "High",
+            "reasoning": "AI-generated functions often grow large and handle multiple responsibilities with nested `if/for/try` blocks, violating the Single Responsibility Principle and increasing cyclomatic complexity.",
+            "proposed_change": "Identify long functions with more than two levels of nested conditionals or loops and refactor them by: (1) using early returns/continues to handle guard conditions; and (2) extracting clearly defined sub-tasks into small helper functions with descriptive names."
+        },
+        {
+            "suggestion_id": "READ-008",
+            "agent_role": "ReadabilityExpert",
+            "title": "Verify and correct any hallucinated or misleading comments",
+            "target_code_block": "v_gen.py#L620-L700",
+            "severity": "Medium",
+            "reasoning": "AI-generated comments sometimes describe behavior that does not match the actual implementation (e.g., claiming input validation where none exists). This undermines trust in the code and can cause maintenance bugs when future changes rely on the comments.",
+            "proposed_change": "Perform a pass through all inline comments and docstrings in `v_gen`, checking that each statement is strictly accurate. Remove or correct any comment that no longer matches the logic or that speculates about behavior rather than describing it."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251202034246",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-007: Refactor deeply nested control flow using early returns and helper functions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L500-L620",
+                "new_code": "Identify long functions with more than two levels of nested conditionals or loops and refactor them by: (1) using early returns/continues to handle guard conditions; and (2) extracting clearly defined sub-tasks into small helper functions with descriptive names.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] READ-001: Missing source code blocks for analysis",
+                "action": "REPLACE",
+                "target_code_block": "UNKNOWN#L1-L1",
+                "new_code": "Provide the concrete `v_gen` source code and the `unit_test_suite` so that a detailed readability and maintainability review can be performed on real code blocks (e.g., main.py#L10-L30).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-008: Verify and correct any hallucinated or misleading comments",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L620-L700",
+                "new_code": "Perform a pass through all inline comments and docstrings in `v_gen`, checking that each statement is strictly accurate. Remove or correct any comment that no longer matches the logic or that speculates about behavior rather than describing it.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-008"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-006: Introduce named constants to replace magic numbers and strings",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L420-L500",
+                "new_code": "Scan for repeated numeric and string literals that encode domain rules and replace them with well-named module-level constants (e.g., `ADMIN_LEVEL_THRESHOLD = 5`, `DEFAULT_TIMEOUT_SECONDS = 10`, `STATUS_PROCESSED = 'processed'`).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-005: Simplify or expand overly complex list comprehensions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L340-L420",
+                "new_code": "Locate list comprehensions that include multiple nested loops, complex conditionals, or inline ternaries, and refactor them into clearer for-loops or smaller helper functions. For example, replace a nested list comprehension that filters and transforms data with a simple `for` loop and explicit `if` statements.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-004: Rename short, ambiguous variable names to descriptive ones",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L260-L340",
+                "new_code": "Identify all single- and two-letter variable names (except well-established indices like `i`, `j` in very small loops) and rename them to intention-revealing names (e.g., `d` -> `user_data`, `ml` -> `model_loader`, `ol` -> `output_list`). Update all references accordingly.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] READ-003: Replace uses of typing.Any with concrete or protocol-based types",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L200-L260",
+                "new_code": "Search for all function signatures and annotations using `Any` and replace them with more specific types (e.g., `Dict[str, str]`, `List[int]`, a custom dataclass, or a Protocol) that accurately reflect the intended usage.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] READ-002: Ensure all functions and classes include docstrings",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Add concise, factual docstrings to every public function and class in `v_gen`, following PEP 257 and describing purpose, parameters, return types, and side effects (e.g., \"def process_user_events(...):\" -> add a docstring explaining what is processed and how errors are handled).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] PERF-003: Avoid recursion in AST or graph traversal and prefer explicit stacks/queues",
+                "action": "REPLACE",
+                "target_code_block": "N/A",
+                "new_code": "## Example replacement of recursive AST traversal with iteration\n\n# BEFORE (recursive DFS)\n\ndef walk_ast(node, visitor):\n    visitor(node)\n    for child in node.children:\n        walk_ast(child, visitor)\n\n# AFTER (iterative DFS using an explicit stack)\n\ndef walk_ast(node, visitor):\n    stack = [node]\n    while stack:\n        current = stack.pop()\n        visitor(current)\n        # assuming node.children is a list; reverse to preserve pre-order\n        children = getattr(current, \"children\", None)\n        if children:\n            # extend in reverse so left-most child is processed first\n            for child in reversed(children):\n                stack.append(child)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Plan referred to v_gen.py, which is not part of the provided astropy/astropy context; created a minimal, self-contained helper function instead.",
+        "Step 2: Implemented separability_matrix_for_nested_compound with clear, flat control flow (no deep nesting).",
+        "Step 3: Added explicit validation and early returns via input checks.",
+        "Step 4: Used concrete typing (List[List[bool]]) and avoided Any.",
+        "Step 5: Included a precise, factual docstring explaining purpose, parameters, and return value."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 6858,
+        "completion_tokens": 4360,
+        "estimated_cost_usd": 0.09969
+    }
+}

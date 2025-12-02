@@ -9,15 +9,12 @@ from maestro.utils.llm_handler import set_llm_provider, call_llm
 from maestro.utils.file_io import read_text_file, write_text_file
 
 def load_config(config_path: str) -> Dict[str, Any]:
-    """YAML 설정 파일을 로드합니다."""
-    print(f"INFO (Group B): '{config_path}'에서 설정 파일을 로드합니다...")
+    """YAML 설정 파일을 로드합니다 (독립형)."""
     try:
         with open(config_path, "r", encoding="utf-8") as f:
-            config = yaml.safe_load(f)
-        print("INFO (Group B): 설정 로드 완료.")
-        return config
-    except FileNotFoundError:
-        print(f"[오류] 설정 파일 '{config_path}'를 찾을 수 없습니다.")
+            return yaml.safe_load(f)
+    except Exception as e:
+        print(f"[오류] 설정 파일 로드 실패: {e}")
         exit(1)
 
 def _extract_python_code(response_str: str) -> str:
@@ -56,8 +53,6 @@ def main():
 
     # 1. 설정 및 LLM 로드
     config = load_config(args.config)
-    
-    # '본체'와 동일하게 LLM 공급자를 설정합니다.
     set_llm_provider(config["llm"])
 
     # 2. 입력 코드 읽기
@@ -69,14 +64,21 @@ def main():
         exit(1)
 
     # 3. "단일 프롬프트" 생성 (계획서 5.2.2 기반)
+    # 💡 [핵심 수정] Import 구문 강제 지시 추가 (HumanEval 대응)
     simple_prompt = f"""
-당신은 코드 품질 개선 전문가입니다.
-아래 코드를 입력받아, 성능, 가독성, 보안 등 비기능적 요구사항(NFR)을 종합적으로 고려하여 개선해 주십시오.
-개선된 코드 블록만 반환해 주십시오.
+You are a Python coding expert. Your task is to improve the code quality (Performance, Readability, Security) of the given input code while preserving its functionality.
 
-[입력 코드]
+# CRITICAL REQUIREMENT
+The output must be a COMPLETE, RUNNABLE Python module.
+You MUST include all necessary imports (e.g., `from typing import List`, `import os`, `import math`) at the top of the code.
+DO NOT assume the user has these imports. Explicitly write them out.
+
+[Input Code]
 ```python
 {v_gen_code}
+```
+
+Return ONLY the improved Python code block.
 """
     
     messages = [
@@ -89,14 +91,13 @@ def main():
         llm_response_str = call_llm(messages, config["llm"])
         print("INFO (Group B): LLM 응답 수신 완료.")
 
-        # [중요] 코드 블록만 깔끔하게 추출
+        # 코드 블록만 깔끔하게 추출
         final_code = _extract_python_code(llm_response_str)
 
         # 5. 결과 저장
         os.makedirs(args.output_dir, exist_ok=True)
         output_path = os.path.join(args.output_dir, "v_final_group_b.py")
 
-        # [수정됨] save_file 대신 write_text_file 사용, 원본 덮어쓰기 로직 제거
         write_text_file(output_path, final_code)
         
         print(f"INFO (Group B): 결과 저장 완료: {output_path}")
