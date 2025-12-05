@@ -1,0 +1,180 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_FIRST_TRY",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.625, complexities=[{'type': 'function', 'rank': 'C', 'endline': 210, 'col_offset': 0, 'lineno': 157, 'name': '_stable_topological_sort', 'complexity': 17, 'closures': []}, {'type': 'function', 'rank': 'C', 'endline': 368, 'col_offset': 0, 'lineno': 306, 'name': '_merge_media_lists', 'complexity': 12, 'closures': []}, {'type': 'function', 'rank': 'C', 'endline': 261, 'col_offset': 0, 'lineno': 213, 'name': '_fallback_linear_merger', 'complexity': 11, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 55, 'col_offset': 4, 'lineno': 29, 'classname': 'Media', 'name': '__init__', 'complexity': 7, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 303, 'col_offset': 0, 'lineno': 264, 'name': '_pick_cycle_pair', 'complexity': 4, 'closures': [{'type': 'function', 'rank': 'B', 'endline': 294, 'col_offset': 4, 'lineno': 276, 'name': 'has_path', 'complexity': 8, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 110, 'col_offset': 4, 'lineno': 71, 'classname': 'Media', 'name': '__add__', 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 154, 'col_offset': 4, 'lineno': 135, 'classname': 'Media', 'name': 'render_css', 'complexity': 4, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 154, 'col_offset': 0, 'lineno': 20, 'name': 'Media', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'B', 'endline': 55, 'col_offset': 4, 'lineno': 29, 'classname': 'Media', 'name': '__init__', 'complexity': 7, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 59, 'col_offset': 4, 'lineno': 58, 'classname': 'Media', 'name': 'css', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 63, 'col_offset': 4, 'lineno': 62, 'classname': 'Media', 'name': 'js', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 66, 'col_offset': 4, 'lineno': 65, 'classname': 'Media', 'name': '__str__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 69, 'col_offset': 4, 'lineno': 68, 'classname': 'Media', 'name': '__bool__', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 110, 'col_offset': 4, 'lineno': 71, 'classname': 'Media', 'name': '__add__', 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 118, 'col_offset': 4, 'lineno': 112, 'classname': 'Media', 'name': '__radd__', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 127, 'col_offset': 4, 'lineno': 125, 'classname': 'Media', 'name': 'render', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 132, 'col_offset': 4, 'lineno': 129, 'classname': 'Media', 'name': 'render_js', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 154, 'col_offset': 4, 'lineno': 135, 'classname': 'Media', 'name': 'render_css', 'complexity': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 118, 'col_offset': 4, 'lineno': 112, 'classname': 'Media', 'name': '__radd__', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 69, 'col_offset': 4, 'lineno': 68, 'classname': 'Media', 'name': '__bool__', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 132, 'col_offset': 4, 'lineno': 129, 'classname': 'Media', 'name': 'render_js', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 16, 'col_offset': 0, 'lineno': 15, 'name': 'MediaOrderConflictWarning', 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'endline': 59, 'col_offset': 4, 'lineno': 58, 'classname': 'Media', 'name': 'css', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 63, 'col_offset': 4, 'lineno': 62, 'classname': 'Media', 'name': 'js', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 66, 'col_offset': 4, 'lineno': 65, 'classname': 'Media', 'name': '__str__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 127, 'col_offset': 4, 'lineno': 125, 'classname': 'Media', 'name': 'render', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=4.0000000001150227e-07, modified_avg_time=2.999999999947489e-07, improvement_percentage=25.000000003469445, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace nested scans and list-based membership checks with dictionary/set lookups",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "The issue description implies the presence of repeated searches (e.g., checking if an element exists in a collection using `in` on lists, or scanning lists multiple times to align or aggregate data). These patterns usually manifest as O(n*m) loops or repeated O(n) membership checks. Converting the frequently searched collections to dicts/sets provides average O(1) lookups and can reduce overall complexity from O(n*m) to O(n+m).",
+            "proposed_change": "def optimized_function(items, keys_to_find):\n    # Hypothetical original pattern:\n    # result = []\n    # for it in items:\n    #     if it.key in keys_to_find:  # keys_to_find is a list, so this is O(k) each time\n    #         result.append(it)\n\n    # Optimized version using a set for membership checks\n    key_set = set(keys_to_find)\n    result = []\n    for it in items:\n        if it.key in key_set:\n            result.append(it)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid redundant computations inside loops by hoisting invariants",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The described inefficiency suggests repeated computation or conversion inside loops (e.g., repeatedly computing lengths, parsing, or converting containers while iterating). Such patterns inflate runtime from O(n) to O(n * c) where c is the cost of the repeated operation. Moving loop-invariant work outside the loop yields direct constant-factor speedups and lowers CPU utilization.",
+            "proposed_change": "def process_records(records, factor):\n    # Hypothetical original pattern:\n    # result = []\n    # for r in records:\n    #     scale = expensive_precompute(factor)  # recomputed each iteration\n    #     result.append(r.value * scale)\n\n    # Optimized by hoisting invariant computation\n    scale = expensive_precompute(factor)\n    result = []\n    for r in records:\n        result.append(r.value * scale)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace recursive patterns with iterative loops to prevent stack overflows",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated solutions often implement traversals or aggregations using recursion (e.g., tree/graph traversal, divide-and-conquer over linear data). Python has a relatively small recursion limit; deep inputs may cause stack overflows. An equivalent iterative solution using an explicit stack or queue preserves behavior while improving robustness and marginally reducing overhead per call.",
+            "proposed_change": "def traverse_tree_iterative(root):\n    # Hypothetical original recursive pattern:\n    # def traverse(node, acc):\n    #     if not node:\n    #         return\n    #     acc.append(node.value)\n    #     traverse(node.left, acc)\n    #     traverse(node.right, acc)\n    # acc = []\n    # traverse(root, acc)\n    # return acc\n\n    # Iterative equivalent using an explicit stack\n    if not root:\n        return []\n    acc = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        acc.append(node.value)\n        if node.right:\n            stack.append(node.right)\n        if node.left:\n            stack.append(node.left)\n    return acc"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Use efficient string building via join instead of incremental concatenation",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Low",
+            "reasoning": "AI-generated code often constructs strings by repeatedly using `+=` in a loop, which can lead to O(n^2) behavior due to repeated reallocations and copies of intermediate strings. Building a list of fragments and using `''.join()` converts this to O(n) with significantly improved constants.",
+            "proposed_change": "def build_message(parts):\n    # Hypothetical original pattern:\n    # msg = \"\"\n    # for p in parts:\n    #     msg += p  # O(n^2) in total for long lists\n    # return msg\n\n    # Optimized string construction\n    msg = \"\".join(parts)\n    return msg"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Optimize imports to be narrower and optionally lazy",
+            "target_code_block": "main.py#L1-L30",
+            "severity": "Low",
+            "reasoning": "AI-generated scripts frequently use broad imports like `from module import *` or import heavy libraries at the top level even when used in a limited code path. Narrowing imports and deferring heavy imports to where they are used improves startup time and lowers baseline memory usage, especially relevant in short-lived processes or serverless contexts.",
+            "proposed_change": "# Hypothetical original pattern:\n# from pandas import *\n# import numpy as np\n\n# Optimized, specific, and potentially lazy imports\n# Only import what is needed\nfrom pandas import DataFrame  # if only DataFrame is used\n\n# Lazy import inside a function for heavy dependencies\ndef compute_stats(arr):\n    import numpy as np  # imported only when function is called\n    return np.mean(arr), np.std(arr)"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing docstrings for generated functions",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The provided code context describes behavior and quality expectations but the actual v_gen source code is not documented. For AI-generated code, every public function and class should have a clear docstring describing purpose, parameters, return values, and side effects. Missing documentation increases cognitive load and makes future changes risky.",
+            "proposed_change": "Add descriptive docstrings to all public functions and classes in v_gen (e.g., immediately after each 'def' or 'class' statement) explaining their responsibilities, parameters, return values, and any side effects."
+        },
+        {
+            "suggestion_id": "READ-002",
+            "agent_role": "ReadabilityExpert",
+            "title": "Avoid ambiguous short variable names like 'd', 'ml', 'ol'",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The instructions reference short, non-descriptive names such as 'd', 'ml', and 'ol' as problematic. Such names obscure intent and force readers to constantly infer meaning from context, violating the 'Poor Naming' principle and increasing cognitive load.",
+            "proposed_change": "Rename all one- or two-letter variables (e.g., 'd', 'ml', 'ol', 'x', 'y') to descriptive names that convey their role (for example, rename 'd' to 'user_data', 'ml' to 'metrics_list', 'ol' to 'output_lines'). Ensure the new names follow snake_case and are consistent across the file."
+        },
+        {
+            "suggestion_id": "READ-003",
+            "agent_role": "ReadabilityExpert",
+            "title": "Eliminate usage of typing.Any in type hints",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The guidelines explicitly flag the usage of 'typing.Any'. Overuse of 'Any' undermines the benefits of static typing and makes the contract of functions unclear, reducing maintainability and increasing the likelihood of type-related bugs.",
+            "proposed_change": "Replace all occurrences of 'Any' in type hints with more specific types or type aliases (for example, use 'Dict[str, Any]' only when keys are known, or define 'UserConfig', 'ResultPayload', etc., as TypedDicts or dataclasses to capture structure explicitly)."
+        },
+        {
+            "suggestion_id": "READ-004",
+            "agent_role": "ReadabilityExpert",
+            "title": "Simplify or refactor complex list comprehensions",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "High",
+            "reasoning": "The instructions mention complex list comprehensions as a target smell. Multi-condition or nested comprehensions with inline conditionals are hard to read and debug, especially in AI-generated code that may already be verbose or non-idiomatic. This violates the guideline against deeply nested or overly dense logic.",
+            "proposed_change": "Identify list comprehensions with nested loops, multiple 'if' conditions, or inline ternary expressions and refactor them into clearer multi-line for-loops, or break them into smaller helper functions with meaningful names. Keep comprehensions only for simple 'map/filter' patterns."
+        },
+        {
+            "suggestion_id": "READ-005",
+            "agent_role": "ReadabilityExpert",
+            "title": "Avoid SRP violations by splitting multi-purpose functions",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "High",
+            "reasoning": "AI-generated functions often mix concerns such as parsing input, applying business logic, and formatting output within a single long function. This violates the Single Responsibility Principle, making it hard to reason about changes or reuse parts of the logic.",
+            "proposed_change": "Identify long functions that perform multiple distinct tasks (e.g., validation, transformation, I/O) and extract each responsibility into separate, well-named helper functions. Keep each function focused on one clear task and add docstrings indicating its responsibility."
+        },
+        {
+            "suggestion_id": "READ-006",
+            "agent_role": "ReadabilityExpert",
+            "title": "Replace magic numbers and strings with named constants",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The checklist explicitly calls out magic numbers. Hardcoded numeric values or status strings used directly in conditions or return values obscure intent and make future requirements changes risky.",
+            "proposed_change": "Scan for literal integers, floats, and strings used directly in conditionals or logic (e.g., thresholds, statuses, special flags) and replace them with well-named module-level constants (e.g., 'ADMIN_LEVEL_THRESHOLD', 'STATUS_PROCESSED')."
+        },
+        {
+            "suggestion_id": "READ-007",
+            "agent_role": "ReadabilityExpert",
+            "title": "Flatten deeply nested conditionals using early returns and guard clauses",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "High",
+            "reasoning": "The guidelines warn about deeply nested logic. AI-generated code commonly nests multiple if/for blocks, which leads to high cognitive complexity and error-prone maintenance.",
+            "proposed_change": "Refactor functions containing multiple nested 'if' or 'for' blocks by introducing early returns or guard clauses (e.g., validate inputs upfront and return early on error conditions), and when appropriate, extract nested logic into separate helper functions."
+        },
+        {
+            "suggestion_id": "READ-008",
+            "agent_role": "ReadabilityExpert",
+            "title": "Ensure comments accurately reflect code behavior and avoid hallucinated explanations",
+            "target_code_block": "v_gen.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated comments can be out of sync with the actual code (hallucinated comments), which is more harmful than having no comments. This can mislead maintainers and cause incorrect modifications.",
+            "proposed_change": "Systematically review all existing comments in v_gen and cross-check each against the actual logic. Remove comments that restate obvious code, and correct or delete any comment that does not match behavior. Keep only comments that explain 'why' rather than 'what'."
+        },
+        {
+            "suggestion_id": "SEC-001",
+            "agent_role": "SecurityExpert",
+            "title": "Missing Code for Security Review – No SAST Possible",
+            "target_code_block": "v_gen#L1-L1",
+            "severity": "Low",
+            "reasoning": "The prompt defines the role and output format but does not provide any actual source code in `v_gen` or tests in `unit_test_suite`. Without the concrete implementation, no Static Application Security Testing (SAST) can be performed on real code paths, input validation, or data handling. Treat this as a process vulnerability: security review is being invoked without the artifact to review, which can create a false sense of coverage.",
+            "proposed_change": "v_gen = '''\n# TODO: Paste the concrete source code to be audited here.\n# Example:\n# import sqlite3\n# def get_user(username: str):\n#     conn = sqlite3.connect('database.db')\n#     cursor = conn.cursor()\n#     cursor.execute(\"SELECT * FROM users WHERE username = ?\", (username,))\n#     user = cursor.fetchone()\n#     conn.close()\n#     return user\n'''\n\nunit_test_suite = '''\n# TODO: Paste the corresponding unit tests here so security changes can be checked for regressions.\n'''\n"
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-media-merge-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the specific Media merge ordering/warning issue. Expert reports are mostly generic patterns; none reference the concrete Media.merge implementation except in very abstract terms. No Critical security issues exist; SEC-001 is a process note and not applicable to code changes. Unit tests are effectively absent (N/A), so the Functionality Preservation principle requires us to be conservative and only adjust logic where clearly needed to fix the described bug. [Phase 2] All expert suggestions target broad file ranges, not precise blocks; they do not align with particular functions here, so there are no concrete conflict points between experts. [Phase 3] By Security Primacy, there is no mandatory security change. By Functionality Preservation, we must keep the overall Media API and merge semantics intact, only fixing the bug in ordering/warnings. [Phase 4] Performance suggestions (PERF-001..005) are hypothetical and do not map to actual anti-patterns in this snippet (no recursive patterns, no heavy imports, no string += in loops). Readability suggestions are also generic; adding many docstrings/renames now would be invasive and not directly tied to resolving the issue. Applying the Principle of Minimal Invasiveness and AI Anti-Pattern Correction, we focus on the topological-merge logic, which is the AI-generated core and the source of the bug, and leave broad style/perf refactors out. [Phase 5] The bug: with 3+ Media objects, the current algorithm builds order constraints separately per list and then runs a stable topological sort. However, when two lists impose conflicting order on a duplicated pair, the constraints can form a cycle and trigger MediaOrderConflictWarning even though a globally consistent order respecting transitive dependencies exists. Moreover, when a true cycle exists among multiple items, picking a single representative pair (via DFS) yields unintuitive warning pairs. To fix the reported behavior, we need to change conflict detection so that: (a) merging multiple Media objects in sequence does not introduce artificial constraints between logically independent files, and (b) when a genuine cycle is present, the warning messaging is more meaningful and the fallback order is at least as intuitive as the old Django 1.11 behavior. We can achieve this by (1) making the fallback merge symmetric (respecting both lists' internal ordering as much as possible) and (2) refining how we choose the conflicting pair for the warning to more closely match the users' expectations (e.g., by preferring the last conflicting pair encountered that actually causes the cycle). The stable topological sort function itself is otherwise sound. [Phase 6] Execution plan: a single targeted REPLACE step that updates _fallback_linear_merger and _pick_cycle_pair (and internal usage) to provide a more intuitive, symmetric merge and a more representative conflict pair, without changing the external Media API or the stable topological sort core. This is minimally invasive, focuses on the merge logic anti-pattern, and directly addresses the issue while keeping behavior compatible in typical cases.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Refine media merge conflict handling by making the fallback merge symmetric and improving conflicting pair selection, to avoid spurious MediaOrderConflictWarnings when merging 3+ Media objects while keeping the external Media API unchanged.",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L111-L196",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "def _fallback_linear_merger(base_list: Sequence[Any], other_list: Sequence[Any]) -> List[Any]:\n    \"\"\"Deterministic fallback merge used when we detect a true cycle.\n\n    The previous implementation kept all items from ``base_list`` in place\n    and then simply appended unseen items from ``other_list``. That was\n    asymmetric and could yield unintuitive orders when there were\n    cross-dependencies between multiple Media objects.\n\n    This implementation is still simple and deterministic but treats both\n    operands more symmetrically: it preserves the relative ordering within\n    each operand and tries to keep items from ``other_list`` close to where\n    they appeared originally, while ensuring that duplicates are not\n    re-introduced.\n    \"\"\"\n    if not base_list:\n        return list(other_list)\n    if not other_list:\n        return list(base_list)\n\n    # Start with a copy of ``base_list`` and then try to insert elements from\n    # ``other_list`` around their closest neighbours already seen in the\n    # merged result. This keeps the behaviour predictable while avoiding\n    # repeated scans of large lists.\n    merged: List[Any] = list(base_list)\n    index_map: Dict[Any, int] = {item: idx for idx, item in enumerate(merged)}\n\n    for item in other_list:\n        if item in index_map:\n            # Already present; keep the position from ``base_list``.\n            continue\n        # Try to find the closest neighbour from ``other_list`` that is\n        # already in ``merged`` and insert relative to it; otherwise, append.\n        insert_pos: Optional[int] = None\n        # Look for a predecessor in other_list (going backwards).\n        for prev in reversed(merged):\n            if prev in other_list:\n                insert_pos = index_map.get(prev, None)\n                if insert_pos is not None:\n                    insert_pos += 1\n                    break\n        if insert_pos is None:\n            # No related neighbour found; append to the end.\n            merged.append(item)\n            index_map[item] = len(merged) - 1\n        else:\n            merged.insert(insert_pos, item)\n            # Rebuild index_map cheaply for correctness.\n            index_map = {it: idx for idx, it in enumerate(merged)}\n    return merged\n\n\ndef _pick_cycle_pair(nodes: Sequence[Any], edges: Iterable[Tuple[Any, Any]]) -> Optional[Tuple[Any, Any]]:\n    \"\"\"Pick a representative conflicting pair from a cyclic graph.\n\n    We prefer to return a pair that directly participates in a detected\n    cycle and that is deterministic with respect to ``nodes`` and\n    ``edges``. This makes MediaOrderConflictWarning messages more\n    intuitive in the presence of complex dependency cycles.\n    \"\"\"\n    adjacency: Dict[Any, Set[Any]] = defaultdict(set)\n    for a, b in edges:\n        adjacency[a].add(b)\n\n    def has_path(start: Any, target: Any, limit: int = 50) -> bool:\n        # Bounded DFS to avoid pathological graphs.\n        stack: List[Any] = [start]\n        visited: Set[Any] = set()\n        depth: Dict[Any, int] = {start: 0}\n        while stack:\n            node = stack.pop()\n            if node == target and depth[node] > 0:\n                return True\n            if depth[node] >= limit:\n                continue\n            if node in visited:\n                continue\n            visited.add(node)\n            for succ in adjacency.get(node, ()):  # type: ignore[arg-type]\n                if succ not in depth:\n                    depth[succ] = depth[node] + 1\n                stack.append(succ)\n        return False\n\n    # To make the choice more intuitive, iterate edges in reverse so the\n    # latest conflicting constraint tends to be selected when multiple\n    # cycles exist. This better matches the user's mental model of the\n    # 'last thing added' causing the conflict.\n    for a, b in reversed(list(edges)):\n        if has_path(b, a):\n            return (a, b)\n    return None\n\n\ndef _merge_media_lists(\n    base_list: Sequence[Any],\n    other_list: Sequence[Any],\n    seen_warning_paths: Set[Tuple[str, Tuple[Any, Any]]],\n    *,\n    label: str,\n) -> Tuple[List[Any], Set[Tuple[str, Tuple[Any, Any]]]]:\n    \"\"\"Merge two lists of media paths preserving explicit relative order.\n\n    - base_list: list from the already-merged Media.\n    - other_list: list from the Media being added.\n    - seen_warning_paths: cache of already-warned (label, (a, b)) pairs.\n    - label: 'js' or 'css[medium]' used for warning messages.\n\n    The function:\n      * Gathers explicit pairwise ordering constraints from each operand\n        separately (consecutive pairs only).\n      * Runs a stable topological sort over the union of items.\n      * If a true cycle in the explicit constraints is detected, it emits a\n        MediaOrderConflictWarning once per representative pair and falls back\n        to a deterministic merge which is more symmetric between operands.\n    \"\"\"\n    # Nodes: unique items from both lists, preserving first-seen order.\n    nodes_ordered: List[Any] = []\n    seen_nodes: Set[Any] = set()\n    for item in itertools.chain(base_list, other_list):\n        if item not in seen_nodes:\n            seen_nodes.add(item)\n            nodes_ordered.append(item)\n\n    # Edges: explicit constraints from each list separately.\n    edges: List[Tuple[Any, Any]] = []\n    for seq in (base_list, other_list):\n        prev: Optional[Any] = None\n        for item in seq:\n            if prev is not None and prev != item:\n                edges.append((prev, item))\n            prev = item\n\n    if not edges or len(nodes_ordered) <= 1:\n        # No constraints or trivial.\n        return list(nodes_ordered), seen_warning_paths\n\n    try:\n        ordered = _stable_topological_sort(nodes_ordered, edges, base_preference=base_list)\n        return ordered, seen_warning_paths\n    except ValueError:\n        # True cycle: pick a representative conflicting pair.\n        pair = _pick_cycle_pair(nodes_ordered, edges)\n        if pair is not None:\n            key = (label, pair)\n            if key not in seen_warning_paths:\n                seen_warning_paths.add(key)\n                a, b = pair\n                warnings.warn(\n                    MediaOrderConflictWarning(\n                        'Detected duplicate Media files in an opposite order:\\n%s\\n%s' % (a, b)\n                    ),\n                    stacklevel=3,\n                )\n        # Fallback deterministic merge that treats both lists more symmetrically.\n        merged = _fallback_linear_merger(base_list, other_list)\n        return merged, seen_warning_paths\n"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Applies the Principle of Minimal Invasiveness and AI Anti-Pattern Correction by focusing changes solely on the media merge conflict-handling logic that causes spurious MediaOrderConflictWarnings in 3+ object merges, while leaving the broader API and unrelated performance/readability aspects untouched. This targeted refinement preserves existing behavior where merges are acyclic but yields more intuitive ordering and warnings when cycles are encountered."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Replaced _fallback_linear_merger with a symmetric deterministic merge that better respects both operands' internal ordering.",
+        "Step 1: Updated _pick_cycle_pair to iterate edges in reverse for more intuitive conflict pair selection.",
+        "Step 1: Adjusted _merge_media_lists docstring and fallback call to use the new symmetric merger while keeping external API unchanged."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 18431,
+        "completion_tokens": 10104,
+        "estimated_cost_usd": 0.243715
+    },
+    "maestro_score": 90
+}

@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 60,
+        "scores": {
+            "security": 30,
+            "readability": 25,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '21     # The shapes should match\\n22     assert mat_non_nested.shape == mat_nested.shape\\n23 \\n', 'col_offset': 4, 'end_col_offset': 51, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdjb9r68r.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 22, 'line_range': [22], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '24     # And the matrices themselves should be identical\\n25     assert np.array_equal(mat_non_nested, mat_nested)\\n26 \\n', 'col_offset': 4, 'end_col_offset': 53, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdjb9r68r.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 25, 'line_range': [25], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '29     # This is a sanity check that the overall pattern remains as expected.\\n30     assert mat_non_nested[0, 2] is False\\n31     assert mat_non_nested[0, 3] is False\\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdjb9r68r.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 30, 'line_range': [30], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '30     assert mat_non_nested[0, 2] is False\\n31     assert mat_non_nested[0, 3] is False\\n32     assert mat_non_nested[2, 0] is False\\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdjb9r68r.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 31, 'line_range': [31], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '31     assert mat_non_nested[0, 3] is False\\n32     assert mat_non_nested[2, 0] is False\\n33     assert mat_non_nested[3, 0] is False\\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdjb9r68r.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 32, 'line_range': [32], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '32     assert mat_non_nested[2, 0] is False\\n33     assert mat_non_nested[3, 0] is False\\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdjb9r68r.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 33, 'line_range': [33], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=7.0, complexities=[{'type': 'function', 'rank': 'B', 'col_offset': 0, 'complexity': 7, 'lineno': 7, 'endline': 7, 'name': 'test_separability_nested_parallel_compoundmodels', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=2.0000000000575113e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206045859",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-005: Potential SRP violations in multi-purpose functions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Identify functions performing multiple distinct tasks and split them into smaller, focused functions (e.g., 'parse_input', 'compute_result', 'persist_output'), with the original function orchestrating these helpers.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce precomputed lookup structures to avoid repeated linear searches",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(data, items_to_find):\n    # Hypothetical baseline pattern:\n    # result = []\n    # for x in data:\n    #     if x in items_to_find:  # O(len(items_to_find)) each iteration\n    #         result.append(x)\n\n    # Optimized version using a precomputed set for lookups\n    items_set = set(items_to_find)  # O(m)\n    result = []\n    for x in data:  # O(n)\n        if x in items_set:  # O(1) average\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Use lazy or specific imports to reduce unnecessary module loading overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Hypothetical original:\n# import pandas as pd\n# import numpy as np\n# import re\n# ...\n# def parse_and_transform(texts):\n#     return [re.sub(r\"\\\\s+\", \" \", t) for t in texts]\n\n# Optimized for this usage:\nimport re  # Only import what is actually used at module level\n\n\ndef parse_and_transform(texts):\n    return [re.sub(r\"\\s+\", \" \", t) for t in texts]\n\n\ndef heavy_numeric_op(data):\n    # Lazy import of heavy dependency only when needed\n    import numpy as np\n    arr = np.array(data)\n    return arr.mean()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 16430,
+        "completion_tokens": 7928,
+        "estimated_cost_usd": 0.20107
+    },
+    "maestro_score": 60
+}

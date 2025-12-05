@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 50,
+        "scores": {
+            "security": 30,
+            "readability": 20,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': \"156 # loudly.\\n157 SECRET_KEY = ''\\n158 \\n\", 'col_offset': 13, 'end_col_offset': 15, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmp0yve2tbg.py', 'issue_confidence': 'MEDIUM', 'issue_cwe': {'id': 259, 'link': 'https://cwe.mitre.org/data/definitions/259.html'}, 'issue_severity': 'LOW', 'issue_text': \"Possible hardcoded password: ''\", 'line_number': 157, 'line_range': [157], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html', 'test_id': 'B105', 'test_name': 'hardcoded_password_string'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.0, complexities=[], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nName, email@example.com), (Full: line 25: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36140,
+        "completion_tokens": 16000,
+        "estimated_cost_usd": 0.4207
+    },
+    "maestro_score": 0
+}

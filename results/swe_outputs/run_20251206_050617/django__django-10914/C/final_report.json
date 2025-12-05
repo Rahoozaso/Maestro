@@ -1,0 +1,118 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 50,
+        "scores": {
+            "security": 30,
+            "readability": 20,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': \"167 # loudly.\\n168 SECRET_KEY = ''\\n169 \\n\", 'col_offset': 13, 'end_col_offset': 15, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpubq1wm9w.py', 'issue_confidence': 'MEDIUM', 'issue_cwe': {'id': 259, 'link': 'https://cwe.mitre.org/data/definitions/259.html'}, 'issue_severity': 'LOW', 'issue_text': \"Possible hardcoded password: ''\", 'line_number': 168, 'line_range': [168], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html', 'test_id': 'B105', 'test_name': 'hardcoded_password_string'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.0, complexities=[], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nDjango: line 4: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206054021",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-008: Deeply nested conditionals could be simplified with early returns",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "Refactor nested conditionals using early return/continue/guard clauses where appropriate, and extract nested logic into smaller helper functions to flatten the main control flow.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-008"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-005: Vectorize numeric and array operations using NumPy where applicable",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L381-L480",
+                "new_code": "import numpy as np\n\ndef optimized_numeric_processing(values):\n    # Previously:\n    # result = []\n    # for v in values:\n    #     result.append(v * 2 + 1)\n    # return result\n\n    arr = np.asarray(values)\n    out = arr * 2 + 1\n    return out.tolist()  # preserve original return type semantics",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with set/dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L120",
+                "new_code": "def optimized_function(list1, list2):\n    # Precompute hash-based structure once instead of repeated list scans\n    set2 = set(list2)\n    result = []\n    for item in list1:\n        if item in set2:  # O(1) average-time lookup instead of O(len(list2))\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-004: Use efficient string building via join instead of repeated concatenation",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L321-L380",
+                "new_code": "def optimized_string_builder(pieces):\n    # Previously:\n    # s = \"\"\n    # for p in pieces:\n    #     s += p\n    # return s\n    parts = []\n    for p in pieces:\n        parts.append(p)\n    return \"\".join(parts)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-003: Hoist loop-invariant computations out of inner loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L221-L320",
+                "new_code": "def optimized_processing(items, factor):\n    # Previously: for item in items: expensive_constant = complex_setup(); use(expensive_constant, item)\n    n = len(items)  # Example of hoisting length computation\n    precomputed_factor = float(factor)\n    # If using regex or other heavy setup, precompute once\n    # pattern = re.compile(r\"...\")\n\n    result = []\n    for i in range(n):\n        item = items[i]\n        # reuse precomputed values instead of recomputing per-iteration\n        value = item * precomputed_factor\n        result.append(value)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-002: Convert deep recursion to an explicit iterative loop with a stack or queue",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L121-L220",
+                "new_code": "def optimized_traversal(root):\n    # Iterative version of a previously recursive traversal(root) implementation\n    result = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        if node is None:\n            continue\n        # process node\n        result.append(node.value)\n        # Push children in the appropriate order to emulate the original recursion\n        if node.right is not None:\n            stack.append(node.right)\n        if node.left is not None:\n            stack.append(node.left)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-006: Use lazy/specific imports to reduce startup overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L25",
+                "new_code": "# Instead of: from some_heavy_module import *\n# or: import some_heavy_module\n\n# Use specific, possibly lazy imports\n\ndef some_function(...):\n    from some_heavy_module import specific_feature  # lazy, only when needed\n    return specific_feature(...)\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 45122,
+        "completion_tokens": 22582,
+        "estimated_cost_usd": 0.56434
+    },
+    "maestro_score": 0
+}

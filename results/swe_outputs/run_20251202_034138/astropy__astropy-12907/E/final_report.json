@@ -1,9 +1,0 @@
-{
-    "run_id": "E",
-    "status": "ATTEMPT_1",
-    "cost_analysis": {
-        "prompt_tokens": 10563,
-        "completion_tokens": 4284,
-        "estimated_cost_usd": 0.117075
-    }
-}

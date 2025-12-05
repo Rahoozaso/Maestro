@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.3636363636363638, complexities=[{'type': 'method', 'rank': 'A', 'complexity': 5, 'name': 'deconstruct', 'lineno': 72, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 107, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'name': '_check_path', 'lineno': 47, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 70, 'closures': []}, {'type': 'class', 'rank': 'A', 'complexity': 3, 'name': 'FilePathField', 'lineno': 13, 'col_offset': 0, 'endline': 149, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'name': '__init__', 'lineno': 16, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 40, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'name': 'check', 'lineno': 42, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 45, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'name': '_check_path', 'lineno': 47, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 70, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 5, 'name': 'deconstruct', 'lineno': 72, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 107, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'name': 'formfield', 'lineno': 109, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 121, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'get_prep_value', 'lineno': 123, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 126, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'to_python', 'lineno': 128, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 131, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'from_db_value', 'lineno': 133, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 136, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'value_to_string', 'lineno': 138, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 140, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'name': 'validate', 'lineno': 142, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 149, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'name': 'validate', 'lineno': 142, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 149, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'get_prep_value', 'lineno': 123, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 126, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'to_python', 'lineno': 128, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 131, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'from_db_value', 'lineno': 133, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 136, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'name': 'value_to_string', 'lineno': 138, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 140, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'name': '__init__', 'lineno': 16, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 40, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'name': 'check', 'lineno': 42, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 45, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'name': 'formfield', 'lineno': 109, 'classname': 'FilePathField', 'col_offset': 4, 'endline': 121, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\npath)\n\n    def __init__(\n        self,\n        path: Optional[Any] = None,\n        match: Optional[str] = None,\n        recursive: bool = False,\n        allow_files: bool = True,\n        allow_folders: bool = False,\n        **kwargs: Any,\n    ) -> None:\n        Model: line 15: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35897,
+        "completion_tokens": 15543,
+        "estimated_cost_usd": 0.41263
+    },
+    "maestro_score": 0
+}

@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=6.6, complexities=[{'type': 'method', 'rank': 'C', 'complexity': 11, 'endline': 89, 'lineno': 53, 'name': '_get_header_rows', 'col_offset': 4, 'classname': 'RST', 'closures': []}, {'type': 'method', 'rank': 'B', 'complexity': 10, 'endline': 152, 'lineno': 91, 'name': 'write', 'col_offset': 4, 'classname': 'RST', 'closures': [{'type': 'function', 'rank': 'A', 'complexity': 2, 'endline': 126, 'lineno': 122, 'name': 'border', 'col_offset': 8, 'closures': []}]}, {'type': 'class', 'rank': 'B', 'complexity': 7, 'endline': 152, 'lineno': 8, 'name': 'RST', 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'endline': 37, 'lineno': 17, 'name': '__init__', 'col_offset': 4, 'classname': 'RST', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'endline': 51, 'lineno': 39, 'name': '_format_col', 'col_offset': 4, 'classname': 'RST', 'closures': []}, {'type': 'method', 'rank': 'C', 'complexity': 11, 'endline': 89, 'lineno': 53, 'name': '_get_header_rows', 'col_offset': 4, 'classname': 'RST', 'closures': []}, {'type': 'method', 'rank': 'B', 'complexity': 10, 'endline': 152, 'lineno': 91, 'name': 'write', 'col_offset': 4, 'classname': 'RST', 'closures': [{'type': 'function', 'rank': 'A', 'complexity': 2, 'endline': 126, 'lineno': 122, 'name': 'border', 'col_offset': 8, 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'endline': 51, 'lineno': 39, 'name': '_format_col', 'col_offset': 4, 'classname': 'RST', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'endline': 37, 'lineno': 17, 'name': '__init__', 'col_offset': 4, 'classname': 'RST', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999999881224e-07, modified_avg_time=2.999999999947489e-07, improvement_percentage=-49.999999998265274, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (('Connection broken: TimeoutError()', TimeoutError()))"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 34988,
+        "completion_tokens": 15626,
+        "estimated_cost_usd": 0.40933
+    },
+    "maestro_score": 65
+}

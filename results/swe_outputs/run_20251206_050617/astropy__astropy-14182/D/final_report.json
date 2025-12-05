@@ -1,0 +1,38 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 95,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=6.6, complexities=[{'type': 'method', 'rank': 'C', 'complexity': 11, 'classname': 'RST', 'col_offset': 4, 'name': '_get_header_rows', 'lineno': 51, 'endline': 87, 'closures': []}, {'type': 'method', 'rank': 'B', 'complexity': 10, 'classname': 'RST', 'col_offset': 4, 'name': 'write', 'lineno': 89, 'endline': 149, 'closures': [{'type': 'function', 'rank': 'A', 'complexity': 2, 'col_offset': 8, 'name': 'border', 'lineno': 120, 'endline': 123, 'closures': []}]}, {'type': 'class', 'rank': 'B', 'complexity': 7, 'col_offset': 0, 'name': 'RST', 'lineno': 8, 'endline': 149, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'RST', 'col_offset': 4, 'name': '__init__', 'lineno': 17, 'endline': 35, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'classname': 'RST', 'col_offset': 4, 'name': '_format_col', 'lineno': 37, 'endline': 49, 'closures': []}, {'type': 'method', 'rank': 'C', 'complexity': 11, 'classname': 'RST', 'col_offset': 4, 'name': '_get_header_rows', 'lineno': 51, 'endline': 87, 'closures': []}, {'type': 'method', 'rank': 'B', 'complexity': 10, 'classname': 'RST', 'col_offset': 4, 'name': 'write', 'lineno': 89, 'endline': 149, 'closures': [{'type': 'function', 'rank': 'A', 'complexity': 2, 'col_offset': 8, 'name': 'border', 'lineno': 120, 'endline': 123, 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'classname': 'RST', 'col_offset': 4, 'name': '_format_col', 'lineno': 37, 'endline': 49, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'RST', 'col_offset': 4, 'name': '__init__', 'lineno': 17, 'endline': 35, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.000000000001e-06, modified_avg_time=5.000000000005e-07, improvement_percentage=50.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-rst-header-rows-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the concrete bug: RST writer should accept a header_rows kwarg like FixedWidth and produce extra header rows, matching the example in the issue. Expert performance suggestions are generic templates not tailored to this small, single-module code; the readability suggestion is a meta-comment about missing code (now provided) and is not actionable. [Phase 2] All performance suggestions target broad ranges (main.py#L1-L200) but do not map to any specific anti-patterns actually present in this RST implementation. No SecurityExpert report exists; unit tests are N/A, so functionality preservation is judged by matching the described behavior in the issue and not breaking existing semantics when header_rows is omitted. [Phase 3] There are no critical security items, so Security Primacy is vacuous. Functionality Preservation implies: (a) keep legacy behavior when header_rows is not passed, (b) ensure new header_rows behavior aligns with FixedWidth style and with the example in the issue, (c) do not introduce unnecessary behavioral changes (e.g., string building, IO wiring). All generic performance proposals are rejected as they would require invented algorithms/paths and risk breaking behavior. [Phase 4] No real conflicts among suggestions since none are specific to this file, so the only integration task is to validate the v_gen implementation against the issue requirements and keep it as-is structurally. The code already (1) accepts header_rows in __init__, (2) builds additional header rows via _get_header_rows, (3) keeps original behavior when header_rows is None, and (4) formats RST simple-table borders correctly. This satisfies the issue without needing further structural change. [Phase 5] Since we are not altering behavior beyond what v_gen already encodes, and there are no dependent refactors, the safest plan is a no-op work order (no instructions) to preserve the implemented fix. [Phase 6] Final plan therefore contains no REPLACE/REFACTOR actions, honoring the Minimal Invasiveness and Functionality Preservation principles while considering AI Anti-Pattern Correction inapplicable due to lack of matching patterns in this code.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: No modifications requested by the execution plan; preserving v_gen implementation as-is.",
+        "Step 2: Returned full content of the RST writer module with header_rows support."
+    ],
+    "feedback_used": "NFR Score Low (70).",
+    "cost_analysis": {
+        "prompt_tokens": 20986,
+        "completion_tokens": 6704,
+        "estimated_cost_usd": 0.20549
+    },
+    "maestro_score": 95
+}

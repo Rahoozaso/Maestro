@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 75,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.0, complexities=[{'type': 'function', 'rank': 'A', 'col_offset': 0, 'endline': 27, 'lineno': 6, 'name': 'some_function_handling_output_field', 'complexity': 3, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=2.0000000000575113e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28709,
+        "completion_tokens": 8497,
+        "estimated_cost_usd": 0.271
+    },
+    "maestro_score": 75
+}

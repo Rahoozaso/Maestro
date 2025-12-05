@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.125, complexities=[{'type': 'function', 'rank': 'C', 'lineno': 200, 'endline': 258, 'col_offset': 0, 'name': '_stable_topological_sort', 'complexity': 17, 'closures': []}, {'type': 'function', 'rank': 'C', 'lineno': 333, 'endline': 412, 'col_offset': 0, 'name': '_merge_media_lists', 'complexity': 12, 'closures': []}, {'type': 'method', 'rank': 'B', 'lineno': 35, 'endline': 75, 'col_offset': 4, 'name': '__init__', 'classname': 'Media', 'complexity': 7, 'closures': []}, {'type': 'function', 'rank': 'A', 'lineno': 277, 'endline': 330, 'col_offset': 0, 'name': '_pick_cycle_pair', 'complexity': 4, 'closures': [{'type': 'function', 'rank': 'B', 'lineno': 299, 'endline': 323, 'col_offset': 4, 'name': 'has_path', 'complexity': 8, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 99, 'endline': 152, 'col_offset': 4, 'name': '__add__', 'classname': 'Media', 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 176, 'endline': 197, 'col_offset': 4, 'name': 'render_css', 'classname': 'Media', 'complexity': 4, 'closures': []}, {'type': 'function', 'rank': 'A', 'lineno': 261, 'endline': 274, 'col_offset': 0, 'name': '_fallback_linear_merger', 'complexity': 3, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 26, 'endline': 197, 'col_offset': 0, 'name': 'Media', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'B', 'lineno': 35, 'endline': 75, 'col_offset': 4, 'name': '__init__', 'classname': 'Media', 'complexity': 7, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 78, 'endline': 81, 'col_offset': 4, 'name': 'css', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 84, 'endline': 87, 'col_offset': 4, 'name': 'js', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 89, 'endline': 92, 'col_offset': 4, 'name': '__str__', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 94, 'endline': 97, 'col_offset': 4, 'name': '__bool__', 'classname': 'Media', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 99, 'endline': 152, 'col_offset': 4, 'name': '__add__', 'classname': 'Media', 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 154, 'endline': 161, 'col_offset': 4, 'name': '__radd__', 'classname': 'Media', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 163, 'endline': 166, 'col_offset': 4, 'name': 'render', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 168, 'endline': 173, 'col_offset': 4, 'name': 'render_js', 'classname': 'Media', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 176, 'endline': 197, 'col_offset': 4, 'name': 'render_css', 'classname': 'Media', 'complexity': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 154, 'endline': 161, 'col_offset': 4, 'name': '__radd__', 'classname': 'Media', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 94, 'endline': 97, 'col_offset': 4, 'name': '__bool__', 'classname': 'Media', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 168, 'endline': 173, 'col_offset': 4, 'name': 'render_js', 'classname': 'Media', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 14, 'endline': 22, 'col_offset': 0, 'name': 'MediaOrderConflictWarning', 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'lineno': 78, 'endline': 81, 'col_offset': 4, 'name': 'css', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 84, 'endline': 87, 'col_offset': 4, 'name': 'js', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 89, 'endline': 92, 'col_offset': 4, 'name': '__str__', 'classname': 'Media', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 163, 'endline': 166, 'col_offset': 4, 'name': 'render', 'classname': 'Media', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=1.5000000000015001e-06, improvement_percentage=-649.9999999791834, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206055236",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-007: Flatten deeply nested if/for logic using early returns and helper functions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L80-L180",
+                "new_code": "Identify functions with if/else blocks nested more than two levels deep and refactor them by introducing early returns (guard clauses) and extracting inner blocks into small, well-named helper functions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] READ-005: Simplify or refactor complex list comprehensions into clearer constructs",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L40-L120",
+                "new_code": "Locate list comprehensions that contain nested conditions, multiple 'for' clauses, or inline transformations, and rewrite them as small, named helper functions or multi-line for-loops with explicit if-statements; for example, break one dense comprehension into two or three simple steps.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-006: Replace magic numbers and opaque string literals with named constants",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L60-L160",
+                "new_code": "Identify literals such as numeric thresholds, status strings, or mode flags used in conditionals (e.g., '5', 'processed', 'OK') and extract them into upper-case named constants at the module level, then reference those constants instead of the raw literals.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-004: Add docstrings to public functions and classes that currently lack them",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "For each public function and class in v_gen, add a concise docstring describing its responsibility, parameters, return value, and any side effects; for example, add a triple-quoted docstring immediately under each 'def' or 'class' line.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-002: Avoid short, ambiguous variable names such as 'd', 'ml', or 'ol'",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L120",
+                "new_code": "Replace short variable names with descriptive alternatives; for example, rename 'd' to 'user_data', 'ml' to 'model_list', and 'ol' to 'output_lines' wherever they appear in the v_gen code.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-001: Input code for v_gen is missing; establish file and line anchors for future reviews",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L1",
+                "new_code": "Ensure that the v_gen source code is provided with an explicit filename (e.g., `v_gen.py`) and stable line numbers so that future readability suggestions can reference concrete locations like `v_gen.py#L10-L25`.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 45429,
+        "completion_tokens": 25227,
+        "estimated_cost_usd": 0.60555
+    },
+    "maestro_score": 70
+}

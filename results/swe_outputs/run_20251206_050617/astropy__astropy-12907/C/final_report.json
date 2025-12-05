@@ -1,0 +1,130 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '25 \\n26     assert mat.shape == (2, 2)\\n27     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 30, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpein6l0ms.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 26, 'line_range': [26], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '26     assert mat.shape == (2, 2)\\n27     assert np.array_equal(mat, expected)\\n28 \\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpein6l0ms.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 27, 'line_range': [27], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '56 \\n57     assert mat.shape == (4, 4)\\n58     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 30, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpein6l0ms.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 57, 'line_range': [57], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '57     assert mat.shape == (4, 4)\\n58     assert np.array_equal(mat, expected)\\n59 \\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpein6l0ms.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 58, 'line_range': [58], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '82     # Shapes must be identical\\n83     assert nested_mat.shape == flat_mat.shape == (4, 4)\\n84 \\n', 'col_offset': 4, 'end_col_offset': 55, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpein6l0ms.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 83, 'line_range': [83], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '85     # And all entries must match exactly\\n86     assert np.array_equal(nested_mat, flat_mat)\\n', 'col_offset': 4, 'end_col_offset': 47, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpein6l0ms.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 86, 'line_range': [86], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.0, complexities=[{'type': 'function', 'rank': 'A', 'complexity': 3, 'endline': 8, 'name': 'test_simple_parallel_linear_models_separable', 'lineno': 8, 'col_offset': 0, 'closures': []}, {'type': 'function', 'rank': 'A', 'complexity': 3, 'endline': 30, 'name': 'test_complex_parallel_model_with_pix2sky_tan_and_linears', 'lineno': 30, 'col_offset': 0, 'closures': []}, {'type': 'function', 'rank': 'A', 'complexity': 3, 'endline': 61, 'name': 'test_nested_compound_model_same_as_non_nested', 'lineno': 61, 'col_offset': 0, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.0000000000287557e-07, modified_avg_time=1.0000000000287557e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206050953",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-005: Potential SRP violations in multi-purpose functions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Review any functions that perform more than one distinct task and split them into smaller, focused helpers. For example, extract input validation into `validate_<domain>_input`, business logic into `compute_<result>`, and serialization into `format_<result>_response`. Ensure the original public function orchestrates these helpers at a high level only.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-006: Use set/dict instead of list for deduplication and membership in aggregations",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L750-L900",
+                "new_code": "def unique_preserve_order(items):\n    # Hypothetical original pattern:\n    # result = []\n    # for x in items:\n    #     if x not in result:\n    #         result.append(x)\n    # return result\n\n    # Optimized version using a set for membership checks\n    seen = set()\n    result = []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups for repeated list membership checks",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Hypothetical original pattern:\n    # result = []\n    # for x in list1:\n    #     if x in list2:\n    #         result.append(x)\n    # return result\n\n    # Optimized version using a set for membership tests\n    set2 = set(list2)\n    result = []\n    for x in list1:\n        if x in set2:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-007: Leverage vectorized operations instead of Python loops for numeric data (NumPy/Pandas)",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L900-L1100",
+                "new_code": "import numpy as np\n\n# Hypothetical original pattern:\n# def scale_values(values, factor):\n#     result = []\n#     for v in values:\n#         result.append(v * factor)\n#     return result\n\n# Vectorized NumPy-based alternative\n\ndef scale_values(values, factor):\n    arr = np.asarray(values)\n    scaled = arr * factor\n    return scaled.tolist()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-004: Use ''.join for string concatenation instead of repeated '+' in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L600-L750",
+                "new_code": "def build_message(parts):\n    # Hypothetical original pattern:\n    # msg = \"\"\n    # for p in parts:\n    #     msg += p\n    # return msg\n\n    # Optimized pattern using list accumulation and join\n    buffer = []\n    for p in parts:\n        buffer.append(p)\n    msg = \"\".join(buffer)\n    return msg",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-003: Avoid repeated computation inside loops via loop-invariant code motion",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L600",
+                "new_code": "def process_items(items, pattern_str):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in items:\n    #     pattern = re.compile(pattern_str)\n    #     if pattern.match(item):\n    #         result.append(item)\n    # return result\n\n    # Optimized: compile regex once before the loop\n    pattern = re.compile(pattern_str)\n    result = []\n    for item in items:\n        if pattern.match(item):\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-002: Replace recursion with iteration to avoid stack overhead and potential overflow",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def recursive_process(items, idx=0, acc=None):\n    # Hypothetical original recursive pattern:\n    # if acc is None:\n    #     acc = []\n    # if idx == len(items):\n    #     return acc\n    # acc.append(transform(items[idx]))\n    # return recursive_process(items, idx + 1, acc)\n    \n    # Iterative equivalent preserving behavior\n    if acc is None:\n        acc = []\n    for i in range(idx, len(items)):\n        acc.append(transform(items[i]))\n    return acc",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] PERF-005: Narrow and lazy imports to reduce startup overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Hypothetical original imports:\n# import numpy as np\n# import pandas as pd\n# from some_module import *\n\n# More efficient and explicit imports\nfrom some_module import specific_function  # only what is needed\n\ndef compute_something(data):\n    # Lazy import of heavy dependency only when required\n    import numpy as np\n    # use np here\n    return np.mean(data)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 19375,
+        "completion_tokens": 11127,
+        "estimated_cost_usd": 0.26378
+    },
+    "maestro_score": 65
+}

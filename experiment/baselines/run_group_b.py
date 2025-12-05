@@ -65,20 +65,23 @@ def main():
 
     # 3. "단일 프롬프트" 생성 (계획서 5.2.2 기반)
     # 💡 [핵심 수정] Import 구문 강제 지시 추가 (HumanEval 대응)
+   # 3. "단일 프롬프트" 생성
+    # [수정] Group B가 '테스트'가 아닌 '수정된 코드'를 내놓도록 강력 지시
+    # 3. "단일 프롬프트" 생성 (계획서 5.2.2 기반)
+    # [수정] '테스트 생성 금지' 및 '수정된 코드 구현 강제'
     simple_prompt = f"""
-You are a Python coding expert. Your task is to improve the code quality (Performance, Readability, Security) of the given input code while preserving its functionality.
+You are a generic Python coding assistant. Your task is to **FIX** the issue described below.
 
-# CRITICAL REQUIREMENT
-The output must be a COMPLETE, RUNNABLE Python module.
-You MUST include all necessary imports (e.g., `from typing import List`, `import os`, `import math`) at the top of the code.
-DO NOT assume the user has these imports. Explicitly write them out.
+# CRITICAL INSTRUCTIONS
+1. **DO NOT generate regression tests or reproduction scripts.** I already have them.
+2. **GENERATE THE FIXED SOURCE CODE.** You must output the implementation file (e.g., `astropy/modeling/separable.py`) with the bug fixed.
+3. If you do not see the original code, **use your internal knowledge** to reconstruct the function/class and apply the fix.
+4. The output must be a **COMPLETE, RUNNABLE Python module** starting with imports (`from typing import ...`, `import numpy`, etc.).
 
-[Input Code]
-```python
+[Issue Description / Context]
 {v_gen_code}
-```
 
-Return ONLY the improved Python code block.
+Return ONLY the fixed library code block.
 """
     
     messages = [

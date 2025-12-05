@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.875, complexities=[{'type': 'method', 'rank': 'C', 'lineno': 63, 'col_offset': 4, 'classname': 'QDP', 'endline': 157, 'name': 'split_tables', 'complexity': 19, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 40, 'col_offset': 0, 'endline': 169, 'name': 'QDP', 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 52, 'col_offset': 4, 'classname': 'QDP', 'endline': 55, 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 57, 'col_offset': 4, 'classname': 'QDP', 'endline': 61, 'name': 'read', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'C', 'lineno': 63, 'col_offset': 4, 'classname': 'QDP', 'endline': 157, 'name': 'split_tables', 'complexity': 19, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 163, 'col_offset': 4, 'classname': 'QDP', 'endline': 166, 'name': 'get_type_map', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 168, 'col_offset': 4, 'classname': 'QDP', 'endline': 169, 'name': 'write', 'complexity': 1, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'lineno': 19, 'col_offset': 0, 'endline': 27, 'name': '_normalize_qdp_command', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 31, 'col_offset': 0, 'endline': 37, 'name': '_QDPTableSpec', 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'lineno': 52, 'col_offset': 4, 'classname': 'QDP', 'endline': 55, 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 57, 'col_offset': 4, 'classname': 'QDP', 'endline': 61, 'name': 'read', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 163, 'col_offset': 4, 'classname': 'QDP', 'endline': 166, 'name': 'get_type_map', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 168, 'col_offset': 4, 'classname': 'QDP', 'endline': 169, 'name': 'write', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=1.9999999999187335e-07, improvement_percentage=33.33333333795927, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206052232",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing source code for analysis",
+                "action": "REPLACE",
+                "target_code_block": "unknown#L1-L1",
+                "new_code": "Provide the full v_gen source code (and optionally unit_test_suite) so that a detailed readability and maintainability review can be performed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce hash-based lookups to replace repeated linear searches",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # BEFORE (hypothetical)\n    # result = []\n    # for a in list1:\n    #     if a in list2:  # O(len(list2)) per iteration\n    #         result.append(a)\n\n    # AFTER: precompute set for O(1) avg membership\n    set2 = set(list2)\n    result = []\n    for a in list1:\n        if a in set2:\n            result.append(a)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-004: Use join-based string building instead of repeated concatenation in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L600-L750",
+                "new_code": "def build_output(pieces):\n    # BEFORE (hypothetical)\n    # out = \"\"\n    # for p in pieces:\n    #     out += p  # O(n^2) overall for large pieces\n    # return out\n\n    # AFTER: use list accumulation + join\n    parts = []\n    for p in pieces:\n        parts.append(p)\n    out = \"\".join(parts)\n    return out",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Hoist loop-invariant computations and repeated conversions out of loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L600",
+                "new_code": "def process_items(items, raw_lookup_list):\n    # BEFORE (hypothetical)\n    # result = []\n    # for item in items:\n    #     # list() conversion and len() called on every iteration\n    #     lookup = list(raw_lookup_list)\n    #     if item in lookup:\n    #         result.append((item, len(lookup)))\n    # return result\n\n    # AFTER: compute invariants once\n    lookup = list(raw_lookup_list)\n    lookup_len = len(lookup)\n    result = []\n    for item in items:\n        if item in lookup:\n            result.append((item, lookup_len))\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-002: Replace deep recursion with iterative processing to avoid stack overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def traverse(root):\n    # BEFORE (hypothetical recursive DFS)\n    # def dfs(node, acc):\n    #     if node is None:\n    #         return\n    #     acc.append(node.value)\n    #     for child in node.children:\n    #         dfs(child, acc)\n    # acc = []\n    # dfs(root, acc)\n    # return acc\n\n    # AFTER: iterative DFS with explicit stack\n    if root is None:\n        return []\n    acc = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        acc.append(node.value)\n        # push children in reverse if original order matters\n        for child in reversed(node.children):\n            stack.append(child)\n    return acc",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Replace broad imports with specific or lazy imports to reduce overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# BEFORE (hypothetical)\n# from math import *\n# import pandas as pd\n\n# AFTER: specific and/or lazy imports\nfrom math import sqrt, ceil  # only what is used\n\n# Example of lazy import inside a cold path\n\ndef compute_heavy(df):\n    # import pandas only if this path is hit\n    import pandas as pd\n    # ... use pd here ...\n    return df\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 40428,
+        "completion_tokens": 15825,
+        "estimated_cost_usd": 0.439515
+    },
+    "maestro_score": 100
+}

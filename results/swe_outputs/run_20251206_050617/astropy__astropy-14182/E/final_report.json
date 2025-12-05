@@ -1,0 +1,120 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=6.6, complexities=[{'type': 'method', 'rank': 'C', 'endline': 87, 'lineno': 51, 'col_offset': 4, 'classname': 'RST', 'complexity': 11, 'name': '_get_header_rows', 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 149, 'lineno': 89, 'col_offset': 4, 'classname': 'RST', 'complexity': 10, 'name': 'write', 'closures': [{'type': 'function', 'rank': 'A', 'endline': 123, 'lineno': 120, 'col_offset': 8, 'complexity': 2, 'name': 'border', 'closures': []}]}, {'type': 'class', 'rank': 'B', 'endline': 149, 'lineno': 8, 'col_offset': 0, 'complexity': 7, 'name': 'RST', 'methods': [{'type': 'method', 'rank': 'A', 'endline': 35, 'lineno': 17, 'col_offset': 4, 'classname': 'RST', 'complexity': 1, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 49, 'lineno': 37, 'col_offset': 4, 'classname': 'RST', 'complexity': 4, 'name': '_format_col', 'closures': []}, {'type': 'method', 'rank': 'C', 'endline': 87, 'lineno': 51, 'col_offset': 4, 'classname': 'RST', 'complexity': 11, 'name': '_get_header_rows', 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 149, 'lineno': 89, 'col_offset': 4, 'classname': 'RST', 'complexity': 10, 'name': 'write', 'closures': [{'type': 'function', 'rank': 'A', 'endline': 123, 'lineno': 120, 'col_offset': 8, 'complexity': 2, 'name': 'border', 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'endline': 49, 'lineno': 37, 'col_offset': 4, 'classname': 'RST', 'complexity': 4, 'name': '_format_col', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 35, 'lineno': 17, 'col_offset': 4, 'classname': 'RST', 'complexity': 1, 'name': '__init__', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.0000000000287557e-07, modified_avg_time=1.0000000000287557e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace any nested membership scans with set/dict based lookups",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "Based on the described issue pattern for AI-generated code, it is highly likely that the implementation uses constructs like `for x in a: if x in b:` where both `a` and `b` are lists or array-like containers. This leads to O(n*m) behavior. Converting the inner collection to a set or dictionary once and then performing O(1) average-time lookups will reduce the complexity to O(n+m). This aligns with the 'Naive Algorithmic Choices' and 'Data Structure Optimization' focus areas.",
+            "proposed_change": "def optimized_function(list1, list2):\n    # Convert list2 to a set once for O(1) lookups\n    lookup = set(list2)\n    result = []\n    for item in list1:\n        if item in lookup:\n            result.append(item)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Hoist loop-invariant computations and data transformations out of inner loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code frequently recomputes values (e.g., `len(list)`, `some_string.lower()`, `re.compile(pattern)`, or `list(x)` casts) inside loops. Such loop-invariant computations increase the multiplicative constant of the loop and, if nested, effectively become O(n*m) overhead. Moving these operations outside loops adheres to the 'Eliminate Redundant Computations' checklist item and directly reduces the number of executed operations.",
+            "proposed_change": "def optimized_processing(items, pattern):\n    import re\n    # Precompute loop-invariant values\n    compiled = re.compile(pattern)\n    n = len(items)\n\n    results = []\n    for i in range(n):\n        item = items[i]\n        text = item[\"text\"].lower()  # if this is reused inside deeper loops, compute once per item\n        if compiled.search(text):\n            results.append(item)\n    return results"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Use incremental string building via list accumulation and ''.join instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated Python code commonly uses `result += piece` within loops, which creates new string objects on every iteration. For long outputs, this leads to O(n^2) time behavior due to repeated copying. The standard practice is to accumulate substrings into a list and join them once, giving effectively O(n) behavior in terms of total characters processed.",
+            "proposed_change": "def build_output(chunks):\n    parts = []\n    for chunk in chunks:\n        parts.append(chunk)\n    # Perform a single join at the end\n    return \"\".join(parts)"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Convert deep recursion to an explicit iterative loop to avoid stack overhead",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "If the code employs recursion for traversals (e.g., DFS on trees/graphs, processing nested structures, or divide-and-conquer logic) without explicit depth limitations, it risks hitting Python's recursion limit and incurs function call overhead at each step. An iterative approach using an explicit stack or queue maintains the same logical order while being more robust and often faster.",
+            "proposed_change": "def dfs_iterative(root):\n    stack = [root]\n    visited = []\n    while stack:\n        node = stack.pop()\n        visited.append(node.value)\n        # Assuming node.children is iterable\n        for child in reversed(node.children):  # preserve traversal order of recursive version\n            stack.append(child)\n    return visited"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Use sets instead of lists for frequently mutated or membership-checked collections",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "Where collections are used primarily for membership checks and uniqueness (e.g., `if x not in processed: processed.append(x)`), using a list causes O(n) scans on each operation, leading to O(n^2) behavior for building such collections. Replacing with a set keeps insertions and membership tests at O(1) on average, in line with the 'Data Structure Optimization' checklist item.",
+            "proposed_change": "def unique_preserve_insertion_order(items):\n    seen = set()\n    result = []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            result.append(x)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-006",
+            "agent_role": "PerformanceExpert",
+            "title": "Leverage vectorized or bulk operations (NumPy/Pandas or batched processing) instead of Python-level loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code that processes large numerical arrays or tabular data often uses pure Python loops (`for row in data:`) even when NumPy arrays or Pandas DataFrames are available. Such loops operate in Python space and suffer from high per-iteration overhead. Replacing them with vectorized operations or batched map/reduce style operations can move work into optimized C-level loops.",
+            "proposed_change": "import numpy as np\n\n# Hypothetical numeric transformation\n# Before: Python loop\n# result = [x * scale + bias for x in values]\n\n# After: vectorized\n\ndef transform(values, scale, bias):\n    arr = np.asarray(values)\n    return (arr * scale + bias).tolist()"
+        },
+        {
+            "suggestion_id": "PERF-007",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid unnecessary materialization and copying of large iterables",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Low",
+            "reasoning": "AI-generated code often wraps iterables in `list()` repeatedly (e.g., `for x in list(items):`) or constructs intermediate lists where an iterator or generator would suffice, increasing memory footprint and CPU time for copying. Reusing the original iterator or using generator expressions adheres to the 'Redundant Data Transformations' focus area.",
+            "proposed_change": "def process_stream(items):\n    # Before: items_list = list(items); for x in items_list: ...\n    # After: consume the iterable directly\n    for x in items:\n        handle(x)\n\n    # Before: tmp = [f(x) for x in items]; return sum(tmp)\n    # After: use generator to avoid materialization\n    # return sum(f(x) for x in items)"
+        },
+        {
+            "suggestion_id": "PERF-008",
+            "agent_role": "PerformanceExpert",
+            "title": "Narrow and lazy imports to reduce import-time overhead",
+            "target_code_block": "main.py#L1-L50",
+            "severity": "Low",
+            "reasoning": "AI-generated modules often `import *` or import large libraries at the top-level even if only a small subset of functions is used and only in rare execution paths. This increases startup latency and memory footprint. Narrow, function-level imports of only required symbols mitigate this overhead, aligning with the directive to flag non-lazy, non-specific imports.",
+            "proposed_change": "# Before:\n# import pandas as pd\n# import numpy as np\n# from module import *\n\n# After (example):\nfrom module import specific_function\n\n\ndef heavy_path(data):\n    # Lazy import only when needed\n    import pandas as pd\n    df = pd.DataFrame(data)\n    return df.describe()\n\n\ndef use_specific():\n    return specific_function()"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing code snippet prevents concrete, line-specific review",
+            "target_code_block": "unknown#L1-L999",
+            "severity": "High",
+            "reasoning": "The v_gen source code itself is not included in the input, so no functions, variables, or modules can be inspected. This blocks the ability to identify specific code smells such as poor naming, magic numbers, typing.Any usage, missing docstrings, or complex comprehensions in a line-specific manner.",
+            "proposed_change": "Provide the actual v_gen source code (and, if relevant, its filename) so that a precise, line-referenced readability review can be performed according to the requested JSON schema."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-astropy-rst-header-rows-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the concrete bug: allow passing header_rows to the RST writer (ascii.rst) without error and to support extra header rows in the output. Expert performance/readability suggestions are generic and not line-specific. No unit tests are provided, so functionality preservation is inferred from the current v_gen behavior and the issue description. [Phase 2] All suggestions target broad code ranges; however, only the existing RST implementation is relevant to the issue. There are no overlapping, concrete proposals that conflict on specific code blocks. [Phase 3] No SecurityExpert report is present; thus, no Critical security items to enforce. The current v_gen already adds header_rows support in the RST writer’s __init__, header building, and write logic. These changes are consistent with existing FixedWidth-like behavior and do not obviously break functionality (they preserve behavior when header_rows is None). [Phase 4] Generic performance proposals (PERF-001..PERF-008) do not map to an actual anti-pattern in this specific code snippet (no nested membership scans, no string concatenation in loops via '+', no recursion, etc.), so applying them would require speculative refactoring and risk violating the Functionality Preservation principle. READ-001 merely notes missing code for review and is obsolete given we now have code. Therefore, no external suggestions are directly adopted; instead, we accept the current v_gen as the integrated solution. [Phase 5] Since no additional modifications are necessary beyond what v_gen already implements, there are no executable refactor steps to schedule. [Phase 6] Final plan: acknowledge that v_gen already resolves the original issue (supports header_rows in RST tables) and refrain from further invasive changes, in line with Minimal Invasiveness and Functionality Preservation. The instructions list is therefore empty.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Used existing v_gen implementation of RST writer with header_rows support as final code.",
+        "Step 2: Ensured all necessary imports are included and full file content is returned."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 12753,
+        "completion_tokens": 4828,
+        "estimated_cost_usd": 0.136185
+    },
+    "maestro_score": 70
+}

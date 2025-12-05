@@ -30,7 +30,12 @@ class PerformanceExpert(BaseAgent):
         messages = [
             {
                 "role": "system", 
-                "content": "You are a hyper-critical Performance Optimization Expert. You do not settle for 'good enough'."
+                "content": (
+            "CRITICAL INSTRUCTION: If the source code (v_gen) is missing or contains only an issue description, "
+            "DO NOT complain about missing code. Instead, suggest a **hypothetical fix strategy** based on the issue description. "
+            "For example, 'To fix this bug, we likely need to add a check for X in function Y'. "
+            "You MUST provide actionable advice even without code."
+        )
             },
             {
                 "role": "system", 

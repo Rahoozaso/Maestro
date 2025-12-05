@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.125, complexities=[{'type': 'method', 'rank': 'C', 'col_offset': 4, 'complexity': 20, 'classname': 'SQLCompiler', 'endline': 153, 'name': 'get_order_by', 'lineno': 51, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 5, 'endline': 153, 'name': 'SQLCompiler', 'lineno': 15, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 21, 'name': '__init__', 'lineno': 16, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'SQLCompiler', 'endline': 27, 'name': 'get_default_ordering', 'lineno': 23, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 31, 'name': '_quote_expr', 'lineno': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 37, 'name': '_setup_joins', 'lineno': 33, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'SQLCompiler', 'endline': 45, 'name': '_get_order_dir', 'lineno': 39, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 49, 'name': 'compile', 'lineno': 47, 'closures': []}, {'type': 'method', 'rank': 'C', 'col_offset': 4, 'complexity': 20, 'classname': 'SQLCompiler', 'endline': 153, 'name': 'get_order_by', 'lineno': 51, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'SQLCompiler', 'endline': 27, 'name': 'get_default_ordering', 'lineno': 23, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'SQLCompiler', 'endline': 45, 'name': '_get_order_dir', 'lineno': 39, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 21, 'name': '__init__', 'lineno': 16, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 31, 'name': '_quote_expr', 'lineno': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 37, 'name': '_setup_joins', 'lineno': 33, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'SQLCompiler', 'endline': 49, 'name': 'compile', 'lineno': 47, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.0999999999969368e-06, modified_avg_time=7.999999999987184e-07, improvement_percentage=27.27272727264125, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 31691,
+        "completion_tokens": 12253,
+        "estimated_cost_usd": 0.34225
+    },
+    "maestro_score": 90
+}

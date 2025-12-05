@@ -1,0 +1,10 @@
+{
+    "run_id": "A",
+    "status": "GENERATED",
+    "cost_analysis": {
+        "prompt_tokens": 28215,
+        "completion_tokens": 12932,
+        "estimated_cost_usd": 0.335055
+    },
+    "maestro_score": 0
+}

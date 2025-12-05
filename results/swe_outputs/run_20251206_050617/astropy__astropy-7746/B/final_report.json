@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=5.5, complexities=[{'type': 'method', 'rank': 'D', 'name': '_array_converter', 'lineno': 46, 'col_offset': 4, 'complexity': 21, 'classname': 'WCS', 'endline': 181, 'closures': []}, {'type': 'class', 'rank': 'B', 'name': 'WCS', 'lineno': 12, 'col_offset': 0, 'complexity': 6, 'endline': 199, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'lineno': 20, 'col_offset': 4, 'complexity': 1, 'classname': 'WCS', 'endline': 22, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_normalize_sky', 'lineno': 27, 'col_offset': 4, 'complexity': 1, 'classname': 'WCS', 'endline': 33, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_denormalize_sky', 'lineno': 35, 'col_offset': 4, 'complexity': 1, 'classname': 'WCS', 'endline': 41, 'closures': []}, {'type': 'method', 'rank': 'D', 'name': '_array_converter', 'lineno': 46, 'col_offset': 4, 'complexity': 21, 'classname': 'WCS', 'endline': 181, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'wcs_pix2world', 'lineno': 186, 'col_offset': 4, 'complexity': 3, 'classname': 'WCS', 'endline': 199, 'closures': [{'type': 'function', 'rank': 'A', 'name': '_p2s', 'lineno': 195, 'col_offset': 8, 'complexity': 1, 'endline': 197, 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'name': 'wcs_pix2world', 'lineno': 186, 'col_offset': 4, 'complexity': 3, 'classname': 'WCS', 'endline': 199, 'closures': [{'type': 'function', 'rank': 'A', 'name': '_p2s', 'lineno': 195, 'col_offset': 8, 'complexity': 1, 'endline': 197, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'lineno': 20, 'col_offset': 4, 'complexity': 1, 'classname': 'WCS', 'endline': 22, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_normalize_sky', 'lineno': 27, 'col_offset': 4, 'complexity': 1, 'classname': 'WCS', 'endline': 33, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_denormalize_sky', 'lineno': 35, 'col_offset': 4, 'complexity': 1, 'classname': 'WCS', 'endline': 41, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nexcerpt: line 14: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 30535,
+        "completion_tokens": 12685,
+        "estimated_cost_usd": 0.34295
+    },
+    "maestro_score": 0
+}

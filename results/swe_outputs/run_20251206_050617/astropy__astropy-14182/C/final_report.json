@@ -1,0 +1,142 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 95,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=6.6, complexities=[{'type': 'method', 'rank': 'C', 'complexity': 11, 'lineno': 52, 'classname': 'RST', 'name': '_get_header_rows', 'col_offset': 4, 'endline': 91, 'closures': []}, {'type': 'method', 'rank': 'C', 'complexity': 11, 'lineno': 93, 'classname': 'RST', 'name': 'write', 'col_offset': 4, 'endline': 153, 'closures': [{'type': 'function', 'rank': 'A', 'complexity': 2, 'lineno': 124, 'name': 'border', 'col_offset': 8, 'endline': 127, 'closures': []}]}, {'type': 'class', 'rank': 'B', 'complexity': 7, 'lineno': 8, 'name': 'RST', 'col_offset': 0, 'endline': 153, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 17, 'classname': 'RST', 'name': '__init__', 'col_offset': 4, 'endline': 35, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'lineno': 37, 'classname': 'RST', 'name': '_format_col', 'col_offset': 4, 'endline': 50, 'closures': []}, {'type': 'method', 'rank': 'C', 'complexity': 11, 'lineno': 52, 'classname': 'RST', 'name': '_get_header_rows', 'col_offset': 4, 'endline': 91, 'closures': []}, {'type': 'method', 'rank': 'C', 'complexity': 11, 'lineno': 93, 'classname': 'RST', 'name': 'write', 'col_offset': 4, 'endline': 153, 'closures': [{'type': 'function', 'rank': 'A', 'complexity': 2, 'lineno': 124, 'name': 'border', 'col_offset': 8, 'endline': 127, 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'lineno': 37, 'classname': 'RST', 'name': '_format_col', 'col_offset': 4, 'endline': 50, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 17, 'classname': 'RST', 'name': '__init__', 'col_offset': 4, 'endline': 35, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=1.0000000000287557e-07, improvement_percentage=50.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206051735",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-007: Flatten deeply nested if/for logic using early returns and guard clauses",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Refactor nested `if`/`for` blocks by introducing early returns or `continue` statements to handle exceptional or trivial cases first, thereby reducing indentation levels and clarifying the main logic path.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-005: Prefer sets and dicts over lists for membership-heavy operations",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L180",
+                "new_code": "def filter_known_items(items, known_items):\n    # Hypothetical current pattern:\n    # result = []\n    # for x in items:\n    #     if x in known_items:  # known_items is a list\n    #         result.append(x)\n    # return result\n\n    known_set = set(known_items)\n    result = []\n    for x in items:\n        if x in known_set:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Replace nested linear searches with hash-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L120",
+                "new_code": "def optimized_function(data1, data2):\n    # Hypothetical current pattern:\n    # result = []\n    # for x in data1:\n    #     if x in data2:  # O(n) per check if data2 is a list\n    #         result.append(x)\n    # return result\n\n    # Improved version using a set for O(1) membership tests\n    lookup = set(data2)\n    result = []\n    for x in data1:\n        if x in lookup:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-004: Use efficient string building via join instead of repeated concatenation",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L160",
+                "new_code": "def optimized_string_builder(pieces):\n    # Hypothetical current pattern:\n    # s = \"\"\n    # for p in pieces:\n    #     s += p  # Inefficient repeated concatenation\n    # return s\n\n    # More efficient implementation\n    buf = []\n    for p in pieces:\n        buf.append(p)\n    return \"\".join(buf)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-003: Convert deep recursion to iteration to avoid stack overflows and reduce overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_traversal(root):\n    # Hypothetical current pattern:\n    # def dfs(node):\n    #     if not node:\n    #         return\n    #     process(node)\n    #     for child in node.children:\n    #         dfs(child)\n    # dfs(root)\n\n    # Iterative equivalent using an explicit stack\n    if not root:\n        return\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        process(node)\n        # Preserve traversal order if needed\n        for child in reversed(node.children):\n            stack.append(child)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-002: Remove repeated computations and conversions from inside hot loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L140",
+                "new_code": "def optimized_function(items):\n    # Hypothetical current pattern:\n    # result = []\n    # for item in items:\n    #     if expensive_check(item, compute_context(items)):\n    #         result.append(transform(item, compute_context(items)))\n    # return result\n\n    # Precompute loop-invariant context once\n    context = compute_context(items)\n    result = []\n    for item in items:\n        if expensive_check(item, context):\n            result.append(transform(item, context))\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] SEC-000: Missing application code prevents security assessment",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "# No code to patch yet. Ensure the real v_gen code is provided to the Security Expert.\n# Example of how to submit for analysis:\n\nv_gen = \"\"\"\n# paste the full application or module code here\n\"\"\"\n\nunit_test_suite = \"\"\"\n# paste the unit tests here\n\"\"\"\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "SEC-000"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] PERF-007: Use lazy and specific imports to reduce startup overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Hypothetical current pattern:\n# import numpy as np\n# import pandas as pd\n# from some_heavy_module import *\n\n# Optimized imports – only what is needed, and lazily if used rarely\nfrom math import sqrt  # example of specific import\n\n# Example lazy import inside a function that rarely runs\ndef optional_heavy_feature(x):\n    import numpy as np  # lazy import\n    return np.array(x) * 2",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] PERF-006: Avoid unnecessary list materialization and prefer generators/iterators",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L150",
+                "new_code": "def optimized_pipeline(data):\n    # Hypothetical current pattern:\n    # step1 = list(map(transform, data))\n    # step2 = list(filter(predicate, step1))\n    # for x in step2:\n    #     consume(x)\n\n    # Stream data through iterators instead of materializing all steps\n    step1 = map(transform, data)\n    step2 = filter(predicate, step1)\n    for x in step2:\n        consume(x)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 43555,
+        "completion_tokens": 21969,
+        "estimated_cost_usd": 0.54731
+    },
+    "maestro_score": 95
+}

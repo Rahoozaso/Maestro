@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.125, complexities=[{'type': 'function', 'rank': 'C', 'endline': 210, 'col_offset': 0, 'name': '_stable_topological_sort', 'complexity': 17, 'lineno': 157, 'closures': []}, {'type': 'function', 'rank': 'C', 'endline': 333, 'col_offset': 0, 'name': 'merge_media_lists_refined', 'complexity': 12, 'lineno': 271, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 55, 'classname': 'Media', 'col_offset': 4, 'name': '__init__', 'complexity': 7, 'lineno': 29, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 264, 'col_offset': 0, 'name': '_pick_cycle_pair', 'complexity': 4, 'lineno': 228, 'closures': [{'type': 'function', 'rank': 'B', 'endline': 258, 'col_offset': 4, 'name': 'has_path', 'complexity': 8, 'lineno': 240, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 110, 'classname': 'Media', 'col_offset': 4, 'name': '__add__', 'complexity': 4, 'lineno': 71, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 154, 'classname': 'Media', 'col_offset': 4, 'name': 'render_css', 'complexity': 4, 'lineno': 135, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 225, 'col_offset': 0, 'name': '_fallback_linear_merger', 'complexity': 3, 'lineno': 213, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 154, 'col_offset': 0, 'name': 'Media', 'complexity': 3, 'lineno': 20, 'methods': [{'type': 'method', 'rank': 'B', 'endline': 55, 'classname': 'Media', 'col_offset': 4, 'name': '__init__', 'complexity': 7, 'lineno': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 59, 'classname': 'Media', 'col_offset': 4, 'name': 'css', 'complexity': 1, 'lineno': 58, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 63, 'classname': 'Media', 'col_offset': 4, 'name': 'js', 'complexity': 1, 'lineno': 62, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 66, 'classname': 'Media', 'col_offset': 4, 'name': '__str__', 'complexity': 1, 'lineno': 65, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 69, 'classname': 'Media', 'col_offset': 4, 'name': '__bool__', 'complexity': 2, 'lineno': 68, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 110, 'classname': 'Media', 'col_offset': 4, 'name': '__add__', 'complexity': 4, 'lineno': 71, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 118, 'classname': 'Media', 'col_offset': 4, 'name': '__radd__', 'complexity': 3, 'lineno': 112, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 127, 'classname': 'Media', 'col_offset': 4, 'name': 'render', 'complexity': 1, 'lineno': 125, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 132, 'classname': 'Media', 'col_offset': 4, 'name': 'render_js', 'complexity': 2, 'lineno': 129, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 154, 'classname': 'Media', 'col_offset': 4, 'name': 'render_css', 'complexity': 4, 'lineno': 135, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 118, 'classname': 'Media', 'col_offset': 4, 'name': '__radd__', 'complexity': 3, 'lineno': 112, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 69, 'classname': 'Media', 'col_offset': 4, 'name': '__bool__', 'complexity': 2, 'lineno': 68, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 132, 'classname': 'Media', 'col_offset': 4, 'name': 'render_js', 'complexity': 2, 'lineno': 129, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 16, 'col_offset': 0, 'name': 'MediaOrderConflictWarning', 'complexity': 1, 'lineno': 15, 'methods': []}, {'type': 'method', 'rank': 'A', 'endline': 59, 'classname': 'Media', 'col_offset': 4, 'name': 'css', 'complexity': 1, 'lineno': 58, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 63, 'classname': 'Media', 'col_offset': 4, 'name': 'js', 'complexity': 1, 'lineno': 62, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 66, 'classname': 'Media', 'col_offset': 4, 'name': '__str__', 'complexity': 1, 'lineno': 65, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 127, 'classname': 'Media', 'col_offset': 4, 'name': 'render', 'complexity': 1, 'lineno': 125, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=9.999999999593667e-08, modified_avg_time=1.9999999999881224e-07, improvement_percentage=-100.00000000693889, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36417,
+        "completion_tokens": 16940,
+        "estimated_cost_usd": 0.436185
+    },
+    "maestro_score": 70
+}

@@ -1,0 +1,183 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 50,
+        "scores": {
+            "security": 30,
+            "readability": 20,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '17         result = self.nref_nomask.multiply(1.0, handle_mask=np.bitwise_or)\\n18         assert result.mask is None\\n19 \\n', 'col_offset': 8, 'end_col_offset': 34, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdd3t1vxb.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 18, 'line_range': [18], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '22         result = self.nref_nomask.multiply(self.nref_nomask, handle_mask=np.bitwise_or)\\n23         assert result.mask is None\\n24 \\n', 'col_offset': 8, 'end_col_offset': 34, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdd3t1vxb.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 23, 'line_range': [23], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '27         result = self.nref_mask.multiply(1.0, handle_mask=np.bitwise_or)\\n28         assert result.mask is not None\\n29         np.testing.assert_array_equal(result.mask, self.mask)\\n', 'col_offset': 8, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdd3t1vxb.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 28, 'line_range': [28], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '39         result = self.nref_mask.multiply(self.nref_nomask, handle_mask=np.bitwise_or)\\n40         assert result.mask is not None\\n41         np.testing.assert_array_equal(result.mask, self.mask)\\n', 'col_offset': 8, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpdd3t1vxb.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 40, 'line_range': [40], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.7142857142857142, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 2, 'name': 'TestNDDataRefMaskPropagation', 'col_offset': 0, 'lineno': 7, 'endline': 41, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 1, 'name': 'setup_method', 'col_offset': 4, 'lineno': 9, 'endline': 13, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_no_mask_times_constant', 'col_offset': 4, 'lineno': 15, 'endline': 15, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_no_mask_times_no_mask', 'col_offset': 4, 'lineno': 20, 'endline': 20, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_mask_times_constant_propagates_mask', 'col_offset': 4, 'lineno': 25, 'endline': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 1, 'name': 'test_mask_times_mask_combines_with_bitwise_or', 'col_offset': 4, 'lineno': 31, 'endline': 35, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_mask_times_no_mask_other_order_propagates_mask', 'col_offset': 4, 'lineno': 37, 'endline': 41, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_no_mask_times_constant', 'col_offset': 4, 'lineno': 15, 'endline': 15, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_no_mask_times_no_mask', 'col_offset': 4, 'lineno': 20, 'endline': 20, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_mask_times_constant_propagates_mask', 'col_offset': 4, 'lineno': 25, 'endline': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 2, 'name': 'test_mask_times_no_mask_other_order_propagates_mask', 'col_offset': 4, 'lineno': 37, 'endline': 41, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 1, 'name': 'setup_method', 'col_offset': 4, 'lineno': 9, 'endline': 13, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'TestNDDataRefMaskPropagation', 'complexity': 1, 'name': 'test_mask_times_mask_combines_with_bitwise_or', 'col_offset': 4, 'lineno': 31, 'endline': 35, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999989472883e-07, modified_avg_time=2.0000000000575113e-07, improvement_percentage=-5.551115126047644e-08, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (('Connection broken: TimeoutError()', TimeoutError()))"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace naive nested-loop search with hash-based lookups",
+            "target_code_block": "main.py#L1-L80",
+            "severity": "High",
+            "reasoning": "The issue description indicates functionally correct but inefficient AI-generated code. A very common pattern is using nested loops or repeated `if x in some_list` checks when comparing or searching across collections. This results in O(n*m) or O(n²) time complexity. Replacing inner linear searches with dictionary or set lookups can reduce complexity to O(n+m) or O(n).",
+            "proposed_change": "def optimize_lookup(list1, list2):\n    # Before (hypothetical inefficient version):\n    # result = []\n    # for x in list1:\n    #     for y in list2:\n    #         if x == y:\n    #             result.append(x)\n\n    # After: use a set for O(1) average membership checks\n    set2 = set(list2)\n    result = []\n    for x in list1:\n        if x in set2:\n            result.append(x)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid repeated computations inside loops by hoisting invariants",
+            "target_code_block": "main.py#L1-L120",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often recalculates values inside loops that are actually loop-invariant, such as `len(list)`, constants, parsed configurations, or pre-filtered collections. Each repeated computation adds unnecessary overhead, especially when the loop runs many times.",
+            "proposed_change": "def process_items(items, config):\n    # Before (hypothetical inefficient version):\n    # result = []\n    # for i in range(len(items)):\n    #     threshold = config.get(\"threshold\", 0.5)\n    #     if items[i] > threshold:\n    #         result.append(items[i])\n\n    # After: move loop-invariant work outside the loop\n    n = len(items)\n    threshold = config.get(\"threshold\", 0.5)\n    result = []\n    for i in range(n):\n        if items[i] > threshold:\n            result.append(items[i])\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Use efficient string building with join instead of repeated concatenation",
+            "target_code_block": "main.py#L1-L150",
+            "severity": "Medium",
+            "reasoning": "AI code frequently constructs strings using `+=` in loops, leading to O(n²) behavior because strings are immutable and concatenation creates new objects each time. Building a list of fragments and joining once at the end is O(n).",
+            "proposed_change": "def build_report(lines):\n    # Before (hypothetical inefficient version):\n    # report = \"\"\n    # for line in lines:\n    #     report += line + \"\\n\"\n\n    # After: accumulate in a list and join once\n    parts = []\n    for line in lines:\n        parts.append(line)\n    report = \"\\n\".join(parts) + \"\\n\" if parts else \"\"\n    return report"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace recursion with iteration to prevent stack overflows and reduce overhead",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated solutions often use recursion for tree/graph traversals or simple dynamic programming problems. In Python, deep recursion risks hitting the recursion limit and has overhead per call. An iterative approach using an explicit stack or queue is more robust and often faster.",
+            "proposed_change": "def traverse_tree(root):\n    # Before (hypothetical recursive version):\n    # def dfs(node, acc):\n    #     if node is None:\n    #         return\n    #     acc.append(node.value)\n    #     dfs(node.left, acc)\n    #     dfs(node.right, acc)\n    # acc = []\n    # dfs(root, acc)\n    # return acc\n\n    # After: iterative DFS to avoid deep recursion\n    if root is None:\n        return []\n    acc = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        acc.append(node.value)\n        if node.right is not None:\n            stack.append(node.right)\n        if node.left is not None:\n            stack.append(node.left)\n    return acc"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Use sets/dicts instead of lists for membership tests and de-duplication",
+            "target_code_block": "main.py#L1-L220",
+            "severity": "High",
+            "reasoning": "A common AI anti-pattern is using lists for membership checks (`if x in list_obj`) or manual duplicate elimination inside loops, which are O(n) per check. Sets and dictionaries offer O(1) average-case membership, significantly improving performance for repeated lookups.",
+            "proposed_change": "def unique_preserve_order(items):\n    # Before (hypothetical inefficient version):\n    # result = []\n    # for x in items:\n    #     if x not in result:\n    #         result.append(x)\n\n    # After: use a set for fast membership while preserving order\n    seen = set()\n    result = []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            result.append(x)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-006",
+            "agent_role": "PerformanceExpert",
+            "title": "Leverage vectorized or bulk operations with libraries (e.g., NumPy/Pandas) instead of Python loops",
+            "target_code_block": "main.py#L1-L260",
+            "severity": "Medium",
+            "reasoning": "AI solutions process numerical or tabular data using pure Python loops, missing out on vectorized operations in NumPy or Pandas that execute in optimized C code and can be orders of magnitude faster.",
+            "proposed_change": "import numpy as np\n\n\ndef normalize_values(values):\n    # Before (hypothetical pure-Python version):\n    # total = 0.0\n    # for v in values:\n    #     total += v\n    # avg = total / len(values) if values else 0.0\n    # result = []\n    # for v in values:\n    #     result.append(v - avg)\n    # return result\n\n    # After: use NumPy vectorization\n    arr = np.asarray(values, dtype=float)\n    if arr.size == 0:\n        return []\n    avg = arr.mean()\n    result = (arr - avg).tolist()\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-007",
+            "agent_role": "PerformanceExpert",
+            "title": "Optimize imports by making them specific and, where possible, lazy",
+            "target_code_block": "main.py#L1-L20",
+            "severity": "Low",
+            "reasoning": "AI-generated code often uses broad imports like `from module import *` or imports heavy modules at the top-level even if only used in a narrow code path. This can increase startup time and memory footprint.",
+            "proposed_change": "# Before (hypothetical imports):\n# import pandas as pd\n# import numpy as np\n# from math import *\n\n# After: narrow and/or lazy imports\nfrom math import sqrt  # only import what is actually used\n\n# Example of lazy import inside a function\n\ndef heavy_processing(data):\n    # Delay importing a heavy library until actually needed\n    import pandas as pd\n    df = pd.DataFrame(data)\n    return df.describe()"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing docstrings for public functions and modules",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The provided code context implies there are callable entry points and testable behavior, but the v_gen snippet lacks explicit docstrings. Absence of docstrings violates Clean Code documentation practices and PEP 257, making it harder for future maintainers to quickly understand purpose, parameters, and return values.",
+            "proposed_change": "Add concise, descriptive docstrings to each public function, class, and the module itself, explicitly documenting parameters, return types, side effects, and raised exceptions."
+        },
+        {
+            "suggestion_id": "READ-002",
+            "agent_role": "ReadabilityExpert",
+            "title": "Ambiguous short variable names reduce clarity",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "Short, non-descriptive variable names (such as 'd', 'ml', 'ol', or similar one- or two-letter identifiers) obscure intent and require readers to hold extra context in memory. This directly contradicts the 'Poor Naming' item in the Code Smell Checklist.",
+            "proposed_change": "Rename each short variable (e.g., 'd', 'ml', 'ol') to descriptive names that reflect their role and content, such as 'user_data', 'model_loader', or 'output_list', and update all references accordingly."
+        },
+        {
+            "suggestion_id": "READ-003",
+            "agent_role": "ReadabilityExpert",
+            "title": "Usage of typing.Any obscures type expectations",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "The presence of 'typing.Any' (or aliases of it) in type annotations removes the benefits of static type checking and makes it unclear what kind of data is expected. This can hide bugs and makes it harder for tools and humans to reason about contracts.",
+            "proposed_change": "Replace each occurrence of 'Any' in the annotations with more precise types such as 'dict[str, str]', 'list[int]', 'Callable[..., bool]', or dedicated Protocols/TypedDicts, based on the actual data structures used at those call sites."
+        },
+        {
+            "suggestion_id": "READ-004",
+            "agent_role": "ReadabilityExpert",
+            "title": "Complex list comprehensions reduce readability",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often uses deeply nested or overly complex list comprehensions with multiple conditions or nested loops. These one-liners are harder to read, debug, and modify than equivalent explicit loops, thereby violating the readability intent of Python comprehensions.",
+            "proposed_change": "Identify list comprehensions that contain multiple 'for' clauses and/or multiple 'if' conditions, and refactor them into explicit for-loops with intermediate well-named variables and comments that explain the transformation."
+        },
+        {
+            "suggestion_id": "READ-005",
+            "agent_role": "ReadabilityExpert",
+            "title": "Potential SRP violations in multi-purpose functions",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "Functions in AI-generated code frequently perform multiple responsibilities such as parsing inputs, applying business logic, and formatting outputs within the same body. This violates the Single Responsibility Principle and complicates maintenance and testing.",
+            "proposed_change": "Identify functions that both validate input, transform data, and handle I/O or logging in one body, and split them into smaller dedicated functions (e.g., 'parse_input', 'apply_business_rules', 'format_response') wired together by a thin orchestration function."
+        },
+        {
+            "suggestion_id": "READ-006",
+            "agent_role": "ReadabilityExpert",
+            "title": "Possible use of magic numbers and opaque literal strings",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "Hardcoded numeric literals or status strings (e.g., thresholds, modes, or flags) without descriptive names make it difficult to infer their intent, violating the 'Magic Numbers' item in the checklist.",
+            "proposed_change": "Extract repeated or semantically meaningful literals into named constants (e.g., 'ADMIN_LEVEL_THRESHOLD', 'DEFAULT_TIMEOUT_SECONDS', 'STATUS_PROCESSED') at the module level and replace inline literals with these named constants."
+        },
+        {
+            "suggestion_id": "READ-007",
+            "agent_role": "ReadabilityExpert",
+            "title": "Insufficient or potentially misleading inline comments",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Low",
+            "reasoning": "The description warns about 'hallucinated' comments in AI-generated code. Inline comments that do not match behavior or are overly generic create confusion instead of clarifying logic.",
+            "proposed_change": "Review existing comments and either (1) update them to accurately and succinctly describe non-obvious logic, or (2) remove comments that merely restate the code or are inaccurate. Focus comments on the 'why' rather than the 'what'."
+        },
+        {
+            "suggestion_id": "READ-008",
+            "agent_role": "ReadabilityExpert",
+            "title": "Inconsistent naming conventions within the codebase",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often mixes camelCase, snake_case, and inconsistent suffixes/prefixes, which contradicts PEP 8 and makes APIs harder to use correctly.",
+            "proposed_change": "Normalize all function, variable, and method names to snake_case, and class names to PascalCase, renaming any camelCase identifiers (e.g., 'processData') to 'process_data' and updating all call sites."
+        },
+        {
+            "suggestion_id": "READ-009",
+            "agent_role": "ReadabilityExpert",
+            "title": "Deeply nested conditionals and loops increase cognitive complexity",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "Deep nesting of if/else blocks and loops (common in AI-generated code for validation and branching) makes control flow difficult to follow and error-prone to modify, violating the guideline against deeply nested logic.",
+            "proposed_change": "Refactor nested conditionals by using early returns/continues/guards, extracting well-named helper functions for complex branches, and flattening control flow where possible."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-nddataref-mask-propagation-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue', i.e., ensure the new regression tests correctly encode the NDDataRef mask propagation bug and are themselves sound. The provided v_gen is already a focused pytest class reproducing the scenario; expert performance/readability reports are generic and not aligned with this concrete code.\n[Phase 2] All expert suggestions target broad ranges like 'main.py#L1-L200', but the actual file is a small test module containing only imports and a single test class. No nested loops, recursion, string building, or Any types appear. There are no production functions to optimize or refactor per SRP.\n[Phase 3] No SecurityExpert report is present, so there are no Critical security suggestions to adopt. The unit_test_suite is 'N/A', so the primary functionality constraint is that these tests must continue to express the described behavior without over-constraining internal implementation of astropy. Applying the generic performance/readability changes would require inventing new functions and structures, violating the Principle of Functionality Preservation by changing test intent.\n[Phase 4] At the single conflict point 'main.py#L1-L200', all Performance and Readability proposals are clearly mismatched to the current code. Per Minimal Invasiveness and AI Anti-Pattern Correction, the safest plan is to keep the tests as-is, since they already capture the bug scenario and add no known anti-patterns. Adding docstrings or renaming variables is optional and not essential to resolving the issue, and generic proposals mention renaming identifiers that do not exist here.\n[Phase 5] Therefore, no concrete code modifications are required to v_gen to meet the synthesis_goal. The optimal integrated execution plan is to adopt none of the generic expert suggestions for this file and keep the tests unchanged, avoiding speculative edits that could undermine their regression value.\n[Phase 6] Final plan: produce an empty instruction list, signaling to the Developer agent that this test file is already appropriate and should be integrated as-is into the test suite for the upstream fix in astropy's NDDataRef implementation.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Reviewed execution plan; no modifications requested.",
+        "Step 2: Kept the provided test module content unchanged as the final code."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 13152,
+        "completion_tokens": 5572,
+        "estimated_cost_usd": 0.14934
+    },
+    "maestro_score": 50
+}

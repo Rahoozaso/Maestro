@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 30,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '17         result = self.nref_nomask.multiply(1.0, handle_mask=np.bitwise_or)\\n18         assert result.mask is None\\n19 \\n', 'col_offset': 8, 'end_col_offset': 34, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpiy4xhtd6.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 18, 'line_range': [18], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '22         result = self.nref_nomask.multiply(self.nref_nomask, handle_mask=np.bitwise_or)\\n23         assert result.mask is None\\n24 \\n', 'col_offset': 8, 'end_col_offset': 34, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpiy4xhtd6.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 23, 'line_range': [23], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '27         result = self.nref_mask.multiply(1.0, handle_mask=np.bitwise_or)\\n28         assert result.mask is not None\\n29         np.testing.assert_array_equal(result.mask, self.mask)\\n', 'col_offset': 8, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpiy4xhtd6.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 28, 'line_range': [28], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '39         result = self.nref_mask.multiply(self.nref_nomask, handle_mask=np.bitwise_or)\\n40         assert result.mask is not None\\n41         np.testing.assert_array_equal(result.mask, self.mask)\\n', 'col_offset': 8, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpiy4xhtd6.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 40, 'line_range': [40], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.7142857142857142, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 2, 'lineno': 7, 'name': 'TestNDDataRefMaskPropagation', 'col_offset': 0, 'endline': 41, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 9, 'name': 'setup_method', 'col_offset': 4, 'endline': 13, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 15, 'name': 'test_no_mask_times_constant', 'col_offset': 4, 'endline': 15, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 20, 'name': 'test_no_mask_times_no_mask', 'col_offset': 4, 'endline': 20, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 25, 'name': 'test_mask_times_constant_propagates_mask', 'col_offset': 4, 'endline': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 31, 'name': 'test_mask_times_mask_combines_with_bitwise_or', 'col_offset': 4, 'endline': 35, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 37, 'name': 'test_mask_times_no_mask_other_order_propagates_mask', 'col_offset': 4, 'endline': 41, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 15, 'name': 'test_no_mask_times_constant', 'col_offset': 4, 'endline': 15, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 20, 'name': 'test_no_mask_times_no_mask', 'col_offset': 4, 'endline': 20, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 25, 'name': 'test_mask_times_constant_propagates_mask', 'col_offset': 4, 'endline': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 37, 'name': 'test_mask_times_no_mask_other_order_propagates_mask', 'col_offset': 4, 'endline': 41, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 9, 'name': 'setup_method', 'col_offset': 4, 'endline': 13, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'TestNDDataRefMaskPropagation', 'lineno': 31, 'name': 'test_mask_times_mask_combines_with_bitwise_or', 'col_offset': 4, 'endline': 35, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.999999999559911e-07, modified_avg_time=1.0000000000287557e-07, improvement_percentage=74.99999999653055, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206052629",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Reduce deeply nested logic with early returns or helper functions",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L999",
+                "new_code": "Locate functions with more than 2–3 levels of nested control flow. Introduce early returns (guard clauses) to handle edge cases upfront, and extract inner blocks into well-named helper functions to flatten the logic.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups to replace repeated linear searches in lists",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimize_membership_operations(primary_list, secondary_list):\n    # BEFORE (hypothetical inefficient pattern):\n    # result = []\n    # for item in primary_list:\n    #     if item in secondary_list:  # O(len(secondary_list)) per check\n    #         result.append(item)\n\n    # AFTER: use a set for O(1) average-time membership checks\n    secondary_set = set(secondary_list)\n    result = []\n    for item in primary_list:\n        if item in secondary_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-004: Use efficient string building with join instead of repeated concatenation in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L650-L800",
+                "new_code": "def build_output(parts, sep=\"\"):\n    # BEFORE (hypothetical pattern):\n    # result = \"\"\n    # for p in parts:\n    #     result += sep + p\n    # return result\n\n    # AFTER: efficient string accumulation\n    if not parts:\n        return \"\"\n    # Prepend first element and then other parts with separator\n    buf = [parts[0]]\n    for p in parts[1:]:\n        buf.append(sep)\n        buf.append(p)\n    return \"\".join(buf)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Hoist loop-invariant computations and remove redundant work inside loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L650",
+                "new_code": "def process_items(items, pattern):\n    # BEFORE (hypothetical inefficiency):\n    # result = []\n    # for i in range(len(items)):\n    #     if expensive_check(pattern.lower(), items[i].strip()):\n    #         result.append(items[i].strip())\n\n    # AFTER: hoist loop-invariant work and avoid duplicate operations\n    result = []\n    normalized_pattern = pattern.lower()  # invariant\n    # Cache len(items) to avoid repeated attribute lookups (micro-optimization)\n    n = len(items)\n    for i in range(n):\n        item_stripped = items[i].strip()  # reuse stripped value\n        if expensive_check(normalized_pattern, item_stripped):\n            result.append(item_stripped)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-002: Replace deep recursion with iterative approach to avoid stack overflows and overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def depth_first_traversal(root):\n    # BEFORE (hypothetical recursive DFS):\n    # def dfs(node, result):\n    #     if node is None:\n    #         return\n    #     result.append(node.value)\n    #     for child in node.children:\n    #         dfs(child, result)\n    # result = []\n    # dfs(root, result)\n    # return result\n\n    # AFTER: iterative DFS using an explicit stack\n    if root is None:\n        return []\n    result = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        result.append(node.value)\n        # Assuming original recursion processed children in order,\n        # we push them in reverse to preserve traversal order.\n        for child in reversed(node.children):\n            stack.append(child)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Narrow and lazy imports to reduce startup time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# BEFORE (hypothetical):\n# import numpy as np\n# import pandas as pd\n# from collections import *\n\n# AFTER: narrower and lazy imports\nfrom collections import defaultdict  # only what's used\n\n# Move heavy imports inside functions that need them\n\ndef compute_stats_with_numpy(data):\n    import numpy as np  # lazy import inside function\n    arr = np.array(data)\n    return float(arr.mean()), float(arr.std())",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 39804,
+        "completion_tokens": 14493,
+        "estimated_cost_usd": 0.416415
+    },
+    "maestro_score": 80
+}

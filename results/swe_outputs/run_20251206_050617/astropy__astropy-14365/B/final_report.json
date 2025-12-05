@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.875, complexities=[{'type': 'method', 'rank': 'C', 'endline': 157, 'classname': 'QDP', 'lineno': 63, 'col_offset': 4, 'name': 'split_tables', 'complexity': 19, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 169, 'lineno': 40, 'col_offset': 0, 'name': 'QDP', 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 55, 'classname': 'QDP', 'lineno': 52, 'col_offset': 4, 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 61, 'classname': 'QDP', 'lineno': 57, 'col_offset': 4, 'name': 'read', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'C', 'endline': 157, 'classname': 'QDP', 'lineno': 63, 'col_offset': 4, 'name': 'split_tables', 'complexity': 19, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 166, 'classname': 'QDP', 'lineno': 163, 'col_offset': 4, 'name': 'get_type_map', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 169, 'classname': 'QDP', 'lineno': 168, 'col_offset': 4, 'name': 'write', 'complexity': 1, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'endline': 27, 'lineno': 19, 'col_offset': 0, 'name': '_normalize_qdp_command', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 37, 'lineno': 31, 'col_offset': 0, 'name': '_QDPTableSpec', 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'endline': 55, 'classname': 'QDP', 'lineno': 52, 'col_offset': 4, 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 61, 'classname': 'QDP', 'lineno': 57, 'col_offset': 4, 'name': 'read', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 166, 'classname': 'QDP', 'lineno': 163, 'col_offset': 4, 'name': 'get_type_map', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 169, 'classname': 'QDP', 'lineno': 168, 'col_offset': 4, 'name': 'write', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=6.000000000172534e-07, modified_avg_time=5.000000000143778e-07, improvement_percentage=16.666666666666664, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 32178,
+        "completion_tokens": 11764,
+        "estimated_cost_usd": 0.33735
+    },
+    "maestro_score": 90
+}

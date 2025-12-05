@@ -1,0 +1,120 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.125, complexities=[{'type': 'method', 'rank': 'C', 'classname': 'SQLCompiler', 'complexity': 20, 'lineno': 51, 'col_offset': 4, 'name': 'get_order_by', 'endline': 153, 'closures': []}, {'type': 'class', 'rank': 'A', 'complexity': 5, 'lineno': 15, 'col_offset': 0, 'name': 'SQLCompiler', 'endline': 153, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 16, 'col_offset': 4, 'name': '__init__', 'endline': 21, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 2, 'lineno': 23, 'col_offset': 4, 'name': 'get_default_ordering', 'endline': 27, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 29, 'col_offset': 4, 'name': '_quote_expr', 'endline': 31, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 33, 'col_offset': 4, 'name': '_setup_joins', 'endline': 37, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 2, 'lineno': 39, 'col_offset': 4, 'name': '_get_order_dir', 'endline': 45, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 47, 'col_offset': 4, 'name': 'compile', 'endline': 49, 'closures': []}, {'type': 'method', 'rank': 'C', 'classname': 'SQLCompiler', 'complexity': 20, 'lineno': 51, 'col_offset': 4, 'name': 'get_order_by', 'endline': 153, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 2, 'lineno': 23, 'col_offset': 4, 'name': 'get_default_ordering', 'endline': 27, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 2, 'lineno': 39, 'col_offset': 4, 'name': '_get_order_dir', 'endline': 45, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 16, 'col_offset': 4, 'name': '__init__', 'endline': 21, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 29, 'col_offset': 4, 'name': '_quote_expr', 'endline': 31, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 33, 'col_offset': 4, 'name': '_setup_joins', 'endline': 37, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'complexity': 1, 'lineno': 47, 'col_offset': 4, 'name': 'compile', 'endline': 49, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=6.999999999993123e-07, modified_avg_time=1.2999999999992184e-06, improvement_percentage=-85.71428571435652, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace potential nested search loops with hash-based lookups",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "AI-generated solutions for problems involving comparisons between two collections (e.g., finding matches, differences, or frequencies) often use nested loops or repeated `in` checks on lists. This yields O(n*m) or O(n^2) behavior. Based on the provided unit test style and common patterns, the current implementation likely does linear searches inside loops. Using sets or dictionaries for membership/frequency checks reduces lookup from O(n) to O(1) on average, improving overall complexity from quadratic to near-linear.",
+            "proposed_change": "def optimized_function(list1, list2):\n    # Hypothetical improved structure assuming original used `if x in list2` in a loop\n    set2 = set(list2)  # O(m) one-time cost\n    result = []\n    for x in list1:  # O(n)\n        if x in set2:  # O(1) average instead of O(m)\n            result.append(x)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid repeated expensive computations inside loops by hoisting invariants",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code frequently recalculates values that do not change within a loop body, such as `len(some_list)`, `regex.compile(...)`, or parsing/transforming the same structure. Each repeated computation increases the constant factor on time complexity unnecessarily. Hoisting loop-invariant computations outside the loop reduces overall runtime, especially in tight loops or when the invariant operation is non-trivial.",
+            "proposed_change": "def optimized_loop(items):\n    # Hypothetical original pattern:\n    # for i in range(len(items)):\n    #     do_something(items[i], len(items))\n\n    n = len(items)  # computed once\n    for i in range(n):\n        do_something(items[i], n)\n\n    # Another common pattern: repeated pre-processing\n    # Hypothetical original:\n    # for x in items:\n    #     parsed = expensive_parse(config)\n    #     use(parsed, x)\n\n    parsed = expensive_parse(config)\n    for x in items:\n        use(parsed, x)"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Convert recursive logic to iterative form to avoid stack overhead and potential overflow",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated solutions often use recursion for tasks like traversals, DFS, or processing hierarchical data. In Python, recursion has noticeable overhead per call and is bounded by the recursion limit (~1000 by default), which can cause `RecursionError` for large inputs even if the algorithmic complexity is acceptable. An equivalent iterative implementation using an explicit stack or queue can avoid this limitation and often runs faster due to reduced call overhead.",
+            "proposed_change": "def dfs_iterative(root):\n    # Hypothetical original recursive version:\n    # def dfs(node, result):\n    #     if not node:\n    #         return\n    #     result.append(node.value)\n    #     for child in node.children:\n    #         dfs(child, result)\n    # result = []\n    # dfs(root, result)\n    # return result\n\n    if root is None:\n        return []\n\n    result = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        result.append(node.value)\n        # if original recursion was pre-order, push children in reverse\n        for child in reversed(node.children):\n            stack.append(child)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Use efficient string building patterns instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often builds strings via `result += piece` inside loops. In Python, strings are immutable, so each concatenation can allocate a new string and copy data, leading to O(n^2) behavior for n concatenations. Using a list to collect fragments and a single `''.join(...)` at the end provides amortized linear complexity.",
+            "proposed_change": "def build_string(pieces):\n    # Hypothetical original pattern:\n    # result = \"\"\n    # for p in pieces:\n    #     result += p\n    # return result\n\n    parts = []\n    for p in pieces:\n        parts.append(p)\n    return \"\".join(parts)"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Prefer lazy or specific imports to reduce startup time and memory footprint",
+            "target_code_block": "main.py#L1-L30",
+            "severity": "Low",
+            "reasoning": "AI-generated code frequently imports entire modules or heavy libraries (`import numpy`, `import pandas`, `from module import *`) even when using only a small subset of their functionality. This increases import time and memory usage, especially in short-running scripts or high-concurrency environments (e.g., web handlers). Using lazy imports or more specific imports can mitigate this overhead.",
+            "proposed_change": "# Hypothetical original:\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# More specific / lazy imports\nfrom math import sqrt  # only what is needed\n\n# If heavy module is used in a rare code path:\n# def heavy_operation(data):\n#     import numpy as np  # lazy import\n#     return np.array(data).sum()"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing concrete code prevents targeted line-level review",
+            "target_code_block": "v_gen#L1-L1",
+            "severity": "High",
+            "reasoning": "The input does not include the actual v_gen source code; only meta-instructions are provided. Without the concrete implementation, it is impossible to reference specific lines, variables, or functions, which is required for an actionable readability review according to the specified OUTPUT SCHEMA.",
+            "proposed_change": "Provide the full v_gen source code (and optionally the unit_test_suite) so that a line-referenced, code-smell-focused readability report can be generated."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-SQLCOMPILER-ORDERBY-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the specific bug in SQLCompiler.get_order_by that incorrectly de-duplicates multiline RawSQL ORDER BY clauses. Expert reports are generic performance/readability templates unrelated to this concrete code; no security report is provided. [Phase 2] All performance suggestions target broad ranges (main.py#L1-L200) without concrete alignment to the SQLCompiler implementation. No overlapping, line-specific conflict points are identifiable. [Phase 3] No Critical security issues exist, so Security Primacy is not triggered. Functionality Preservation dictates we must keep existing de-duplication semantics while fixing the multiline RawSQL bug. Generic performance proposals describe hypothetical functions and would either be no-ops or risk altering behavior; they are therefore rejected for this task. [Phase 4] The core issue is that ordering_parts.search() is applied directly to possibly multiline SQL, so the regex only sees the last line and different RawSQL expressions sharing a trailing line are considered duplicates. The user’s suggested fix is to normalize SQL into a single line before regex application. We can integrate this for both string-based and expression-based ordering branches without changing high-level behavior, just the de-duplication key. This aligns with AI Anti-Pattern Correction because the prior behavior is a known logic flaw in de-duplication of multiline SQL. [Phase 5] Execution order is simple: (1) normalize SQL to a single line in the string-ordering path before applying ordering_parts; (2) perform the same normalization in the compiled-expression path. Both are simple modifications to existing code and preserve the structure of get_order_by. [Phase 6] Final plan consists of two SIMPLE_MODIFICATION REPLACE steps, one for the string branch and one for the non-string branch, each introducing sql_oneline normalization and using it for ordering_parts.search while preserving the original sql for final ORDER BY rendering.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "In SQLCompiler.get_order_by, when ordering by a column name or raw SQL string (str branch), normalize multiline SQL into a single line before applying ordering_parts to compute the de-duplication key.",
+                "action": "REPLACE",
+                "target_code_block": "main.py#SQLCompiler.get_order_by:str_branch",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "                    # Order by a column.\n                    table, column, _ = self._setup_joins(col, [])\n                    if table and column:\n                        sql = (\n                            self.connection.ops.quote_name(table)\n                            + '.'\n                            + self.connection.ops.quote_name(column)\n                        )\n                    else:\n                        # Ordering by a non-joinable field (like an alias or a\n                        # raw SQL snippet).\n                        sql = self._quote_expr(col)\n\n                    # Normalize multiline SQL before applying the\n                    # ordering_parts regex so the de-duplication key for ORDER\n                    # BY clauses is based on the full expression instead of\n                    # just the last line. This fixes incorrect removal of\n                    # distinct multiline RawSQL order_by expressions.\n                    sql_oneline = ' '.join(sql.splitlines())\n\n                    match = self.ordering_parts.search(sql_oneline)\n                    if match:\n                        without_ordering = match.group(1)\n                    else:\n                        without_ordering = sql_oneline\n\n                    if without_ordering in seen:\n                        continue\n                    seen.add(without_ordering)\n\n                    if order == 'DESC':\n                        sql = '%s DESC' % sql\n                    else:\n                        sql = '%s ASC' % sql\n\n                    result.append((None, (sql, []), False))"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Applies the user-identified fix in a minimally invasive way, ensuring de-duplication for string-based ORDER BY clauses is based on the full SQL expression rather than only the last line, thereby resolving the reported bug while preserving existing ordering semantics."
+            },
+            {
+                "step": 2,
+                "description": "In SQLCompiler.get_order_by, when ordering by compiled expressions (non-str branch), normalize multiline SQL into a single line before applying ordering_parts to compute the de-duplication key.",
+                "action": "REPLACE",
+                "target_code_block": "main.py#SQLCompiler.get_order_by:expr_branch",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "            else:\n                # expr is already a compiled expression (Annotation, RawSQL,\n                # Func, etc.).\n                sql, params = self.compile(expr)\n\n                # Normalize multiline SQL before applying the ordering_parts\n                # regex so that multiline RawSQL ORDER BY expressions are\n                # compared based on their full content instead of a trailing\n                # line.\n                sql_oneline = ' '.join(sql.splitlines())\n\n                match = self.ordering_parts.search(sql_oneline)\n                if match:\n                    without_ordering = match.group(1)\n                else:\n                    without_ordering = sql_oneline\n\n                if without_ordering in seen:\n                    continue\n                seen.add(without_ordering)\n\n                result.append((expr, (sql, params), True))"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Extends the same de-duplication correction to compiled expressions, ensuring consistent behavior for multiline RawSQL and other expression-based ORDER BY clauses, fixing the issue without altering the final rendered SQL beyond duplicate-elimination logic."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Updated string-based ORDER BY handling in SQLCompiler.get_order_by to normalize multiline SQL into a single line before applying ordering_parts for de-duplication.",
+        "Step 2: Updated expression-based ORDER BY handling in SQLCompiler.get_order_by to normalize multiline SQL into a single line before applying ordering_parts for de-duplication."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 13014,
+        "completion_tokens": 4779,
+        "estimated_cost_usd": 0.136755
+    },
+    "maestro_score": 70
+}

@@ -1,0 +1,51 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 50,
+        "scores": {
+            "security": 30,
+            "readability": 20,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': \"156 # loudly.\\n157 SECRET_KEY = ''\\n158 \\n\", 'col_offset': 13, 'end_col_offset': 15, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmp3b93e_ug.py', 'issue_confidence': 'MEDIUM', 'issue_cwe': {'id': 259, 'link': 'https://cwe.mitre.org/data/definitions/259.html'}, 'issue_severity': 'LOW', 'issue_text': \"Possible hardcoded password: ''\", 'line_number': 157, 'line_range': [157], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html', 'test_id': 'B105', 'test_name': 'hardcoded_password_string'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.0, complexities=[], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nName, email@example.com), (Full: line 25: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-django-settings-file-upload-permissions-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue' for Django's default FILE_UPLOAD_PERMISSIONS behavior. v_gen is the global settings module. Expert reports are largely generic performance tips not tied to this file, plus a readability report complaining about missing code (now obsolete). [Phase 2] Grouping by target_code_block: PERF-001..005 all reference main.py ranges that don't match the actual django settings file; READ-001 references unknown.py. There are no overlapping/conflicting suggestions on the concrete code. [Phase 3] Apply absolute principles: No SecurityExpert report is present, so no Critical security issues. Unit tests are N/A; we must still preserve Django's documented behavior. The PR's core functional requirement is to set a consistent default FILE_UPLOAD_PERMISSIONS of 0o644 and document it. Any suggestions that propose adding unrelated functions (PERF-* stubs) or demand different files (READ-001) are rejected as non-applicable to this repository path and would likely break tests or standards. [Phase 4] Conflict resolution: No true conflicts between applicable suggestions, because the generic performance proposals do not map onto the provided settings module. The main prior failure feedback indicates a tooling/runtime error caused by mishandled here-doc/pip requirements, not by Python logic. That is external to this code and should not drive refactoring inside Django. [Phase 5] Execution plan: Minimal, focused edit in the FILE UPLOAD SETTINGS block. We retain the existing comment style but clarify the default behavior and set FILE_UPLOAD_PERMISSIONS to 0o644 explicitly, as already sketched in v_gen. To avoid reintroducing the prior CI tooling error, we do not touch imports or introduce external dependencies. [Phase 6] Final plan: Single REPLACE action that updates only the FILE UPLOAD SETTINGS section to ensure the default is 0o644 with clear documentation, preserving all other settings and structure.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Update the FILE UPLOAD SETTINGS block in Django's global settings to explicitly set FILE_UPLOAD_PERMISSIONS to 0o644 with clear explanatory comments, ensuring a consistent default for FileSystemStorage uploads.",
+                "action": "REPLACE",
+                "target_code_block": "django/conf/global_settings.py#FILE_UPLOAD_SETTINGS_BLOCK",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "#############################\n# FILE UPLOAD SETTINGS      #\n#############################\n\n# List of upload handler classes to be applied in order.\nFILE_UPLOAD_HANDLERS = [\n    'django.core.files.uploadhandler.MemoryFileUploadHandler',\n    'django.core.files.uploadhandler.TemporaryFileUploadHandler',\n]\n\n# The numeric mode (octal) to apply to uploaded files.\n#\n# Historically, if this was set to None, Django relied on the operating\n# system's default file mode and the current process umask. In combination\n# with NamedTemporaryFile + os.rename used by TemporaryFileUploadHandler,\n# this could result in files with more restrictive permissions (e.g. 0o600)\n# than files created directly, leading to inconsistent behavior across\n# handlers and platforms.\n#\n# To provide a consistent and secure default for FileSystemStorage uploads,\n# Django now defaults this to 0o644. You can override this setting in your\n# project settings to match your deployment's needs.\nFILE_UPLOAD_PERMISSIONS = 0o644\n\n# The numeric mode (octal) to apply to directories created for file\n# uploads. If None, the operating system's defaults and the current\n# process umask are used.\nFILE_UPLOAD_DIRECTORY_PERMISSIONS = None\n\n# The directory to store uploaded files.\nMEDIA_ROOT = ''\n\n# URL that handles the media served from MEDIA_ROOT. Make sure to use a\n# trailing slash.\nMEDIA_URL = ''\n\n# Maximum size, in bytes, of a request before it will be streamed to the\n# file system instead of handled by the memory upload handler.\nFILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # i.e. 2.5 MB\n\n# Directory where uploaded files larger than FILE_UPLOAD_MAX_MEMORY_SIZE\n# will be stored.\nFILE_UPLOAD_TEMP_DIR = None\n\n# If set to True, uploaded files will be stored with a temporary name and\n# renamed to the final name after the upload is complete.\nFILE_UPLOAD_USE_TEMP_FILE = False\n"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Aligned with the 'Resolve Issue' goal and the Principle of Minimal Invasiveness, this change touches only the FILE UPLOAD SETTINGS section to codify a default FILE_UPLOAD_PERMISSIONS of 0o644 and document the rationale. Generic performance and readability suggestions referencing other files or hypothetical functions are ignored as non-applicable, preserving Django's global settings behavior while resolving the reported inconsistency."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Replaced the FILE UPLOAD SETTINGS block in django/conf/global_settings.py to set FILE_UPLOAD_PERMISSIONS = 0o644 with detailed explanatory comments and preserved surrounding settings."
+    ],
+    "feedback_used": "Functional Error: Runtime Error in Docker:\nName, email@example.com), (Full: line 25: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nNFR Score Low (50).",
+    "cost_analysis": {
+        "prompt_tokens": 24922,
+        "completion_tokens": 9629,
+        "estimated_cost_usd": 0.269045
+    },
+    "maestro_score": 0
+}
