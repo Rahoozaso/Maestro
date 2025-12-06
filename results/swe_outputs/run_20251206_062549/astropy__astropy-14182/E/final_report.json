@@ -1,0 +1,92 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': \"28     # header tokens in order.\\n29     assert any('wave' in line and 'response' in line for line in text)\\n30     assert any('nm' in line and 'ct' in line for line in text)\\n\", 'col_offset': 4, 'end_col_offset': 70, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmppzn53tvu.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 29, 'line_range': [29], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': \"29     assert any('wave' in line and 'response' in line for line in text)\\n30     assert any('nm' in line and 'ct' in line for line in text)\\n31 \\n\", 'col_offset': 4, 'end_col_offset': 62, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmppzn53tvu.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 30, 'line_range': [30], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '32     # Ensure no TypeError occurred and output is non-empty.\\n33     assert len(text) > 0\\n', 'col_offset': 4, 'end_col_offset': 24, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmppzn53tvu.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 33, 'line_range': [33], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.0, complexities=[{'type': 'function', 'rank': 'A', 'complexity': 4, 'lineno': 8, 'col_offset': 0, 'name': 'test_rst_header_rows_name_unit', 'endline': 8, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.999999999976245e-07, modified_avg_time=3.999999999976245e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Introduce hash-based lookups to replace repeated linear searches in collections",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "The issue description indicates functionally correct but inefficient AI-generated code. A common pattern is performing `if x in some_list` or `.index()` inside loops, which yields O(n*m) behavior. To fix this class of bugs efficiently, we likely need to precompute sets or dicts for membership and index lookup. This would reduce repeated linear scans to O(1) average-time operations.",
+            "proposed_change": "def optimized_function(items, targets):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in items:\n    #     if item in targets:  # O(len(targets)) each time\n    #         result.append(item)\n    # return result\n\n    # Optimized using a set for O(1) average-time lookups\n    targets_set = set(targets)\n    result = []\n    for item in items:\n        if item in targets_set:\n            result.append(item)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace recursion with iterative loops to avoid stack overhead and potential overflow",
+            "target_code_block": "main.py#L200-L400",
+            "severity": "Medium",
+            "reasoning": "AI-generated solutions frequently use naive recursion for tasks like traversals, factorials, Fibonacci, or tree/graph operations. This introduces function call overhead and risks hitting Python's recursion depth limit on large inputs. An iterative solution using an explicit stack or queue will generally be more efficient and robust.",
+            "proposed_change": "def recursive_sum(nums, i=0):\n    # Hypothetical original recursive pattern:\n    # if i == len(nums):\n    #     return 0\n    # return nums[i] + recursive_sum(nums, i + 1)\n    \n    # Iterative equivalent avoiding recursion depth limits\n    total = 0\n    for value in nums:\n        total += value\n    return total"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Use incremental string building via join instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L400-L500",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often builds strings with `+=` inside loops, leading to O(n²) time due to repeated allocation and copying. Python strings are immutable, so each concatenation creates a new string. A more efficient pattern is to collect parts in a list and use `''.join(parts)` once.",
+            "proposed_change": "def build_message(parts):\n    # Hypothetical original implementation:\n    # message = \"\"\n    # for p in parts:\n    #     message += p  # O(n^2) behavior for long lists\n    # return message\n\n    # Optimized implementation using join\n    message = \"\".join(parts)\n    return message"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Hoist loop-invariant computations out of inner loops",
+            "target_code_block": "main.py#L500-L650",
+            "severity": "Low",
+            "reasoning": "AI-generated code often recomputes values in nested loops that do not depend on the inner loop indices, such as `len(list_var)`, `regex compilation`, or `constant conversions`. These repeated computations add unnecessary overhead. Moving these calculations outside the loop or caching them in local variables reduces redundant work.",
+            "proposed_change": "def process_items(items):\n    # Hypothetical original implementation:\n    # result = []\n    # for i in range(len(items)):\n    #     for j in range(len(items)):\n    #         if i != j and items[i] == items[j]:\n    #             result.append((i, j))\n    # return result\n\n    # Optimized by caching length once\n    n = len(items)\n    result = []\n    for i in range(n):\n        for j in range(n):\n            if i != j and items[i] == items[j]:\n                result.append((i, j))\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Use lazy or more specific imports to reduce import time and memory footprint",
+            "target_code_block": "main.py#L1-L40",
+            "severity": "Low",
+            "reasoning": "AI-generated code commonly uses broad imports like `from module import *` or imports heavy libraries at module load time even if only one or two functions are used, or used conditionally. Switching to specific imports or lazy imports can reduce startup time and memory usage.",
+            "proposed_change": "# Hypothetical original imports:\n# import numpy\n# from collections import *\n\n# More efficient and explicit imports:\nfrom collections import defaultdict, Counter\n\n# Lazily import heavy dependencies only when needed\ndef compute_heavy(data):\n    import numpy as np  # Lazy import to avoid cost when unused\n    arr = np.array(data)\n    return arr.mean()"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Input code snippet is missing; request explicit v_gen content for analysis",
+            "target_code_block": "v_gen#L1-L1",
+            "severity": "High",
+            "reasoning": "No actual source code was provided in the v_gen field, so no concrete lines, variables, or structures can be inspected. Without the code, it is impossible to identify specific code smells such as poor naming, Any usage, missing docstrings, or complex comprehensions. This blocks any actionable readability review based on real code.",
+            "proposed_change": "Provide the full v_gen source code snippet (and optionally the unit_test_suite) so that a line-specific readability and maintainability review can be performed."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-astropy-rst-header-rows-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the concrete issue: allow ascii.rst writer to accept header_rows=['name','unit'] similarly to ascii.fixed_width. The provided v_gen is a new test, not the library implementation. Expert reports are mostly generic performance advice not tied to this snippet. [Phase 2] Grouping suggestions: all PERF-001..005 target broad main.py ranges that do not match this focused test file; READ-001 only notes missing v_gen (now present) and has no actionable code change. No overlapping, concrete change proposals exist for this test file or the underlying ascii.rst writer. [Phase 3] Applying Security Primacy and Functionality Preservation: no SecurityExpert report was provided; no critical security issues are raised. Performance suggestions are hypothetical and not applicable to this small, I/O-bound test; applying them would require inventing new functions and break Functionality Preservation. They are therefore rejected. [Phase 4] Conflict resolution: since no concrete change proposals map to the actual problem area, there are no conflicts to resolve between suggestions. The key strategic decision is that the current test is already correctly expressing the desired behavior and will drive the implementation change in astropy.io.ascii.RST elsewhere in the repository; no modifications to this test are needed. [Phase 5] Execution plan: to respect Minimal Invasiveness and avoid speculative edits, we produce an empty instruction set—no changes to v_gen are required to advance issue resolution. The implementation work to make ascii.rst honor header_rows must be done in the core library, which is outside the provided v_gen. [Phase 6] Final plan: return a no-op execution plan for this snippet, documenting that generic performance/readability suggestions were intentionally not applied to preserve correctness and alignment with the concrete issue.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: No changes requested by the execution plan; retained existing test file content as-is."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 10474,
+        "completion_tokens": 2754,
+        "estimated_cost_usd": 0.09368
+    },
+    "maestro_score": 65
+}

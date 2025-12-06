@@ -1,0 +1,190 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 75,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 10
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=8.0, complexities=[{'type': 'method', 'rank': 'C', 'endline': 79, 'complexity': 13, 'lineno': 16, 'col_offset': 4, 'classname': 'SQLCompiler', 'name': 'get_group_by', 'closures': []}, {'type': 'class', 'rank': 'B', 'endline': 91, 'complexity': 9, 'lineno': 7, 'col_offset': 0, 'name': 'SQLCompiler', 'methods': [{'type': 'method', 'rank': 'C', 'endline': 79, 'complexity': 13, 'lineno': 16, 'col_offset': 4, 'classname': 'SQLCompiler', 'name': 'get_group_by', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 91, 'complexity': 2, 'lineno': 81, 'col_offset': 4, 'classname': 'SQLCompiler', 'name': 'compile', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 91, 'complexity': 2, 'lineno': 81, 'col_offset': 4, 'classname': 'SQLCompiler', 'name': 'compile', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=9.00000000001594e-07, modified_avg_time=7.999999999987184e-07, improvement_percentage=11.11111111141094, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206092605",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing code to review prevents any maintainability assessment",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Include the full v_gen source code (and optionally the unit_test_suite) in the input so that each function, class, and variable can be analyzed for naming, typing, docstrings, and complexity.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-007: Use library/vectorized operations instead of manual Python loops where applicable",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#manual-numeric-or-tabular-loops",
+                "new_code": "import numpy as np\n\n# Hypothetical original per-element loop:\n# def scale_and_shift(values, scale, shift):\n#     result = []\n#     for v in values:\n#         result.append(v * scale + shift)\n#     return result\n\n# Vectorized version:\ndef scale_and_shift(values, scale, shift):\n    arr = np.asarray(values)\n    return (arr * scale) + shift",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-007"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Use sets for membership-heavy operations instead of lists when order is not required",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#list-used-as-set",
+                "new_code": "def process_items(items):\n    # Hypothetical original:\n    # seen = []\n    # result = []\n    # for x in items:\n    #     if x not in seen:\n    #         seen.append(x)\n    #         result.append(x)\n    # return result\n\n    seen = set()\n    result = []\n    for x in items:\n        if x not in seen:\n            seen.add(x)\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-001: Replace any repeated list `in` checks with set/dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#list-membership-search",
+                "new_code": "def optimized_membership_search(items, search_space):\n    # Hypothetical refactor of a pattern like:\n    # result = []\n    # for x in items:\n    #     if x in search_space:  # search_space is a list\n    #         result.append(x)\n    # return result\n\n    search_set = set(search_space)  # O(m) preprocessing\n    result = []\n    for x in items:  # O(n)\n        if x in search_set:  # O(1) average membership\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-005: Simplify overly complex list comprehensions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#list-comprehensions",
+                "new_code": "Identify list comprehensions with multiple conditions, nested loops, or long expressions and refactor them into clearer multi-line for-loops or break them into smaller comprehensions or helper functions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-004: Rename short or cryptic variable names to descriptive identifiers",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#variables",
+                "new_code": "Identify all non-idiomatic short variable names (e.g., d, ml, ol, tmp) and rename them to intention-revealing names that describe the data they hold (e.g., user_data, model_list, output_list, temporary_buffer).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] READ-003: Avoid use of typing.Any in favor of precise type annotations",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#type-hints",
+                "new_code": "Search for all occurrences of typing.Any in v_gen and replace each with the most specific type or union type that reflects actual usage (e.g., Dict[str, str], List[int], Union[str, None]).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] READ-002: Ensure all public functions and classes include docstrings",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#global",
+                "new_code": "For every public function and class in v_gen, add a concise docstring describing its purpose, parameters, return value, and key side effects using a consistent style (e.g., Google or NumPy style).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] PERF-004: Convert deep or linear recursion to an explicit iterative loop",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#recursive-functions",
+                "new_code": "def optimized_recursive_like(n):\n    # Hypothetical original pattern:\n    # def rec(k):\n    #     if k == 0:\n    #         return 0\n    #     return k + rec(k-1)\n    # return rec(n)\n\n    total = 0\n    k = n\n    while k > 0:\n        total += k\n        k -= 1\n    return total",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 10,
+                "description": "[규칙 기반] PERF-003: Replace string concatenation in loops with ''.join",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#string-building-loop",
+                "new_code": "def optimized_string_builder(pieces):\n    # Hypothetical original anti‑pattern:\n    # s = \"\"\n    # for p in pieces:\n    #     s += p\n    # return s\n\n    buffer = []\n    for p in pieces:\n        buffer.append(p)\n    return \"\".join(buffer)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 11,
+                "description": "[규칙 기반] PERF-002: Move loop‑invariant computations outside of loops",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#loop-invariant-code",
+                "new_code": "def optimized_loop(data, pattern):\n    # Hypothetical original anti‑pattern:\n    # result = []\n    # for item in data:\n    #     if expensive_func(const_arg) and re.match(pattern, item):\n    #         result.append(item)\n\n    # Hoist loop‑invariant computations\n    const_check = expensive_func(\"const_arg\")\n    compiled_pattern = re.compile(pattern)\n\n    result = []\n    if const_check:\n        for item in data:\n            if compiled_pattern.match(item):\n                result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 12,
+                "description": "[규칙 기반] PERF-008: Make imports more specific and avoid unnecessary eager imports in hot paths",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#imports",
+                "new_code": "# Hypothetical original:\n# import scipy\n# def compute(x):\n#     return scipy.special.expit(x)\n\n# More specific and potentially lazy:\nfrom scipy.special import expit\n\ndef compute(x):\n    return expit(x)\n\n# Or lazy import inside a rarely used function:\n# def compute_rare(x):\n#     from scipy.special import expit\n#     return expit(x)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-008"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 13,
+                "description": "[규칙 기반] PERF-006: Avoid repeated conversions and unnecessary intermediate collections",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#redundant-conversions",
+                "new_code": "def optimized_pipeline(data):\n    # Hypothetical original:\n    # data_list = list(data)\n    # for x in data_list:\n    #     ...\n    # values = [f(y) for y in list(data)]  # redundant list() call\n\n    data_list = list(data)  # convert once\n    for x in data_list:\n        ...  # process x\n    values = [f(y) for y in data_list]\n    return values",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 42154,
+        "completion_tokens": 18148,
+        "estimated_cost_usd": 0.48299
+    },
+    "maestro_score": 75
+}

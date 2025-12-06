@@ -1,0 +1,51 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=8.0, complexities=[{'type': 'function', 'rank': 'B', 'lineno': 9, 'name': '_combine_masks', 'complexity': 8, 'col_offset': 0, 'endline': 86, 'closures': [{'type': 'function', 'rank': 'A', 'lineno': 56, 'name': '_is_no_mask', 'complexity': 2, 'col_offset': 4, 'endline': 62, 'closures': []}]}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\ntwo: line 15: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-astropy-nddata-mask-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the NDDataRef mask propagation issue when one operand has no mask. The provided expert reports are mostly generic performance refactors (PERF-001..006) that do not map to the small, focused mask-combination helper in v_gen. READ-001 flags absence of code, but is obsolete because v_gen is present. There is no SecurityExpert report, and unit_test_suite is N/A, so functionality must be preserved by reasoning from the bug report and the described desired behavior. [Phase 2] All performance suggestions target a broad placeholder block (main.py#L1-L200) that does not correspond to any actual complex logic in this v_gen. The only real functional logic is the `_combine_masks` helper; no list-membership, recursion, or string-building loops exist here. Therefore, none of the performance suggestions directly overlap with the relevant code block (the mask handling function). [Phase 3] No critical security issues are reported, so Security Primacy does not trigger. Functionality Preservation implies we must not introduce changes beyond what is needed to fix the mask propagation bug. The current `_combine_masks` function is already designed to avoid calling `handle_mask` with None and to propagate a single existing mask, which matches the expected behavior described in the issue. However, the repo integration error indicates that the harness attempted to treat the `__future__` import as a requirement, suggesting that the execution environment expects the code to be in a plain Python module file without leading non-code markers or packaging ambiguities. [Phase 4] Since performance suggestions do not apply and readability suggestion READ-001 is invalid (we do have code), there are effectively no conflicting proposals at the relevant conflict point (mask logic). The main integration risk is structural: ensuring this helper can be dropped into `astropy.nddata.mixins.ndarithmetic` cleanly, and avoiding any top-of-file constructs that the test harness misinterprets as requirements. We therefore perform a minimally invasive change: keep the mask-combination logic exactly as implemented (as it already encodes the v5.2-like rules) but strip extraneous narrative text and ensure the module is a clean Python file. [Phase 5] Execution order: (1) Replace the current v_gen content with a clean, self-contained module that defines `_combine_masks` exactly as in the current logic, with standard imports and docstrings only. No other transformations, optimizations, or structural refactors are applied to avoid impacting untested behavior. [Phase 6] The resulting plan consists of a single REPLACE action with SIMPLE_MODIFICATION, justified by Functionality Preservation and Minimal Invasiveness principles, implementing the known-correct mask-combination behavior while avoiding the prior environment/runtime confusion.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Replace the current v_gen content with a clean Python module that defines `_combine_masks` for NDData mask combination, preserving the bug-fix logic while removing extraneous narrative text that may confuse the execution environment.",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L200",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "from __future__ import annotations\n\nfrom typing import Any, Callable, Optional\n\nimport numpy as np\nimport numpy.ma as ma\n\n\ndef _combine_masks(\n    mask_a: Any,\n    mask_b: Any,\n    handle_mask: Optional[Callable[[Any, Any], Any]] = None,\n) -> Any:\n    \"\"\"Combine two masks for NDData arithmetic.\n\n    This helper encapsulates the rules for combining masks associated with\n    two operands in NDData arithmetic operations. It restores the behavior\n    prior to astropy 5.3 for the case where one operand has no mask and\n    ensures that user-provided ``handle_mask`` functions (e.g.\n    ``np.bitwise_or``) are never called with ``None``.\n\n    Parameters\n    ----------\n    mask_a, mask_b : array-like, bool/int, None, or ``np.ma.nomask``\n        Masks associated with the two operands. \"No mask\" for an operand\n        must be represented here as ``None`` or ``np.ma.nomask``.\n\n    handle_mask : callable or None, optional\n        Function to combine two masks when both are present, e.g.\n        ``np.bitwise_or``. If ``None``, a default bitwise-or combination\n        is used for the case where both operands have masks.\n\n    Returns\n    -------\n    combined_mask : array-like, None, or ``np.ma.nomask``\n        The resulting mask for the arithmetic operation. If both operands\n        effectively lack a mask, ``None`` is returned so that the result\n        instance has no mask attribute.\n\n    Notes\n    -----\n    Rules implemented (to restore the v5.2-like behavior and avoid\n    ``TypeError`` when using ``handle_mask=np.bitwise_or``):\n\n    * If both operands have no mask -> return ``None`` (result has no mask).\n    * If exactly one operand has a mask -> propagate that mask to the\n      result (no call to ``handle_mask``).\n    * If both operands have masks -> if ``handle_mask`` is provided, call it\n      on the two masks and return the result; otherwise fall back to a\n      bitwise-or combination using ``np.bitwise_or``.\n\n    This ensures that an operand without a mask is treated as *absence* of\n    a mask, not as a value to be passed into ``handle_mask``.\n    \"\"\"\n\n    def _is_no_mask(m: Any) -> bool:\n        \"\"\"Return True if *m* represents absence of a mask.\n\n        Both ``None`` and ``np.ma.nomask`` are treated as \"no mask\".\n        \"\"\"\n\n        return m is None or m is ma.nomask\n\n    no_mask_a = _is_no_mask(mask_a)\n    no_mask_b = _is_no_mask(mask_b)\n\n    # Case 1: neither operand has a mask -> result has no mask\n    if no_mask_a and no_mask_b:\n        return None\n\n    # Case 2: only one operand has a mask -> propagate that mask directly\n    if no_mask_a and not no_mask_b:\n        return mask_b\n    if no_mask_b and not no_mask_a:\n        return mask_a\n\n    # Case 3: both operands have masks -> combine them\n    if handle_mask is not None:\n        # Both masks are non-None and non-nomask here,\n        # so the handler (e.g. np.bitwise_or) won't see None.\n        return handle_mask(mask_a, mask_b)\n\n    # Fallback behavior if no handle_mask is given. Historically,\n    # NDDataRef often used bitwise OR for combining pixel-wise masks,\n    # so keep that as a sensible default.\n    return np.bitwise_or(mask_a, mask_b)\n"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Applies the Principle of Functionality Preservation by keeping the intended mask-combination semantics that fix the reported bug, and the Principle of Minimal Invasiveness by limiting changes to a clean module definition without unrelated performance refactors that do not apply to this focused helper."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Replaced the existing module content with a clean, self-contained definition of _combine_masks that implements the intended mask-combination semantics and avoids calling handle_mask with None."
+    ],
+    "feedback_used": "Functional Error: Runtime Error in Docker:\narithmetic: line 4: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nNFR Score Low (65).",
+    "cost_analysis": {
+        "prompt_tokens": 21393,
+        "completion_tokens": 6256,
+        "estimated_cost_usd": 0.200805
+    },
+    "maestro_score": 0
+}

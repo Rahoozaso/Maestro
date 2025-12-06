@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 85,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=6.2, complexities=[{'type': 'method', 'rank': 'D', 'col_offset': 4, 'endline': 160, 'name': '_array_converter', 'lineno': 44, 'complexity': 21, 'classname': 'WCS', 'closures': []}, {'type': 'class', 'rank': 'B', 'col_offset': 0, 'endline': 160, 'name': 'WCS', 'lineno': 7, 'complexity': 7, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'endline': 19, 'name': '__init__', 'lineno': 18, 'complexity': 1, 'classname': 'WCS', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'endline': 31, 'name': '_normalize_sky_components', 'lineno': 24, 'complexity': 1, 'classname': 'WCS', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'endline': 39, 'name': '_denormalize_sky_components', 'lineno': 33, 'complexity': 1, 'classname': 'WCS', 'closures': []}, {'type': 'method', 'rank': 'D', 'col_offset': 4, 'endline': 160, 'name': '_array_converter', 'lineno': 44, 'complexity': 21, 'classname': 'WCS', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'endline': 19, 'name': '__init__', 'lineno': 18, 'complexity': 1, 'classname': 'WCS', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'endline': 31, 'name': '_normalize_sky_components', 'lineno': 24, 'complexity': 1, 'classname': 'WCS', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'endline': 39, 'name': '_denormalize_sky_components', 'lineno': 33, 'complexity': 1, 'classname': 'WCS', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=4.999999999866223e-07, modified_avg_time=4.0000000001150227e-07, improvement_percentage=19.999999995559108, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nextract: line 9: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement copy (from versions: none)\nERROR: No matching distribution found for copy\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28777,
+        "completion_tokens": 10865,
+        "estimated_cost_usd": 0.30686
+    },
+    "maestro_score": 0
+}

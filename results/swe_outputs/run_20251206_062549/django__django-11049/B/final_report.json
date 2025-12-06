@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.0, complexities=[{'type': 'method', 'rank': 'B', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 6, 'endline': 71, 'lineno': 54, 'name': 'to_python', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 3, 'endline': 90, 'lineno': 40, 'name': 'DurationField', 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 49, 'lineno': 46, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 1, 'endline': 52, 'lineno': 51, 'name': 'get_internal_type', 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 6, 'endline': 71, 'lineno': 54, 'name': 'to_python', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 76, 'lineno': 73, 'name': 'get_prep_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 81, 'lineno': 78, 'name': 'from_db_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 85, 'lineno': 83, 'name': 'value_to_string', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 1, 'endline': 90, 'lineno': 88, 'name': '_descriptor_class', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 49, 'lineno': 46, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 76, 'lineno': 73, 'name': 'get_prep_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 81, 'lineno': 78, 'name': 'from_db_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 2, 'endline': 85, 'lineno': 83, 'name': 'value_to_string', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'endline': 26, 'lineno': 25, 'name': 'Empty', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'endline': 30, 'lineno': 29, 'name': 'NOT_PROVIDED', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'endline': 34, 'lineno': 33, 'name': 'FieldDoesNotExist', 'methods': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 1, 'endline': 52, 'lineno': 51, 'name': 'get_internal_type', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DurationField', 'col_offset': 4, 'complexity': 1, 'endline': 90, 'lineno': 88, 'name': '_descriptor_class', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\ntime: line 42: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 27182,
+        "completion_tokens": 9677,
+        "estimated_cost_usd": 0.281065
+    },
+    "maestro_score": 0
+}

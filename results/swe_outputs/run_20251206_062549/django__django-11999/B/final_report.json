@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 60,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.4, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 2, 'col_offset': 0, 'lineno': 6, 'endline': 20, 'name': 'FooBar', 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'FooBar', 'complexity': 1, 'col_offset': 4, 'lineno': 16, 'endline': 17, 'name': '__str__', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FooBar', 'complexity': 1, 'col_offset': 4, 'lineno': 19, 'endline': 20, 'name': 'get_foo_bar_display', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'complexity': 2, 'col_offset': 0, 'lineno': 23, 'endline': 30, 'name': 'GetFieldDisplayOverrideTests', 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'GetFieldDisplayOverrideTests', 'complexity': 1, 'col_offset': 4, 'lineno': 24, 'endline': 30, 'name': 'test_get_field_display_can_be_overridden', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'FooBar', 'complexity': 1, 'col_offset': 4, 'lineno': 16, 'endline': 17, 'name': '__str__', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FooBar', 'complexity': 1, 'col_offset': 4, 'lineno': 19, 'endline': 20, 'name': 'get_foo_bar_display', 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'GetFieldDisplayOverrideTests', 'complexity': 1, 'col_offset': 4, 'lineno': 24, 'endline': 30, 'name': 'test_get_field_display_can_be_overridden', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=6.999999999993123e-07, modified_avg_time=1.3999999999986246e-06, improvement_percentage=-100.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nTraceback (most recent call last):\n  File \"//run_me.py\", line 6, in <module>\n    class FooBar(models.Model):\n  File \"/usr/local/lib/python3.9/site-packages/django/db/models/base.py\", line 129, in __new__\n    app_config = apps.get_containing_app_config(module)\n  File \"/usr/local/lib/python3.9/site-packages/django/apps/registry.py\", line 260, in get_containing_app_config\n    self.check_apps_ready()\n  File \"/usr/local/lib/python3.9/site-packages/django/apps/registry.py\", line 137, in check_apps_ready\n    settings.INSTALLED_APPS\n  File \"/usr/local/lib/python3.9/site-packages/django/conf/__init__.py\", line 102, in __getattr__\n    self._setup(name)\n  File \"/usr/local/lib/python3.9/site-packages/django/conf/__init__.py\", line 82, in _setup\n    raise ImproperlyConfigured(\ndjango.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings."
+    },
+    "cost_analysis": {
+        "prompt_tokens": 26933,
+        "completion_tokens": 8309,
+        "estimated_cost_usd": 0.2593
+    },
+    "maestro_score": 0
+}

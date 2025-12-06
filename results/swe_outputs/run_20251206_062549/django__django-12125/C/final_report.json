@@ -1,0 +1,142 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.2884615384615383, complexities=[{'type': 'function', 'rank': 'D', 'col_offset': 0, 'endline': 275, 'lineno': 232, 'name': 'serializer_factory', 'complexity': 22, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 169, 'lineno': 148, 'name': 'DeconstructableSerializer', 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DeconstructableSerializer', 'endline': 169, 'lineno': 149, 'name': 'serialize', 'complexity': 4, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 201, 'lineno': 192, 'name': 'FloatSerializer', 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FloatSerializer', 'endline': 201, 'lineno': 193, 'name': 'serialize', 'complexity': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DeconstructableSerializer', 'endline': 169, 'lineno': 149, 'name': 'serialize', 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FloatSerializer', 'endline': 201, 'lineno': 193, 'name': 'serialize', 'complexity': 4, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 58, 'lineno': 46, 'name': 'BaseSequenceSerializer', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSequenceSerializer', 'endline': 48, 'lineno': 47, 'name': '_format', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSequenceSerializer', 'endline': 58, 'lineno': 50, 'name': 'serialize', 'complexity': 2, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 71, 'lineno': 66, 'name': 'TupleSerializer', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'TupleSerializer', 'endline': 71, 'lineno': 67, 'name': '_format', 'complexity': 2, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 78, 'lineno': 74, 'name': 'SetSerializer', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'SetSerializer', 'endline': 78, 'lineno': 75, 'name': '_format', 'complexity': 2, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 91, 'lineno': 81, 'name': 'DictSerializer', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DictSerializer', 'endline': 91, 'lineno': 82, 'name': 'serialize', 'complexity': 2, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 103, 'lineno': 99, 'name': 'FrozensetSerializer', 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FrozensetSerializer', 'endline': 103, 'lineno': 100, 'name': '_format', 'complexity': 2, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 37, 'lineno': 31, 'name': 'BaseSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSerializer', 'endline': 33, 'lineno': 32, 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSerializer', 'endline': 37, 'lineno': 35, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 43, 'lineno': 40, 'name': 'Serializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Serializer', 'endline': 43, 'lineno': 42, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSequenceSerializer', 'endline': 58, 'lineno': 50, 'name': 'serialize', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 63, 'lineno': 61, 'name': 'ListSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'ListSerializer', 'endline': 63, 'lineno': 62, 'name': '_format', 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'TupleSerializer', 'endline': 71, 'lineno': 67, 'name': '_format', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'SetSerializer', 'endline': 78, 'lineno': 75, 'name': '_format', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DictSerializer', 'endline': 91, 'lineno': 82, 'name': 'serialize', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 96, 'lineno': 94, 'name': 'SetTypeSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'SetTypeSerializer', 'endline': 96, 'lineno': 95, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FrozensetSerializer', 'endline': 103, 'lineno': 100, 'name': '_format', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 108, 'lineno': 106, 'name': 'FrozensetTypeSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FrozensetTypeSerializer', 'endline': 108, 'lineno': 107, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 113, 'lineno': 111, 'name': 'UUIDSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'UUIDSerializer', 'endline': 113, 'lineno': 112, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 118, 'lineno': 116, 'name': 'DecimalSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DecimalSerializer', 'endline': 118, 'lineno': 117, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 123, 'lineno': 121, 'name': 'DatetimeSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DatetimeSerializer', 'endline': 123, 'lineno': 122, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 128, 'lineno': 126, 'name': 'DateSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DateSerializer', 'endline': 128, 'lineno': 127, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 133, 'lineno': 131, 'name': 'TimeSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'TimeSerializer', 'endline': 133, 'lineno': 132, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 138, 'lineno': 136, 'name': 'TimedeltaSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'TimedeltaSerializer', 'endline': 138, 'lineno': 137, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 145, 'lineno': 141, 'name': 'SimpleLazyObjectSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'SimpleLazyObjectSerializer', 'endline': 145, 'lineno': 142, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 180, 'lineno': 173, 'name': 'FunctionTypeSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FunctionTypeSerializer', 'endline': 180, 'lineno': 174, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 189, 'lineno': 183, 'name': 'MethodTypeSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'MethodTypeSerializer', 'endline': 189, 'lineno': 184, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 206, 'lineno': 204, 'name': 'BytesSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BytesSerializer', 'endline': 206, 'lineno': 205, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 219, 'lineno': 209, 'name': 'EnumSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'EnumSerializer', 'endline': 219, 'lineno': 216, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 228, 'lineno': 222, 'name': 'ClassSerializer', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'ClassSerializer', 'endline': 228, 'lineno': 223, 'name': 'serialize', 'complexity': 1, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'endline': 28, 'lineno': 16, 'name': 'class_to_dotted_path', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSerializer', 'endline': 33, 'lineno': 32, 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSerializer', 'endline': 37, 'lineno': 35, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Serializer', 'endline': 43, 'lineno': 42, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseSequenceSerializer', 'endline': 48, 'lineno': 47, 'name': '_format', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'ListSerializer', 'endline': 63, 'lineno': 62, 'name': '_format', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'SetTypeSerializer', 'endline': 96, 'lineno': 95, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FrozensetTypeSerializer', 'endline': 108, 'lineno': 107, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'UUIDSerializer', 'endline': 113, 'lineno': 112, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DecimalSerializer', 'endline': 118, 'lineno': 117, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DatetimeSerializer', 'endline': 123, 'lineno': 122, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'DateSerializer', 'endline': 128, 'lineno': 127, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'TimeSerializer', 'endline': 133, 'lineno': 132, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'TimedeltaSerializer', 'endline': 138, 'lineno': 137, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'SimpleLazyObjectSerializer', 'endline': 145, 'lineno': 142, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'FunctionTypeSerializer', 'endline': 180, 'lineno': 174, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'MethodTypeSerializer', 'endline': 189, 'lineno': 184, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BytesSerializer', 'endline': 206, 'lineno': 205, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'EnumSerializer', 'endline': 219, 'lineno': 216, 'name': 'serialize', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'ClassSerializer', 'endline': 228, 'lineno': 223, 'name': 'serialize', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.999999999976245e-07, modified_avg_time=4.0000000000456337e-07, improvement_percentage=-1.7347234759871094e-09, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nthe: line 18: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement decimal (from versions: none)\nERROR: No matching distribution found for decimal\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206084338",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] PERF-002: Replace repeated list membership checks with set/dict-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#loop_with_in_checks",
+                "new_code": "# Before:\n# for item in items:\n#     if item in allowed_values_list:\n#         process(item)\n\n# After:\nallowed_values_set = set(allowed_values_list)\nfor item in items:\n    if item in allowed_values_set:\n        process(item)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce memoization or iterative DP to avoid repeated recomputation in recursive logic",
+                "action": "REPLACE",
+                "target_code_block": "main.py#recursive_function",
+                "new_code": "from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef recursive_function(state1, state2):\n    # existing base cases remain the same\n    # ...\n    # existing recursive transitions remain the same\n    # return recursive_function(next_state1, next_state2) + ...\n    # (no functional behavior change; only decorator added)\n    pass\n\n# Alternatively, for very deep recursion convert to an explicit stack:\n\ndef recursive_function_iterative(initial_state1, initial_state2):\n    stack = [(initial_state1, initial_state2)]\n    visited = {}\n    while stack:\n        s1, s2 = stack.pop()\n        if (s1, s2) in visited:\n            continue\n        # compute result for (s1, s2) using an explicit loop instead of recursion\n        # push any child states to stack rather than making recursive calls\n        # store results in 'visited'\n    # map the original API to use the iterative version\n    # return visited[(initial_state1, initial_state2)]",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-005: Discourage overly complex list comprehensions in generated code",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L1",
+                "new_code": "Configure v_gen to limit list comprehensions to simple mapping/filtering. For any comprehension involving multiple conditions, nested loops, or inline transformations with side effects, rewrite into a small, well-named loop or helper function.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-001: Missing code to review – establish a convention for file and line references",
+                "action": "REPLACE",
+                "target_code_block": "unknown.py#L1-L1",
+                "new_code": "Define and document a convention such as using 'main.py#L1-L1' as the default target_code_block when the exact file and line range are unavailable, and ensure all agents in MAESTRO follow it.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-006: Prefer vectorized or bulk operations for numerical and tabular data (NumPy/Pandas)",
+                "action": "REPLACE",
+                "target_code_block": "main.py#numeric_processing_loop",
+                "new_code": "# Before:\n# output = []\n# for x in data:\n#     output.append(a * x + b)\n\n# After (NumPy):\nimport numpy as np\n\ndata_arr = np.asarray(data)\noutput_arr = a * data_arr + b\noutput = output_arr.tolist()  # if a plain Python list is required by the tests",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Optimize string concatenation patterns using join or list buffering",
+                "action": "REPLACE",
+                "target_code_block": "main.py#string_build_loop",
+                "new_code": "# Before:\n# result = ''\n# for part in parts:\n#     result += part\n\n# After:\nbuffer = []\nfor part in parts:\n    buffer.append(part)\nresult = ''.join(buffer)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-004: Avoid repeated data structure conversions inside performance-critical loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#loop_with_conversions",
+                "new_code": "# Before:\n# result = []\n# for row in rows:\n#     array_row = np.array(row)\n#     result.append(np.dot(array_row, weights))\n\n# After:\n# If rows is reusable, convert once outside the loop\n# rows_array = np.array(rows)\n# for i in range(rows_array.shape[0]):\n#     result.append(np.dot(rows_array[i], weights))\n\n# Or, at minimum, avoid recomputing per-iteration conversions:\nresult = []\npreconverted_rows = [np.array(row) for row in rows]\nfor array_row in preconverted_rows:\n    result.append(np.dot(array_row, weights))",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] PERF-003: Hoist loop-invariant computations out of inner loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#nested_loops",
+                "new_code": "# Before:\n# for i in range(len(items)):\n#     length = len(items)\n#     threshold = complex_constant_computation()\n#     if i < length and items[i] > threshold:\n#         process(items[i])\n\n# After:\nlength = len(items)\nthreshold = complex_constant_computation()\nfor i in range(length):\n    if items[i] > threshold:\n        process(items[i])",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] PERF-007: Use more specific and lazy imports to reduce startup time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#imports",
+                "new_code": "# Before:\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# After (only import what is used):\nfrom math import sqrt  # example of specific import\n# import numpy as np  # only if array operations are actually used\n# import pandas as pd  # only if DataFrame functionality is required\n\n# Optionally perform lazy imports inside functions:\n\ndef heavy_operation(...):\n    import numpy as np  # lazy import to avoid cost when function is unused\n    # use np here",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 34691,
+        "completion_tokens": 17524,
+        "estimated_cost_usd": 0.436315
+    },
+    "maestro_score": 0
+}

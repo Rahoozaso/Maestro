@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.8333333333333333, complexities=[{'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_create_test_db', 'endline': 67, 'complexity': 4, 'classname': 'BaseDatabaseCreation', 'lineno': 46, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'BaseDatabaseCreation', 'endline': 124, 'complexity': 2, 'lineno': 13, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '__init__', 'endline': 30, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_consume_sql', 'endline': 34, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 32, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_get_test_db_name', 'endline': 38, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 36, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_get_test_db_name_from_settings', 'endline': 44, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 40, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_create_test_db', 'endline': 67, 'complexity': 4, 'classname': 'BaseDatabaseCreation', 'lineno': 46, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_destroy_test_db', 'endline': 74, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 69, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'set_as_test_mirror', 'endline': 81, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 76, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'serialize_db_to_string', 'endline': 100, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 83, 'closures': [{'type': 'function', 'rank': 'B', 'col_offset': 8, 'name': 'get_objects', 'endline': 96, 'complexity': 9, 'lineno': 87, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'deserialize_db_from_string', 'endline': 110, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 102, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_get_database_display_str', 'endline': 116, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 112, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_clone_test_db', 'endline': 124, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 118, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_consume_sql', 'endline': 34, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 32, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_get_test_db_name', 'endline': 38, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 36, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_get_test_db_name_from_settings', 'endline': 44, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 40, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_destroy_test_db', 'endline': 74, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 69, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'deserialize_db_from_string', 'endline': 110, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 102, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_clone_test_db', 'endline': 124, 'complexity': 2, 'classname': 'BaseDatabaseCreation', 'lineno': 118, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '__init__', 'endline': 30, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 29, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'set_as_test_mirror', 'endline': 81, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 76, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'serialize_db_to_string', 'endline': 100, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 83, 'closures': [{'type': 'function', 'rank': 'B', 'col_offset': 8, 'name': 'get_objects', 'endline': 96, 'complexity': 9, 'lineno': 87, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': '_get_database_display_str', 'endline': 116, 'complexity': 1, 'classname': 'BaseDatabaseCreation', 'lineno': 112, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1e-06, modified_avg_time=3.000000000016878e-07, improvement_percentage=69.99999999983122, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28429,
+        "completion_tokens": 10111,
+        "estimated_cost_usd": 0.29381
+    },
+    "maestro_score": 100
+}

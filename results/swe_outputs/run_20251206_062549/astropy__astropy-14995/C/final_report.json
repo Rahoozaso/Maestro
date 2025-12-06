@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=8.0, complexities=[{'type': 'function', 'rank': 'B', 'name': '_combine_masks', 'complexity': 8, 'endline': 87, 'col_offset': 0, 'lineno': 9, 'closures': [{'type': 'function', 'rank': 'A', 'name': '_is_no_mask', 'complexity': 2, 'endline': 62, 'col_offset': 4, 'lineno': 56, 'closures': []}]}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\ntwo: line 15: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206064217",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing input code to analyze",
+                "action": "REPLACE",
+                "target_code_block": "N/A",
+                "new_code": "Ensure the request includes the full 'v_gen' source code string and, if available, the 'unit_test_suite' string so that a line-level readability review can be performed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with set/dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(items, lookup_list):\n    # Before: inside a loop -> `if item in lookup_list:` where lookup_list is a list\n    # Convert lookup_list to a set once for O(1) average-time membership checks\n    lookup_set = set(lookup_list)\n    result = []\n    for item in items:\n        if item in lookup_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Use lazy or specific imports and avoid repeated imports in hot paths",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L50",
+                "new_code": "# Before (potentially inside a function or using wildcard):\n# def some_func(...):\n#     import numpy as np\n#     from math import *\n#     ... use np and math.sqrt ...\n\n# After: import once at module level and be specific\nimport math\nimport numpy as np\n\ndef some_func(...):\n    # use math.sqrt and np.array here without re-importing\n    ...\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 44003,
+        "completion_tokens": 18968,
+        "estimated_cost_usd": 0.504535
+    },
+    "maestro_score": 0
+}

@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.5, complexities=[{'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 3, 'name': 'SqlMigrateTransactionTests', 'endline': 33, 'lineno': 9, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'SqlMigrateTransactionTests', 'col_offset': 4, 'complexity': 2, 'name': 'test_sqlmigrate_non_atomic_when_cannot_rollback_ddl', 'endline': 33, 'lineno': 13, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'SqlMigrateTransactionTests', 'col_offset': 4, 'complexity': 2, 'name': 'test_sqlmigrate_non_atomic_when_cannot_rollback_ddl', 'endline': 33, 'lineno': 13, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1e-06, modified_avg_time=3.999999999837467e-07, improvement_percentage=60.00000000162533, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 32344,
+        "completion_tokens": 13925,
+        "estimated_cost_usd": 0.370595
+    },
+    "maestro_score": 90
+}

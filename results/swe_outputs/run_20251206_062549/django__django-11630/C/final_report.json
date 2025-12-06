@@ -1,0 +1,202 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 10
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.75, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 4, 'lineno': 22, 'name': 'MultiDBRouter', 'col_offset': 0, 'endline': 51, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'MultiDBRouter', 'lineno': 29, 'name': 'db_for_read', 'col_offset': 4, 'endline': 35, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'MultiDBRouter', 'lineno': 37, 'name': 'db_for_write', 'col_offset': 4, 'endline': 43, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'MultiDBRouter', 'lineno': 45, 'name': 'allow_migrate', 'col_offset': 4, 'endline': 51, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'complexity': 4, 'lineno': 63, 'name': 'DuplicateTableMultiDBTests', 'col_offset': 0, 'endline': 70, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'DuplicateTableMultiDBTests', 'lineno': 66, 'name': 'test_same_db_table_on_different_databases_is_allowed', 'col_offset': 4, 'endline': 70, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'MultiDBRouter', 'lineno': 29, 'name': 'db_for_read', 'col_offset': 4, 'endline': 35, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'MultiDBRouter', 'lineno': 37, 'name': 'db_for_write', 'col_offset': 4, 'endline': 43, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'MultiDBRouter', 'lineno': 45, 'name': 'allow_migrate', 'col_offset': 4, 'endline': 51, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'classname': 'DuplicateTableMultiDBTests', 'lineno': 66, 'name': 'test_same_db_table_on_different_databases_is_allowed', 'col_offset': 4, 'endline': 70, 'closures': []}, {'type': 'class', 'rank': 'A', 'complexity': 1, 'lineno': 6, 'name': 'BaseModel', 'col_offset': 0, 'endline': 7, 'methods': []}, {'type': 'class', 'rank': 'A', 'complexity': 1, 'lineno': 14, 'name': 'App2Model', 'col_offset': 0, 'endline': 15, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.2999999999992184e-06, modified_avg_time=1.1999999999998123e-06, improvement_percentage=7.692307692266634, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206075242",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Guard against deeply nested control structures with early-return patterns",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#control_flow",
+                "new_code": "For functions with more than two nested levels of conditionals or loops, introduce early returns and/or extract smaller helper functions. For example, replace 'if A: if B: if C:' constructs with early exits such as 'if not A: return ...; if not B: return ...;' to flatten the structure.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] READ-001: Missing or implicit context for analyzed code blocks",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the full v_gen source code (and, if available, the filename) so that each future suggestion can reference precise locations such as 'module_name.py#L10-L25'.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups instead of repeated list scans",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_membership_example(items, probe):\n    # Original pattern (hypothetical):\n    # result = []\n    # for x in items:\n    #     if x in probe:  # probe is a list; O(len(probe)) per iteration\n    #         result.append(x)\n    # return result\n\n    # Optimized version using a set for O(1) average lookups:\n    probe_set = set(probe)\n    result = []\n    for x in items:\n        if x in probe_set:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-009: Verify and correct any hallucinated or inaccurate comments",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#comments",
+                "new_code": "Systematically compare each comment in v_gen to the corresponding code block and remove or correct any comment that does not accurately describe the actual behavior. Prefer concise, high-signal comments that explain 'why' rather than 'what' when the code is already clear.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-009"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-007: Replace magic numbers and strings with named constants",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#literals",
+                "new_code": "Scan v_gen for repeated or semantically important literals (e.g., '5', '10', 'processed', 'active') and introduce module-level constants with descriptive names (e.g., 'ADMIN_LEVEL_THRESHOLD = 5', 'STATUS_PROCESSED = \"processed\"'), then replace usages throughout the code.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-005: Simplify or refactor overly complex list comprehensions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#list_comprehensions",
+                "new_code": "Identify list comprehensions that contain multiple nested 'for' clauses and/or complex 'if' conditions, and refactor them into small, well-named helper functions or explicit for-loops. Keep comprehensions limited to a single, straightforward transformation and optional simple filter condition.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] READ-004: Eliminate use of 'typing.Any' in favor of concrete or generic types",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#type_hints",
+                "new_code": "Locate all annotations using 'Any' (e.g., 'def f(x: Any) -> Any:') and replace them with specific types or well-defined generics (e.g., 'dict[str, str]', 'list[int]', or 'Mapping[str, User]'). If the type is truly flexible, consider using 'Protocol', 'Union', or generics with bounded TypeVars instead of 'Any'.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] READ-003: Avoid ambiguous short variable names such as 'd', 'ml', or 'ol'",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#variables",
+                "new_code": "Scan v_gen for single-letter or non-descriptive variable names (e.g., 'd', 'ml', 'ol', 'x', 'tmp') and rename each to a meaningful, domain-specific name such as 'user_data', 'model_list', or 'order_lookup', propagating the new names consistently through their scopes.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] READ-002: Ensure all functions and classes have docstrings describing intent and behavior",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#functions_and_classes",
+                "new_code": "For every public function and class in v_gen, add a concise docstring explaining its responsibility, parameters, return value, and any important side effects, following PEP 257 and your project’s preferred docstring style.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 10,
+                "description": "[규칙 기반] PERF-004: Use efficient string building with join instead of repeated concatenation in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L600-L750",
+                "new_code": "def build_string(parts):\n    # Hypothetical original pattern:\n    # result = ''\n    # for p in parts:\n    #     result += p\n    # return result\n\n    # Optimized pattern:\n    buf = []\n    for p in parts:\n        buf.append(p)\n    return ''.join(buf)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 11,
+                "description": "[규칙 기반] PERF-003: Avoid repeated expensive computations and data transformations inside loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L600",
+                "new_code": "def optimized_loop(data, pattern):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in data:\n    #     if expensive_check(item, pattern.lower(), len(data)):\n    #         result.append(item)\n\n    # Optimized: hoist invariants out of the loop\n    pattern_lower = pattern.lower()\n    n = len(data)\n    result = []\n    for item in data:\n        if expensive_check(item, pattern_lower, n):\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 12,
+                "description": "[규칙 기반] PERF-002: Replace deep recursion with an explicit iterative loop to avoid stack overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def recursive_traversal(node):\n    # Hypothetical original version:\n    # if node is None:\n    #     return\n    # process(node)\n    # for child in node.children:\n    #     recursive_traversal(child)\n    #\n    # Iterative version using an explicit stack:\n    if node is None:\n        return\n    stack = [node]\n    while stack:\n        current = stack.pop()\n        process(current)\n        # If children must be processed in original left-to-right order,\n        # push them in reverse so that the leftmost is processed first.\n        for child in reversed(current.children):\n            stack.append(child)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 13,
+                "description": "[규칙 기반] READ-008: Standardize naming conventions to a single style (PEP 8-compliant)",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#identifiers",
+                "new_code": "Review all function, variable, and class names in v_gen and normalize them to PEP 8: snake_case for functions and variables, PascalCase for classes, and UPPER_SNAKE_CASE for constants. Adjust all references accordingly.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-008"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 14,
+                "description": "[규칙 기반] PERF-005: Narrow and lazy imports to reduce startup overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Hypothetical original imports:\n# import numpy as np\n# import pandas as pd\n# from collections import *\n\n# More targeted and/or lazy imports:\nfrom collections import defaultdict, Counter  # only what is used\n\n# Lazy heavy imports within functions that rarely run\n\ndef compute_heavy_stats(data):\n    import numpy as np  # deferred import\n    return np.mean(data), np.std(data)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 34943,
+        "completion_tokens": 14615,
+        "estimated_cost_usd": 0.39394
+    },
+    "maestro_score": 80
+}

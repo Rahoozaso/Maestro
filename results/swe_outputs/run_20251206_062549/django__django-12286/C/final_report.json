@@ -1,0 +1,46 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 85,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=5.666666666666667, complexities=[{'type': 'function', 'rank': 'B', 'endline': 44, 'col_offset': 0, 'lineno': 22, 'complexity': 7, 'name': 'check_language_settings_consistent', 'closures': []}, {'type': 'function', 'rank': 'B', 'endline': 90, 'col_offset': 0, 'lineno': 48, 'complexity': 7, 'name': 'check_language_code', 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 18, 'col_offset': 0, 'lineno': 7, 'complexity': 3, 'name': 'check_setting_languages', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1000000000004062e-06, modified_avg_time=9.00000000001594e-07, improvement_percentage=18.18181818170349, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206085726",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing source code prevents effective readability assessment",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the full v_gen source code (and, if available, the corresponding unit_test_suite) so that a line-by-line readability and maintainability review can be performed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 32235,
+        "completion_tokens": 12846,
+        "estimated_cost_usd": 0.353865
+    },
+    "maestro_score": 85
+}

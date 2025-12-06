@@ -1,0 +1,51 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.75, complexities=[{'type': 'class', 'rank': 'B', 'name': 'ManyToManyField', 'col_offset': 0, 'complexity': 7, 'lineno': 28, 'endline': 69, 'methods': [{'type': 'method', 'rank': 'B', 'name': '_check_relationship_model', 'col_offset': 4, 'complexity': 6, 'classname': 'ManyToManyField', 'lineno': 41, 'endline': 69, 'closures': []}]}, {'type': 'method', 'rank': 'B', 'name': '_check_relationship_model', 'col_offset': 4, 'complexity': 6, 'classname': 'ManyToManyField', 'lineno': 41, 'endline': 69, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'RelatedField', 'col_offset': 0, 'complexity': 1, 'lineno': 17, 'endline': 20, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'ManyToManyRel', 'col_offset': 0, 'complexity': 1, 'lineno': 23, 'endline': 25, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nrelationship.\n\n    many_to_many = True\n    many_to_one = False\n    one_to_many = False\n    one_to_one = False\n\n    rel_class = ManyToManyRel\n\n    # ... many existing attributes and methods of ManyToManyField are\n    # assumed to be here and are left unchanged.\n\n    def _check_relationship_model(self) -> List[checks.CheckMessage]:\n        Checks: line 30: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-django-fields-E333-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the concrete Django issue about the wrong hint for recursive relationships in ManyToManyField._check_relationship_model. Expert performance/readability/security suggestions are generic and not grounded in this specific code, so they are mostly inapplicable. [Phase 2] All performance suggestions target a broad main.py#L1-L200, which does not correspond to the provided Django field code; readability suggestions are similarly generic. There is a single relevant change already partially applied in v_gen: the hint has been changed from ForeignKey(...) with symmetrical=False to ManyToManyField(..., through=...). [Phase 3] No security report with Critical severity applies to this snippet; SEC-001 is High but describes orchestrator behavior, not this Django model field code, so no mandatory change is required here. No proposed change clearly breaks functionality or tests since the change is only in a human-facing error hint string. [Phase 4] There are no overlapping conflicting suggestions on this exact code block. The primary task is to ensure the hint string is correct, accurate for current Django behavior, and free of outdated guidance. Specifically, we must ensure we do not mention ForeignKey, remove the obsolete symmetrical=False requirement, and keep the text consistent with Django's style. [Phase 5] The safest, minimally invasive solution is a single-string replacement of the hint inside _check_relationship_model, keeping the error id, message, and control flow unchanged. This aligns with Minimal Invasiveness and addresses the concrete GitHub issue. [Phase 6] Final plan: one REPLACE action on the hint string to reflect the correct ManyToManyField usage and remove outdated symmetrical=False advice. No other expert suggestions are adopted since they are not specific to this code.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Correct the error hint in ManyToManyField._check_relationship_model to reference ManyToManyField with through, removing the outdated ForeignKey reference and symmetrical=False requirement.",
+                "action": "REPLACE",
+                "target_code_block": "fields.py#ManyToManyField._check_relationship_model.hint",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "        if len(seen_related_fields) > 2 and not self.remote_field.through_fields:\n            errors.append(\n                checks.Error(\n                    \"The model '%s' has more than one ForeignKey to '%s'.\" % (\n                        self.remote_field.through._meta.label,\n                        self.model._meta.label,\n                    ),\n                    hint=(\n                        'If you want to create a recursive relationship, '\n                        'use ManyToManyField(\"%s\", through=\"%s\").'\n                    ),\n                    obj=self,\n                    id='fields.E333',\n                )\n            )"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Applies a minimal, targeted fix to the human-facing hint string to resolve the reported issue, without altering logic or behavior, in line with the Principle of Minimal Invasiveness and Functionality Preservation."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Updated the hint in ManyToManyField._check_relationship_model to reference ManyToManyField with through, removing the outdated ForeignKey reference and symmetrical=False requirement."
+    ],
+    "feedback_used": "Functional Error: Runtime Error in Docker:\nrelationship.\n\n    many_to_many = True\n    many_to_one = False\n    one_to_many = False\n    one_to_one = False\n\n    rel_class = ManyToManyRel\n\n    # ... many existing attributes and methods of ManyToManyField are\n    # assumed to be here and are left unchanged.\n\n    def _check_relationship_model(self) -> List[checks.CheckMessage]:\n        Checks: line 30: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nNFR Score Low (70).",
+    "cost_analysis": {
+        "prompt_tokens": 19605,
+        "completion_tokens": 6768,
+        "estimated_cost_usd": 0.199545
+    },
+    "maestro_score": 0
+}

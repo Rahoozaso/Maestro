@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 55,
+        "scores": {
+            "security": 40,
+            "readability": 15,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=7.0, complexities=[{'type': 'method', 'rank': 'C', 'complexity': 12, 'classname': 'Command', 'name': 'handle', 'endline': 77, 'lineno': 35, 'col_offset': 4, 'closures': []}, {'type': 'class', 'rank': 'B', 'complexity': 8, 'name': 'Command', 'endline': 77, 'lineno': 9, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'Command', 'name': 'add_arguments', 'endline': 30, 'lineno': 14, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'C', 'complexity': 12, 'classname': 'Command', 'name': 'handle', 'endline': 77, 'lineno': 35, 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'classname': 'Command', 'name': 'add_arguments', 'endline': 30, 'lineno': 14, 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nthe: line 11: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206070909",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing v_gen code prevents concrete, location-specific review",
+                "action": "REPLACE",
+                "target_code_block": "unknown#L1-L999",
+                "new_code": "Provide the actual `v_gen` source code and `unit_test_suite` content (or the relevant file excerpts) so that subsequent readability reviews can reference precise filenames and line ranges like `main.py#L10-L20`.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce constant-time lookups with sets/dicts instead of repeated linear list scans",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def some_function(items, candidates):\n    # Before:\n    # result = []\n    # for x in items:\n    #     if x in candidates:  # O(len(candidates)) each time\n    #         result.append(x)\n\n    # After: convert to set once, then perform O(1) lookups\n    candidate_set = set(candidates)\n    result = []\n    for x in items:\n        if x in candidate_set:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Prefer lazy or specific imports to reduce module loading overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Before:\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# After: import only what is needed, and lazily if rarely used\nfrom math import sqrt  # example of specific import\n\ndef heavy_computation(data):\n    # Local import so that numpy is only loaded when needed\n    import numpy as np\n    arr = np.array(data)\n    return np.mean(arr) + sqrt(len(data))",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 38775,
+        "completion_tokens": 17916,
+        "estimated_cost_usd": 0.462615
+    },
+    "maestro_score": 0
+}

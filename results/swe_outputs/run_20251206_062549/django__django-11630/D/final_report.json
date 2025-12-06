@@ -1,0 +1,37 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.75, complexities=[{'type': 'class', 'rank': 'A', 'lineno': 18, 'endline': 40, 'col_offset': 0, 'name': 'MultiDBRouter', 'complexity': 4, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 21, 'endline': 26, 'classname': 'MultiDBRouter', 'col_offset': 4, 'name': 'db_for_read', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 28, 'endline': 33, 'classname': 'MultiDBRouter', 'col_offset': 4, 'name': 'db_for_write', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 35, 'endline': 40, 'classname': 'MultiDBRouter', 'col_offset': 4, 'name': 'allow_migrate', 'complexity': 3, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'lineno': 50, 'endline': 56, 'col_offset': 0, 'name': 'DuplicateTableMultiDBTests', 'complexity': 4, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 52, 'endline': 56, 'classname': 'DuplicateTableMultiDBTests', 'col_offset': 4, 'name': 'test_same_db_table_on_different_databases_is_allowed', 'complexity': 3, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 21, 'endline': 26, 'classname': 'MultiDBRouter', 'col_offset': 4, 'name': 'db_for_read', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 28, 'endline': 33, 'classname': 'MultiDBRouter', 'col_offset': 4, 'name': 'db_for_write', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 35, 'endline': 40, 'classname': 'MultiDBRouter', 'col_offset': 4, 'name': 'allow_migrate', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 52, 'endline': 56, 'classname': 'DuplicateTableMultiDBTests', 'col_offset': 4, 'name': 'test_same_db_table_on_different_databases_is_allowed', 'complexity': 3, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 6, 'endline': 6, 'col_offset': 0, 'name': 'BaseModel', 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 12, 'endline': 12, 'col_offset': 0, 'name': 'App2Model', 'complexity': 1, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=4.999999999970306e-07, modified_avg_time=5.999999999999062e-07, improvement_percentage=-20.00000000069389, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-django-multi-db-shared-table-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue' for Django model checks with identical db_table across multiple databases. v_gen defines two models (BaseModel, App2Model) sharing db_table='shared_table', a router sending them to different DBs, and a test asserting that models.E028 is not raised. [Phase 1] All expert suggestions are generic, not tailored to this code. None are security-related; there are no SecurityExpert reports. [Phase 2] Grouping by target_code_block: all PERF suggestions target abstract ranges in 'main.py#L1-L850' and READ-001 targets 'v_gen.py#L1-L1'. The actual code is Django test code without performance-heavy loops or recursion. No overlapping, concrete conflict points on real lines of this file. [Phase 3] Security Primacy: no Critical security suggestions, so none must be applied. Functionality Preservation: current code is already a minimal regression test for the reported issue; altering it based on speculative performance advice risks breaking the test or invalidating the scenario. All PERF suggestions are therefore rejected as not applicable to the provided code. READ-001 simply complains about missing v_gen, but we do have concrete code, so it is obsolete. [Phase 4] With no applicable suggestions, there are no real conflicts to resolve. The best way to resolve the issue is to keep this test intact as a regression test in Django's test suite. [Phase 5] Since no changes are necessary to the provided code to satisfy the goal (it already expresses the correct intended behavior: identical db_table on different databases must not trigger models.E028), the safest execution plan is to perform no modifications. [Phase 6] Final plan: return an empty instructions list, documenting in this reasoning_log that all expert suggestions were filtered out as non-applicable under the constitutional principles.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Execution plan contained no modification instructions; preserved existing test code unchanged to act as a regression test for models.E028 with multi-DB shared table names."
+    ],
+    "feedback_used": "NFR Score Low (70).",
+    "cost_analysis": {
+        "prompt_tokens": 15433,
+        "completion_tokens": 4058,
+        "estimated_cost_usd": 0.138035
+    },
+    "maestro_score": 70
+}

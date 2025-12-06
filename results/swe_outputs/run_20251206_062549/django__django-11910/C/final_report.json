@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=8.0, complexities=[{'type': 'method', 'rank': 'C', 'name': '_handle_field_rename_on_primary_key', 'lineno': 23, 'col_offset': 4, 'endline': 84, 'complexity': 14, 'classname': 'MigrationAutodetector', 'closures': []}, {'type': 'class', 'rank': 'B', 'name': 'MigrationAutodetector', 'lineno': 15, 'col_offset': 0, 'endline': 91, 'complexity': 9, 'methods': [{'type': 'method', 'rank': 'C', 'name': '_handle_field_rename_on_primary_key', 'lineno': 23, 'col_offset': 4, 'endline': 84, 'complexity': 14, 'classname': 'MigrationAutodetector', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'changes', 'lineno': 90, 'col_offset': 4, 'endline': 91, 'complexity': 1, 'classname': 'MigrationAutodetector', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'changes', 'lineno': 90, 'col_offset': 4, 'endline': 91, 'complexity': 1, 'classname': 'MigrationAutodetector', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999999881224e-07, modified_avg_time=4.0000000000456337e-07, improvement_percentage=-100.00000000346945, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206082641",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing code to review",
+                "action": "REPLACE",
+                "target_code_block": "unknown.py#L1-L1",
+                "new_code": "Provide the full v_gen source code (and optionally unit_test_suite) so that a precise, line-referenced readability review can be generated.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups to replace repeated linear scans over lists",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(...):\n    # Example transformation pattern\n    # BEFORE (naive)\n    # result = []\n    # for item in items:\n    #     if item in allowed_list:  # O(n) per check\n    #         result.append(item)\n\n    # AFTER (optimized)\n    allowed_set = set(allowed_list)  # O(m) preprocessing\n    result = []\n    for item in items:               # O(n)\n        if item in allowed_set:      # O(1) average\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Use more specific and lazy imports to reduce initial load time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# BEFORE\n# import math\n# import numpy as np\n\n# AFTER: specific imports\nfrom math import sqrt, ceil\n\n# Optional: lazy import pattern inside a function\n_cached_np = None\n\ndef get_np():\n    global _cached_np\n    if _cached_np is None:\n        import numpy as _np\n        _cached_np = _np\n    return _cached_np",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 33180,
+        "completion_tokens": 12353,
+        "estimated_cost_usd": 0.351195
+    },
+    "maestro_score": 65
+}

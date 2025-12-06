@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 75,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4, complexities=[{'type': 'method', 'rank': 'C', 'endline': 172, 'classname': 'QDPReader', 'lineno': 130, 'name': '_build_table', 'col_offset': 4, 'complexity': 11, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 71, 'classname': 'QDPReader', 'lineno': 43, 'name': '_parse_line', 'col_offset': 4, 'complexity': 6, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 172, 'lineno': 14, 'name': 'QDPReader', 'col_offset': 0, 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 29, 'classname': 'QDPReader', 'lineno': 25, 'name': '__init__', 'col_offset': 4, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 38, 'classname': 'QDPReader', 'lineno': 34, 'name': 'read', 'col_offset': 4, 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 71, 'classname': 'QDPReader', 'lineno': 43, 'name': '_parse_line', 'col_offset': 4, 'complexity': 6, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 86, 'classname': 'QDPReader', 'lineno': 76, 'name': '_handle_read', 'col_offset': 4, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 107, 'classname': 'QDPReader', 'lineno': 88, 'name': '_handle_read_serr', 'col_offset': 4, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 125, 'classname': 'QDPReader', 'lineno': 109, 'name': '_handle_read_terr', 'col_offset': 4, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'C', 'endline': 172, 'classname': 'QDPReader', 'lineno': 130, 'name': '_build_table', 'col_offset': 4, 'complexity': 11, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 107, 'classname': 'QDPReader', 'lineno': 88, 'name': '_handle_read_serr', 'col_offset': 4, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 125, 'classname': 'QDPReader', 'lineno': 109, 'name': '_handle_read_terr', 'col_offset': 4, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 38, 'classname': 'QDPReader', 'lineno': 34, 'name': 'read', 'col_offset': 4, 'complexity': 2, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 179, 'lineno': 177, 'name': 'read_qdp', 'col_offset': 0, 'complexity': 1, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 11, 'lineno': 10, 'name': 'QDPError', 'col_offset': 0, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'endline': 29, 'classname': 'QDPReader', 'lineno': 25, 'name': '__init__', 'col_offset': 4, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 86, 'classname': 'QDPReader', 'lineno': 76, 'name': '_handle_read', 'col_offset': 4, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=3.000000000086267e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28642,
+        "completion_tokens": 9750,
+        "estimated_cost_usd": 0.28946
+    },
+    "maestro_score": 75
+}

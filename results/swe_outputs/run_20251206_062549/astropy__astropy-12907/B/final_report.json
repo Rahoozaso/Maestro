@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '23                          [False, True]])\\n24     assert mat.shape == expected.shape\\n25     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi5ui_8qj.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 24, 'line_range': [24], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '24     assert mat.shape == expected.shape\\n25     assert np.array_equal(mat, expected)\\n26 \\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi5ui_8qj.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 25, 'line_range': [25], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '47     ])\\n48     assert mat.shape == expected.shape\\n49     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi5ui_8qj.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 48, 'line_range': [48], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '48     assert mat.shape == expected.shape\\n49     assert np.array_equal(mat, expected)\\n50 \\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi5ui_8qj.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 49, 'line_range': [49], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '74     ])\\n75     assert mat.shape == expected.shape\\n76     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi5ui_8qj.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 75, 'line_range': [75], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '75     assert mat.shape == expected.shape\\n76     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi5ui_8qj.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 76, 'line_range': [76], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.0, complexities=[{'type': 'function', 'rank': 'A', 'endline': 7, 'col_offset': 0, 'name': 'test_separability_simple_linear_pair', 'complexity': 3, 'lineno': 7, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 28, 'col_offset': 0, 'name': 'test_separability_flat_complex_compound', 'complexity': 3, 'lineno': 28, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 52, 'col_offset': 0, 'name': 'test_separability_nested_compound_model', 'complexity': 3, 'lineno': 52, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=2.0000000000575113e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 11639,
+        "completion_tokens": 5891,
+        "estimated_cost_usd": 0.14656
+    },
+    "maestro_score": 65
+}

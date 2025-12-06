@@ -1,0 +1,92 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.3333333333333335, complexities=[{'type': 'function', 'rank': 'B', 'name': 'update_proxy_model_permissions', 'col_offset': 0, 'complexity': 8, 'endline': 59, 'lineno': 4, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'reverse_update_proxy_model_permissions', 'col_offset': 0, 'complexity': 1, 'endline': 71, 'lineno': 63, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'Migration', 'col_offset': 0, 'complexity': 1, 'endline': 81, 'lineno': 74, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=6.999999999993123e-07, modified_avg_time=9.00000000001594e-07, improvement_percentage=-28.571428571782597, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace repeated linear membership checks with hash-based lookups",
+            "target_code_block": "main.py#L1-L80",
+            "severity": "High",
+            "reasoning": "The issue description suggests there are loops that repeatedly check `if x in some_list` or perform searches with `list.index(...)` inside other loops. This pattern leads to O(n*m) behavior when n/m are the sizes of the involved lists. Using a `set` or `dict` for membership makes these O(1) average time, reducing overall complexity to O(n + m).",
+            "proposed_change": "def some_function(items, candidates):\n    # Before: O(len(items) * len(candidates)) due to linear search in list\n    # result = [x for x in items if x in candidates]\n\n    # After: precompute a set for O(1) membership\n    candidates_set = set(candidates)\n    result = [x for x in items if x in candidates_set]\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid repeated expensive computations inside loops via loop-invariant code motion",
+            "target_code_block": "main.py#L20-L90",
+            "severity": "Medium",
+            "reasoning": "The description implies that certain values (e.g., lengths, constant expressions, preprocessed maps) may be re-calculated inside loops even though they do not change across iterations. Each recomputation increases per-iteration cost unnecessarily, especially if it involves function calls or data structure traversal.",
+            "proposed_change": "def process(data, mapping):\n    # Before\n    # result = []\n    # for item in data:\n    #     if expensive_check(mapping) and item in mapping:\n    #         result.append(mapping[item])\n\n    # After: hoist invariant expensive_check outside the loop\n    can_use_mapping = expensive_check(mapping)\n    result = []\n    if can_use_mapping:\n        for item in data:\n            if item in mapping:\n                result.append(mapping[item])\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace recursion with iterative approach to avoid stack overhead and potential overflow",
+            "target_code_block": "main.py#L50-L120",
+            "severity": "Medium",
+            "reasoning": "AI-generated solutions often use naive recursion for tasks like tree/graph traversal, DFS, or sequence processing. This introduces Python call overhead at each step and risks hitting the recursion depth limit for large inputs. An equivalent iterative approach using an explicit stack or queue has the same asymptotic complexity but with lower overhead and no recursion limit.",
+            "proposed_change": "def depth_first_traverse(root):\n    # Before (conceptual):\n    # def dfs(node):\n    #     if not node:\n    #         return\n    #     visit(node)\n    #     for child in node.children:\n    #         dfs(child)\n    # dfs(root)\n\n    # After: iterative DFS with explicit stack\n    if not root:\n        return\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        visit(node)\n        # push children in reverse order to preserve traversal order if needed\n        for child in reversed(node.children):\n            stack.append(child)"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Use efficient string building via list accumulation and join instead of repeated concatenation",
+            "target_code_block": "main.py#L80-L140",
+            "severity": "Medium",
+            "reasoning": "If the code constructs large strings using `+=` in a loop, each concatenation can be O(n) due to reallocation and copying, leading to overall O(n^2) behavior for building strings. Using a list of fragments and `''.join()` is the idiomatic O(n) approach in Python.",
+            "proposed_change": "def render_lines(lines):\n    # Before\n    # result = \"\"\n    # for line in lines:\n    #     result += line + \"\\n\"\n\n    # After\n    parts = []\n    for line in lines:\n        parts.append(line)\n        parts.append(\"\\n\")\n    result = \"\".join(parts)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Leverage lazy or more specific imports to reduce import time and memory footprint",
+            "target_code_block": "main.py#L1-L20",
+            "severity": "Low",
+            "reasoning": "AI-generated code often uses broad imports like `from module import *` or imports heavy libraries at the top level even though they are only needed in rare code paths. This increases startup time and memory consumption unnecessarily, particularly for CLI tools or libraries used in short-lived processes.",
+            "proposed_change": "# Before\n# import numpy as np\n# import pandas as pd\n\n# After: defer heavy imports to where they are actually needed\n\ndef compute_statistics(data):\n    import numpy as np  # lazy import inside function\n    return np.mean(data), np.std(data)\n\n# Or use more specific imports\n# from math import sqrt  # instead of 'from math import *'"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing source code for analysis",
+            "target_code_block": "v_gen.py#L1-L1",
+            "severity": "High",
+            "reasoning": "No actual v_gen source code was provided, so a concrete readability review cannot be performed. This prevents identification of specific issues such as poor naming, Any typing, missing docstrings, or complex comprehensions within real code.",
+            "proposed_change": "Provide the full v_gen source code (implementation under review) so that a line-by-line readability and maintainability assessment can be conducted."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-django-auth-0011-proxy-perms",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue' for Django auth migration 0011_update_proxy_permissions causing IntegrityError on duplicate (content_type, codename). Expert performance/readability reports are generic and not tailored to this code; no SecurityExpert report provided. [Phase 2] All performance suggestions target broad 'main.py' ranges that do not map meaningfully to this concise migration file; READ-001 merely notes missing source context. No concrete, line-specific proposals applicable. [Phase 3] No Critical security issues, and no unit tests provided. To preserve functionality of a shipped Django migration and avoid breaking existing behavior, speculative performance refactors are rejected per Functionality Preservation. [Phase 4] No overlapping or conflicting concrete suggestions on actual target_code_block. The current code already includes defensive existence checks preventing duplicate permission creation, directly addressing the described IntegrityError. [Phase 5] Given the mismatch between expert suggestions and actual code plus the risk of altering a historical migration, the optimal plan is to make no code changes. [Phase 6] Final decision: produce an empty instruction set; the existing implementation is already aligned with the described fix, and ungrounded changes would violate the constitutional principles.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Plan contained no modification instructions; existing migration code is preserved unchanged."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 10369,
+        "completion_tokens": 3001,
+        "estimated_cost_usd": 0.09686
+    },
+    "maestro_score": 70
+}

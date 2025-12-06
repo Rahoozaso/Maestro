@@ -1,0 +1,118 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 10
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.4, complexities=[{'type': 'class', 'rank': 'A', 'endline': 24, 'lineno': 6, 'col_offset': 0, 'complexity': 2, 'name': 'FooBar', 'methods': [{'type': 'method', 'rank': 'A', 'endline': 20, 'lineno': 18, 'col_offset': 4, 'classname': 'FooBar', 'complexity': 1, 'name': '__str__', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 24, 'lineno': 22, 'col_offset': 4, 'classname': 'FooBar', 'complexity': 1, 'name': 'get_foo_bar_display', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'endline': 36, 'lineno': 27, 'col_offset': 0, 'complexity': 2, 'name': 'GetFieldDisplayOverrideTests', 'methods': [{'type': 'method', 'rank': 'A', 'endline': 36, 'lineno': 30, 'col_offset': 4, 'classname': 'GetFieldDisplayOverrideTests', 'complexity': 1, 'name': 'test_get_field_display_can_be_overridden', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 20, 'lineno': 18, 'col_offset': 4, 'classname': 'FooBar', 'complexity': 1, 'name': '__str__', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 24, 'lineno': 22, 'col_offset': 4, 'classname': 'FooBar', 'complexity': 1, 'name': 'get_foo_bar_display', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 36, 'lineno': 30, 'col_offset': 4, 'classname': 'GetFieldDisplayOverrideTests', 'complexity': 1, 'name': 'test_get_field_display_can_be_overridden', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1000000000004062e-06, modified_avg_time=1.000000000001e-06, improvement_percentage=9.090909090851746, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206083436",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing code to review – ensure v_gen is actually provided",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Ensure the calling pipeline always passes the AI-generated source code into the `v_gen` field of the request before invoking the ReadabilityExpert agent.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups to replace repeated list membership checks",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Hypothetical original inefficient pattern:\n    # result = []\n    # for x in list1:\n    #     if x in list2:  # O(len(list2)) per iteration\n    #         result.append(x)\n    # return result\n\n    # Optimized version using a set for membership checks\n    set2 = set(list2)  # O(len(list2)) one-time cost\n    result = []\n    for x in list1:  # overall O(len(list1)) loop\n        if x in set2:  # O(1) average-case lookup\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-005: Avoid overly complex list comprehensions in v_gen",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#list-comprehensions",
+                "new_code": "Identify list comprehensions that contain multiple `for` clauses and/or inline `if` conditions and refactor them into clearer multi-line loops, or split them into smaller comprehensions or helper functions with descriptive names.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-004: Require docstrings for all public functions and classes in v_gen",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#functions-and-classes",
+                "new_code": "Add concise, meaningful docstrings to every public function, method, and class, describing the purpose, key parameters, return type, and any important side effects, using a consistent style such as Google or NumPy docstring conventions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-003: Prohibit cryptic short variable names like 'd', 'ml', 'ol' in v_gen",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#variables",
+                "new_code": "Systematically rename short, ambiguous identifiers (e.g., `d`, `ml`, `ol`, `x`, `y`) to domain-relevant names such as `user_data`, `model_loader`, `order_list`, or `index`, updating all references consistently.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-002: Enforce prohibition of typing.Any in AI-generated code",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#types",
+                "new_code": "Scan the generated code for any occurrences of `Any` in type hints and replace each with a more specific type (e.g., `Dict[str, str]`, `List[int]`, `Callable[[Request], Response]`), or a well-structured Protocol/TypedDict where appropriate.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-005: Make imports more specific and lazy-load heavy dependencies",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Hypothetical original imports:\n# import pandas as pd\n# import numpy as np\n# from math import *\n\n# More efficient and explicit imports\nfrom math import sqrt, ceil  # Import only what is needed\n\n# Lazy-load heavy libraries inside functions that use them\n\ndef compute_statistics(data):\n    import numpy as np  # Lazy import to avoid cost if function is never called\n    arr = np.array(data)\n    return float(arr.mean()), float(arr.std())",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 33596,
+        "completion_tokens": 12088,
+        "estimated_cost_usd": 0.3493
+    },
+    "maestro_score": 80
+}

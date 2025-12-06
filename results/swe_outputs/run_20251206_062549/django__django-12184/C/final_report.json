@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4545454545454546, complexities=[{'type': 'method', 'rank': 'B', 'col_offset': 4, 'lineno': 81, 'name': '_get_response_async', 'complexity': 9, 'classname': 'BaseHandler', 'endline': 127, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'lineno': 140, 'name': '_normalize_callback_args_kwargs', 'complexity': 9, 'classname': 'BaseHandler', 'endline': 211, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'lineno': 44, 'name': 'load_middleware', 'complexity': 8, 'classname': 'BaseHandler', 'endline': 71, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'lineno': 22, 'name': 'BaseHandler', 'complexity': 4, 'endline': 237, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 34, 'name': '__init__', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 38, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 41, 'name': 'resolver', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 42, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'lineno': 44, 'name': 'load_middleware', 'complexity': 8, 'classname': 'BaseHandler', 'endline': 71, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 73, 'name': 'get_response_async', 'complexity': 2, 'classname': 'BaseHandler', 'endline': 79, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'lineno': 81, 'name': '_get_response_async', 'complexity': 9, 'classname': 'BaseHandler', 'endline': 127, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 129, 'name': 'handle_uncaught_exception', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 135, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'lineno': 140, 'name': '_normalize_callback_args_kwargs', 'complexity': 9, 'classname': 'BaseHandler', 'endline': 211, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 213, 'name': '_invoke_view', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 224, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 226, 'name': '_invoke_view_async', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 237, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 73, 'name': 'get_response_async', 'complexity': 2, 'classname': 'BaseHandler', 'endline': 79, 'closures': []}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'lineno': 17, 'name': '_get_response_async', 'complexity': 1, 'endline': 19, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 34, 'name': '__init__', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 38, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 41, 'name': 'resolver', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 42, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 129, 'name': 'handle_uncaught_exception', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 135, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 213, 'name': '_invoke_view', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 224, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 226, 'name': '_invoke_view_async', 'complexity': 1, 'classname': 'BaseHandler', 'endline': 237, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=4.999999999866223e-07, modified_avg_time=6.000000000172534e-07, improvement_percentage=-20.000000006661338, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nHTTP: line 24: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement inspect (from versions: none)\nERROR: No matching distribution found for inspect\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206084912",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing input code prevents concrete, location-specific review",
+                "action": "REPLACE",
+                "target_code_block": "unknown#L1-L1",
+                "new_code": "Include the full v_gen source code (and optionally unit_test_suite) in the request payload so that issues like Any usage, short variable names, missing docstrings, and complex comprehensions can be identified and referenced with accurate filename and line ranges.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-002: Replace repeated list membership checks with a set for O(1) lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L50",
+                "new_code": "def process_items(items, lookup_list):\n    # Precompute a set for faster membership tests\n    lookup_set = set(lookup_list)\n\n    result = []\n    for item in items:\n        # Old pattern (hypothetical):\n        # if item in lookup_list:\n        #     result.append(item)\n\n        if item in lookup_set:\n            result.append(item)\n\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-004: Use join for string accumulation instead of repeated concatenation in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L110-L150",
+                "new_code": "def build_message(parts):\n    # Old pattern (hypothetical):\n    # msg = \"\"\n    # for p in parts:\n    #     msg += p\n    # return msg\n\n    msg_parts = []\n    for p in parts:\n        msg_parts.append(p)\n    return \"\".join(msg_parts)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Avoid repeated computation of loop-invariant expressions",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L60-L100",
+                "new_code": "def process_records(records, config):\n    # Old pattern (hypothetical):\n    # for rec in records:\n    #     threshold = compute_threshold(config)\n    #     if score(rec) > threshold:\n    #         ...\n\n    # Compute once before the loop\n    threshold = compute_threshold(config)\n\n    for rec in records:\n        if score(rec) > threshold:\n            # existing logic\n            ...",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-001: Use iterative approach instead of recursion to avoid potential stack overflows",
+                "action": "REPLACE",
+                "target_code_block": "main.py#recursive_function",
+                "new_code": "def recursive_function(arg):\n    # Original recursive structure (hypothetical):\n    # if base_condition(arg):\n    #     return base_result(arg)\n    # return combine(arg, recursive_function(next_arg(arg)))\n\n    # Iterative equivalent\n    result = initial_result(arg)  # corresponds to base setup\n    current = arg\n    stack = []  # if needed to simulate recursion state\n\n    while not base_condition(current):\n        # push any state you would have passed into the next recursive call\n        stack.append(current)\n        current = next_arg(current)\n\n    # handle base case\n    result = base_result(current)\n\n    # unwind stack explicitly instead of recursive returns\n    while stack:\n        prev = stack.pop()\n        result = combine(prev, result)\n\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Narrow and lazy imports to reduce startup overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#imports",
+                "new_code": "# Instead of:\n# from big_module import *\n# import heavy_lib\n\nfrom big_module import specific_func, SpecificClass\n\ndef some_path(...):\n    # Lazy import only when needed\n    import heavy_lib\n    ...\n    return heavy_lib.expensive_op(...)\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 45259,
+        "completion_tokens": 21330,
+        "estimated_cost_usd": 0.546245
+    },
+    "maestro_score": 0
+}

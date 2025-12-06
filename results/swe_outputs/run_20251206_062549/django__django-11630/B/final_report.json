@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.75, complexities=[{'type': 'class', 'rank': 'A', 'lineno': 18, 'name': 'MultiDBRouter', 'col_offset': 0, 'endline': 40, 'complexity': 4, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 21, 'name': 'db_for_read', 'col_offset': 4, 'endline': 26, 'complexity': 3, 'classname': 'MultiDBRouter', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 28, 'name': 'db_for_write', 'col_offset': 4, 'endline': 33, 'complexity': 3, 'classname': 'MultiDBRouter', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 35, 'name': 'allow_migrate', 'col_offset': 4, 'endline': 40, 'complexity': 3, 'classname': 'MultiDBRouter', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'lineno': 50, 'name': 'DuplicateTableMultiDBTests', 'col_offset': 0, 'endline': 56, 'complexity': 4, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 52, 'name': 'test_same_db_table_on_different_databases_is_allowed', 'col_offset': 4, 'endline': 56, 'complexity': 3, 'classname': 'DuplicateTableMultiDBTests', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 21, 'name': 'db_for_read', 'col_offset': 4, 'endline': 26, 'complexity': 3, 'classname': 'MultiDBRouter', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 28, 'name': 'db_for_write', 'col_offset': 4, 'endline': 33, 'complexity': 3, 'classname': 'MultiDBRouter', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 35, 'name': 'allow_migrate', 'col_offset': 4, 'endline': 40, 'complexity': 3, 'classname': 'MultiDBRouter', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 52, 'name': 'test_same_db_table_on_different_databases_is_allowed', 'col_offset': 4, 'endline': 56, 'complexity': 3, 'classname': 'DuplicateTableMultiDBTests', 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 6, 'name': 'BaseModel', 'col_offset': 0, 'endline': 6, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 12, 'name': 'App2Model', 'col_offset': 0, 'endline': 12, 'complexity': 1, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1999999999998123e-06, modified_avg_time=1.2999999999992184e-06, improvement_percentage=-8.333333333285147, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 26773,
+        "completion_tokens": 9623,
+        "estimated_cost_usd": 0.27821
+    },
+    "maestro_score": 70
+}

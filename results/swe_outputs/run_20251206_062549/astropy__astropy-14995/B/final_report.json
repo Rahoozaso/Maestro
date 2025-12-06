@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=8.0, complexities=[{'type': 'function', 'rank': 'B', 'endline': 99, 'complexity': 8, 'lineno': 21, 'col_offset': 0, 'name': '_combine_masks', 'closures': [{'type': 'function', 'rank': 'A', 'endline': 74, 'complexity': 2, 'lineno': 68, 'col_offset': 4, 'name': '_is_no_mask', 'closures': []}]}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\narithmetic: line 2: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36662,
+        "completion_tokens": 15415,
+        "estimated_cost_usd": 0.414535
+    },
+    "maestro_score": 0
+}

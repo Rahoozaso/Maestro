@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.5, complexities=[{'type': 'class', 'rank': 'A', 'endline': 30, 'lineno': 5, 'complexity': 3, 'name': 'IsNull', 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'IsNull', 'endline': 30, 'lineno': 8, 'complexity': 2, 'name': 'get_prep_lookup', 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'IsNull', 'endline': 30, 'lineno': 8, 'complexity': 2, 'name': 'get_prep_lookup', 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1999999999998123e-06, modified_avg_time=1.2999999999992184e-06, improvement_percentage=-8.333333333285147, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 33826,
+        "completion_tokens": 13477,
+        "estimated_cost_usd": 0.371285
+    },
+    "maestro_score": 70
+}

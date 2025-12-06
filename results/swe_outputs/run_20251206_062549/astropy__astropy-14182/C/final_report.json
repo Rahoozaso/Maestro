@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 60,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': \"28     # header tokens in order.\\n29     assert any('wave' in line and 'response' in line for line in text)\\n30     assert any('nm' in line and 'ct' in line for line in text)\\n\", 'col_offset': 4, 'end_col_offset': 70, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpp2ic5z5w.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 29, 'line_range': [29], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': \"29     assert any('wave' in line and 'response' in line for line in text)\\n30     assert any('nm' in line and 'ct' in line for line in text)\\n31 \\n\", 'col_offset': 4, 'end_col_offset': 62, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpp2ic5z5w.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 30, 'line_range': [30], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '32     # Ensure no TypeError occurred and output is non-empty.\\n33     assert len(text) > 0\\n', 'col_offset': 4, 'end_col_offset': 24, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpp2ic5z5w.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 33, 'line_range': [33], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.0, complexities=[{'type': 'function', 'rank': 'A', 'complexity': 4, 'name': 'test_rst_header_rows_name_unit', 'endline': 8, 'lineno': 8, 'col_offset': 0, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000016878e-07, modified_avg_time=6.999999999993123e-07, improvement_percentage=-133.33333333179135, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206063259",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Reduce deeply nested control flow with early returns",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L1",
+                "new_code": "Identify functions with multiple nested `if`/`for`/`while` blocks and refactor them by using early returns for guard conditions (e.g., input validation failures) and by extracting inner blocks into well-named helper functions, so each function handles one primary concern.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Prefer sets/dicts over lists for membership checks and lookups in hot paths",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(data, keys_to_find):\n    # Hypothetical original pattern (inefficient):\n    # results = []\n    # for item in data:\n    #     if item in keys_to_find:  # keys_to_find is a list -> O(len(keys_to_find)) per check\n    #         results.append(item)\n\n    # Improved: pre-convert to set for O(1) average membership tests\n    keys_set = set(keys_to_find)\n    results = []\n    for item in data:\n        if item in keys_set:\n            results.append(item)\n    return results",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-006: Narrow and lazy imports to reduce startup overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L50",
+                "new_code": "# Hypothetical original pattern:\n# import pandas as pd\n# import numpy as np\n# from some_heavy_module import *\n\n# If only specific functions are needed, import them explicitly\nfrom some_heavy_module import specific_function\n\n# If heavy modules are only used in rare branches, import lazily\n\ndef handle_special_case(data):\n    # Lazy import to avoid cost when not needed\n    import pandas as pd\n    df = pd.DataFrame(data)\n    return df.describe()\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 31293,
+        "completion_tokens": 16149,
+        "estimated_cost_usd": 0.3987
+    },
+    "maestro_score": 60
+}

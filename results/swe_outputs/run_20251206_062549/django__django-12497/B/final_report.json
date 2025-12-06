@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.75, complexities=[{'type': 'class', 'rank': 'B', 'endline': 69, 'col_offset': 0, 'complexity': 7, 'lineno': 28, 'name': 'ManyToManyField', 'methods': [{'type': 'method', 'rank': 'B', 'endline': 69, 'col_offset': 4, 'complexity': 6, 'lineno': 41, 'classname': 'ManyToManyField', 'name': '_check_relationship_model', 'closures': []}]}, {'type': 'method', 'rank': 'B', 'endline': 69, 'col_offset': 4, 'complexity': 6, 'lineno': 41, 'classname': 'ManyToManyField', 'name': '_check_relationship_model', 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 20, 'col_offset': 0, 'complexity': 1, 'lineno': 17, 'name': 'RelatedField', 'methods': []}, {'type': 'class', 'rank': 'A', 'endline': 25, 'col_offset': 0, 'complexity': 1, 'lineno': 23, 'name': 'ManyToManyRel', 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nrelationship.\n\n    many_to_many = True\n    many_to_one = False\n    one_to_many = False\n    one_to_one = False\n\n    rel_class = ManyToManyRel\n\n    # ... many existing attributes and methods of ManyToManyField are\n    # assumed to be here and are left unchanged.\n\n    def _check_relationship_model(self) -> List[checks.CheckMessage]:\n        Checks: line 30: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28932,
+        "completion_tokens": 11469,
+        "estimated_cost_usd": 0.316695
+    },
+    "maestro_score": 0
+}

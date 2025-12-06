@@ -1,0 +1,187 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.25, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 2, 'lineno': 14, 'col_offset': 0, 'name': 'InheritedPkOrderingTests', 'endline': 32, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 15, 'col_offset': 4, 'name': 'test_child_respects_parent_pk_desc_ordering', 'endline': 32, 'classname': 'InheritedPkOrderingTests', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'complexity': 1, 'lineno': 5, 'col_offset': 0, 'name': 'Parent', 'endline': 5, 'methods': []}, {'type': 'class', 'rank': 'A', 'complexity': 1, 'lineno': 10, 'col_offset': 0, 'name': 'Child', 'endline': 11, 'methods': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 15, 'col_offset': 4, 'name': 'test_child_respects_parent_pk_desc_ordering', 'endline': 32, 'classname': 'InheritedPkOrderingTests', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1999999999998123e-06, modified_avg_time=1.1999999999998123e-06, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace nested loops with hash-based lookups for search/comparison operations",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "AI-generated solutions that need to find matches, intersections, or perform membership checks frequently implement nested loops (O(n*m)) or repeated `if x in list_y` checks inside loops (O(n^2)). Without seeing the exact code, the safest and most impactful hypothetical optimization is to replace these patterns with hash-based structures (sets/dicts) that provide O(1) average lookup time, thereby improving overall complexity to O(n+m). This adheres to the 'Data Structure Optimization' and 'Algorithm Efficiency' checklist items.",
+            "proposed_change": "def optimized_function(collection_a, collection_b):\n    # Hypothetical existing pattern:\n    # result = []\n    # for x in collection_a:\n    #     for y in collection_b:\n    #         if x == y:\n    #             result.append(x)\n    # return result\n\n    # Improved version using a set to avoid nested loops\n    set_b = set(collection_b)  # O(m)\n    result = []\n    for x in collection_a:     # O(n)\n        if x in set_b:        # O(1) average\n            result.append(x)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Convert recursive logic into iterative loops to avoid stack overflows and reduce overhead",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "LLM-generated solutions frequently use straightforward recursion for traversals (tree/graph/DFS), factorials, Fibonacci, or divide-and-conquer problems. Pure recursion in Python adds per-call overhead and risks hitting recursion depth limits on large inputs. Rewriting deep recursion into explicit loops with an explicit stack/queue preserves behavior while reducing overhead and preventing stack overflow.",
+            "proposed_change": "def optimized_dfs(root):\n    # Hypothetical original recursive pattern:\n    # def dfs(node):\n    #     if node is None:\n    #         return\n    #     process(node)\n    #     for child in node.children:\n    #         dfs(child)\n    # dfs(root)\n\n    # Iterative DFS using an explicit stack\n    if root is None:\n        return\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        process(node)  # same side effects as in the recursive version\n        # push children in reverse order if the exact visit order matters\n        for child in reversed(node.children):\n            stack.append(child)"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Use sets or dicts instead of lists for repeated membership checks",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "AI code commonly performs `if x in some_list:` inside loops. Each membership check on a list is O(n), which leads to O(n^2) behavior when checking many elements. Replacing `some_list` with a set or dict used purely for membership reduces each check to O(1) average time, greatly improving performance when collections are large.",
+            "proposed_change": "def optimized_membership_checks(items, allowed_items):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in items:\n    #     if item in allowed_items:  # allowed_items is a list -> O(n) per check\n    #         result.append(item)\n\n    # Optimized pattern:\n    allowed_set = set(allowed_items)  # O(m) preprocessing\n    result = []\n    for item in items:  # O(n)\n        if item in allowed_set:  # O(1) average per check\n            result.append(item)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid repeated expensive computations inside loops by hoisting loop-invariant code",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often recalculates constants, regex compilations, length checks, or parsed values inside loops. This yields unnecessary repeated work with O(n*k) cost where k is the cost of the repeated computation. Moving such loop-invariant expressions outside the loop decreases constant factors and can change complexity if the repeated operation is itself more than O(1).",
+            "proposed_change": "import re\n\ndef optimized_processing(lines, pattern_str):\n    # Hypothetical original code:\n    # result = []\n    # for line in lines:\n    #     pattern = re.compile(pattern_str)  # compiled every iteration\n    #     if pattern.search(line):\n    #         result.append(line)\n\n    # Optimized by hoisting invariant computation out of the loop\n    pattern = re.compile(pattern_str)\n    result = []\n    for line in lines:\n        if pattern.search(line):\n            result.append(line)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Use efficient string building via join instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "Naive string concatenation in a loop (`s += piece`) repeatedly creates new string objects because Python strings are immutable, leading to O(n^2) time behavior as the string grows. Using `''.join()` on a list of substrings avoids repeated reallocation and results in O(n) time complexity.",
+            "proposed_change": "def optimized_string_build(pieces):\n    # Hypothetical original pattern:\n    # result = \"\"\n    # for p in pieces:\n    #     result += p  # O(n^2) over many concatenations\n    # return result\n\n    # Optimized pattern using join\n    result = \"\".join(pieces)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-006",
+            "agent_role": "PerformanceExpert",
+            "title": "Use lazy or more specific imports to reduce import time and memory footprint",
+            "target_code_block": "main.py#L1-L40",
+            "severity": "Low",
+            "reasoning": "AI-generated files often import entire libraries (`import numpy as np`, `import pandas as pd`, `from module import *`) even when only one or two functions are used. This increases startup time and memory usage unnecessarily, particularly in short-lived CLI tools or serverless environments. Lazy or more specific imports reduce overhead and clarify dependencies.",
+            "proposed_change": "# Hypothetical original imports:\n# import math\n# import numpy as np\n# from datetime import *\n\n# More specific / potentially lazy imports:\nfrom math import sqrt  # only import what is used\nfrom datetime import datetime  # avoid wildcard imports\n\n# For heavy optional dependencies, consider local lazy import:\ndef heavy_computation(x):\n    # from numpy import array  # move inside if only needed here\n    import numpy as np\n    arr = np.array(x)\n    return arr.sum()"
+        },
+        {
+            "suggestion_id": "PERF-007",
+            "agent_role": "PerformanceExpert",
+            "title": "Prefer vectorized or built-in operations over explicit Python loops for numeric or tabular data",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "When AI-generated code performs element-wise arithmetic or transformations on lists or arrays using Python `for` loops, it underutilizes optimized C-level implementations in libraries like NumPy or Pandas. Replacing explicit loops with vectorized operations can massively improve performance due to implementation in optimized native code.",
+            "proposed_change": "import numpy as np\n\n# Hypothetical original pattern:\n# def scale_values(values, factor):\n#     result = []\n#     for v in values:\n#         result.append(v * factor)\n#     return result\n\n# Vectorized version using NumPy:\ndef scale_values(values, factor):\n    arr = np.asarray(values)\n    scaled = arr * factor\n    return scaled.tolist()  # if tests expect a plain Python list"
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing v_gen implementation prevents readability analysis",
+            "target_code_block": "unknown.py#L1-L1",
+            "severity": "High",
+            "reasoning": "The provided input does not include the actual `v_gen` source code, only the meta-instructions. Without the concrete code, it is impossible to evaluate naming, structure, or cleanliness per the specified checklist. This is a process/code-organization smell, as downstream agents cannot reason about or refactor what they cannot see.",
+            "proposed_change": "Ensure the `v_gen` field contains the full source code to be analyzed (not just framework instructions) before invoking the ReadabilityExpert agent."
+        },
+        {
+            "suggestion_id": "READ-002",
+            "agent_role": "ReadabilityExpert",
+            "title": "Require explicit type hints instead of typing.Any in AI-generated code",
+            "target_code_block": "unknown.py#L1-L1",
+            "severity": "Medium",
+            "reasoning": "Even though the specific code is not visible, AI-generated Python often uses `typing.Any` in function signatures or variable annotations. This practice hides the actual data contracts and undermines static analysis and maintainability.",
+            "proposed_change": "Replace any occurrences of `Any` in function parameters or return types with concrete, precise types (e.g., `dict[str, str]`, `list[int]`, or custom `TypedDict`/dataclasses)."
+        },
+        {
+            "suggestion_id": "READ-003",
+            "agent_role": "ReadabilityExpert",
+            "title": "Avoid non-descriptive short variable names such as 'd', 'ml', or 'ol'",
+            "target_code_block": "unknown.py#L1-L1",
+            "severity": "Medium",
+            "reasoning": "Short, context-free names (like `d`, `ml`, `ol`) commonly appear in AI-generated code. They create ambiguity about the variable’s purpose and violate the Poor Naming principle, increasing cognitive load for future readers.",
+            "proposed_change": "Rename all single-letter or cryptic variable names (e.g., `d`, `ml`, `ol`, `tmp`) to descriptive names that reflect their domain meaning (for example: `user_data`, `model_loader`, `output_list`)."
+        },
+        {
+            "suggestion_id": "READ-004",
+            "agent_role": "ReadabilityExpert",
+            "title": "Enforce docstrings for all public functions and classes",
+            "target_code_block": "unknown.py#L1-L1",
+            "severity": "Medium",
+            "reasoning": "AI-generated code frequently omits docstrings, relying solely on names and inline comments. This can leave future maintainers guessing about the intent, accepted input ranges, and side effects of functions and classes.",
+            "proposed_change": "Add concise docstrings to all public-facing functions, methods, and classes, following PEP 257, describing purpose, parameters, return values, and side effects."
+        },
+        {
+            "suggestion_id": "READ-005",
+            "agent_role": "ReadabilityExpert",
+            "title": "Avoid overly complex list comprehensions in favor of clearer loops",
+            "target_code_block": "unknown.py#L1-L1",
+            "severity": "Medium",
+            "reasoning": "AI-generated Python often uses deeply nested or multi-condition list comprehensions that, while compact, are harder to read and debug. This violates the guideline to reduce cognitive load and avoid complex expressions.",
+            "proposed_change": "Refactor any nested or multi-branch list comprehensions (especially those with multiple `for` and `if` clauses) into explicit `for` loops with intermediate variables and comments."
+        },
+        {
+            "suggestion_id": "SEC-001",
+            "agent_role": "SecurityExpert",
+            "title": "Missing Code Context Prevents Complete Security Assessment – Require File and Line Metadata",
+            "target_code_block": "N/A#L1-L1",
+            "severity": "Medium",
+            "reasoning": "The current invocation of the SecurityExpert agent does not include the actual v_gen source code or unit_test_suite content, only instructions. Without concrete code, the agent cannot validate how external inputs are handled, whether secrets are hardcoded, or if unsafe libraries and APIs are used. From a secure SDLC perspective, this is a process vulnerability: it can result in code being considered 'reviewed' without any real SAST being performed, which weakens the security assurance of the entire pipeline.",
+            "proposed_change": "def run_security_review(v_gen: str, unit_test_suite: str) -> list[dict]:\n    \"\"\"Wrapper that enforces presence of code before SecurityExpert runs.\"\"\"\n    # Defensive preconditions to avoid \"empty\" reviews\n    assert isinstance(v_gen, str), \"v_gen must be a string with source code\"\n    assert isinstance(unit_test_suite, str), \"unit_test_suite must be a string (can be empty but must be explicit)\"\n    if not v_gen.strip():\n        raise ValueError(\"Security review aborted: v_gen source code is empty or missing.\")\n\n    # Only call the SecurityExpert agent if we actually have code\n    return call_security_expert_agent(v_gen=v_gen, unit_test_suite=unit_test_suite)\n"
+        },
+        {
+            "suggestion_id": "SEC-002",
+            "agent_role": "SecurityExpert",
+            "title": "Enforce Structured Location Metadata for Findings to Support Traceability",
+            "target_code_block": "N/A#L1-L1",
+            "severity": "Low",
+            "reasoning": "The input does not define how file names and line ranges are captured and passed to the SecurityExpert for target_code_block. If findings lack precise locations, developers may mis-patch or incompletely fix vulnerabilities, leaving residual issues. Poor traceability is a soft security weakness: it degrades the effectiveness of remediation and code review, especially in large AI-generated codebases.",
+            "proposed_change": "from dataclasses import dataclass\nfrom typing import Optional\n\n@dataclass\nclass CodeLocation:\n    filename: str\n    start_line: int\n    end_line: int\n\n    def to_target_code_block(self) -> str:\n        # Defensive type and range checks\n        if not isinstance(self.filename, str) or not self.filename:\n            raise ValueError(\"filename must be a non-empty string\")\n        if not isinstance(self.start_line, int) or not isinstance(self.end_line, int):\n            raise TypeError(\"start_line and end_line must be integers\")\n        if self.start_line <= 0 or self.end_line < self.start_line:\n            raise ValueError(\"Invalid line range for target_code_block\")\n        return f\"{self.filename}#L{self.start_line}-L{self.end_line}\"\n\n# Example usage when constructing SecurityExpert findings:\n# loc = CodeLocation(filename=\"main.py\", start_line=10, end_line=15)\n# finding[\"target_code_block\"] = loc.to_target_code_block()\n"
+        },
+        {
+            "suggestion_id": "SEC-003",
+            "agent_role": "SecurityExpert",
+            "title": "Guard Against Excessive Recursion or Oversized Inputs in the Security Analysis Pipeline",
+            "target_code_block": "N/A#L1-L1",
+            "severity": "High",
+            "reasoning": "The instructions describe multi-phase static analysis but do not specify any controls for recursion depth, maximum file size, or aggregate code size. In an automated pipeline, an attacker or malfunctioning upstream agent could feed extremely large or deeply nested code, leading to excessive recursion or memory/CPU usage in analysis routines (e.g., AST walks, recursive dependency resolution). This can cause denial-of-service conditions in the MAESTRO framework.",
+            "proposed_change": "import sys\nfrom typing import Iterable\n\nMAX_SOURCE_LENGTH = 2_000_000  # bytes/characters, adjust as needed\nMAX_FILES = 200\nMAX_RECURSION_DEPTH = 1_000\n\n# Set a hard recursion limit with safety margin\nsys.setrecursionlimit(min(sys.getrecursionlimit(), MAX_RECURSION_DEPTH))\n\ndef validate_analysis_inputs(files: Iterable[tuple[str, str]]) -> None:\n    \"\"\"Validate that the set of files to analyze is within safe limits.\n\n    files: iterable of (filename, content)\n    \"\"\"\n    files = list(files)\n    if len(files) > MAX_FILES:\n        raise ValueError(f\"Refusing to analyze {len(files)} files; limit is {MAX_FILES}.\")\n\n    for name, src in files:\n        if not isinstance(src, str):\n            raise TypeError(f\"Source for {name} must be a string\")\n        if len(src) > MAX_SOURCE_LENGTH:\n            raise ValueError(\n                f\"File {name} is too large for static analysis (len={len(src)} > {MAX_SOURCE_LENGTH}).\"\n            )\n\n# Example integration before running deep AST/CFG analysis:\n# validate_analysis_inputs([(\"main.py\", v_gen), (\"test_main.py\", unit_test_suite)])\n"
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-django-inherited-pk-ordering-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue' for Django inherited model ordering. v_gen is a minimal test module reproducing the bug: Child inherits Parent.Meta.ordering = ['-pk'], but the actual Django bug fix logic is not present in this file. Expert reports are mostly generic, not specific to this code. No nested loops, recursion, or heavy imports exist here, so Performance suggestions PERF-001..007 are not applicable. Readability suggestions READ-001..005 refer to missing or unknown code; they do not target this concrete file. Security suggestions SEC-001..003 are about the MAESTRO pipeline itself, not this Django test code; there are no Critical issues. [Phase 2] All suggestions map to broad ranges (main.py#L1-L200, unknown.py, N/A) and do not overlap meaningfully with the provided code beyond a hypothetical file name; there are effectively no direct conflict points on actual logic. [Phase 3] Applying the constitutional principles: (1) No Critical security issues, so no mandatory changes. (2) Functionality preservation: the current test asserts the correct behavior once Django core is fixed; altering it without clear necessity risks masking regressions. Thus, we keep tests intact. [Phase 4] Conflict resolution and integration: since suggestions are generic and not tied to real inefficiencies or vulnerabilities in this snippet, they would introduce speculative changes that neither resolve the described ORM ordering bug nor improve this test module. Per Minimal Invasiveness and AI Anti-Pattern Correction, we avoid arbitrary refactors and leave the simple, clear test code as-is. [Phase 5] Execution plan: To strictly satisfy the framework, we emit a no-op work plan that documents that no code changes are required in this file to resolve the issue; the actual fix belongs in Django's ORM internals (outside v_gen). [Phase 6] Final plan: Provide a single NO_OP instruction explaining that no modifications should be applied to this test file, preserving it as a regression test once the core framework bug is fixed elsewhere.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Do not modify the provided test module; it already correctly captures the expected behavior for inherited pk ordering and should remain as a regression test.",
+                "action": "NO_OP",
+                "target_code_block": "tests_inherited_pk_ordering.py#L1-L200",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "from django.db import models\nfrom django.test import TestCase\n\n\nclass Parent(models.Model):\n    class Meta:\n        ordering = [\"-pk\"]\n\n\nclass Child(Parent):\n    pass\n\n\nclass InheritedPkOrderingTests(TestCase):\n    def test_child_respects_parent_pk_desc_ordering(self):\n        # Create a few instances to make ordering meaningful\n        p1 = Parent.objects.create()\n        p2 = Parent.objects.create()\n        Child.objects.create(pk=p1.pk)\n        Child.objects.create(pk=p2.pk)\n\n        qs = Child.objects.all()\n        # Assert that the generated SQL contains DESC on the parent's PK column\n        sql = str(qs.query)\n        # The exact table/column naming can vary by app label, but we expect\n        # ORDER BY \"<parent_table>\".\"id\" DESC rather than ASC.\n        upper_sql = sql.upper()\n        self.assertIn(\"ORDER BY\", upper_sql)\n        self.assertIn(\"DESC\", upper_sql)\n        # Additionally, confirm that evaluation respects DESC order by PK\n        pks = list(qs.values_list(\"pk\", flat=True))\n        self.assertEqual(pks, sorted(pks, reverse=True))"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Based on the Principle of Functionality Preservation and Minimal Invasiveness, no expert suggestion directly and safely improves or is required for this concrete code block. Changing this regression test would not resolve the underlying ORM ordering issue and could weaken its ability to catch future regressions."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: NO_OP executed as instructed; test module content preserved unchanged."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 12596,
+        "completion_tokens": 6639,
+        "estimated_cost_usd": 0.162565
+    },
+    "maestro_score": 65
+}

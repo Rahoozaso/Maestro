@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=5.666666666666667, complexities=[{'type': 'function', 'rank': 'B', 'name': 'check_language_settings_consistent', 'lineno': 20, 'col_offset': 0, 'complexity': 7, 'endline': 42, 'closures': []}, {'type': 'function', 'rank': 'B', 'name': 'check_language_code', 'lineno': 46, 'col_offset': 0, 'complexity': 7, 'endline': 86, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'check_setting_languages', 'lineno': 7, 'col_offset': 0, 'complexity': 3, 'endline': 16, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.000000000001e-06, modified_avg_time=1.1999999999998123e-06, improvement_percentage=-19.999999999861224, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 26168,
+        "completion_tokens": 9271,
+        "estimated_cost_usd": 0.269905
+    },
+    "maestro_score": 65
+}

@@ -1,0 +1,92 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.25, complexities=[{'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 2, 'name': 'DeletePkResetTests', 'lineno': 9, 'endline': 37, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'DeletePkResetTests', 'col_offset': 4, 'complexity': 1, 'name': 'test_delete_clears_pk_for_model_without_dependencies', 'lineno': 10, 'endline': 19, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DeletePkResetTests', 'col_offset': 4, 'complexity': 1, 'name': 'test_delete_clears_custom_pk', 'lineno': 21, 'endline': 37, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'name': 'SimpleModel', 'lineno': 5, 'endline': 6, 'methods': []}, {'type': 'method', 'rank': 'A', 'classname': 'DeletePkResetTests', 'col_offset': 4, 'complexity': 1, 'name': 'test_delete_clears_pk_for_model_without_dependencies', 'lineno': 10, 'endline': 19, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'DeletePkResetTests', 'col_offset': 4, 'complexity': 1, 'name': 'test_delete_clears_custom_pk', 'lineno': 21, 'endline': 37, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.0999999999969368e-06, modified_avg_time=5.999999999999062e-07, improvement_percentage=45.45454545440209, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nTraceback (most recent call last):\n  File \"//run_me.py\", line 5, in <module>\n    class SimpleModel(models.Model):\n  File \"/usr/local/lib/python3.9/site-packages/django/db/models/base.py\", line 129, in __new__\n    app_config = apps.get_containing_app_config(module)\n  File \"/usr/local/lib/python3.9/site-packages/django/apps/registry.py\", line 260, in get_containing_app_config\n    self.check_apps_ready()\n  File \"/usr/local/lib/python3.9/site-packages/django/apps/registry.py\", line 137, in check_apps_ready\n    settings.INSTALLED_APPS\n  File \"/usr/local/lib/python3.9/site-packages/django/conf/__init__.py\", line 102, in __getattr__\n    self._setup(name)\n  File \"/usr/local/lib/python3.9/site-packages/django/conf/__init__.py\", line 82, in _setup\n    raise ImproperlyConfigured(\ndjango.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings."
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Introduce memoization or iterative DP to replace repeated recursive computations",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "Based on typical AI-generated solutions, many performance issues stem from naive recursion (e.g., computing Fibonacci, tree paths, DFS on graphs) without caching or with deep recursion that repeats the same subproblems. Such solutions often have exponential time complexity (O(2^n) / O(b^d)) and risk Python recursion depth errors. Replacing plain recursion with memoization or an explicit stack/iterative dynamic programming can reduce complexity to O(n) or O(n*m), and also avoid recursion overhead.",
+            "proposed_change": "from functools import lru_cache\n\n# Example transformation pattern for an expensive recursive function\n# Original (hypothetical):\n# def expensive_recursive(n):\n#     if n <= 1:\n#         return n\n#     return expensive_recursive(n-1) + expensive_recursive(n-2)\n\n# Optimized using memoization\n@lru_cache(maxsize=None)\ndef expensive_recursive(n):\n    if n <= 1:\n        return n\n    return expensive_recursive(n-1) + expensive_recursive(n-2)\n\n# Or, to avoid recursion depth limits, convert to iterative DP\n# def expensive_recursive(n):\n#     if n <= 1:\n#         return n\n#     a, b = 0, 1\n#     for _ in range(2, n+1):\n#         a, b = b, a + b\n#     return b"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace linear search in lists with set/dict-based lookups",
+            "target_code_block": "main.py#L200-L400",
+            "severity": "High",
+            "reasoning": "AI-generated code frequently uses `if x in some_list:` or nested loops to simulate membership or frequency checks. These patterns lead to O(n^2) behavior when performed inside loops over other collections. Using a `set` for membership or a `dict`/`collections.Counter` for frequency converts these lookups to amortized O(1), improving overall complexity to O(n) or O(n+m).",
+            "proposed_change": "# Original pattern (hypothetical):\n# for item in items:\n#     if item in blacklist:\n#         ...\n\n# Optimized pattern using a set for O(1) lookups\nblacklist_set = set(blacklist)\nfor item in items:\n    if item in blacklist_set:\n        ...\n\n# Original nested lookup (hypothetical):\n# for a in list_a:\n#     for b in list_b:\n#         if a == b:\n#             common.append(a)\n\n# Optimized with set\nset_b = set(list_b)\nfor a in list_a:\n    if a in set_b:\n        common.append(a)"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Avoid repeated expensive computations inside loops by hoisting invariants",
+            "target_code_block": "main.py#L400-L600",
+            "severity": "Medium",
+            "reasoning": "AI-generated implementations often compute the same derived values or perform conversions (e.g., `len()`, `sorted()`, `re.compile()`, `list(...)`, or configuration lookups) inside loops even when the result is loop-invariant. Moving these computations outside the loop reduces unnecessary repeated work and improves constant factors without changing complexity class.",
+            "proposed_change": "# Original pattern (hypothetical):\n# for i in range(len(data)):\n#     if some_value in expensive_transform(data):\n#         process(i)\n\n# Optimized: precompute invariant values before the loop\ntransformed = expensive_transform(data)\n# Optionally convert to a set for faster lookups if semantics allow\n# transformed = set(expensive_transform(data))\nfor i in range(len(data)):\n    if some_value in transformed:\n        process(i)"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Optimize string building with join instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L600-L800",
+            "severity": "Medium",
+            "reasoning": "A common AI pattern is `result = \"\"` followed by `result += part` inside a loop. This creates many intermediate string objects and can degrade performance to approximately O(n^2) in total string size. Accumulating parts in a list and using `\"\".join()` (or an appropriate separator) builds the final string in O(n) with far fewer allocations.",
+            "proposed_change": "# Original pattern (hypothetical):\n# result = \"\"\n# for part in parts:\n#     result += part\n\n# Optimized pattern using list accumulation and join\nresult_parts = []\nfor part in parts:\n    result_parts.append(part)\nresult = \"\".join(result_parts)\n\n# Or, if there is a known separator:\n# result = \",\".join(parts)"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Use more specific and lazy imports to reduce import overhead and memory footprint",
+            "target_code_block": "main.py#L1-L30",
+            "severity": "Low",
+            "reasoning": "AI-generated code often imports entire modules (`import numpy as np`, `import pandas as pd`, `from module import *`) even when only a small portion is used. This increases import time and memory usage unnecessarily, especially in short-running scripts or tight execution environments.",
+            "proposed_change": "# Original pattern (hypothetical):\n# import math\n# import numpy as np\n# from collections import *\n\n# Optimized: import only what is required, lazily if used rarely\nfrom math import sqrt  # if only sqrt is used\nfrom collections import Counter  # import specific classes\n\n# For heavy dependencies used only in rare branches, use local lazy import\n# def some_function(...):\n#     if need_heavy_computation:\n#         import numpy as np\n#         ... use np here ..."
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing or unspecified source code and test suite",
+            "target_code_block": "v_gen#L1-L1",
+            "severity": "High",
+            "reasoning": "The analysis framework requires the concrete `v_gen` implementation and `unit_test_suite` to identify code smells. In the current input, no actual Python source or tests are provided, which prevents precise, line-specific recommendations. Without real code, maintainability and readability issues (e.g., SRP violations, poor naming, magic numbers, misuse of typing.Any, short variable names like 'ml' or 'ol', missing docstrings, and complex list comprehensions) cannot be grounded in the actual implementation.",
+            "proposed_change": "Provide the full Python source code (v_gen) and its associated unit_test_suite so that a detailed, line-referenced readability review can be performed according to the specified checklist."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-django-delete-pk-reset-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue': fix Django bug where delete() on models without dependencies doesn't clear PKs. The provided v_gen is actually a test module that asserts correct behavior but the underlying framework code (django.db.models.deletion) is not shown. Expert reports: PERF-001..005 (generic performance templates, not relevant to this simple test code), READ-001 (requests real source/tests, which we effectively have for this test). No security reports are present, so no Critical security items to enforce. [Phase 2] All performance suggestions target broad main.py ranges that do not correspond to the given test file. READ-001 targets v_gen#L1-L1 but is meta-feedback, not a concrete change. There are no overlapping change requests on the same concrete code block here. [Phase 3] Apply Security Primacy and Functionality Preservation: there are no security suggestions; unit tests are conceptually the ones shown, and the goal is to make them pass by fixing framework behavior, not altering tests. Performance suggestions are hypothetical patterns (recursion, list membership, string building) that do not appear in the provided snippet and if applied blindly would break imports/structure, so they are rejected as violating Functionality Preservation. READ-001 is informational and does not translate to a code change. [Phase 4] Conflict Resolution and Integration: As there are no actionable overlapping suggestions, no conflict resolution is required. The real fix must be in Django's deletion logic (django.db.models.deletion Collector / delete() or Model.delete()), specifically around lines 276-281 where the issue description says 'Should update the model line 280'. However, that framework code is not provided in v_gen, so we cannot safely emit a concrete REPLACE on an unspecified file/lines without risking breaking the test suite and larger Django behavior. Based on the Minimal Invasiveness and Functionality Preservation principles, we avoid guessing at the internal deletion implementation. [Phase 5] Execution Plan Synthesis: Given that no expert suggestion is directly and safely applicable to the given code, the only robust plan is to leave the test as-is (it already describes the correct expected behavior) and make no modifications within the provided v_gen snippet. The actual framework change must be designed against the real django.db.models.deletion implementation, which is outside the scope of the current input. [Phase 6] Final Plan Generation: As a result, we generate an empty instructions list, signaling that no safe, concrete refactor steps can be derived from the provided expert reports and partial context without violating the constitutional principles.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: No modifications requested by the execution plan; preserved the existing test module as-is."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 9826,
+        "completion_tokens": 3215,
+        "estimated_cost_usd": 0.097355
+    },
+    "maestro_score": 0
+}

@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.4545454545454546, complexities=[{'type': 'method', 'rank': 'B', 'classname': 'FilePathField', 'name': 'deconstruct', 'col_offset': 4, 'lineno': 69, 'complexity': 9, 'endline': 108, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'FilePathField', 'col_offset': 0, 'lineno': 6, 'complexity': 3, 'endline': 127, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': '__init__', 'col_offset': 4, 'lineno': 9, 'complexity': 1, 'endline': 24, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'path', 'col_offset': 4, 'lineno': 27, 'complexity': 2, 'endline': 38, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'path', 'col_offset': 4, 'lineno': 41, 'complexity': 1, 'endline': 47, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'check', 'col_offset': 4, 'lineno': 49, 'complexity': 1, 'endline': 52, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': '_check_path', 'col_offset': 4, 'lineno': 54, 'complexity': 2, 'endline': 67, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'FilePathField', 'name': 'deconstruct', 'col_offset': 4, 'lineno': 69, 'complexity': 9, 'endline': 108, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'get_internal_type', 'col_offset': 4, 'lineno': 110, 'complexity': 1, 'endline': 111, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'to_python', 'col_offset': 4, 'lineno': 113, 'complexity': 3, 'endline': 116, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'get_prep_value', 'col_offset': 4, 'lineno': 118, 'complexity': 2, 'endline': 122, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'from_db_value', 'col_offset': 4, 'lineno': 124, 'complexity': 2, 'endline': 127, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'to_python', 'col_offset': 4, 'lineno': 113, 'complexity': 3, 'endline': 116, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'path', 'col_offset': 4, 'lineno': 27, 'complexity': 2, 'endline': 38, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': '_check_path', 'col_offset': 4, 'lineno': 54, 'complexity': 2, 'endline': 67, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'get_prep_value', 'col_offset': 4, 'lineno': 118, 'complexity': 2, 'endline': 122, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'from_db_value', 'col_offset': 4, 'lineno': 124, 'complexity': 2, 'endline': 127, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': '__init__', 'col_offset': 4, 'lineno': 9, 'complexity': 1, 'endline': 24, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'path', 'col_offset': 4, 'lineno': 41, 'complexity': 1, 'endline': 47, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'check', 'col_offset': 4, 'lineno': 49, 'complexity': 1, 'endline': 52, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'FilePathField', 'name': 'get_internal_type', 'col_offset': 4, 'lineno': 110, 'complexity': 1, 'endline': 111, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.3999999999986246e-06, modified_avg_time=1.4999999999980307e-06, improvement_percentage=-7.1428571428217404, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 31063,
+        "completion_tokens": 13084,
+        "estimated_cost_usd": 0.351575
+    },
+    "maestro_score": 70
+}

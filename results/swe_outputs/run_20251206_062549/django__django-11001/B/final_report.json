@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4, complexities=[{'type': 'method', 'rank': 'B', 'name': 'get_order_by', 'endline': 114, 'lineno': 60, 'complexity': 6, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'SQLCompiler', 'endline': 114, 'lineno': 34, 'complexity': 4, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'endline': 41, 'lineno': 35, 'complexity': 1, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'quote_name_unless_alias', 'endline': 48, 'lineno': 43, 'complexity': 2, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_order_by_pairs', 'endline': 58, 'lineno': 50, 'complexity': 4, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': 'get_order_by', 'endline': 114, 'lineno': 60, 'complexity': 6, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': '_order_by_pairs', 'endline': 58, 'lineno': 50, 'complexity': 4, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'quote_name_unless_alias', 'endline': 48, 'lineno': 43, 'complexity': 2, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'endline': 41, 'lineno': 35, 'complexity': 1, 'classname': 'SQLCompiler', 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.999999999947489e-07, modified_avg_time=3.999999999976245e-07, improvement_percentage=-33.333333334875306, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\n(ASC|DESC))\n\n    def quote_name_unless_alias(self, name):\n        if name in self.quote_cache:\n            return self.quote_cache[name]\n        r = self.connection.ops.quote_name(name)\n        self.quote_cache[name] = r\n        return r\n\n    def _order_by_pairs(self):\n        # Placeholder implementation. In the real Django codebase this\n        # would yield (expr, (sql, params, is_ref)) for each ORDER BY item.\n        for order_by in self.query.order_by or []:\n            if hasattr(order_by, 'as_sql'):\n                sql, params = order_by.as_sql(self, self.connection)\n            else:\n                sql, params = str(order_by), []\n            yield order_by, (sql, params, False)\n\n    def get_order_by(self):\n        Return: line 42: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement warnings (from versions: none)\nERROR: No matching distribution found for warnings\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 31782,
+        "completion_tokens": 12580,
+        "estimated_cost_usd": 0.34761
+    },
+    "maestro_score": 0
+}

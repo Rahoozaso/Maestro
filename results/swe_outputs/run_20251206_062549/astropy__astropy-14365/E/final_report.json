@@ -1,0 +1,129 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4, complexities=[{'type': 'method', 'rank': 'C', 'endline': 172, 'complexity': 11, 'name': '_build_table', 'lineno': 130, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 71, 'complexity': 6, 'name': '_parse_line', 'lineno': 43, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 172, 'complexity': 5, 'name': 'QDPReader', 'lineno': 14, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 29, 'complexity': 1, 'name': '__init__', 'lineno': 25, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 38, 'complexity': 2, 'name': 'read', 'lineno': 34, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 71, 'complexity': 6, 'name': '_parse_line', 'lineno': 43, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 86, 'complexity': 1, 'name': '_handle_read', 'lineno': 76, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 107, 'complexity': 3, 'name': '_handle_read_serr', 'lineno': 88, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 125, 'complexity': 3, 'name': '_handle_read_terr', 'lineno': 109, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'C', 'endline': 172, 'complexity': 11, 'name': '_build_table', 'lineno': 130, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 107, 'complexity': 3, 'name': '_handle_read_serr', 'lineno': 88, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 125, 'complexity': 3, 'name': '_handle_read_terr', 'lineno': 109, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 38, 'complexity': 2, 'name': 'read', 'lineno': 34, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 179, 'complexity': 1, 'name': 'read_qdp', 'lineno': 177, 'col_offset': 0, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 11, 'complexity': 1, 'name': 'QDPError', 'lineno': 10, 'col_offset': 0, 'methods': []}, {'type': 'method', 'rank': 'A', 'endline': 29, 'complexity': 1, 'name': '__init__', 'lineno': 25, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 86, 'complexity': 1, 'name': '_handle_read', 'lineno': 76, 'col_offset': 4, 'classname': 'QDPReader', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=3.000000000086267e-07, improvement_percentage=-50.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace nested list search with hash-based lookups to reduce algorithmic complexity",
+            "target_code_block": "main.py#L1-L80",
+            "severity": "High",
+            "reasoning": "The issue description suggests functionally correct but inefficient behavior, which in many AI-generated solutions typically comes from patterns like `for x in a: if x in b:` where `b` is a list, or repeated scanning/filtering over a collection. Such constructs incur O(n*m) time when n and m grow. Converting the inner collection to a set or dict reduces lookups to O(1) on average, improving the overall complexity to O(n + m).",
+            "proposed_change": "def optimized_function(list1, list2):\n    # Precompute a hash set for faster membership checks\n    set2 = set(list2)\n    result = []\n    for item in list1:\n        if item in set2:  # O(1) average instead of O(len(list2))\n            result.append(item)\n    return result"
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Eliminate repeated computations and conversions inside loops",
+            "target_code_block": "main.py#L20-L120",
+            "severity": "Medium",
+            "reasoning": "AI-generated code frequently recomputes values and performs type conversions (e.g., `len(list)`, `some_list.to_dict()`, `sorted(seq)`, or `regex.match(...)`) inside loops where the result is invariant. This creates an unnecessary multiplicative factor on runtime (O(n^2) instead of O(n) in some cases) and extra allocations.",
+            "proposed_change": "def optimized_processing(items):\n    # Example: move loop-invariant computations outside the loop\n    n = len(items)  # computed once instead of in each iteration\n    precomputed_mapping = {item.id: item for item in items}  # built once\n\n    results = []\n    for i in range(n):\n        item = items[i]\n        mapped = precomputed_mapping[item.id]\n        # ... perform per-item work only ...\n        results.append(mapped)\n    return results"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace recursive patterns with iterative loops to avoid stack overhead",
+            "target_code_block": "main.py#L80-L160",
+            "severity": "Medium",
+            "reasoning": "When AI-generated code uses recursion for traversals (such as tree walks, DFS, or combinatorial generation), it can incur significant function call overhead and risk hitting Python's recursion limit for deep inputs. An equivalent iterative implementation using an explicit stack or queue preserves behavior while offering better control over memory and often better performance.",
+            "proposed_change": "def dfs_iterative(root):\n    if root is None:\n        return []\n    stack = [root]\n    visited = []\n    while stack:\n        node = stack.pop()\n        visited.append(node.value)\n        # Assuming children is a list-like iterable\n        # Push in reverse order if you must preserve the original recursive visit order\n        for child in reversed(node.children):\n            stack.append(child)\n    return visited"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Use efficient string building patterns instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L160-L220",
+            "severity": "Medium",
+            "reasoning": "If the generated code concatenates strings incrementally in a loop (e.g., `s += part`), this creates many intermediate string objects because Python strings are immutable. The effective complexity becomes O(n^2) with respect to the total output size. Building a list of parts and using `''.join(parts)` is the standard O(n) solution.",
+            "proposed_change": "def build_message(parts):\n    # Inefficient pattern (hypothetical original):\n    # msg = ''\n    # for p in parts:\n    #     msg += p\n    # return msg\n\n    # Optimized pattern:\n    buffer = []\n    for p in parts:\n        buffer.append(p)\n    return ''.join(buffer)"
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Prefer lazy or more specific imports to reduce startup overhead and memory footprint",
+            "target_code_block": "main.py#L1-L20",
+            "severity": "Low",
+            "reasoning": "AI-generated solutions often import entire modules (e.g., `import numpy as np`, `import pandas as pd`) even if only a small subset of functionality is used, or import heavy libraries at module import time even when only some code paths need them. This increases startup time and baseline memory use.",
+            "proposed_change": "# Instead of heavy, broad imports at the top level:\n# import pandas as pd\n# import numpy as np\n\n# Use more targeted or lazy imports where beneficial:\nfrom math import sqrt  # example of specific import\n\n# Or perform lazy imports inside functions that rarely run:\n\ndef heavy_feature(...):\n    import numpy as np  # imported only when needed\n    # use np here\n    ..."
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing input code prevents targeted, line-specific review",
+            "target_code_block": "v_gen#L1-L1",
+            "severity": "High",
+            "reasoning": "No concrete source code was provided in the `v_gen` field, so a structured readability review cannot reference actual functions, variables, or line ranges. This blocks the ability to identify specific code smells such as SRP violations, poor naming, or magic numbers in context.",
+            "proposed_change": "Provide the full source code in the `v_gen` field so that each suggestion can be tied to specific line ranges and concrete identifiers (functions, classes, variables)."
+        },
+        {
+            "suggestion_id": "READ-002",
+            "agent_role": "ReadabilityExpert",
+            "title": "Ensure type hints avoid overly generic 'typing.Any'",
+            "target_code_block": "v_gen#all-typed-definitions",
+            "severity": "Medium",
+            "reasoning": "AI-generated Python code often uses `typing.Any` in type hints, which weakens static analysis and makes it harder for future maintainers to understand expected data structures. This violates the 'Poor Naming' and general clarity principles, as the shape and semantics of the data are obscured.",
+            "proposed_change": "Search for all occurrences of `Any` in type hints and replace each with a more specific type such as `str`, `int`, `float`, `dict[str, Any]` (only when necessary), `list[User]`, or dedicated `TypedDict`/`dataclass` types that describe the domain model."
+        },
+        {
+            "suggestion_id": "READ-003",
+            "agent_role": "ReadabilityExpert",
+            "title": "Avoid single-letter or ambiguous variable names",
+            "target_code_block": "v_gen#all-variable-declarations",
+            "severity": "Medium",
+            "reasoning": "AI-generated code frequently uses short variable names such as `d`, `tmp`, `ml`, or `ol`. These names do not describe the intent or content of the variable, increasing cognitive load and violating the 'Poor Naming' principle from the checklist.",
+            "proposed_change": "Identify all single-letter or ambiguous variable names (e.g., `d`, `x`, `tmp`, `ml`, `ol`) and rename them to domain-relevant names, such as `user_data`, `config_dict`, `metrics_list`, or `output_lines`, ensuring all references are updated consistently."
+        },
+        {
+            "suggestion_id": "READ-004",
+            "agent_role": "ReadabilityExpert",
+            "title": "Add docstrings to public functions and classes",
+            "target_code_block": "v_gen#all-public-APIs",
+            "severity": "Medium",
+            "reasoning": "AI-generated code often omits docstrings for key functions and classes. Missing docstrings make it difficult for maintainers to understand responsibilities, parameters, return values, and edge cases, which conflicts with the maintainability and SRP clarity goals.",
+            "proposed_change": "For each public function and class, add a concise docstring that describes: high-level purpose, parameters (with types and meaning), return value, and any side effects or important invariants. Follow the chosen project style (e.g., Google, NumPy, or reStructuredText)."
+        },
+        {
+            "suggestion_id": "READ-005",
+            "agent_role": "ReadabilityExpert",
+            "title": "Simplify or refactor complex list comprehensions",
+            "target_code_block": "v_gen#all-list-comprehensions",
+            "severity": "Medium",
+            "reasoning": "Complex list comprehensions with nested conditionals or multiple `for` clauses are common in AI-generated code. When they include branching logic, they can be hard to read and debug, violating the 'Deeply Nested Logic' principle and increasing cognitive load.",
+            "proposed_change": "Locate list comprehensions with more than one `for` clause or inline `if` conditions with non-trivial expressions and refactor them into small, well-named helper functions or explicit `for` loops. Keep list comprehensions only for simple transformations and filters."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-qdp-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal: Resolve the concrete issue: QDP directive parsing must be case-insensitive so that commands like 'read serr 1 2' work. Expert performance suggestions (PERF-001..005) are generic and not applicable to this specific code. Readability suggestions READ-001..005 are also generic; only docstring quality and naming are already largely acceptable. [Phase 2] Grouping by target_code_block: all PERF suggestions target broad main.py ranges and do not map to specific problematic constructs in the provided QDPReader; READ suggestions are repository-wide/generic. The core behavior already matches the desired fix: _parse_line normalizes directives via upper(), so lower-case commands are handled. [Phase 3] No SecurityExpert report; thus no Critical security items. Unit tests are N/A, so we must preserve evident behavior. Generic suggestions that would require structural rework without clear benefit or context are rejected to avoid breaking behavior (Principle of Functionality Preservation, Minimal Invasiveness). [Phase 4] No real conflict points on the specific QDP logic. Integration focus is validating and slightly tightening the behavior to remain in line with the issue description: commands are case-insensitive; comments and blanks ignored; data lines processed numerically; errors mapped when READ SERR is active. The current code already does this. Any broad refactoring (e.g., import changes, variable renames, algorithmic changes) risks regressions for no issue-specific gain. [Phase 5] Therefore, the safest, minimal, and correct execution plan is to make no code changes. This respects the real astropy behavior being modeled and avoids inventing optimizations or refactors that are not evidence-backed. [Phase 6] Final plan: instructions list is empty, as the current v_gen fully embodies the intended fix: directive recognition is case-insensitive; 'read serr 1 2' is accepted and processed without raising an 'Unrecognized QDP line' error.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Execution plan contained no modification instructions.",
+        "Step 2: Returned existing implementation unchanged, which already performs case-insensitive QDP directive parsing."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 13372,
+        "completion_tokens": 5243,
+        "estimated_cost_usd": 0.145505
+    },
+    "maestro_score": 70
+}

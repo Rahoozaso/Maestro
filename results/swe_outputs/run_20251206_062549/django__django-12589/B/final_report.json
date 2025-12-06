@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 85,
+        "scores": {
+            "security": 40,
+            "readability": 15,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=19.0, complexities=[{'type': 'method', 'rank': 'E', 'col_offset': 4, 'lineno': 10, 'complexity': 35, 'classname': 'SQLCompiler', 'endline': 148, 'name': 'get_group_by', 'closures': []}, {'type': 'class', 'rank': 'C', 'col_offset': 0, 'lineno': 7, 'complexity': 20, 'endline': 162, 'name': 'SQLCompiler', 'methods': [{'type': 'method', 'rank': 'E', 'col_offset': 4, 'lineno': 10, 'complexity': 35, 'classname': 'SQLCompiler', 'endline': 148, 'name': 'get_group_by', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 152, 'complexity': 2, 'classname': 'SQLCompiler', 'endline': 162, 'name': 'compile', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'lineno': 152, 'complexity': 2, 'classname': 'SQLCompiler', 'endline': 162, 'name': 'compile', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.000000000002e-06, modified_avg_time=1.000000000001e-06, improvement_percentage=50.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 33154,
+        "completion_tokens": 13357,
+        "estimated_cost_usd": 0.366125
+    },
+    "maestro_score": 85
+}

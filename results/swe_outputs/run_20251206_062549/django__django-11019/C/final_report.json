@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.3076923076923075, complexities=[{'type': 'method', 'rank': 'D', 'col_offset': 4, 'classname': 'Media', 'lineno': 95, 'endline': 210, 'complexity': 22, 'name': '_topological_merge', 'closures': [{'type': 'function', 'rank': 'A', 'col_offset': 8, 'lineno': 121, 'endline': 158, 'complexity': 4, 'name': 'add_edge', 'closures': [{'type': 'function', 'rank': 'A', 'col_offset': 12, 'lineno': 140, 'endline': 150, 'complexity': 5, 'name': 'dfs', 'closures': []}]}]}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'classname': 'Media', 'lineno': 45, 'endline': 58, 'complexity': 8, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'classname': 'Media', 'lineno': 225, 'endline': 240, 'complexity': 7, 'name': '_combine_css', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'lineno': 35, 'endline': 254, 'complexity': 5, 'name': 'Media', 'methods': [{'type': 'method', 'rank': 'B', 'col_offset': 4, 'classname': 'Media', 'lineno': 45, 'endline': 58, 'complexity': 8, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 61, 'endline': 62, 'complexity': 1, 'name': 'css', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 65, 'endline': 66, 'complexity': 1, 'name': 'js', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 68, 'endline': 69, 'complexity': 2, 'name': '__bool__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 71, 'endline': 88, 'complexity': 2, 'name': '__add__', 'closures': []}, {'type': 'method', 'rank': 'D', 'col_offset': 4, 'classname': 'Media', 'lineno': 95, 'endline': 210, 'complexity': 22, 'name': '_topological_merge', 'closures': [{'type': 'function', 'rank': 'A', 'col_offset': 8, 'lineno': 121, 'endline': 158, 'complexity': 4, 'name': 'add_edge', 'closures': [{'type': 'function', 'rank': 'A', 'col_offset': 12, 'lineno': 140, 'endline': 150, 'complexity': 5, 'name': 'dfs', 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 212, 'endline': 223, 'complexity': 4, 'name': '_combine_js', 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'classname': 'Media', 'lineno': 225, 'endline': 240, 'complexity': 7, 'name': '_combine_css', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 246, 'endline': 247, 'complexity': 1, 'name': 'render_js', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 249, 'endline': 251, 'complexity': 1, 'name': 'render_css', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 253, 'endline': 254, 'complexity': 1, 'name': '__repr__', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 212, 'endline': 223, 'complexity': 4, 'name': '_combine_js', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 68, 'endline': 69, 'complexity': 2, 'name': '__bool__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 71, 'endline': 88, 'complexity': 2, 'name': '__add__', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'lineno': 30, 'endline': 32, 'complexity': 1, 'name': '_MediaDef', 'methods': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 61, 'endline': 62, 'complexity': 1, 'name': 'css', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 65, 'endline': 66, 'complexity': 1, 'name': 'js', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 246, 'endline': 247, 'complexity': 1, 'name': 'render_js', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 249, 'endline': 251, 'complexity': 1, 'name': 'render_css', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'Media', 'lineno': 253, 'endline': 254, 'complexity': 1, 'name': '__repr__', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nthe: line 37: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206070529",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Reduce deeply nested control structures with early returns",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Identify functions with more than two levels of nested conditionals or loops and refactor them using guard clauses/early returns (e.g., validate inputs early and return on failure) or by extracting nested logic into smaller, single-purpose helper functions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with set/dict-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(data, candidates):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in data:\n    #     if item in candidates:  # O(n) per lookup on a list\n    #         result.append(item)\n\n    # Optimized pattern using a set for O(1) average lookups\n    candidates_set = set(candidates)\n    result = []\n    for item in data:\n        if item in candidates_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-003: Replace repeated string concatenation in loops with join pattern",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L550",
+                "new_code": "def build_message(parts):\n    # Hypothetical original pattern:\n    # msg = \"\"\n    # for p in parts:\n    #     msg += p  # O(n^2) behavior for long lists\n    # return msg\n\n    # Optimized pattern\n    msg_parts = []\n    for p in parts:\n        msg_parts.append(p)\n    return \"\".join(msg_parts)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-002: Convert recursive logic to iterative loops to avoid stack overhead and potential overflow",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def optimized_traversal(root):\n    # Hypothetical original pattern:\n    # def traverse(node, acc):\n    #     if not node:\n    #         return\n    #     acc.append(node.value)\n    #     for child in node.children:\n    #         traverse(child, acc)\n    # acc = []\n    # traverse(root, acc)\n    # return acc\n\n    # Iterative version using an explicit stack\n    if root is None:\n        return []\n    acc = []\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        acc.append(node.value)\n        # Preserve traversal order: push children in reverse if needed\n        for child in reversed(node.children):\n            stack.append(child)\n    return acc",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-005: Use lazy and specific imports to reduce startup and memory overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Hypothetical original imports:\n# import numpy as np\n# import pandas as pd\n# import matplotlib.pyplot as plt\n\n# Optimized: only import what is needed, and lazily inside functions\n\ndef compute_stats(data):\n    import numpy as np  # Lazy import used only when this function is called\n    return float(np.mean(data)), float(np.std(data))\n\ndef plot_data(data):\n    import matplotlib.pyplot as plt  # Only loaded if plotting is requested\n    plt.plot(data)\n    plt.show()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-004: Hoist loop-invariant computations out of inner loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L550-L750",
+                "new_code": "def process_items(items, pattern):\n    import re\n    # Hypothetical original pattern:\n    # results = []\n    # for item in items:\n    #     if re.match(pattern, item):  # regex compiled each iteration\n    #         results.append(item)\n\n    # Optimized pattern with hoisting\n    regex = re.compile(pattern)\n    results = []\n    for item in items:\n        if regex.match(item):\n            results.append(item)\n    return results",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 45016,
+        "completion_tokens": 22187,
+        "estimated_cost_usd": 0.557885
+    },
+    "maestro_score": 0
+}

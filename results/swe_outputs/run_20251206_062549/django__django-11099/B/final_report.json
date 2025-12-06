@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.0, complexities=[{'type': 'class', 'rank': 'A', 'lineno': 9, 'complexity': 1, 'endline': 15, 'name': 'ASCIIUsernameValidator', 'col_offset': 0, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 19, 'complexity': 1, 'endline': 22, 'name': 'UnicodeUsernameValidator', 'col_offset': 0, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.0000000000575113e-07, modified_avg_time=1.9999999999881224e-07, improvement_percentage=3.469446951853848e-09, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 25036,
+        "completion_tokens": 7701,
+        "estimated_cost_usd": 0.240695
+    },
+    "maestro_score": 65
+}

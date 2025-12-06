@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '22                          [False, True]])\\n23     assert mat.shape == expected.shape\\n24     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi8mn7dho.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 23, 'line_range': [23], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '23     assert mat.shape == expected.shape\\n24     assert np.array_equal(mat, expected)\\n25 \\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi8mn7dho.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 24, 'line_range': [24], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '45     ])\\n46     assert mat.shape == expected.shape\\n47     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi8mn7dho.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 46, 'line_range': [46], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '46     assert mat.shape == expected.shape\\n47     assert np.array_equal(mat, expected)\\n48 \\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi8mn7dho.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 47, 'line_range': [47], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '71     ])\\n72     assert mat.shape == expected.shape\\n73     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 38, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi8mn7dho.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 72, 'line_range': [72], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '72     assert mat.shape == expected.shape\\n73     assert np.array_equal(mat, expected)\\n', 'col_offset': 4, 'end_col_offset': 40, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpi8mn7dho.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 73, 'line_range': [73], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.0, complexities=[{'type': 'function', 'rank': 'A', 'name': 'test_separability_simple_linear_pair', 'complexity': 3, 'endline': 7, 'lineno': 7, 'col_offset': 0, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'test_separability_flat_complex_compound', 'complexity': 3, 'endline': 27, 'lineno': 27, 'col_offset': 0, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'test_separability_nested_compound_model', 'complexity': 3, 'endline': 50, 'lineno': 50, 'col_offset': 0, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=1.9999999999187335e-07, improvement_percentage=33.33333333795927, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206062804",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing code to review – request explicit v_gen and unit_test_suite content",
+                "action": "REPLACE",
+                "target_code_block": "N/A",
+                "new_code": "Provide the full text of the v_gen source code and the unit_test_suite so that a structured readability review can be performed on actual functions, classes, and variables.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with set/dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimize_membership_operations(items, reference_list):\n    # Before (hypothetical inefficient pattern):\n    # result = []\n    # for x in items:\n    #     if x in reference_list:  # O(len(reference_list)) per check\n    #         result.append(x)\n\n    # After: precompute set for O(1) average membership checks\n    reference_set = set(reference_list)\n    result = []\n    for x in items:\n        if x in reference_set:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Make imports more specific and defer heavy imports when possible",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Before (hypothetical):\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# After: narrow and/or lazy imports\nfrom math import sqrt  # only what is needed\n\ndef compute(values):\n    # Lazy import of heavy libraries used only here\n    import numpy as np\n    arr = np.array(values)\n    return sqrt((arr ** 2).sum())",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 18234,
+        "completion_tokens": 8829,
+        "estimated_cost_usd": 0.223605
+    },
+    "maestro_score": 90
+}

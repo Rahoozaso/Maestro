@@ -1,0 +1,118 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.1428571428571428, complexities=[{'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'InheritedChoicesDisplayTests', 'endline': 53, 'complexity': 2, 'lineno': 31, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'col_offset': 4, 'name': 'test_inherited_choices_still_work', 'endline': 39, 'complexity': 1, 'lineno': 34, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'col_offset': 4, 'name': 'test_extended_choices_on_child', 'endline': 44, 'complexity': 1, 'lineno': 41, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'col_offset': 4, 'name': 'test_base_behavior_for_sibling_without_override', 'endline': 53, 'complexity': 1, 'lineno': 46, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'AbstractBase', 'endline': 10, 'complexity': 1, 'lineno': 5, 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'Child', 'endline': 22, 'complexity': 1, 'lineno': 16, 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'Sibling', 'endline': 28, 'complexity': 1, 'lineno': 25, 'methods': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'col_offset': 4, 'name': 'test_inherited_choices_still_work', 'endline': 39, 'complexity': 1, 'lineno': 34, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'col_offset': 4, 'name': 'test_extended_choices_on_child', 'endline': 44, 'complexity': 1, 'lineno': 41, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'col_offset': 4, 'name': 'test_base_behavior_for_sibling_without_override', 'endline': 53, 'complexity': 1, 'lineno': 46, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.000000000001e-06, modified_avg_time=1.1999999999998123e-06, improvement_percentage=-19.999999999861224, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206085333",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing v_gen implementation prevents readability assessment",
+                "action": "REPLACE",
+                "target_code_block": "unknown#L1-L1",
+                "new_code": "Provide the full v_gen source code (and, if relevant, its filename) so that a line-by-line readability and maintainability analysis can be performed according to the specified CODE SMELL CHECKLIST.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-002: Replace naive nested searches with dictionary indexing",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L220",
+                "new_code": "def join_by_id(left, right):\n    # Hypothetical current implementation:\n    # result = []\n    # for l in left:\n    #     for r in right:\n    #         if l['id'] == r['id']:\n    #             result.append((l, r))\n\n    # Optimized implementation using a dict for right-side indexing\n    index = {}\n    for r in right:\n        rid = r['id']\n        if rid not in index:\n            index[rid] = []\n        index[rid].append(r)\n\n    result = []\n    for l in left:\n        matches = index.get(l['id'])\n        if matches:\n            for r in matches:\n                result.append((l, r))\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Introduce hash-based lookups to replace repeated list membership checks",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def process_items(items):\n    # Hypothetical current pattern:\n    # result = []\n    # for item in items:\n    #     if item not in result:\n    #         result.append(item)\n\n    # Optimized pattern using a set for O(1) membership tests\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-007: Prefer vectorized or batch operations when using numerical/data libraries",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L100-L220",
+                "new_code": "import numpy as np\n\n# Hypothetical current implementation:\n# def scale(values, factor):\n#     result = []\n#     for v in values:\n#         result.append(v * factor)\n#     return result\n\n# Optimized vectorized version when inputs are numeric arrays\n\ndef scale(values, factor):\n    arr = np.asarray(values)\n    return (arr * factor).tolist()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-005: Use efficient string building with join instead of repeated concatenation",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L180",
+                "new_code": "def build_output(lines):\n    # Hypothetical current implementation:\n    # s = \"\"\n    # for line in lines:\n    #     s += line + \"\\n\"\n    # return s\n\n    # Optimized implementation using join\n    parts = []\n    for line in lines:\n        parts.append(line)\n        parts.append(\"\\n\")\n    return \"\".join(parts)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-003: Convert deep recursion to iteration to avoid stack overhead and potential overflow",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L250",
+                "new_code": "def dfs_iterative(root):\n    # Hypothetical current recursive version:\n    # def dfs(node, visit):\n    #     if node is None:\n    #         return\n    #     visit(node)\n    #     for child in node.children:\n    #         dfs(child, visit)\n\n    # Iterative version with an explicit stack\n    stack = [root]\n    visited_order = []\n    while stack:\n        node = stack.pop()\n        if node is None:\n            continue\n        visited_order.append(node)\n        # Assuming children should be visited in original order\n        for child in reversed(node.children):\n            stack.append(child)\n    return visited_order",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-006: Leverage lazy or more specific imports to reduce startup and memory overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "def some_function(x):\n    # Hypothetical current pattern:\n    # import numpy as np\n    # ... uses only np.mean once ...\n\n    # Optimized: localized import of only what is needed\n    from statistics import mean\n    return mean(x)\n\n# Or, if a heavy module is only needed in rare code paths:\n\ndef optional_heavy_computation(data):\n    # Lazy import inside the function\n    import numpy as np\n    return np.array(data).sum()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 34706,
+        "completion_tokens": 14751,
+        "estimated_cost_usd": 0.394795
+    },
+    "maestro_score": 70
+}

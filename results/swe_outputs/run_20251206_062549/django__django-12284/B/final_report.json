@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 10
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.1428571428571428, complexities=[{'type': 'class', 'rank': 'A', 'name': 'InheritedChoicesDisplayTests', 'endline': 53, 'col_offset': 0, 'lineno': 31, 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'name': 'test_inherited_choices_still_work', 'endline': 39, 'col_offset': 4, 'lineno': 34, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'name': 'test_extended_choices_on_child', 'endline': 44, 'col_offset': 4, 'lineno': 41, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'name': 'test_base_behavior_for_sibling_without_override', 'endline': 53, 'col_offset': 4, 'lineno': 46, 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'name': 'AbstractBase', 'endline': 10, 'col_offset': 0, 'lineno': 5, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'Child', 'endline': 22, 'col_offset': 0, 'lineno': 16, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'Sibling', 'endline': 28, 'col_offset': 0, 'lineno': 25, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'name': 'test_inherited_choices_still_work', 'endline': 39, 'col_offset': 4, 'lineno': 34, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'name': 'test_extended_choices_on_child', 'endline': 44, 'col_offset': 4, 'lineno': 41, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'name': 'test_base_behavior_for_sibling_without_override', 'endline': 53, 'col_offset': 4, 'lineno': 46, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1999999999998123e-06, modified_avg_time=1.1000000000038757e-06, improvement_percentage=8.333333332996027, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 27472,
+        "completion_tokens": 10983,
+        "estimated_cost_usd": 0.302105
+    },
+    "maestro_score": 80
+}

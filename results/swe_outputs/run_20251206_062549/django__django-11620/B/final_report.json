@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 10
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.3, complexities=[{'type': 'class', 'rank': 'A', 'lineno': 6, 'col_offset': 0, 'complexity': 2, 'endline': 14, 'name': 'Http404Converter', 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 9, 'col_offset': 4, 'classname': 'Http404Converter', 'complexity': 1, 'endline': 11, 'name': 'to_python', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 13, 'col_offset': 4, 'classname': 'Http404Converter', 'complexity': 1, 'endline': 14, 'name': 'to_url', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'lineno': 17, 'col_offset': 0, 'complexity': 2, 'endline': 25, 'name': 'ValueErrorConverter', 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 20, 'col_offset': 4, 'classname': 'ValueErrorConverter', 'complexity': 1, 'endline': 22, 'name': 'to_python', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 24, 'col_offset': 4, 'classname': 'ValueErrorConverter', 'complexity': 1, 'endline': 25, 'name': 'to_url', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'lineno': 38, 'col_offset': 0, 'complexity': 2, 'endline': 66, 'name': 'ConverterHttp404Tests', 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 42, 'col_offset': 4, 'classname': 'ConverterHttp404Tests', 'complexity': 1, 'endline': 48, 'name': 'test_value_error_in_converter_causes_no_match', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 51, 'col_offset': 4, 'classname': 'ConverterHttp404Tests', 'complexity': 1, 'endline': 57, 'name': 'test_http404_in_converter_debug_true', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 60, 'col_offset': 4, 'classname': 'ConverterHttp404Tests', 'complexity': 1, 'endline': 66, 'name': 'test_http404_in_converter_debug_false', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 9, 'col_offset': 4, 'classname': 'Http404Converter', 'complexity': 1, 'endline': 11, 'name': 'to_python', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 13, 'col_offset': 4, 'classname': 'Http404Converter', 'complexity': 1, 'endline': 14, 'name': 'to_url', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 20, 'col_offset': 4, 'classname': 'ValueErrorConverter', 'complexity': 1, 'endline': 22, 'name': 'to_python', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 24, 'col_offset': 4, 'classname': 'ValueErrorConverter', 'complexity': 1, 'endline': 25, 'name': 'to_url', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 42, 'col_offset': 4, 'classname': 'ConverterHttp404Tests', 'complexity': 1, 'endline': 48, 'name': 'test_value_error_in_converter_causes_no_match', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 51, 'col_offset': 4, 'classname': 'ConverterHttp404Tests', 'complexity': 1, 'endline': 57, 'name': 'test_http404_in_converter_debug_true', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 60, 'col_offset': 4, 'classname': 'ConverterHttp404Tests', 'complexity': 1, 'endline': 66, 'name': 'test_http404_in_converter_debug_false', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.3999999999986246e-06, modified_avg_time=1.299999999995749e-06, improvement_percentage=7.142857143069559, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 39783,
+        "completion_tokens": 15068,
+        "estimated_cost_usd": 0.424935
+    },
+    "maestro_score": 80
+}

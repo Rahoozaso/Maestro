@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 60,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.25, complexities=[{'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'DeletePkResetTests', 'endline': 35, 'lineno': 9, 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'test_delete_clears_pk_for_model_without_dependencies', 'endline': 18, 'lineno': 10, 'complexity': 1, 'classname': 'DeletePkResetTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'test_delete_clears_custom_pk', 'endline': 35, 'lineno': 20, 'complexity': 1, 'classname': 'DeletePkResetTests', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'SimpleModel', 'endline': 6, 'lineno': 5, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'test_delete_clears_pk_for_model_without_dependencies', 'endline': 18, 'lineno': 10, 'complexity': 1, 'classname': 'DeletePkResetTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'name': 'test_delete_clears_custom_pk', 'endline': 35, 'lineno': 20, 'complexity': 1, 'classname': 'DeletePkResetTests', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.000000000001e-06, modified_avg_time=1.0999999999969368e-06, improvement_percentage=-9.999999999583666, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nTraceback (most recent call last):\n  File \"//run_me.py\", line 5, in <module>\n    class SimpleModel(models.Model):\n  File \"/usr/local/lib/python3.9/site-packages/django/db/models/base.py\", line 129, in __new__\n    app_config = apps.get_containing_app_config(module)\n  File \"/usr/local/lib/python3.9/site-packages/django/apps/registry.py\", line 260, in get_containing_app_config\n    self.check_apps_ready()\n  File \"/usr/local/lib/python3.9/site-packages/django/apps/registry.py\", line 137, in check_apps_ready\n    settings.INSTALLED_APPS\n  File \"/usr/local/lib/python3.9/site-packages/django/conf/__init__.py\", line 102, in __getattr__\n    self._setup(name)\n  File \"/usr/local/lib/python3.9/site-packages/django/conf/__init__.py\", line 82, in _setup\n    raise ImproperlyConfigured(\ndjango.core.exceptions.ImproperlyConfigured: Requested setting INSTALLED_APPS, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings."
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206072318",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Review comments to eliminate or correct hallucinated or misleading descriptions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L999",
+                "new_code": "Manually compare each non-trivial comment in v_gen with the code it describes. Remove comments that restate the obvious or are incorrect, and revise any misleading comments so they precisely match the logic. Prefer clarifying intent rather than rephrasing the implementation.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-004: Convert deep or unbounded recursion to an iterative approach",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def dfs_iterative(root):\n    stack = [root]\n    visited = set()\n    while stack:\n        node = stack.pop()\n        if node in visited:\n            continue\n        visited.add(node)\n        # process node here\n        for neighbor in node.neighbors:\n            if neighbor not in visited:\n                stack.append(neighbor)\n    return visited",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-002: Use sets or dictionaries instead of lists for membership checks",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L120",
+                "new_code": "def optimized_lookup(source, filter_values):\n    # Convert list to set once before the loop\n    filter_set = set(filter_values)\n    result = []\n    for item in source:\n        if item in filter_set:  # O(1) average-case lookup\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Replace string concatenation in loops with join-based accumulation",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L150",
+                "new_code": "def build_string(chunks):\n    parts = []\n    for chunk in chunks:\n        # instead of: result += chunk\n        parts.append(chunk)\n    result = \"\".join(parts)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-001: Add loop-invariant code motion and avoid repeated conversions inside loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L100",
+                "new_code": "def refactored_function(data):\n    # Example of pulling loop-invariant computations out\n    n = len(data)  # instead of calling len(data) in every iteration\n    # precompile regex or expensive helpers once\n    # pattern = re.compile(r\"...\")\n\n    result = []\n    for i in range(n):\n        item = data[i]\n        # use 'n' and any precomputed helpers instead of recomputing each time\n        result.append(process_item(item))\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Use lazy or more specific imports to reduce startup and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L30",
+                "new_code": "# Before (eager and broad import)\n# import numpy as np\n\n# After (lazy and specific usage)\ndef compute_something(data):\n    import numpy as np  # lazy import inside function if used infrequently\n    arr = np.array(data)\n    return arr.sum()\n\n# Or, if only a single function is used frequently:\n# from math import sqrt\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 41767,
+        "completion_tokens": 18793,
+        "estimated_cost_usd": 0.49073
+    },
+    "maestro_score": 0
+}

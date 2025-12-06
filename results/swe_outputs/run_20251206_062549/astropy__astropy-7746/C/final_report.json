@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=6.2, complexities=[{'type': 'method', 'rank': 'D', 'lineno': 44, 'classname': 'WCS', 'complexity': 21, 'name': '_array_converter', 'endline': 160, 'col_offset': 4, 'closures': []}, {'type': 'class', 'rank': 'B', 'lineno': 7, 'complexity': 7, 'name': 'WCS', 'endline': 160, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 18, 'classname': 'WCS', 'complexity': 1, 'name': '__init__', 'endline': 19, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 24, 'classname': 'WCS', 'complexity': 1, 'name': '_normalize_sky_components', 'endline': 31, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 33, 'classname': 'WCS', 'complexity': 1, 'name': '_denormalize_sky_components', 'endline': 39, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'D', 'lineno': 44, 'classname': 'WCS', 'complexity': 21, 'name': '_array_converter', 'endline': 160, 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 18, 'classname': 'WCS', 'complexity': 1, 'name': '__init__', 'endline': 19, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 24, 'classname': 'WCS', 'complexity': 1, 'name': '_normalize_sky_components', 'endline': 31, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 33, 'classname': 'WCS', 'complexity': 1, 'name': '_denormalize_sky_components', 'endline': 39, 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=2.999999999808711e-07, improvement_percentage=9.251858538276928e-09, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nextract: line 9: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement copy (from versions: none)\nERROR: No matching distribution found for copy\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206064923",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing input code prevents precise, location-aware review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Include the full v_gen source code and unit_test_suite strings in the input so that specific code smells (e.g., Any typing usage, short variable names like 'd' or 'ml', missing docstrings, complex comprehensions, magic numbers, and SRP violations) can be analyzed and mapped to concrete locations such as 'module.py#L10-L25'.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks on lists with set/dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def process_items(items, filter_values):\n    # Before: for item in items: if item.value in filter_values: ...  (filter_values is a list)\n    # Convert filter_values to a set once before the loop\n    filter_set = set(filter_values)\n    result = []\n    for item in items:\n        if item.value in filter_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Avoid unnecessary eager imports and prefer specific or local imports for heavy libraries",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Before:\n# import numpy as np\n# import pandas as pd\n\n# After: narrow and/or lazy imports\n# Only import when needed and as specific as possible\n\ndef compute_stats(arr):\n    import numpy as np  # lazy import inside the function\n    arr = np.asarray(arr)\n    return float(arr.mean()), float(arr.std())\n\n# Or, if only certain submodules are needed:\n# from math import sqrt\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36511,
+        "completion_tokens": 14900,
+        "estimated_cost_usd": 0.406055
+    },
+    "maestro_score": 0
+}

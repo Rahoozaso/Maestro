@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.454545454545454, complexities=[{'type': 'function', 'rank': 'C', 'complexity': 20, 'lineno': 26, 'col_offset': 0, 'endline': 84, 'name': 'cleanse_setting', 'closures': []}, {'type': 'method', 'rank': 'B', 'complexity': 7, 'lineno': 116, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 137, 'name': 'get_safe_request', 'closures': []}, {'type': 'class', 'rank': 'A', 'complexity': 4, 'lineno': 87, 'col_offset': 0, 'endline': 161, 'name': 'SafeExceptionReporterFilter', 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 92, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 96, 'name': 'get_post_parameters', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 98, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 102, 'name': 'get_cookies', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 104, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 108, 'name': 'get_meta', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 110, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 114, 'name': 'is_active', 'closures': []}, {'type': 'method', 'rank': 'B', 'complexity': 7, 'lineno': 116, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 137, 'name': 'get_safe_request', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'lineno': 139, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 150, 'name': '_clone_request', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'lineno': 152, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 161, 'name': 'get_safe_settings', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'lineno': 139, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 150, 'name': '_clone_request', 'closures': []}, {'type': 'function', 'rank': 'A', 'complexity': 3, 'lineno': 164, 'col_offset': 0, 'endline': 175, 'name': 'technical_500_response', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 3, 'lineno': 152, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 161, 'name': 'get_safe_settings', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 92, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 96, 'name': 'get_post_parameters', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 98, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 102, 'name': 'get_cookies', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 104, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 108, 'name': 'get_meta', 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 110, 'classname': 'SafeExceptionReporterFilter', 'col_offset': 4, 'endline': 114, 'name': 'is_active', 'closures': []}, {'type': 'class', 'rank': 'A', 'complexity': 1, 'lineno': 178, 'col_offset': 0, 'endline': 182, 'name': 'ExceptionReporter', 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1e-06, modified_avg_time=5.000000000005e-07, improvement_percentage=49.99999999994999, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\na: line 28: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement traceback (from versions: none)\nERROR: No matching distribution found for traceback\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35011,
+        "completion_tokens": 14060,
+        "estimated_cost_usd": 0.385955
+    },
+    "maestro_score": 0
+}

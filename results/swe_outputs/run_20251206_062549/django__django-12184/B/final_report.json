@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4545454545454546, complexities=[{'type': 'method', 'rank': 'B', 'classname': 'BaseHandler', 'name': '_get_response_async', 'endline': 126, 'col_offset': 4, 'lineno': 80, 'complexity': 9, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'BaseHandler', 'name': '_normalize_callback_args_kwargs', 'endline': 212, 'col_offset': 4, 'lineno': 139, 'complexity': 9, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'BaseHandler', 'name': 'load_middleware', 'endline': 70, 'col_offset': 4, 'lineno': 43, 'complexity': 8, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'BaseHandler', 'endline': 238, 'col_offset': 0, 'lineno': 21, 'complexity': 4, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': '__init__', 'endline': 37, 'col_offset': 4, 'lineno': 33, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': 'resolver', 'endline': 41, 'col_offset': 4, 'lineno': 40, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'BaseHandler', 'name': 'load_middleware', 'endline': 70, 'col_offset': 4, 'lineno': 43, 'complexity': 8, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': 'get_response_async', 'endline': 78, 'col_offset': 4, 'lineno': 72, 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'BaseHandler', 'name': '_get_response_async', 'endline': 126, 'col_offset': 4, 'lineno': 80, 'complexity': 9, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': 'handle_uncaught_exception', 'endline': 134, 'col_offset': 4, 'lineno': 128, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'BaseHandler', 'name': '_normalize_callback_args_kwargs', 'endline': 212, 'col_offset': 4, 'lineno': 139, 'complexity': 9, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': '_invoke_view', 'endline': 225, 'col_offset': 4, 'lineno': 214, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': '_invoke_view_async', 'endline': 238, 'col_offset': 4, 'lineno': 227, 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': 'get_response_async', 'endline': 78, 'col_offset': 4, 'lineno': 72, 'complexity': 2, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': '_get_response_async', 'endline': 18, 'col_offset': 0, 'lineno': 16, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': '__init__', 'endline': 37, 'col_offset': 4, 'lineno': 33, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': 'resolver', 'endline': 41, 'col_offset': 4, 'lineno': 40, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': 'handle_uncaught_exception', 'endline': 134, 'col_offset': 4, 'lineno': 128, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': '_invoke_view', 'endline': 225, 'col_offset': 4, 'lineno': 214, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'BaseHandler', 'name': '_invoke_view_async', 'endline': 238, 'col_offset': 4, 'lineno': 227, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=4.0000000001150227e-07, improvement_percentage=-33.33333333333333, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nHTTP: line 23: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement inspect (from versions: none)\nERROR: No matching distribution found for inspect\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36873,
+        "completion_tokens": 16990,
+        "estimated_cost_usd": 0.439215
+    },
+    "maestro_score": 0
+}

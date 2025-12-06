@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.0, complexities=[{'type': 'class', 'rank': 'A', 'name': 'Field', 'col_offset': 0, 'endline': 57, 'lineno': 10, 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'col_offset': 4, 'endline': 25, 'lineno': 15, 'complexity': 1, 'classname': 'Field', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'get_prep_value', 'col_offset': 4, 'endline': 51, 'lineno': 31, 'complexity': 3, 'classname': 'Field', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'to_python', 'col_offset': 4, 'endline': 57, 'lineno': 56, 'complexity': 1, 'classname': 'Field', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'get_prep_value', 'col_offset': 4, 'endline': 51, 'lineno': 31, 'complexity': 3, 'classname': 'Field', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'col_offset': 4, 'endline': 25, 'lineno': 15, 'complexity': 1, 'classname': 'Field', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'to_python', 'col_offset': 4, 'endline': 57, 'lineno': 56, 'complexity': 1, 'classname': 'Field', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999999881224e-07, modified_avg_time=1.0000000000287557e-07, improvement_percentage=49.999999998265274, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28181,
+        "completion_tokens": 11393,
+        "estimated_cost_usd": 0.3118
+    },
+    "maestro_score": 100
+}

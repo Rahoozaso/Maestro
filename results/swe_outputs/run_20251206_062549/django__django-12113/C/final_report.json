@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.0, complexities=[], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=2.000000000002e-06, modified_avg_time=1.7000000000003124e-06, improvement_percentage=15.000000000069388, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206083836",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-004: Simplify or refactor overly complex list comprehensions",
+                "action": "REPLACE",
+                "target_code_block": "generated_module.py#L1-L200",
+                "new_code": "Identify any list comprehensions that contain nested loops, multiple inline conditions, or side-effect-like expressions, and refactor them into clearer for-loops with intermediate variables and comments, or break them into smaller helper functions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups to replace repeated linear list searches",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def some_processing(list1, list2):\n    # Before: repeated `if item in list2` or `list2.index(item)` inside a loop over list1\n    # set2 = set(list2) converts list2 to a hash set once (O(len(list2)))\n    set2 = set(list2)\n    result = []\n    for item in list1:\n        # membership check is now O(1) average instead of O(len(list2))\n        if item in set2:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-004: Use efficient string building via join instead of repeated concatenation in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L650-L800",
+                "new_code": "def render_lines(lines):\n    # Before (inefficient):\n    # s = \"\"\n    # for line in lines:\n    #     s += line + \"\\n\"\n    # return s\n\n    parts = []\n    for line in lines:\n        parts.append(line)\n    return \"\\n\".join(parts) + (\"\\n\" if parts else \"\")",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Avoid repeated data conversions or computations inside hot loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L650",
+                "new_code": "def process_records(records):\n    # Before (hypothetical anti-pattern):\n    # result = []\n    # for r in records:\n    #     if expensive_predicate(r, helper_config()):\n    #         result.append(r)\n\n    cfg = helper_config()  # compute once\n    result = []\n    for r in records:\n        if expensive_predicate(r, cfg):\n            result.append(r)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-002: Replace recursion with iterative approach to avoid stack overhead and potential overflow",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def process_items_recursively(items):\n    # Hypothetical original recursive style:\n    # if not items:\n    #     return []\n    # head = transform(items[0])\n    # return [head] + process_items_recursively(items[1:])\n\n    # Iterative version to avoid recursion and repeated slicing\n    result = []\n    for item in items:\n        transformed = transform(item)\n        result.append(transformed)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Narrow imports and prefer lazy or localized imports for heavy modules",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Before:\n# import pandas as pd\n# import numpy as np\n# from math import *\n\n# After: only import what is needed, and delay heavy imports until used\nfrom math import sqrt  # example of a specific import\n\n\ndef compute_something(data, use_pandas=False):\n    if use_pandas:\n        import pandas as pd  # lazy import only when needed\n        df = pd.DataFrame(data)\n        return df.describe()\n    else:\n        # fallback path without pandas\n        return sum(data) / len(data) if data else 0.0",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36731,
+        "completion_tokens": 11342,
+        "estimated_cost_usd": 0.353785
+    },
+    "maestro_score": 80
+}

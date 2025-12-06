@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.25, complexities=[{'type': 'class', 'rank': 'A', 'name': 'InheritedPkOrderingTests', 'endline': 32, 'lineno': 14, 'col_offset': 0, 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'InheritedPkOrderingTests', 'name': 'test_child_respects_parent_pk_desc_ordering', 'endline': 32, 'lineno': 15, 'col_offset': 4, 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'name': 'Parent', 'endline': 5, 'lineno': 5, 'col_offset': 0, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'Child', 'endline': 11, 'lineno': 10, 'col_offset': 0, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedPkOrderingTests', 'name': 'test_child_respects_parent_pk_desc_ordering', 'endline': 32, 'lineno': 15, 'col_offset': 4, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.300000000002688e-06, modified_avg_time=6.999999999993123e-07, improvement_percentage=46.15384615401039, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 23163,
+        "completion_tokens": 9972,
+        "estimated_cost_usd": 0.265395
+    },
+    "maestro_score": 90
+}

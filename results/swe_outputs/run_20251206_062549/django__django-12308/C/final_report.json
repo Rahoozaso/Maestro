@@ -1,0 +1,82 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.1428571428571428, complexities=[{'type': 'class', 'rank': 'A', 'lineno': 27, 'complexity': 2, 'name': 'JSONFieldReadonlyDisplayTests', 'endline': 64, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 28, 'classname': 'JSONFieldReadonlyDisplayTests', 'complexity': 1, 'name': 'setUp', 'endline': 31, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 33, 'classname': 'JSONFieldReadonlyDisplayTests', 'complexity': 1, 'name': 'test_readonly_jsonfield_display_is_valid_json', 'endline': 47, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 49, 'classname': 'JSONFieldReadonlyDisplayTests', 'complexity': 1, 'name': 'test_readonly_jsonfield_display_for_string_value', 'endline': 64, 'col_offset': 4, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'lineno': 11, 'complexity': 1, 'name': 'JSONModel', 'endline': 12, 'col_offset': 0, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 19, 'complexity': 1, 'name': 'JSONModelAdmin', 'endline': 20, 'col_offset': 0, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 23, 'complexity': 1, 'name': 'DummySite', 'endline': 24, 'col_offset': 0, 'methods': []}, {'type': 'method', 'rank': 'A', 'lineno': 28, 'classname': 'JSONFieldReadonlyDisplayTests', 'complexity': 1, 'name': 'setUp', 'endline': 31, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 33, 'classname': 'JSONFieldReadonlyDisplayTests', 'complexity': 1, 'name': 'test_readonly_jsonfield_display_is_valid_json', 'endline': 47, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 49, 'classname': 'JSONFieldReadonlyDisplayTests', 'complexity': 1, 'name': 'test_readonly_jsonfield_display_for_string_value', 'endline': 64, 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999999881224e-07, modified_avg_time=1.0000000000287557e-07, improvement_percentage=49.999999998265274, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206090247",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Check for and extract multiple responsibilities into smaller functions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L999",
+                "new_code": "Identify any function that performs more than one of: input validation, core computation, I/O, formatting, logging, or error handling. Extract logically distinct parts into well-named helper functions (e.g., 'parse_request()', 'compute_recommendations()', 'format_response()') and keep the original function as an orchestrator that calls these helpers.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with set/dict-based O(1) lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_func(items, candidates):\n    # Hypothetical improvement assuming current code does: \n    # for item in items:\n    #     if item in candidates: ...\n\n    candidate_set = set(candidates)  # O(m) once\n    result = []\n    for item in items:  # O(n)\n        if item in candidate_set:  # O(1) average\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-006: Prefer set operations for membership-heavy bulk operations over repeated list/dict logic",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L50-L150",
+                "new_code": "def common_ids(ids_a, ids_b):\n    # Hypothetical current style:\n    # common = []\n    # for x in ids_a:\n    #     if x in ids_b:\n    #         common.append(x)\n    # return common\n\n    set_a = set(ids_a)\n    set_b = set(ids_b)\n    return list(set_a & set_b)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-005: Use lazy or more specific imports to reduce startup overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L25",
+                "new_code": "# Hypothetical current style:\n# import pandas as pd\n# import numpy as np\n# ... only used in a rare branch inside a function\n\ndef heavy_computation(data, use_pandas=False):\n    if use_pandas:\n        import pandas as pd  # Lazy import\n        df = pd.DataFrame(data)\n        return df.describe()\n    else:\n        # fast path without pandas\n        return {\n            'min': min(data),\n            'max': max(data)\n        }",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35211,
+        "completion_tokens": 15607,
+        "estimated_cost_usd": 0.41016
+    },
+    "maestro_score": 90
+}

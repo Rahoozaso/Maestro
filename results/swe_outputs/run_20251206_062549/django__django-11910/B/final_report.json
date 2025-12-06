@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 95,
+        "scores": {
+            "security": 40,
+            "readability": 25,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=8.0, complexities=[{'type': 'method', 'rank': 'C', 'endline': 77, 'complexity': 14, 'lineno': 18, 'classname': 'MigrationAutodetector', 'col_offset': 4, 'name': '_handle_field_rename_on_primary_key', 'closures': []}, {'type': 'class', 'rank': 'B', 'endline': 87, 'complexity': 9, 'lineno': 15, 'col_offset': 0, 'name': 'MigrationAutodetector', 'methods': [{'type': 'method', 'rank': 'C', 'endline': 77, 'complexity': 14, 'lineno': 18, 'classname': 'MigrationAutodetector', 'col_offset': 4, 'name': '_handle_field_rename_on_primary_key', 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 87, 'complexity': 1, 'lineno': 86, 'classname': 'MigrationAutodetector', 'col_offset': 4, 'name': 'changes', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 87, 'complexity': 1, 'lineno': 86, 'classname': 'MigrationAutodetector', 'col_offset': 4, 'name': 'changes', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000016878e-07, modified_avg_time=9.999999999593667e-08, improvement_percentage=66.66666666820863, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 26406,
+        "completion_tokens": 9179,
+        "estimated_cost_usd": 0.269715
+    },
+    "maestro_score": 95
+}

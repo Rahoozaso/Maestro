@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.25, complexities=[{'type': 'class', 'rank': 'A', 'name': 'MaxLengthChoicesCheckTests', 'endline': 59, 'col_offset': 0, 'complexity': 3, 'lineno': 6, 'methods': [{'type': 'method', 'rank': 'A', 'name': 'test_error_when_choice_longer_than_max_length', 'classname': 'MaxLengthChoicesCheckTests', 'endline': 22, 'col_offset': 4, 'complexity': 2, 'lineno': 9, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_no_error_when_max_length_sufficient', 'classname': 'MaxLengthChoicesCheckTests', 'endline': 39, 'col_offset': 4, 'complexity': 2, 'lineno': 26, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_grouped_choices_supported', 'classname': 'MaxLengthChoicesCheckTests', 'endline': 59, 'col_offset': 4, 'complexity': 2, 'lineno': 43, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'test_error_when_choice_longer_than_max_length', 'classname': 'MaxLengthChoicesCheckTests', 'endline': 22, 'col_offset': 4, 'complexity': 2, 'lineno': 9, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_no_error_when_max_length_sufficient', 'classname': 'MaxLengthChoicesCheckTests', 'endline': 39, 'col_offset': 4, 'complexity': 2, 'lineno': 26, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_grouped_choices_supported', 'classname': 'MaxLengthChoicesCheckTests', 'endline': 59, 'col_offset': 4, 'complexity': 2, 'lineno': 43, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1000000000038757e-06, modified_avg_time=1.0999999999969368e-06, improvement_percentage=6.308085367166164e-10, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 25693,
+        "completion_tokens": 9621,
+        "estimated_cost_usd": 0.27278
+    },
+    "maestro_score": 65
+}

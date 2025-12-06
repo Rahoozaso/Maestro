@@ -1,0 +1,142 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.8461538461538463, complexities=[{'type': 'method', 'rank': 'A', 'complexity': 4, 'lineno': 48, 'classname': 'BaseDatabaseCreation', 'name': '_create_test_db', 'col_offset': 4, 'endline': 66, 'closures': []}, {'type': 'class', 'rank': 'A', 'complexity': 2, 'lineno': 13, 'name': 'BaseDatabaseCreation', 'col_offset': 0, 'endline': 127, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 31, 'classname': 'BaseDatabaseCreation', 'name': '__init__', 'col_offset': 4, 'endline': 32, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 34, 'classname': 'BaseDatabaseCreation', 'name': '_consume_sql', 'col_offset': 4, 'endline': 36, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 38, 'classname': 'BaseDatabaseCreation', 'name': '_get_test_db_name', 'col_offset': 4, 'endline': 40, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 42, 'classname': 'BaseDatabaseCreation', 'name': '_get_test_db_name_from_settings', 'col_offset': 4, 'endline': 46, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 4, 'lineno': 48, 'classname': 'BaseDatabaseCreation', 'name': '_create_test_db', 'col_offset': 4, 'endline': 66, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 68, 'classname': 'BaseDatabaseCreation', 'name': '_destroy_test_db', 'col_offset': 4, 'endline': 72, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 74, 'classname': 'BaseDatabaseCreation', 'name': 'set_as_test_mirror', 'col_offset': 4, 'endline': 76, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 78, 'classname': 'BaseDatabaseCreation', 'name': 'serialize_db_to_string', 'col_offset': 4, 'endline': 98, 'closures': [{'type': 'function', 'rank': 'B', 'complexity': 9, 'lineno': 81, 'name': 'get_objects', 'col_offset': 8, 'endline': 94, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 100, 'classname': 'BaseDatabaseCreation', 'name': 'deserialize_db_from_string', 'col_offset': 4, 'endline': 110, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 112, 'classname': 'BaseDatabaseCreation', 'name': '_get_database_display_str', 'col_offset': 4, 'endline': 114, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 116, 'classname': 'BaseDatabaseCreation', 'name': '_clone_test_db', 'col_offset': 4, 'endline': 121, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 123, 'classname': 'BaseDatabaseCreation', 'name': '_destroy_test_db', 'col_offset': 4, 'endline': 127, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 34, 'classname': 'BaseDatabaseCreation', 'name': '_consume_sql', 'col_offset': 4, 'endline': 36, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 38, 'classname': 'BaseDatabaseCreation', 'name': '_get_test_db_name', 'col_offset': 4, 'endline': 40, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 42, 'classname': 'BaseDatabaseCreation', 'name': '_get_test_db_name_from_settings', 'col_offset': 4, 'endline': 46, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 68, 'classname': 'BaseDatabaseCreation', 'name': '_destroy_test_db', 'col_offset': 4, 'endline': 72, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 100, 'classname': 'BaseDatabaseCreation', 'name': 'deserialize_db_from_string', 'col_offset': 4, 'endline': 110, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 116, 'classname': 'BaseDatabaseCreation', 'name': '_clone_test_db', 'col_offset': 4, 'endline': 121, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 123, 'classname': 'BaseDatabaseCreation', 'name': '_destroy_test_db', 'col_offset': 4, 'endline': 127, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 31, 'classname': 'BaseDatabaseCreation', 'name': '__init__', 'col_offset': 4, 'endline': 32, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 74, 'classname': 'BaseDatabaseCreation', 'name': 'set_as_test_mirror', 'col_offset': 4, 'endline': 76, 'closures': []}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 78, 'classname': 'BaseDatabaseCreation', 'name': 'serialize_db_to_string', 'col_offset': 4, 'endline': 98, 'closures': [{'type': 'function', 'rank': 'B', 'complexity': 9, 'lineno': 81, 'name': 'get_objects', 'col_offset': 8, 'endline': 94, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 1, 'lineno': 112, 'classname': 'BaseDatabaseCreation', 'name': '_get_database_display_str', 'col_offset': 4, 'endline': 114, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1e-06, modified_avg_time=4.000000000010939e-07, improvement_percentage=59.999999999890605, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206090755",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-005: Potential Single Responsibility Principle violations in larger functions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L40-L90",
+                "new_code": "Identify any function performing more than one distinct task and extract dedicated helper functions (e.g., 'validate_input', 'transform_data', 'format_response'), keeping each function focused on a single responsibility.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with set/dict-based O(1) lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Hypothetical refactor of a pattern like:\n    # result = []\n    # for x in list1:\n    #     if x in list2:\n    #         result.append(x)\n    # return result\n\n    set2 = set(list2)  # O(m) one-time cost\n    result = []\n    for x in list1:\n        if x in set2:  # O(1) average lookup instead of O(m)\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-007: Possible magic numbers or hardcoded strings",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L15-L35",
+                "new_code": "Identify all hardcoded literal values that have domain meaning (e.g., thresholds, special flags, status names) and replace them with named module-level constants (e.g., 'MAX_RETRY_COUNT', 'ADMIN_ROLE_NAME') that clearly communicate purpose.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-004: Complex list comprehensions reduce readability",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L20-L40",
+                "new_code": "Refactor any list comprehension that includes nested loops, multiple 'if' clauses, or spans multiple conceptual steps into a small, well-named helper function or an explicit for-loop with clear intermediate variables and comments describing each transformation.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-003: Use of overly generic type hints such as typing.Any",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L5-L30",
+                "new_code": "Replace all occurrences of 'typing.Any' (or untyped parameters that conceptually act as Any) with concrete, specific types or well-defined protocols (e.g., 'Dict[str, str]', 'Sequence[int]', 'Mapping[str, Any]' where absolutely unavoidable) to reflect the actual usage of the values.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-002: Overly terse and ambiguous variable names",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L20",
+                "new_code": "Rename all single-character or otherwise ambiguous variables (e.g., 'd', 'ml', 'ol', 'tmp') to descriptive names that reflect their role, such as 'user_data', 'model_loader', 'output_list', or 'temporary_buffer', ensuring consistent snake_case naming throughout.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] READ-001: Missing docstrings for main module and test suite",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L1",
+                "new_code": "Add concise, informative docstrings at the module level and for each public function or class, describing purpose, parameters, return values, and any side effects; similarly add a short module-level docstring to the unit test file describing the scope of tests.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] READ-006: Lack of comments for non-obvious logic branches",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L60-L100",
+                "new_code": "Add short, accurate inline comments or preceding comment blocks to explain the purpose of complex conditionals, edge-case handling, and any domain-specific decisions, ensuring that comments reflect actual behavior and do not contradict the code.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] PERF-006: Narrow imports and defer heavy imports to reduce startup and memory overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L50",
+                "new_code": "# Hypothetical original pattern:\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# Refined pattern:\nfrom math import sqrt, ceil  # import only what is used\n\n# And defer heavy imports to where they are needed:\n\ndef compute_optional_stats(data, use_pandas=False):\n    if use_pandas:\n        import pandas as pd  # lazy import\n        s = pd.Series(data)\n        return s.mean(), s.std()\n    # Fallback path without pandas\n    n = len(data)\n    mean = sum(data) / n if n else 0\n    var = sum((x - mean) ** 2 for x in data) / n if n else 0\n    return mean, var ** 0.5",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36777,
+        "completion_tokens": 15594,
+        "estimated_cost_usd": 0.417795
+    },
+    "maestro_score": 100
+}

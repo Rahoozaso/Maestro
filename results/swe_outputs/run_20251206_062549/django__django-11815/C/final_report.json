@@ -1,0 +1,118 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.0535714285714284, complexities=[{'type': 'method', 'rank': 'D', 'col_offset': 4, 'complexity': 25, 'classname': 'Field', 'lineno': 293, 'endline': 364, 'name': 'deconstruct', 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'complexity': 6, 'classname': 'Field', 'lineno': 117, 'endline': 181, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 5, 'classname': 'CheckFieldDefaultMixin', 'lineno': 86, 'endline': 101, 'name': '_check_default_callable', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 4, 'lineno': 66, 'endline': 104, 'name': 'CheckFieldDefaultMixin', 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'CheckFieldDefaultMixin', 'lineno': 69, 'endline': 84, 'name': '_check_default', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 5, 'classname': 'CheckFieldDefaultMixin', 'lineno': 86, 'endline': 101, 'name': '_check_default_callable', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'CheckFieldDefaultMixin', 'lineno': 103, 'endline': 104, 'name': '_check_default_value', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'CheckFieldDefaultMixin', 'lineno': 69, 'endline': 84, 'name': '_check_default', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 4, 'lineno': 107, 'endline': 364, 'name': 'Field', 'methods': [{'type': 'method', 'rank': 'B', 'col_offset': 4, 'complexity': 6, 'classname': 'Field', 'lineno': 117, 'endline': 181, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 184, 'endline': 185, 'name': 'description', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 188, 'endline': 189, 'name': 'model', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 192, 'endline': 193, 'name': 'model', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 196, 'endline': 197, 'name': 'attname', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 200, 'endline': 201, 'name': 'concrete', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'Field', 'lineno': 203, 'endline': 208, 'name': '__str__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 210, 'endline': 211, 'name': '__repr__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 213, 'endline': 219, 'name': 'check', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'Field', 'lineno': 222, 'endline': 237, 'name': '_check_field_name', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'Field', 'lineno': 239, 'endline': 251, 'name': '_check_choices', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'Field', 'lineno': 253, 'endline': 262, 'name': '_check_db_index', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 265, 'endline': 266, 'name': 'choices', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 269, 'endline': 270, 'name': 'choices', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 272, 'endline': 273, 'name': 'has_default', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'Field', 'lineno': 275, 'endline': 282, 'name': '_get_default', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 284, 'endline': 285, 'name': 'get_default', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 287, 'endline': 288, 'name': 'get_db_prep_save', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 290, 'endline': 291, 'name': 'get_prep_value', 'closures': []}, {'type': 'method', 'rank': 'D', 'col_offset': 4, 'complexity': 25, 'classname': 'Field', 'lineno': 293, 'endline': 364, 'name': 'deconstruct', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'Field', 'lineno': 222, 'endline': 237, 'name': '_check_field_name', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'Field', 'lineno': 239, 'endline': 251, 'name': '_check_choices', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 4, 'classname': 'Field', 'lineno': 275, 'endline': 282, 'name': '_get_default', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 3, 'lineno': 367, 'endline': 376, 'name': 'CharField', 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'CharField', 'lineno': 370, 'endline': 371, 'name': '__init__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'CharField', 'lineno': 373, 'endline': 376, 'name': 'get_prep_value', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 3, 'lineno': 382, 'endline': 388, 'name': 'IntegerField', 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'IntegerField', 'lineno': 385, 'endline': 388, 'name': 'get_prep_value', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'Field', 'lineno': 203, 'endline': 208, 'name': '__str__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'Field', 'lineno': 253, 'endline': 262, 'name': '_check_db_index', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'CharField', 'lineno': 373, 'endline': 376, 'name': 'get_prep_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 2, 'classname': 'IntegerField', 'lineno': 385, 'endline': 388, 'name': 'get_prep_value', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 58, 'endline': 59, 'name': 'Empty', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 62, 'endline': 63, 'name': 'FieldDoesNotExist', 'methods': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'CheckFieldDefaultMixin', 'lineno': 103, 'endline': 104, 'name': '_check_default_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 184, 'endline': 185, 'name': 'description', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 188, 'endline': 189, 'name': 'model', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 192, 'endline': 193, 'name': 'model', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 196, 'endline': 197, 'name': 'attname', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 200, 'endline': 201, 'name': 'concrete', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 210, 'endline': 211, 'name': '__repr__', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 213, 'endline': 219, 'name': 'check', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 265, 'endline': 266, 'name': 'choices', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 269, 'endline': 270, 'name': 'choices', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 272, 'endline': 273, 'name': 'has_default', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 284, 'endline': 285, 'name': 'get_default', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 287, 'endline': 288, 'name': 'get_db_prep_save', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'Field', 'lineno': 290, 'endline': 291, 'name': 'get_prep_value', 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'complexity': 1, 'classname': 'CharField', 'lineno': 370, 'endline': 371, 'name': '__init__', 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 391, 'endline': 392, 'name': 'AutoField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 395, 'endline': 396, 'name': 'BigIntegerField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 399, 'endline': 400, 'name': 'SmallIntegerField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 403, 'endline': 404, 'name': 'PositiveIntegerField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 407, 'endline': 408, 'name': 'PositiveSmallIntegerField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 411, 'endline': 412, 'name': 'BigAutoField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 415, 'endline': 416, 'name': 'SmallAutoField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 419, 'endline': 420, 'name': 'TextField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 423, 'endline': 424, 'name': 'BinaryField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 427, 'endline': 428, 'name': 'BooleanField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 431, 'endline': 432, 'name': 'NullBooleanField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 435, 'endline': 436, 'name': 'DateField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 439, 'endline': 440, 'name': 'TimeField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 443, 'endline': 444, 'name': 'DateTimeField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 447, 'endline': 448, 'name': 'DurationField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 451, 'endline': 452, 'name': 'FloatField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 455, 'endline': 456, 'name': 'DecimalField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 459, 'endline': 460, 'name': 'EmailField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 463, 'endline': 464, 'name': 'FilePathField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 467, 'endline': 468, 'name': 'SlugField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 471, 'endline': 472, 'name': 'URLField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 475, 'endline': 476, 'name': 'GenericIPAddressField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 479, 'endline': 480, 'name': 'IPAddressField', 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 1, 'lineno': 483, 'endline': 484, 'name': 'UUIDField', 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1e-06, modified_avg_time=3.999999999976245e-07, improvement_percentage=60.00000000023755, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nrequested: line 64: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement decimal (from versions: none)\nERROR: No matching distribution found for decimal\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206080831",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing v_gen code prevents concrete, location-specific readability review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L999",
+                "new_code": "Update the MAESTRO pipeline so that each readability review invocation always includes the full `v_gen` source code string (and, if available, file names or line mappings) in the input. Ensure the agent input strictly follows the described schema: provide `v_gen` and `unit_test_suite` as concrete strings containing the code to be analyzed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-002: Replace list-based membership checks with set or dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "# Before the loop\nallowed_items_set = set(allowed_items)  # originally a list\n\n# Inside the loop\nfor item in items:\n    if item in allowed_items_set:\n        # existing processing\n        ...\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-004: Constrain complexity of list comprehensions and prefer explicit loops when logic grows",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#comprehensions",
+                "new_code": "Set a rule for v_gen that list/dict/set comprehensions must remain simple (single `for` clause, at most one simple `if` filter, and no nested comprehensions). When more logic is required (multiple conditions, transformations, or side effects), generate an explicit `for` loop with intermediate variables and inline comments instead of a nested comprehension.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-003: Require docstrings for public functions and classes in v_gen output",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#public-APIs",
+                "new_code": "Update the v_gen agent configuration or prompt so that every public function, class, and module in the generated code includes a concise docstring describing its purpose, main parameters, return value, and any important side effects. For internal helpers, at least add short summaries where behavior is not obvious from the name.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-002: Enforce prohibition of typing.Any and short variable names in upstream code generators",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#type-hints-and-identifiers",
+                "new_code": "Configure the code-generating agent (v_gen) to: (1) avoid using `typing.Any` in type hints and instead select the most specific applicable type (e.g., `Dict[str, str]`, `List[int]`, `Mapping[str, Any]` only where absolutely unavoidable with a justification comment), and (2) avoid single-letter or non-descriptive names for variables, arguments, and functions by default, preferring intention-revealing identifiers.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-005: Enforce consistent PEP8 naming and discourage mixed conventions in generated code",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#naming-conventions",
+                "new_code": "Configure v_gen to always use `snake_case` for functions, methods, and variables; `PascalCase` for classes; and UPPER_SNAKE_CASE for constants, avoiding any mixing of `camelCase` or inconsistent styles within the same module. Reject or auto-correct any names that deviate without strong justification (e.g., interacting with external APIs that enforce different naming).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-006: Prefer specific, lazy imports and avoid heavyweight module loading on hot paths",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L50",
+                "new_code": "# At top of the file, replace broad imports\n# import math, collections, numpy as np\n\nfrom math import sqrt  # only what is needed\nfrom collections import deque  # instead of importing entire collections\n\n# Ensure imports are NOT inside hot functions:\n# def some_hot_function(...):\n#     import re  # move this out\n#     ...\n\nimport re  # move to module level\n\ndef some_hot_function(...):\n    ...  # use re here without re-importing\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35374,
+        "completion_tokens": 21683,
+        "estimated_cost_usd": 0.502115
+    },
+    "maestro_score": 0
+}

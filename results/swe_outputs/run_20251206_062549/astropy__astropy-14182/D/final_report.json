@@ -1,0 +1,51 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': \"28     # header tokens in order.\\n29     assert any('wave' in line and 'response' in line for line in text)\\n30     assert any('nm' in line and 'ct' in line for line in text)\\n\", 'col_offset': 4, 'end_col_offset': 70, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpf7dcpao9.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 29, 'line_range': [29], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': \"29     assert any('wave' in line and 'response' in line for line in text)\\n30     assert any('nm' in line and 'ct' in line for line in text)\\n31 \\n\", 'col_offset': 4, 'end_col_offset': 62, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpf7dcpao9.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 30, 'line_range': [30], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}, {'code': '32     # Ensure no TypeError occurred and output is non-empty.\\n33     assert len(text) > 0\\n', 'col_offset': 4, 'end_col_offset': 24, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpf7dcpao9.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 33, 'line_range': [33], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.0, complexities=[{'type': 'function', 'rank': 'A', 'name': 'test_rst_header_rows_name_unit', 'complexity': 4, 'lineno': 8, 'endline': 8, 'col_offset': 0, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=7.99999999995249e-07, modified_avg_time=3.999999999976245e-07, improvement_percentage=50.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-astropy-rst-header-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue': make ascii.rst accept header_rows like ascii.fixed_width so the provided test passes. v_gen is already a test that encodes the desired behavior; the actual bug lies in astropy's RST writer not accepting header_rows. Expert reports PERF-001..PERF-005 are generic, hypothetical performance suggestions that do not map to this small test file. READ-001 requests code but is moot because v_gen is present. [Phase 2] All performance suggestions target broad line ranges (main.py#L1-L650) that do not correspond to any real constructs in the given snippet; there are no loops, recursion, or heavy imports to optimize. No security suggestions exist. [Phase 3] Applying the Principle of Security Primacy: no Critical security items, so nothing is mandatory. Principle of Functionality Preservation: since we do not have the actual astropy RST writer implementation here, we must avoid speculative internal changes that might break its existing RST semantics. [Phase 4] Conflict resolution: the performance suggestions are non-applicable to this test-centric v_gen and would be invasive or fabricated. To respect Minimal Invasiveness and Path Verification, we limit changes to the test module only and clearly specify that the RST writer must be extended separately to support header_rows without breaking existing behavior. No line-level conflicts exist in v_gen itself. [Phase 5] Execution Plan: a single, simple modification is sufficient—rename the file context to a realistic path (e.g., test_io_ascii_rst_header.py) and keep the test as-is, as it already accurately describes the issue. No further refactors are needed. [Phase 6] Final Plan: emit one REPLACE action that preserves the test logic but frames it as part of astropy's test suite. No expert suggestions are directly adopted because they are not applicable to the given code, per Principles 2, 3, and 4.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Place the provided regression test into an appropriate test module (e.g., test_io_ascii_rst_header.py) unchanged, to drive implementation of header_rows support in the ascii.rst writer.",
+                "action": "REPLACE",
+                "target_code_block": "test_io_ascii_rst_header.py#L1-L40",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "import sys\n\nimport astropy.units as u\nfrom astropy.table import QTable\nfrom astropy.io.ascii import write\n\n\ndef test_rst_header_rows_name_unit(tmp_path):\n    \"\"\"ascii.rst should accept header_rows like ascii.fixed_width.\n\n    This test is based on the example from the issue description: a QTable\n    with 'wave' (nm) and 'response' (count) should produce a two-row header\n    when header_rows=['name', 'unit'] is given.\n    \"\"\"\n    tbl = QTable({\n        'wave': [350, 950] * u.nm,\n        'response': [0.7, 1.2] * u.count,\n    })\n\n    out = tmp_path / 'tbl.rst'\n    write(tbl, out, format='ascii.rst', header_rows=['name', 'unit'])\n\n    text = out.read_text().splitlines()\n\n    # Expect at least: top sep, name row, unit row, sep, data..., bottom sep\n    # We do not assert exact spacing to keep the test robust to minor\n    # alignment tweaks, but we do check for the presence of the expected\n    # header tokens in order.\n    assert any('wave' in line and 'response' in line for line in text)\n    assert any('nm' in line and 'ct' in line for line in text)\n\n    # Ensure no TypeError occurred and output is non-empty.\n    assert len(text) > 0\n"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "In line with the Principle of Functionality Preservation and Minimal Invasiveness, retain the test exactly as provided to specify the required behavior. No expert suggestion applies directly to this snippet, and internal changes to astropy's RST writer should be implemented separately to make this test pass without regressing existing functionality."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Created/updated test_io_ascii_rst_header.py with regression test for ascii.rst header_rows support."
+    ],
+    "feedback_used": "NFR Score Low (65).",
+    "cost_analysis": {
+        "prompt_tokens": 16924,
+        "completion_tokens": 4135,
+        "estimated_cost_usd": 0.146645
+    },
+    "maestro_score": 90
+}

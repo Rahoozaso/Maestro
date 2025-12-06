@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.9473684210526314, complexities=[{'type': 'method', 'rank': 'C', 'name': 'watched_files', 'endline': 151, 'lineno': 112, 'classname': 'StatReloader', 'complexity': 12, 'col_offset': 4, 'closures': []}, {'type': 'class', 'rank': 'B', 'name': 'StatReloader', 'endline': 168, 'lineno': 79, 'complexity': 7, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'endline': 86, 'lineno': 82, 'classname': 'StatReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_add_main_script_to_watched_files', 'endline': 110, 'lineno': 88, 'classname': 'StatReloader', 'complexity': 6, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'C', 'name': 'watched_files', 'endline': 151, 'lineno': 112, 'classname': 'StatReloader', 'complexity': 12, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': 'tick', 'endline': 168, 'lineno': 154, 'classname': 'StatReloader', 'complexity': 6, 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'B', 'name': 'run', 'endline': 60, 'lineno': 47, 'classname': 'BaseReloader', 'complexity': 6, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_add_main_script_to_watched_files', 'endline': 110, 'lineno': 88, 'classname': 'StatReloader', 'complexity': 6, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': 'tick', 'endline': 168, 'lineno': 154, 'classname': 'StatReloader', 'complexity': 6, 'col_offset': 4, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'BaseReloader', 'endline': 76, 'lineno': 41, 'complexity': 3, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'endline': 45, 'lineno': 44, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': 'run', 'endline': 60, 'lineno': 47, 'classname': 'BaseReloader', 'complexity': 6, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'should_stop', 'endline': 64, 'lineno': 62, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'tick', 'endline': 68, 'lineno': 66, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'watch_file', 'endline': 72, 'lineno': 70, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'watched_files', 'endline': 76, 'lineno': 74, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'name': 'raise_last_exception', 'endline': 38, 'lineno': 35, 'complexity': 2, 'col_offset': 0, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'get_reloader', 'endline': 183, 'lineno': 178, 'complexity': 2, 'col_offset': 0, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'WatchmanReloader', 'endline': 175, 'lineno': 171, 'complexity': 2, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'name': 'tick', 'endline': 175, 'lineno': 174, 'classname': 'WatchmanReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'name': 'is_django_module', 'endline': 13, 'lineno': 12, 'complexity': 1, 'col_offset': 0, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'check_errors', 'endline': 32, 'lineno': 16, 'complexity': 1, 'col_offset': 0, 'closures': [{'type': 'function', 'rank': 'A', 'name': 'wrapper', 'endline': 30, 'lineno': 20, 'complexity': 4, 'col_offset': 4, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'name': 'run_with_reloader', 'endline': 189, 'lineno': 186, 'complexity': 1, 'col_offset': 0, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'endline': 45, 'lineno': 44, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'should_stop', 'endline': 64, 'lineno': 62, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'tick', 'endline': 68, 'lineno': 66, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'watch_file', 'endline': 72, 'lineno': 70, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'watched_files', 'endline': 76, 'lineno': 74, 'classname': 'BaseReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'endline': 86, 'lineno': 82, 'classname': 'StatReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'tick', 'endline': 175, 'lineno': 174, 'classname': 'WatchmanReloader', 'complexity': 1, 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999999881224e-07, modified_avg_time=3.000000000016878e-07, improvement_percentage=-50.000000001734726, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206072927",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Input lacks actual source code to review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the actual Python source code in the `v_gen` input field so that line- and symbol-specific readability issues (naming, docstrings, magic numbers, Any usage, complex comprehensions, etc.) can be analyzed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce hash-based lookups to replace repeated linear searches",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(items, candidates):\n    # Before (hypothetical inefficient pattern):\n    # result = []\n    # for item in items:\n    #     if item in candidates:  # O(len(candidates)) each iteration\n    #         result.append(item)\n\n    # After: precompute hash-based structure once\n    candidate_set = set(candidates)  # O(m) preprocessing\n    result = []\n    for item in items:  # O(n)\n        if item in candidate_set:  # O(1) average-case\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Use lazy and specific imports to reduce startup time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Before (hypothetical pattern):\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# After: narrow and/or lazy imports\nfrom math import sqrt, ceil  # only what is needed\n\n# Lazily import heavy dependencies inside functions\n\ndef compute_statistics(data):\n    from statistics import mean, median  # imported only when needed\n    return mean(data), median(data)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35181,
+        "completion_tokens": 14538,
+        "estimated_cost_usd": 0.393975
+    },
+    "maestro_score": 70
+}

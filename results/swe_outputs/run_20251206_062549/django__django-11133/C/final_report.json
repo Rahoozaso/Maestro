@@ -1,0 +1,68 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 0,
+        "scores": {
+            "security": 0,
+            "readability": 0,
+            "performance": 0
+        },
+        "details": {
+            "error": "SyntaxError: invalid syntax line 144"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "SyntaxError in generated code: invalid syntax at line 144"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206071845",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-006: Reduce deeply nested logic using early returns",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Refactor functions that contain nested conditionals or loops (more than two levels deep) to use guard clauses and early returns where appropriate, or extract parts of the logic into smaller helper functions with clear names.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-004: Use sets instead of lists for frequent membership checks",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def filter_known_items(items, known_items):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in items:\n    #     if item in known_items:  # known_items is a list\n    #         result.append(item)\n\n    known_items_set = set(known_items)  # O(m) once\n    result = []\n    for item in items:\n        if item in known_items_set:     # O(1) average per lookup\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-006: Prefer lazy or more specific imports to reduce startup time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Hypothetical original:\n# import numpy as np\n# import pandas as pd\n# from somebigmodule import *\n\n# Improved: defer heavy imports and be explicit\n\ndef compute_stats(data):\n    import numpy as np  # lazy import when actually needed\n    mean = np.mean(data)\n    std = np.std(data)\n    return mean, std\n\n# And avoid star imports:\n# from somebigmodule import SpecificClass, specific_function",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 38412,
+        "completion_tokens": 21161,
+        "estimated_cost_usd": 0.509475
+    },
+    "maestro_score": 0
+}

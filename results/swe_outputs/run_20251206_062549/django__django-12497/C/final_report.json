@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.75, complexities=[{'type': 'class', 'rank': 'B', 'col_offset': 0, 'endline': 69, 'name': 'ManyToManyField', 'complexity': 7, 'lineno': 28, 'methods': [{'type': 'method', 'rank': 'B', 'classname': 'ManyToManyField', 'col_offset': 4, 'endline': 69, 'name': '_check_relationship_model', 'complexity': 6, 'lineno': 41, 'closures': []}]}, {'type': 'method', 'rank': 'B', 'classname': 'ManyToManyField', 'col_offset': 4, 'endline': 69, 'name': '_check_relationship_model', 'complexity': 6, 'lineno': 41, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 20, 'name': 'RelatedField', 'complexity': 1, 'lineno': 17, 'methods': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'endline': 25, 'name': 'ManyToManyRel', 'complexity': 1, 'lineno': 23, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nrelationship.\n\n    many_to_many = True\n    many_to_one = False\n    one_to_many = False\n    one_to_one = False\n\n    rel_class = ManyToManyRel\n\n    # ... many existing attributes and methods of ManyToManyField are\n    # assumed to be here and are left unchanged.\n\n    def _check_relationship_model(self) -> List[checks.CheckMessage]:\n        Checks: line 30: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206092053",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] SEC-001: Missing Source Code for Security Review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#N/A",
+                "new_code": "Ensure that every invocation of the SecurityExpert agent includes the actual code to be analyzed. For example:\n\n{\n  \"v_gen\": \"<full source code here>\",\n  \"unit_test_suite\": \"<full test code here>\"\n}\n\nDo not proceed with architectural or production decisions until a run including the real v_gen code has been reviewed and approved by this agent.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "SEC-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] READ-001: Add missing context: source code (v_gen) is required for meaningful review",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L1",
+                "new_code": "Provide the full v_gen source code (and, if available, filenames and line numbers) so that each readability issue can be tied to a specific code block and modified with precise instructions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks on lists with set/dict-based O(1) lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def process_items(items, filter_list):\n    # Precompute for O(1) membership checks instead of repeated list scans\n    filter_set = set(filter_list)\n    result = []\n    for item in items:\n        # This membership check is now O(1) instead of O(len(filter_list))\n        if item in filter_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-008: Replace magic numbers and opaque string literals with named constants",
+                "action": "REPLACE",
+                "target_code_block": "config.py#L1-L200",
+                "new_code": "Scan for hardcoded numeric and string literals used in logic (e.g., thresholds, status labels) and extract them into clearly named module-level constants (e.g., 'MAX_RETRY_COUNT', 'DEFAULT_TIMEOUT_SECONDS'). Use these constants in the logic instead of raw literals.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-008"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-004: Replace use of 'typing.Any' with specific, concrete types",
+                "action": "REPLACE",
+                "target_code_block": "types.py#L1-L200",
+                "new_code": "Search for all annotations using 'Any' and replace them with the most precise applicable types or type unions (e.g., 'Dict[str, str]' instead of 'Any', or 'Union[int, float]' where appropriate). Only retain 'Any' where the type is truly unconstrained and document that explicitly in the docstring.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Prefer lazy or specific imports to reduce startup and memory overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Instead of a broad top-level import:\n# import pandas as pd\n\n# Use a localized, specific import where actually needed:\n\ndef summarize_frame(path):\n    import pandas as pd  # lazy import used only when this function is called\n    df = pd.read_csv(path)\n    return {\n        \"rows\": len(df),\n        \"cols\": len(df.columns),\n    }",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35761,
+        "completion_tokens": 16622,
+        "estimated_cost_usd": 0.428135
+    },
+    "maestro_score": 0
+}

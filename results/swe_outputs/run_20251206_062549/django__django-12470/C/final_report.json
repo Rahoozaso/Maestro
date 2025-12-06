@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.25, complexities=[{'type': 'class', 'rank': 'A', 'name': 'InheritedPkOrderingTests', 'col_offset': 0, 'lineno': 14, 'complexity': 2, 'endline': 30, 'methods': [{'type': 'method', 'rank': 'A', 'name': 'test_child_respects_parent_pk_desc_ordering', 'col_offset': 4, 'classname': 'InheritedPkOrderingTests', 'lineno': 15, 'complexity': 1, 'endline': 30, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'name': 'Parent', 'col_offset': 0, 'lineno': 5, 'complexity': 1, 'endline': 5, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'Child', 'col_offset': 0, 'lineno': 10, 'complexity': 1, 'endline': 11, 'methods': []}, {'type': 'method', 'rank': 'A', 'name': 'test_child_respects_parent_pk_desc_ordering', 'col_offset': 4, 'classname': 'InheritedPkOrderingTests', 'lineno': 15, 'complexity': 1, 'endline': 30, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.5000000000015001e-06, modified_avg_time=1.0999999999969368e-06, improvement_percentage=26.666666666944224, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206091432",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Input lacks source code for analysis",
+                "action": "REPLACE",
+                "target_code_block": "N/A",
+                "new_code": "Supply the generated source code in the `v_gen` field (and optionally the tests in `unit_test_suite`) so that a line-by-line readability and maintainability review can be performed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated list membership checks with set/dict lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in list1:\n    #     if item in list2:  # O(len(list2)) per check\n    #         result.append(item)\n    # return result\n\n    # Optimized version using a set for faster membership\n    set2 = set(list2)  # O(len(list2)) one-time cost\n    result = []\n    for item in list1:  # O(len(list1)) loop\n        if item in set2:  # O(1) average-time lookup\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-004: Hoist loop-invariant computations and avoid redundant work inside loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L520-L700",
+                "new_code": "def process_items(items, config):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in items:\n    #     if expensive_check(config) and len(items) > 0:\n    #         result.append(transform(item, expensive_setup(config)))\n    # return result\n\n    # Optimized: precompute loop-invariant values once.\n    result = []\n    cached_check = expensive_check(config)\n    setup_value = expensive_setup(config)\n    has_items = len(items) > 0\n\n    if not has_items or not cached_check:\n        return result\n\n    for item in items:\n        result.append(transform(item, setup_value))\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Use join-based string building instead of repetitive concatenation in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L400-L520",
+                "new_code": "def build_output(items):\n    # Hypothetical original pattern:\n    # s = \"\"\n    # for item in items:\n    #     s += str(item) + \",\"  # repeated concatenation\n    # return s\n\n    parts = []\n    for item in items:\n        parts.append(str(item))\n    return \",\".join(parts)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-002: Convert recursive logic to iterative form to avoid stack overflow and function-call overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L400",
+                "new_code": "def recursive_traversal(node):\n    # Hypothetical original recursive pattern:\n    # if node is None:\n    #     return\n    # process(node)\n    # for child in node.children:\n    #     recursive_traversal(child)\n    #\n    # Iterative replacement using an explicit stack:\n\n    if node is None:\n        return\n\n    stack = [node]\n    while stack:\n        current = stack.pop()\n        process(current)\n        # Assuming we want the same visitation order as recursive DFS,\n        # we add children in reverse order.\n        for child in reversed(current.children):\n            stack.append(child)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Prefer lazy or specific imports to reduce load time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Hypothetical original pattern:\n# import numpy as np\n# import pandas as pd\n# from collections import *\n\n# If only a few utilities are used, narrow the imports:\nfrom collections import deque, Counter\n\n# If heavy libraries are only needed in specific functions, import lazily:\n\ndef compute_statistics(data):\n    import numpy as np  # lazy import inside hot path\n    return np.mean(data), np.std(data)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 29937,
+        "completion_tokens": 13159,
+        "estimated_cost_usd": 0.34707
+    },
+    "maestro_score": 80
+}

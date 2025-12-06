@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.3333333333333335, complexities=[{'type': 'function', 'rank': 'B', 'col_offset': 0, 'lineno': 4, 'name': 'update_proxy_model_permissions', 'endline': 59, 'complexity': 8, 'closures': []}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'lineno': 63, 'name': 'reverse_update_proxy_model_permissions', 'endline': 71, 'complexity': 1, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'lineno': 74, 'name': 'Migration', 'endline': 81, 'complexity': 1, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=6.999999999993123e-07, modified_avg_time=1.000000000001e-06, improvement_percentage=-42.857142857426076, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 25178,
+        "completion_tokens": 8814,
+        "estimated_cost_usd": 0.2581
+    },
+    "maestro_score": 70
+}

@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.5, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 3, 'lineno': 13, 'endline': 51, 'name': 'FITS_rec', 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 23, 'endline': 51, 'name': '_format_float_field', 'classname': 'FITS_rec', 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'complexity': 2, 'lineno': 23, 'endline': 51, 'name': '_format_float_field', 'classname': 'FITS_rec', 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206064616",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] SEC-002: Enforce Safe Query and Command Construction in AI-Generated Code",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "import re\n\nUNSAFE_SQL_PATTERN = re.compile(r\"execute\\s*\\(\\s*f?[\\\"']SELECT .*\\{.*\\}.*[\\\"']\", re.IGNORECASE | re.DOTALL)\nUNSAFE_OS_CMD_PATTERN = re.compile(r\"(os\\.system|subprocess\\.(Popen|call|run))\\s*\\(\", re.IGNORECASE)\n\n\ndef detect_injection_primitives(source_code: str) -> dict:\n    \"\"\"Static pattern-based check for high-risk injection primitives in v_gen.\n\n    Returns a dict with flags indicating suspicious SQL and OS command construction.\n    \"\"\"\n    return {\n        \"possibly_unsafe_sql\": bool(UNSAFE_SQL_PATTERN.search(source_code)),\n        \"possibly_unsafe_os_command\": bool(UNSAFE_OS_CMD_PATTERN.search(source_code)),\n    }\n\n# Example enforcement usage in the SecurityExpert workflow:\n# flags = detect_injection_primitives(v_gen)\n# assert not flags[\"possibly_unsafe_sql\"], \"Detected potentially injectable SQL patterns in v_gen. Use parameterized queries.\"\n# assert not flags[\"possibly_unsafe_os_command\"], \"Detected potentially unsafe OS command usage in v_gen. Use safe APIs and argument lists.\"\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "SEC-002"
+                ],
+                "rationale": "Rule-based: Critical security issue prioritized."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] SEC-004: Detect and Forbid Hardcoded Secrets in AI-Generated Code",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "import re\n\nSECRET_PATTERNS = [\n    re.compile(r\"['\\\"][A-Za-z0-9_\\-]{20,}['\\\"]\\s*#?\\s*(api_key|token|secret|password)\", re.IGNORECASE),\n    re.compile(r\"(AKIA[0-9A-Z]{16})\"),  # Example AWS Access Key ID pattern\n]\n\n\ndef detect_hardcoded_secrets(source_code: str) -> bool:\n    \"\"\"Return True if source_code likely contains hardcoded secrets.\n\n    This should be run over v_gen to prevent acceptance of code with embedded credentials.\n    \"\"\"\n    for pattern in SECRET_PATTERNS:\n        if pattern.search(source_code):\n            return True\n    return False\n\n# Example enforcement in the SecurityExpert pipeline:\n# assert not detect_hardcoded_secrets(v_gen), \"Potential hardcoded secrets detected in v_gen. Use environment variables or secret managers instead.\"\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "SEC-004"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-001: Missing v_gen code prevents concrete, location-aware review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L1",
+                "new_code": "Provide the complete 'v_gen' source code (and optionally the unit_test_suite) so that each suggestion can be tied to an exact code range such as 'main.py#L10-L25' and can address concrete smells like poor naming, Any usage, missing docstrings, or complex list comprehensions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-001: Replace any list membership checks in loops with set/dict lookup",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Pre-convert list2 to a set for O(1) membership tests\n    set2 = set(list2)\n    result = []\n    for item in list1:\n        if item in set2:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-005: Simplify or refactor overly complex list comprehensions",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L200",
+                "new_code": "Identify list comprehensions that contain multiple nested loops or complex conditional logic, and refactor them into clearer for-loops or break them into intermediate variables with well-named helper functions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-006: Use more specific and lazy imports to reduce startup and memory overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# original (hypothetical)\n# import pandas as pd\n# import numpy as np\n# from math import *\n\nfrom math import sqrt  # import only what is used\n\ndef some_function(...):\n    # delay heavy imports until actually needed\n    import pandas as pd\n    import numpy as np\n    ...",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35706,
+        "completion_tokens": 15200,
+        "estimated_cost_usd": 0.40653
+    },
+    "maestro_score": 70
+}

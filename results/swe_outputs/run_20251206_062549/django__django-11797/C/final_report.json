@@ -1,0 +1,46 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.3333333333333333, complexities=[{'type': 'class', 'rank': 'A', 'endline': 41, 'name': 'UserGroupBySubqueryRegressionTests', 'complexity': 2, 'lineno': 6, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 11, 'name': 'setUp', 'complexity': 1, 'classname': 'UserGroupBySubqueryRegressionTests', 'lineno': 7, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 41, 'name': 'test_filter_on_grouped_subquery_preserves_group_by_columns', 'complexity': 1, 'classname': 'UserGroupBySubqueryRegressionTests', 'lineno': 13, 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 11, 'name': 'setUp', 'complexity': 1, 'classname': 'UserGroupBySubqueryRegressionTests', 'lineno': 7, 'col_offset': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 41, 'name': 'test_filter_on_grouped_subquery_preserves_group_by_columns', 'complexity': 1, 'classname': 'UserGroupBySubqueryRegressionTests', 'lineno': 13, 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=7.999999999987184e-07, modified_avg_time=5.000000000005e-07, improvement_percentage=37.49999999983737, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206080235",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-007: Deeply nested conditionals without early returns",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "Refactor nested conditional logic to use early returns or continue/break statements where appropriate, reducing indentation levels; when logic is still complex, extract inner blocks into small, well-named helper functions.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 32768,
+        "completion_tokens": 14230,
+        "estimated_cost_usd": 0.37729
+    },
+    "maestro_score": 90
+}

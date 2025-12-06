@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '260         # A more elaborate workaround is needed here, see #18546.\\n261         os.spawnve(os.P_NOWAIT, sys.executable, args, new_environ)\\n262         sys.exit(0)\\n', 'col_offset': 8, 'end_col_offset': 66, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpcpsndavk.py', 'issue_confidence': 'MEDIUM', 'issue_cwe': {'id': 78, 'link': 'https://cwe.mitre.org/data/definitions/78.html'}, 'issue_severity': 'LOW', 'issue_text': 'Starting a process without a shell.', 'line_number': 261, 'line_range': [261], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b606_start_process_with_no_shell.html', 'test_id': 'B606', 'test_name': 'start_process_with_no_shell'}, {'code': '263     else:\\n264         os.execve(sys.executable, args, new_environ)\\n265 \\n', 'col_offset': 8, 'end_col_offset': 52, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpcpsndavk.py', 'issue_confidence': 'MEDIUM', 'issue_cwe': {'id': 78, 'link': 'https://cwe.mitre.org/data/definitions/78.html'}, 'issue_severity': 'LOW', 'issue_text': 'Starting a process without a shell.', 'line_number': 264, 'line_range': [264], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b606_start_process_with_no_shell.html', 'test_id': 'B606', 'test_name': 'start_process_with_no_shell'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.142857142857143, complexities=[{'type': 'function', 'rank': 'B', 'col_offset': 0, 'name': 'iter_modules_and_files', 'lineno': 192, 'complexity': 8, 'endline': 231, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_update_watches', 'lineno': 144, 'complexity': 7, 'endline': 173, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': 'tick', 'lineno': 88, 'complexity': 5, 'endline': 103, 'closures': []}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'name': 'get_reloader', 'lineno': 244, 'complexity': 3, 'endline': 250, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'run', 'lineno': 61, 'complexity': 3, 'endline': 69, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'StatReloader', 'lineno': 75, 'complexity': 3, 'endline': 111, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': '__init__', 'lineno': 78, 'complexity': 1, 'endline': 80, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': 'watched_files', 'lineno': 82, 'complexity': 1, 'endline': 86, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': 'tick', 'lineno': 88, 'complexity': 5, 'endline': 103, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': 'snapshot_files', 'lineno': 105, 'complexity': 3, 'endline': 111, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': 'snapshot_files', 'lineno': 105, 'complexity': 3, 'endline': 111, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'WatchmanReloader', 'lineno': 114, 'complexity': 3, 'endline': 184, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '__init__', 'lineno': 115, 'complexity': 1, 'endline': 120, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_watch_project', 'lineno': 123, 'complexity': 1, 'endline': 124, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_subscribe', 'lineno': 127, 'complexity': 1, 'endline': 128, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_unsubscribe', 'lineno': 131, 'complexity': 1, 'endline': 132, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_recv', 'lineno': 135, 'complexity': 1, 'endline': 136, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': 'watched_files', 'lineno': 138, 'complexity': 1, 'endline': 142, 'closures': []}, {'type': 'method', 'rank': 'B', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_update_watches', 'lineno': 144, 'complexity': 7, 'endline': 173, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': 'tick', 'lineno': 175, 'complexity': 3, 'endline': 184, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': 'tick', 'lineno': 175, 'complexity': 3, 'endline': 184, 'closures': []}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'name': 'restart_with_reloader', 'lineno': 253, 'complexity': 2, 'endline': 264, 'closures': []}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'name': 'run_with_reloader', 'lineno': 267, 'complexity': 2, 'endline': 295, 'closures': [{'type': 'function', 'rank': 'A', 'col_offset': 4, 'name': 'start_django', 'lineno': 270, 'complexity': 1, 'endline': 271, 'closures': []}, {'type': 'function', 'rank': 'A', 'col_offset': 4, 'name': 'inner_run', 'lineno': 273, 'complexity': 5, 'endline': 289, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'BaseReloader', 'lineno': 47, 'complexity': 2, 'endline': 72, 'methods': [{'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': '__init__', 'lineno': 48, 'complexity': 1, 'endline': 50, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'watch_file', 'lineno': 52, 'complexity': 1, 'endline': 53, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'watched_files', 'lineno': 55, 'complexity': 1, 'endline': 56, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'tick', 'lineno': 58, 'complexity': 1, 'endline': 59, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'run', 'lineno': 61, 'complexity': 3, 'endline': 69, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'stop', 'lineno': 71, 'complexity': 1, 'endline': 72, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'name': '_check_errors', 'lineno': 29, 'complexity': 1, 'endline': 40, 'closures': [{'type': 'function', 'rank': 'A', 'col_offset': 4, 'name': 'wrapper', 'lineno': 33, 'complexity': 2, 'endline': 38, 'closures': []}]}, {'type': 'function', 'rank': 'A', 'col_offset': 0, 'name': 'iter_all_python_module_files', 'lineno': 234, 'complexity': 1, 'endline': 238, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'name': 'WatchmanUnavailable', 'lineno': 43, 'complexity': 1, 'endline': 44, 'methods': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': '__init__', 'lineno': 48, 'complexity': 1, 'endline': 50, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'watch_file', 'lineno': 52, 'complexity': 1, 'endline': 53, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'watched_files', 'lineno': 55, 'complexity': 1, 'endline': 56, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'tick', 'lineno': 58, 'complexity': 1, 'endline': 59, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'BaseReloader', 'name': 'stop', 'lineno': 71, 'complexity': 1, 'endline': 72, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': '__init__', 'lineno': 78, 'complexity': 1, 'endline': 80, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'StatReloader', 'name': 'watched_files', 'lineno': 82, 'complexity': 1, 'endline': 86, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '__init__', 'lineno': 115, 'complexity': 1, 'endline': 120, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_watch_project', 'lineno': 123, 'complexity': 1, 'endline': 124, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_subscribe', 'lineno': 127, 'complexity': 1, 'endline': 128, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_unsubscribe', 'lineno': 131, 'complexity': 1, 'endline': 132, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': '_recv', 'lineno': 135, 'complexity': 1, 'endline': 136, 'closures': []}, {'type': 'method', 'rank': 'A', 'col_offset': 4, 'classname': 'WatchmanReloader', 'name': 'watched_files', 'lineno': 138, 'complexity': 1, 'endline': 142, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=2.999999999947489e-07, improvement_percentage=4.625929269138464e-09, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nlog: line 31: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement signal (from versions: none)\nERROR: No matching distribution found for signal\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206074108",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with hash-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Precompute a set for faster lookups\n    lookup = set(list2)\n    result = []\n    for item in list1:\n        if item in lookup:  # O(1) average lookup instead of O(len(list2))\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] READ-001: No code provided for analysis",
+                "action": "REPLACE",
+                "target_code_block": "N/A",
+                "new_code": "Provide the AI-generated source code in the `v_gen` field (and optionally the tests in `unit_test_suite`) so that a concrete, line-referenced readability review can be produced.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-005: Use lazy and specific imports to reduce startup time and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Instead of\n# import pandas as pd\n# import numpy as np\n\n# Use specific imports when only small parts are needed\nfrom collections import defaultdict\n\n# And lazily import heavy modules inside functions that rarely run\n\ndef compute_heavy_stats(data):\n    import numpy as np  # lazy import only when needed\n    arr = np.array(data)\n    return arr.mean(), arr.std()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 49764,
+        "completion_tokens": 20993,
+        "estimated_cost_usd": 0.563715
+    },
+    "maestro_score": 0
+}

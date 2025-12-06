@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.3333333333333333, complexities=[{'type': 'class', 'rank': 'A', 'name': 'UserGroupBySubqueryRegressionTests', 'endline': 41, 'col_offset': 0, 'complexity': 2, 'lineno': 6, 'methods': [{'type': 'method', 'rank': 'A', 'name': 'setUp', 'endline': 11, 'col_offset': 4, 'complexity': 1, 'lineno': 7, 'classname': 'UserGroupBySubqueryRegressionTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_filter_on_grouped_subquery_preserves_group_by_columns', 'endline': 41, 'col_offset': 4, 'complexity': 1, 'lineno': 13, 'classname': 'UserGroupBySubqueryRegressionTests', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'setUp', 'endline': 11, 'col_offset': 4, 'complexity': 1, 'lineno': 7, 'classname': 'UserGroupBySubqueryRegressionTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_filter_on_grouped_subquery_preserves_group_by_columns', 'endline': 41, 'col_offset': 4, 'complexity': 1, 'lineno': 13, 'classname': 'UserGroupBySubqueryRegressionTests', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.4999999999945612e-06, modified_avg_time=7.99999999995249e-07, improvement_percentage=46.66666666679002, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 26961,
+        "completion_tokens": 10508,
+        "estimated_cost_usd": 0.292425
+    },
+    "maestro_score": 90
+}

@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 60,
+        "scores": {
+            "security": 30,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='LOW', issues=[{'code': '30     \"\"\"\\n31     assert self.pk is not None, \"Cannot delete a %s instance without a primary key\" % self.__class__.__name__\\n32 \\n', 'col_offset': 4, 'end_col_offset': 109, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmpeo6yuaek.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 703, 'link': 'https://cwe.mitre.org/data/definitions/703.html'}, 'issue_severity': 'LOW', 'issue_text': 'Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.', 'line_number': 31, 'line_range': [31], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html', 'test_id': 'B101', 'test_name': 'assert_used'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.6666666666666665, complexities=[{'type': 'function', 'rank': 'A', 'lineno': 25, 'name': 'delete', 'endline': 52, 'complexity': 5, 'col_offset': 0, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 4, 'name': 'Collector', 'endline': 20, 'complexity': 2, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 7, 'name': '__init__', 'endline': 20, 'classname': 'Collector', 'complexity': 1, 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 7, 'name': '__init__', 'endline': 20, 'classname': 'Collector', 'complexity': 1, 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=4.999999999970306e-07, modified_avg_time=1.3999999999986246e-06, improvement_percentage=-180.00000000138778, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35289,
+        "completion_tokens": 15371,
+        "estimated_cost_usd": 0.40701
+    },
+    "maestro_score": 60
+}

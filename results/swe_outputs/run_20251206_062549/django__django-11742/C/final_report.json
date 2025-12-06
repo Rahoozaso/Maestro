@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 85,
+        "scores": {
+            "security": 40,
+            "readability": 15,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=5.2, complexities=[{'type': 'function', 'rank': 'C', 'name': 'check_max_length_against_choices', 'complexity': 17, 'col_offset': 0, 'lineno': 6, 'endline': 54, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'MaxLengthChoicesCheckTests', 'complexity': 3, 'col_offset': 0, 'lineno': 57, 'endline': 111, 'methods': [{'type': 'method', 'rank': 'A', 'name': 'test_error_when_choice_longer_than_max_length', 'complexity': 2, 'col_offset': 4, 'lineno': 60, 'endline': 73, 'classname': 'MaxLengthChoicesCheckTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_no_error_when_max_length_sufficient', 'complexity': 2, 'col_offset': 4, 'lineno': 77, 'endline': 90, 'classname': 'MaxLengthChoicesCheckTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_grouped_choices_supported', 'complexity': 2, 'col_offset': 4, 'lineno': 94, 'endline': 111, 'classname': 'MaxLengthChoicesCheckTests', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'test_error_when_choice_longer_than_max_length', 'complexity': 2, 'col_offset': 4, 'lineno': 60, 'endline': 73, 'classname': 'MaxLengthChoicesCheckTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_no_error_when_max_length_sufficient', 'complexity': 2, 'col_offset': 4, 'lineno': 77, 'endline': 90, 'classname': 'MaxLengthChoicesCheckTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_grouped_choices_supported', 'complexity': 2, 'col_offset': 4, 'lineno': 94, 'endline': 111, 'classname': 'MaxLengthChoicesCheckTests', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.1000000000038757e-06, modified_avg_time=5.000000000005e-07, improvement_percentage=54.545454545569235, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206075703",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing concrete code prevents targeted readability review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the full `v_gen` Python source code (and, if available, the corresponding filename and unit tests) so that a line-specific, PEP8- and Clean Code–oriented readability analysis can be performed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Introduce set/dict-based lookups to replace repeated list membership checks",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(items, to_find):\n    # Hypothetical refactor based on the described pattern\n    lookup = set(to_find)  # O(m) preprocessing\n    result = []\n    for item in items:      # O(n)\n        if item in lookup:  # O(1) average instead of O(m)\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-006: Use more specific and lazy imports to reduce import overhead and namespace pollution",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L25",
+                "new_code": "def compute_something(data, use_heavy=False):\n    result = basic_transform(data)\n    if use_heavy:\n        # Lazily import heavy dependency\n        import numpy as np\n        result = np.array(result) * 2\n    return result\n\n# And avoid star imports at the top:\n# from math import *  # avoid\nfrom math import sqrt, ceil  # import only what is used",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 31801,
+        "completion_tokens": 13364,
+        "estimated_cost_usd": 0.359465
+    },
+    "maestro_score": 85
+}

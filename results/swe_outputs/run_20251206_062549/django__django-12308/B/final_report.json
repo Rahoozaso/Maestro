@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 40,
+        "scores": {
+            "security": 15,
+            "readability": 25,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity='MEDIUM', issues=[{'code': '48     if isinstance(field, models.TextField):\\n49         return mark_safe(linebreaksbr(value))\\n50 \\n', 'col_offset': 15, 'end_col_offset': 45, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmp7x46ilxu.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 80, 'link': 'https://cwe.mitre.org/data/definitions/80.html'}, 'issue_severity': 'MEDIUM', 'issue_text': 'Potential XSS on mark_safe function.', 'line_number': 49, 'line_range': [49], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/plugins/b703_django_mark_safe.html', 'test_id': 'B703', 'test_name': 'django_mark_safe'}, {'code': '48     if isinstance(field, models.TextField):\\n49         return mark_safe(linebreaksbr(value))\\n50 \\n', 'col_offset': 15, 'end_col_offset': 45, 'filename': 'C:\\\\Users\\\\amry0\\\\AppData\\\\Local\\\\Temp\\\\tmp7x46ilxu.py', 'issue_confidence': 'HIGH', 'issue_cwe': {'id': 79, 'link': 'https://cwe.mitre.org/data/definitions/79.html'}, 'issue_severity': 'MEDIUM', 'issue_text': 'Use of mark_safe() may expose cross-site scripting vulnerabilities and should be reviewed.', 'line_number': 49, 'line_range': [49], 'more_info': 'https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_calls.html#b308-mark-safe', 'test_id': 'B308', 'test_name': 'blacklist'}], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=10.0, complexities=[{'type': 'function', 'rank': 'B', 'name': 'display_for_field', 'endline': 55, 'col_offset': 0, 'lineno': 12, 'complexity': 10, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 28750,
+        "completion_tokens": 11129,
+        "estimated_cost_usd": 0.310685
+    },
+    "maestro_score": 40
+}

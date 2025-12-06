@@ -1,0 +1,65 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.0, complexities=[{'type': 'method', 'rank': 'B', 'lineno': 54, 'name': 'to_python', 'endline': 71, 'col_offset': 4, 'complexity': 6, 'classname': 'DurationField', 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 40, 'name': 'DurationField', 'endline': 90, 'col_offset': 0, 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 46, 'name': '__init__', 'endline': 49, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 51, 'name': 'get_internal_type', 'endline': 52, 'col_offset': 4, 'complexity': 1, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'B', 'lineno': 54, 'name': 'to_python', 'endline': 71, 'col_offset': 4, 'complexity': 6, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 73, 'name': 'get_prep_value', 'endline': 76, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 78, 'name': 'from_db_value', 'endline': 81, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 83, 'name': 'value_to_string', 'endline': 85, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 88, 'name': '_descriptor_class', 'endline': 90, 'col_offset': 4, 'complexity': 1, 'classname': 'DurationField', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 46, 'name': '__init__', 'endline': 49, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 73, 'name': 'get_prep_value', 'endline': 76, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 78, 'name': 'from_db_value', 'endline': 81, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 83, 'name': 'value_to_string', 'endline': 85, 'col_offset': 4, 'complexity': 2, 'classname': 'DurationField', 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 25, 'name': 'Empty', 'endline': 26, 'col_offset': 0, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 29, 'name': 'NOT_PROVIDED', 'endline': 30, 'col_offset': 0, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'lineno': 33, 'name': 'FieldDoesNotExist', 'endline': 34, 'col_offset': 0, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'lineno': 51, 'name': 'get_internal_type', 'endline': 52, 'col_offset': 4, 'complexity': 1, 'classname': 'DurationField', 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 88, 'name': '_descriptor_class', 'endline': 90, 'col_offset': 4, 'complexity': 1, 'classname': 'DurationField', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\ntime: line 42: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the specific DurationField format/help_text issue. Performance reports (PERF-001..PERF-007) are generic, not tied to actual inefficiencies in the provided Django DurationField code. Readability report (READ-001) requests more code and is not actionable here. No unit tests are provided, so functionality must be preserved by making only minimal, clearly safe text changes. [Phase 2] All suggestions target broad or unknown code blocks and do not overlap with the concrete DurationField lines, so there are no real conflict points within the given snippet. [Phase 3] There are no SecurityExpert reports, thus no critical security items. Performance suggestions are filtered out by the Functionality Preservation and Minimal Invasiveness principles as they would require speculative refactors without clear benefit in this narrow context. [Phase 4] To resolve the issue, we adjust only the invalid error message format string and add a default help_text matching this format. These are consistent, non-invasive text changes, and they align with the described actual behavior of DurationField parsing. [Phase 5] Dependencies are trivial: both changes apply within the DurationField class definition and are independent. [Phase 6] The execution plan contains two simple REPLACE actions on the relevant lines, with SIMPLE_MODIFICATION refactor_type and updated replacement_code for the error message and help_text respectively, satisfying the reported issue while preserving behavior.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Update DurationField invalid error message to reflect the correct duration input format.",
+                "action": "REPLACE",
+                "target_code_block": "django/db/models/fields/__init__.py#DurationField.default_error_messages",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "    default_error_messages = {\n        'invalid': _(\"'%(value)s' value has an invalid format. It must be in [DD] [[HH:]MM:]ss[.uuuuuu] format.\"),\n    }"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Directly addresses the reported issue by correcting the documented expected format without altering parsing logic, honoring the Principle of Functionality Preservation and Minimal Invasiveness."
+            },
+            {
+                "step": 2,
+                "description": "Ensure DurationField provides a default help_text that documents the correct duration format when none is supplied.",
+                "action": "REPLACE",
+                "target_code_block": "django/db/models/fields/__init__.py#DurationField.__init__",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "    def __init__(self, *args, **kwargs):\n        if 'help_text' not in kwargs:\n            kwargs['help_text'] = _('[DD] [[HH:]MM:]ss[.uuuuuu]')\n        super().__init__(*args, **kwargs)"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Matches the error message and clarifies the non-obvious syntax for users, while only adding a non-functional default help_text, thus keeping the change safe and minimally invasive."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Updated DurationField.default_error_messages['invalid'] string to use the format '[DD] [[HH:]MM:]ss[.uuuuuu]'.",
+        "Step 2: Ensured DurationField.__init__ sets a default help_text of '[DD] [[HH:]MM:]ss[.uuuuuu]' when none is provided."
+    ],
+    "feedback_used": "Functional Error: Runtime Error in Docker:\ntime: line 42: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip\nNFR Score Low (70).",
+    "cost_analysis": {
+        "prompt_tokens": 17947,
+        "completion_tokens": 5954,
+        "estimated_cost_usd": 0.179045
+    },
+    "maestro_score": 0
+}

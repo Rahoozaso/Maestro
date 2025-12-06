@@ -1,0 +1,27 @@
+{
+    "run_id": "B",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=4.3076923076923075, complexities=[{'type': 'method', 'rank': 'D', 'lineno': 95, 'col_offset': 4, 'name': '_topological_merge', 'classname': 'Media', 'endline': 210, 'complexity': 22, 'closures': [{'type': 'function', 'rank': 'A', 'lineno': 121, 'col_offset': 8, 'name': 'add_edge', 'endline': 158, 'complexity': 4, 'closures': [{'type': 'function', 'rank': 'A', 'lineno': 140, 'col_offset': 12, 'name': 'dfs', 'endline': 150, 'complexity': 5, 'closures': []}]}]}, {'type': 'method', 'rank': 'B', 'lineno': 45, 'col_offset': 4, 'name': '__init__', 'classname': 'Media', 'endline': 58, 'complexity': 8, 'closures': []}, {'type': 'method', 'rank': 'B', 'lineno': 225, 'col_offset': 4, 'name': '_combine_css', 'classname': 'Media', 'endline': 240, 'complexity': 7, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 35, 'col_offset': 0, 'name': 'Media', 'endline': 254, 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'B', 'lineno': 45, 'col_offset': 4, 'name': '__init__', 'classname': 'Media', 'endline': 58, 'complexity': 8, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 61, 'col_offset': 4, 'name': 'css', 'classname': 'Media', 'endline': 62, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 65, 'col_offset': 4, 'name': 'js', 'classname': 'Media', 'endline': 66, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 68, 'col_offset': 4, 'name': '__bool__', 'classname': 'Media', 'endline': 69, 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 71, 'col_offset': 4, 'name': '__add__', 'classname': 'Media', 'endline': 88, 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'D', 'lineno': 95, 'col_offset': 4, 'name': '_topological_merge', 'classname': 'Media', 'endline': 210, 'complexity': 22, 'closures': [{'type': 'function', 'rank': 'A', 'lineno': 121, 'col_offset': 8, 'name': 'add_edge', 'endline': 158, 'complexity': 4, 'closures': [{'type': 'function', 'rank': 'A', 'lineno': 140, 'col_offset': 12, 'name': 'dfs', 'endline': 150, 'complexity': 5, 'closures': []}]}]}, {'type': 'method', 'rank': 'A', 'lineno': 212, 'col_offset': 4, 'name': '_combine_js', 'classname': 'Media', 'endline': 223, 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'B', 'lineno': 225, 'col_offset': 4, 'name': '_combine_css', 'classname': 'Media', 'endline': 240, 'complexity': 7, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 246, 'col_offset': 4, 'name': 'render_js', 'classname': 'Media', 'endline': 247, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 249, 'col_offset': 4, 'name': 'render_css', 'classname': 'Media', 'endline': 251, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 253, 'col_offset': 4, 'name': '__repr__', 'classname': 'Media', 'endline': 254, 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 212, 'col_offset': 4, 'name': '_combine_js', 'classname': 'Media', 'endline': 223, 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 68, 'col_offset': 4, 'name': '__bool__', 'classname': 'Media', 'endline': 69, 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 71, 'col_offset': 4, 'name': '__add__', 'classname': 'Media', 'endline': 88, 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 30, 'col_offset': 0, 'name': '_MediaDef', 'endline': 32, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'lineno': 61, 'col_offset': 4, 'name': 'css', 'classname': 'Media', 'endline': 62, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 65, 'col_offset': 4, 'name': 'js', 'classname': 'Media', 'endline': 66, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 246, 'col_offset': 4, 'name': 'render_js', 'classname': 'Media', 'endline': 247, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 249, 'col_offset': 4, 'name': 'render_css', 'classname': 'Media', 'endline': 251, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 253, 'col_offset': 4, 'name': '__repr__', 'classname': 'Media', 'endline': 254, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nthe: line 37: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Invalid requirement: '__future__'\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36293,
+        "completion_tokens": 16324,
+        "estimated_cost_usd": 0.426325
+    },
+    "maestro_score": 0
+}

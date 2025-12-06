@@ -1,0 +1,110 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.1428571428571428, complexities=[{'type': 'class', 'rank': 'A', 'name': 'InheritedChoicesDisplayTests', 'endline': 52, 'col_offset': 0, 'lineno': 30, 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'name': 'test_inherited_choices_still_work', 'endline': 38, 'col_offset': 4, 'lineno': 33, 'complexity': 1, 'classname': 'InheritedChoicesDisplayTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_extended_choices_on_child', 'endline': 43, 'col_offset': 4, 'lineno': 40, 'complexity': 1, 'classname': 'InheritedChoicesDisplayTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_base_behavior_for_sibling_without_override', 'endline': 52, 'col_offset': 4, 'lineno': 45, 'complexity': 1, 'classname': 'InheritedChoicesDisplayTests', 'closures': []}]}, {'type': 'class', 'rank': 'A', 'name': 'AbstractBase', 'endline': 10, 'col_offset': 0, 'lineno': 5, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'Child', 'endline': 22, 'col_offset': 0, 'lineno': 16, 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'name': 'Sibling', 'endline': 27, 'col_offset': 0, 'lineno': 25, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'name': 'test_inherited_choices_still_work', 'endline': 38, 'col_offset': 4, 'lineno': 33, 'complexity': 1, 'classname': 'InheritedChoicesDisplayTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_extended_choices_on_child', 'endline': 43, 'col_offset': 4, 'lineno': 40, 'complexity': 1, 'classname': 'InheritedChoicesDisplayTests', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'test_base_behavior_for_sibling_without_override', 'endline': 52, 'col_offset': 4, 'lineno': 45, 'complexity': 1, 'classname': 'InheritedChoicesDisplayTests', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=9.999999999940612e-07, modified_avg_time=1.0999999999969368e-06, improvement_percentage=-10.000000000346946, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "PERF-001",
+            "agent_role": "PerformanceExpert",
+            "title": "Introduce caching/memoization for repeated expensive computations",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "The issue description indicates functionally correct but inefficient AI-generated code. A common pattern in such code is recomputing the same expensive operations (e.g., parsing, DB calls, complex formulas) inside loops or recursive calls without caching. This leads to superlinear growth in runtime, often O(n^2) or worse, when many calls share the same inputs. Introducing a memoization layer or precomputed lookup table converts repeated recomputation into O(1) lookups, improving overall complexity from O(n*k) to O(n + u), where k is the average number of times a value is recomputed and u is the number of unique inputs.",
+            "proposed_change": "from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef expensive_function(arg1, arg2):\n    # original body of expensive_function goes here\n    # return the same result as before\n    ...\n\n# In the rest of the code, keep calling expensive_function(arg1, arg2)\n# exactly as before; its interface and behavior remain unchanged, but\n# repeated calls with the same arguments will now be served from cache."
+        },
+        {
+            "suggestion_id": "PERF-002",
+            "agent_role": "PerformanceExpert",
+            "title": "Replace linear membership tests on lists with constant-time set/dict lookups",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "AI‑generated code commonly uses `if x in some_list:` or repeated `.count()` calls inside loops, giving O(n*m) behavior. Converting the searched collection to a set or dict outside the loop makes each membership test O(1) on average, significantly lowering asymptotic complexity.",
+            "proposed_change": "# Before the loop\nlookup_set = set(some_list)\n\n# Inside the loop, replace linear membership checks\nfor item in items:\n    if item in lookup_set:\n        ...  # original body\n\n# Similarly, for counting purposes:\nfrom collections import Counter\ncounts = Counter(some_list)\nfor item in items:\n    c = counts.get(item, 0)\n    # use c instead of repeatedly calling some_list.count(item)"
+        },
+        {
+            "suggestion_id": "PERF-003",
+            "agent_role": "PerformanceExpert",
+            "title": "Convert recursive logic to iterative loops to avoid recursion overhead and stack limits",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI‑generated implementations of traversal or dynamic programming often use naive recursion. This causes per-call overhead and risks hitting Python's recursion limit on large inputs. Many such recursions are tail-recursive or equivalent to simple loops or explicit stacks, which can be implemented iteratively with the same logic but better robustness and performance.",
+            "proposed_change": "# Original recursive pattern (conceptual)\n# def traverse(node):\n#     if not node:\n#         return\n#     process(node)\n#     for child in node.children:\n#         traverse(child)\n\n# Suggested iterative equivalent\nfrom collections import deque\n\ndef traverse(root):\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        if not node:\n            continue\n        process(node)\n        # push children in reverse order if original recursion was pre-order\n        for child in reversed(node.children):\n            stack.append(child)"
+        },
+        {
+            "suggestion_id": "PERF-004",
+            "agent_role": "PerformanceExpert",
+            "title": "Hoist loop-invariant computations and avoid repeated conversions inside loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "AI‑generated code often performs conversions (e.g., `list()`, `set()`, `np.array()`) or constant computations repeatedly inside loops. These operations are loop-invariant and can be moved outside to avoid redundant work, reducing runtime from O(n*k) to O(n + k) where k is the cost of the repeated operation.",
+            "proposed_change": "# Inefficient pattern (conceptual)\nfor item in items:\n    normalized_keys = set(keys)  # recomputed every iteration\n    if item.key in normalized_keys:\n        ...\n\n# Optimized pattern\nnormalized_keys = set(keys)\nfor item in items:\n    if item.key in normalized_keys:\n        ..."
+        },
+        {
+            "suggestion_id": "PERF-005",
+            "agent_role": "PerformanceExpert",
+            "title": "Use join-based string building instead of repeated concatenation in loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "Medium",
+            "reasoning": "Repeated `+=` concatenation of strings in Python inside loops leads to O(n^2) behavior in the total length of the output string because each concatenation may allocate a new string and copy existing contents. Collecting pieces into a list and using `\"\".join()` is O(n) and is highly optimized in CPython.",
+            "proposed_change": "# Inefficient pattern (conceptual)\nresult = \"\"\nfor part in parts:\n    result += part  # repeated concatenation\n\n# Optimized pattern\nparts_buffer = []\nfor part in parts:\n    parts_buffer.append(part)\nresult = \"\".join(parts_buffer)"
+        },
+        {
+            "suggestion_id": "PERF-006",
+            "agent_role": "PerformanceExpert",
+            "title": "Leverage vectorized operations when using NumPy or Pandas instead of Python-level loops",
+            "target_code_block": "main.py#L1-L200",
+            "severity": "High",
+            "reasoning": "AI‑generated numerical or data-processing code frequently uses Python `for` loops over arrays or DataFrame rows/columns instead of harnessing vectorized operations. Vectorization shifts computation into optimized C-level implementations, reducing Python interpreter overhead and frequently improving complexity from O(n*k) interpreted steps to effectively O(n) in compiled code with much lower constants.",
+            "proposed_change": "# Example NumPy refactor\n# Inefficient pattern\n# for i in range(len(arr)):\n#     arr[i] = arr[i] * scale + bias\n\n# Optimized vectorized pattern\narr = arr * scale + bias\n\n# Example Pandas refactor\n# df['new_col'] = 0\n# for idx, row in df.iterrows():\n#     df.at[idx, 'new_col'] = row['a'] + row['b']\n\n# Optimized\ndf['new_col'] = df['a'] + df['b']"
+        },
+        {
+            "suggestion_id": "PERF-007",
+            "agent_role": "PerformanceExpert",
+            "title": "Use more specific and lazy imports to reduce startup overhead and memory footprint",
+            "target_code_block": "main.py#L1-L20",
+            "severity": "Low",
+            "reasoning": "AI‑generated code tends to use broad imports such as `from module import *` or import heavy libraries at the top-level even when used only in rare code paths. This increases startup time and memory usage unnecessarily. Using specific imports and deferring some imports to the point of use can reduce overhead.",
+            "proposed_change": "# Instead of broad/eager imports\n# import numpy as np\n# import pandas as pd\n\n# Narrow to only what is needed\nfrom math import sqrt  # example of specific import\n\n# For rarely used heavy dependencies, do lazy imports inside functions\ndef optional_analysis(data):\n    import pandas as pd  # imported only when needed\n    # rest of the function\n    ..."
+        },
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Missing code to review",
+            "target_code_block": "N/A",
+            "severity": "High",
+            "reasoning": "No v_gen source code was provided in the input, so a readability and maintainability review cannot be performed. This blocks all further analysis and makes it impossible for the Architect to make informed trade-off decisions.",
+            "proposed_change": "Provide the v_gen source code (and optionally the unit_test_suite) as specified in the INPUT SCHEMA so that a detailed readability and code-quality review can be conducted."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-inherited-choices-display-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue', i.e., ensure get_FOO_display() works correctly for inherited/overridden choices in Django models. v_gen is a compact Django test module demonstrating the bug and expected behavior. Expert performance suggestions (PERF-001..PERF-007) are generic boilerplate not tailored to this code; READ-001 is a placeholder complaining about missing code, which is obsolete because v_gen is provided. No SecurityExpert report is present, so no critical security items. Unit tests for this specific snippet are marked N/A; however, the described tests in v_gen itself indicate the intended behavior. [Phase 2] All performance suggestions target broad ranges (main.py#L1-L200) but the code contains no obvious hotspots: no recursion, no heavy loops, no broad imports, no repeated expensive computations. There is also no use of NumPy/Pandas. Grouping therefore shows no meaningful conflict points specific to our code. [Phase 3] Applying the Principle of Security Primacy: there are no security suggestions, so none to force. Applying Functionality Preservation: adopting generic performance refactors (e.g., introducing memoization, converting recursion, using sets, changing imports) without any concrete targets would alter behavior or create dead/unreachable code without benefit and might break Django's test/environment expectations; they are rejected as not applicable. READ-001 is also rejected as it requests input rather than a code change. [Phase 4] Given that the MAESTRO task here is to refactor v_gen but no concrete, code-specific improvement proposals were provided (only generic templates), there are no real conflicts to resolve. The best way to preserve correctness and keep the tests/pass conditions aligned with Django's eventual core fix is to leave this test code structurally intact. Principle of Minimal Invasiveness therefore dominates: do not introduce speculative refactors. [Phase 5] As there are no adopted suggestions, the safest execution plan is to make no changes to the v_gen code. This inherently preserves behavior and keeps the tests as-is to validate the underlying Django fix implemented elsewhere in the framework. [Phase 6] Final plan: output an empty instruction list, clearly indicating that no expert suggestion is applicable and that we intentionally avoid modifications to prevent unintended regressions.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Execution plan contained no modification instructions; original test module is preserved unchanged."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 10654,
+        "completion_tokens": 3885,
+        "estimated_cost_usd": 0.111545
+    },
+    "maestro_score": 70
+}

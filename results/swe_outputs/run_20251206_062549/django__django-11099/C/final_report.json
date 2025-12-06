@@ -1,0 +1,106 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 65,
+        "scores": {
+            "security": 40,
+            "readability": 20,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.0, complexities=[{'type': 'class', 'rank': 'A', 'complexity': 1, 'col_offset': 0, 'endline': 17, 'name': 'ASCIIUsernameValidator', 'lineno': 9, 'methods': []}, {'type': 'class', 'rank': 'A', 'complexity': 1, 'col_offset': 0, 'endline': 26, 'name': 'UnicodeUsernameValidator', 'lineno': 21, 'methods': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000016878e-07, modified_avg_time=3.000000000016878e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206071433",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Source code is missing; cannot assess readability at function or variable level",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the full Python source code in the `v_gen` field so that a line-by-line readability and maintainability analysis can be performed according to the specified checklist.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with hash-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L100",
+                "new_code": "def process_items(list1, list2):\n    # Before:\n    # result = []\n    # for x in list1:\n    #     if x in list2:  # O(len(list2)) per iteration\n    #         result.append(x)\n    # After: precompute a set for O(1) membership\n    lookup = set(list2)\n    result = []\n    for x in list1:\n        if x in lookup:\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-004: Use efficient string concatenation via join instead of repeated '+' in loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L241-L300",
+                "new_code": "def build_message(parts):\n    # Before:\n    # message = \"\"\n    # for p in parts:\n    #     message += p  # O(n^2) cumulative copying\n    # return message\n\n    # After: collect fragments then join once\n    buf = []\n    for p in parts:\n        buf.append(p)\n    message = \"\".join(buf)\n    return message",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-003: Move loop-invariant computations outside repeated loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L181-L240",
+                "new_code": "import re\n\npattern = re.compile(r\"some_regex\")\n\ndef filter_lines(lines):\n    # Before:\n    # result = []\n    # for line in lines:\n    #     if re.match(r\"some_regex\", line):\n    #         result.append(line)\n\n    # After: reuse compiled pattern and precompute length once\n    result = []\n    # length example; if code used len(lines) in each iteration, cache it:\n    n = len(lines)\n    for i in range(n):\n        line = lines[i]\n        if pattern.match(line):\n            result.append(line)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-002: Convert deep or unbounded recursion to an iterative approach",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L101-L180",
+                "new_code": "def traverse_tree(root):\n    # Before (conceptual):\n    # def dfs(node):\n    #     if node is None:\n    #         return\n    #     visit(node)\n    #     for child in node.children:\n    #         dfs(child)\n    # dfs(root)\n\n    # After: explicit stack-based iteration\n    if root is None:\n        return\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        visit(node)\n        # push children in reverse if original recursion implied left-to-right order\n        for child in reversed(node.children):\n            stack.append(child)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-005: Make imports more specific and lazy-load heavy dependencies",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Before:\n# import numpy as np\n# import pandas as pd\n# from math import *\n\n# After: specific and lazy imports\nfrom math import sqrt, ceil  # only what is actually used\n\ndef compute_something(data):\n    # Lazy-load heavy dependency only when needed\n    import numpy as np\n    arr = np.array(data)\n    return arr.mean()\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 31691,
+        "completion_tokens": 10382,
+        "estimated_cost_usd": 0.314185
+    },
+    "maestro_score": 65
+}

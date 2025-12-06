@@ -1,0 +1,118 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4, complexities=[{'type': 'method', 'rank': 'C', 'name': '_build_table', 'classname': 'QDPReader', 'endline': 173, 'col_offset': 4, 'lineno': 131, 'complexity': 11, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_parse_line', 'classname': 'QDPReader', 'endline': 72, 'col_offset': 4, 'lineno': 43, 'complexity': 6, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'QDPReader', 'endline': 173, 'col_offset': 0, 'lineno': 14, 'complexity': 5, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'classname': 'QDPReader', 'endline': 29, 'col_offset': 4, 'lineno': 25, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'read', 'classname': 'QDPReader', 'endline': 38, 'col_offset': 4, 'lineno': 34, 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_parse_line', 'classname': 'QDPReader', 'endline': 72, 'col_offset': 4, 'lineno': 43, 'complexity': 6, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_handle_read', 'classname': 'QDPReader', 'endline': 87, 'col_offset': 4, 'lineno': 77, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_handle_read_serr', 'classname': 'QDPReader', 'endline': 108, 'col_offset': 4, 'lineno': 89, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_handle_read_terr', 'classname': 'QDPReader', 'endline': 126, 'col_offset': 4, 'lineno': 110, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'C', 'name': '_build_table', 'classname': 'QDPReader', 'endline': 173, 'col_offset': 4, 'lineno': 131, 'complexity': 11, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': '_handle_read_serr', 'classname': 'QDPReader', 'endline': 108, 'col_offset': 4, 'lineno': 89, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_handle_read_terr', 'classname': 'QDPReader', 'endline': 126, 'col_offset': 4, 'lineno': 110, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'read', 'classname': 'QDPReader', 'endline': 38, 'col_offset': 4, 'lineno': 34, 'complexity': 2, 'closures': []}, {'type': 'function', 'rank': 'A', 'name': 'read_qdp', 'endline': 180, 'col_offset': 0, 'lineno': 178, 'complexity': 1, 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'QDPError', 'endline': 11, 'col_offset': 0, 'lineno': 10, 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'classname': 'QDPReader', 'endline': 29, 'col_offset': 4, 'lineno': 25, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_handle_read', 'classname': 'QDPReader', 'endline': 87, 'col_offset': 4, 'lineno': 77, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000086267e-07, modified_avg_time=2.0000000000575113e-07, improvement_percentage=33.33333333333333, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206063726",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing source code prevents concrete, location-specific review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the full v_gen source code (or a specific file/module) so that line-specific readability issues can be identified and annotated according to the requested schema.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace any nested list membership checks with set/dict-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(items, candidates):\n    # Hypothetical original pattern:\n    # result = []\n    # for item in items:\n    #     if item in candidates:  # O(len(candidates)) per iteration\n    #         result.append(item)\n\n    # Optimized version using a set for membership checks\n    candidate_set = set(candidates)\n    result = []\n    for item in items:\n        if item in candidate_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-005: Simplify or expand complex list comprehensions for clarity",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#AllListComprehensions",
+                "new_code": "Identify list comprehensions that contain nested loops, multiple conditions, or inline transformations, and refactor them into clearer constructs: either break them into multiple steps with intermediate variables or convert them to explicit for-loops with well-named variables.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] READ-004: Rename overly short or ambiguous variables (e.g., d, ml, ol) to descriptive names",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#AllVariableDeclarations",
+                "new_code": "Identify all single- or two-letter variable names (except conventional indices like i, j in small loops) and rename them to descriptive alternatives that indicate their role, e.g., d -> user_data, ml -> max_length, ol -> output_list.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-003: Replace use of typing.Any with precise type hints",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#AllTypeHints",
+                "new_code": "Search for all occurrences of typing.Any in type hints and replace each with the most specific appropriate type (e.g., Dict[str, int], List[User], Union[str, None]) based on how the value is actually used.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-002: Ensure all public functions and classes have docstrings",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#AllFunctionsAndClasses",
+                "new_code": "For each public function and class in v_gen, add a concise docstring that explains its purpose, parameters, return value, and any side effects following PEP 257 and your project’s docstring convention (e.g., Google or NumPy style).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-005: Prefer lazy or more specific imports to reduce import overhead and memory footprint",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Hypothetical original pattern\n# import pandas as pd\n# import numpy as np\n#\n# def lightweight_function(x):\n#     return x * 2\n\n# Optimized, lazy/specific imports\ndef lightweight_function(x):\n    return x * 2\n\n# Only import heavy dependencies where needed\ndef heavy_data_processing(df):\n    import pandas as pd\n    import numpy as np\n    # use pd and np here\n    ...",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 36810,
+        "completion_tokens": 14555,
+        "estimated_cost_usd": 0.402375
+    },
+    "maestro_score": 100
+}

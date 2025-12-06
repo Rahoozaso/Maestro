@@ -1,0 +1,82 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 75,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.0, complexities=[{'type': 'class', 'rank': 'A', 'name': 'Field', 'lineno': 10, 'col_offset': 0, 'endline': 57, 'complexity': 3, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'lineno': 15, 'classname': 'Field', 'col_offset': 4, 'endline': 25, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'get_prep_value', 'lineno': 31, 'classname': 'Field', 'col_offset': 4, 'endline': 51, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'to_python', 'lineno': 56, 'classname': 'Field', 'col_offset': 4, 'endline': 57, 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'get_prep_value', 'lineno': 31, 'classname': 'Field', 'col_offset': 4, 'endline': 51, 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'lineno': 15, 'classname': 'Field', 'col_offset': 4, 'endline': 25, 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'to_python', 'lineno': 56, 'classname': 'Field', 'col_offset': 4, 'endline': 57, 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.999999999976245e-07, modified_avg_time=3.999999999976245e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206083057",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing concrete code context prevents targeted readability review",
+                "action": "REPLACE",
+                "target_code_block": "N/A#L1-L1",
+                "new_code": "Provide the actual `v_gen` Python source code and the corresponding `unit_test_suite` content so that a line-referenced readability and maintainability analysis can be performed.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-006: Use list/heap/dict-based algorithms instead of naive nested loops for aggregation and search",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L50-L200",
+                "new_code": "from collections import Counter\n\n# Hypothetical duplicate counting pattern:\n# counts = {}\n# for i in range(len(data)):\n#     for j in range(len(data)):\n#         if data[i] == data[j]:\n#             counts[data[i]] = counts.get(data[i], 0) + 1\n\n# Optimized using Counter in a single pass\n\ndef count_items(data):\n    return Counter(data)\n\n# Hypothetical membership-based join pattern:\n# result = []\n# for a in list_a:\n#     for b in list_b:\n#         if a.key == b.key:\n#             result.append((a, b))\n\n# Optimized using dict-index of list_b\n\ndef join_on_key(list_a, list_b):\n    index_b = {}\n    for b in list_b:\n        index_b.setdefault(b.key, []).append(b)\n    result = []\n    for a in list_a:\n        if a.key in index_b:\n            for b in index_b[a.key]:\n                result.append((a, b))\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Avoid repeated linear scans by introducing hash-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(data, items_to_check):\n    # Hypothetical existing pattern:\n    # result = []\n    # for item in data:\n    #     if item in items_to_check:  # O(len(items_to_check)) per iteration\n    #         result.append(item)\n    # return result\n\n    # Improved pattern using a set for O(1) average membership tests\n    items_set = set(items_to_check)\n    result = []\n    for item in data:\n        if item in items_set:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-005: Use lazy/specific imports and avoid heavy module loading on hot paths",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Instead of: from some_heavy_lib import *\n# And using some_heavy_lib only in a rare function\n\ndef rare_slow_path(x):\n    # Lazy import inside function\n    import some_heavy_lib\n    return some_heavy_lib.expensive_op(x)\n\n# Or use specific imports at module level when always needed:\n# from some_heavy_lib import expensive_op\n# ...\n# result = expensive_op(x)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 35266,
+        "completion_tokens": 14797,
+        "estimated_cost_usd": 0.398285
+    },
+    "maestro_score": 75
+}

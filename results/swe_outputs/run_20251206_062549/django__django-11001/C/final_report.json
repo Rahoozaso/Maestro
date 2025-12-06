@@ -1,0 +1,130 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 75,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 5
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4, complexities=[{'type': 'method', 'rank': 'B', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 6, 'lineno': 60, 'name': 'get_order_by', 'endline': 114, 'closures': []}, {'type': 'class', 'rank': 'A', 'col_offset': 0, 'complexity': 4, 'lineno': 34, 'name': 'SQLCompiler', 'endline': 114, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 1, 'lineno': 35, 'name': '__init__', 'endline': 41, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 2, 'lineno': 43, 'name': 'quote_name_unless_alias', 'endline': 48, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 4, 'lineno': 50, 'name': '_order_by_pairs', 'endline': 58, 'closures': []}, {'type': 'method', 'rank': 'B', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 6, 'lineno': 60, 'name': 'get_order_by', 'endline': 114, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 4, 'lineno': 50, 'name': '_order_by_pairs', 'endline': 58, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 2, 'lineno': 43, 'name': 'quote_name_unless_alias', 'endline': 48, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'SQLCompiler', 'col_offset': 4, 'complexity': 1, 'lineno': 35, 'name': '__init__', 'endline': 41, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=3.000000000016878e-07, modified_avg_time=3.000000000016878e-07, improvement_percentage=0.0, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\n(ASC|DESC))\n\n    def quote_name_unless_alias(self, name):\n        if name in self.quote_cache:\n            return self.quote_cache[name]\n        r = self.connection.ops.quote_name(name)\n        self.quote_cache[name] = r\n        return r\n\n    def _order_by_pairs(self):\n        # Placeholder implementation. In the real Django codebase this\n        # would yield (expr, (sql, params, is_ref)) for each ORDER BY item.\n        for order_by in self.query.order_by or []:\n            if hasattr(order_by, 'as_sql'):\n                sql, params = order_by.as_sql(self, self.connection)\n            else:\n                sql, params = str(order_by), []\n            yield order_by, (sql, params, False)\n\n    def get_order_by(self):\n        Return: line 42: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement warnings (from versions: none)\nERROR: No matching distribution found for warnings\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206070106",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-008: Reduce deeply nested control flow using early returns and guard clauses",
+                "action": "REPLACE",
+                "target_code_block": "v_gen.py#L1-L999",
+                "new_code": "Identify functions with multiple levels of nested conditionals and loops and refactor them using early returns, guard clauses, or extracted helper functions. For example, validate inputs at the top of a function and return early rather than nesting the core logic inside multiple `if` blocks.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-008"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-005: Switch from lists to sets/dicts for frequent membership and de-duplication operations",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L420-L520",
+                "new_code": "def unique_preserve_order(seq):\n    # Before:\n    # result = []\n    # for x in seq:\n    #     if x not in result:\n    #         result.append(x)\n    # return result\n\n    seen = set()\n    result = []\n    for x in seq:\n        if x not in seen:\n            seen.add(x)\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-001: Replace nested list membership checks with hash-based structures",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_membership_check(list1, list2):\n    # Convert list2 once outside the loop\n    lookup = set(list2)\n    result = []\n    for item in list1:\n        if item in lookup:\n            result.append(item)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-007: Vectorize numerical loops using NumPy instead of pure Python iteration",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L520-L650",
+                "new_code": "import numpy as np\n\n# Before:\n# def scale_and_shift(values, scale, shift):\n#     result = []\n#     for v in values:\n#         result.append(v * scale + shift)\n#     return result\n\n# After (behaviorally equivalent for numeric data):\n\ndef scale_and_shift(values, scale, shift):\n    arr = np.asarray(values)\n    res = arr * scale + shift\n    return res.tolist()  # keep output type consistent with tests",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-007"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] PERF-004: Use efficient string building with join instead of repeated concatenation",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L350-L420",
+                "new_code": "def build_output(parts):\n    # Before:\n    # result = \"\"\n    # for p in parts:\n    #     result += p\n    # return result\n\n    buf = []\n    for p in parts:\n        buf.append(p)\n    return \"\".join(buf)",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] PERF-003: Convert recursive logic to iterative to avoid stack overflow and overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L200-L350",
+                "new_code": "def dfs_iterative(root):\n    # Hypothetical recursive version:\n    # def dfs(node, visited):\n    #     if node is None: return\n    #     visited.add(node)\n    #     for nxt in node.neighbors:\n    #         if nxt not in visited:\n    #             dfs(nxt, visited)\n    # visited = set(); dfs(root, visited); return visited\n\n    if root is None:\n        return set()\n    visited = set()\n    stack = [root]\n    while stack:\n        node = stack.pop()\n        if node in visited:\n            continue\n        visited.add(node)\n        # replicate traversal order as needed (e.g., reverse neighbors)\n        for nxt in node.neighbors:\n            if nxt not in visited:\n                stack.append(nxt)\n    return visited",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] PERF-002: Avoid repeated data conversions and computations inside loops",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L250",
+                "new_code": "def process_items(items):\n    # Before optimization, code may look like:\n    # for i in range(len(items)):\n    #     value = expensive_parse(str(items[i]))\n    #     ...\n\n    n = len(items)  # compute length once\n    parsed_items = [expensive_parse(str(x)) for x in items]  # precompute if reused\n    for i in range(n):\n        value = parsed_items[i]\n        # process value\n        ...",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] PERF-006: Use lazy and specific imports to reduce import-time overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L40",
+                "new_code": "# Before:\n# import numpy as np\n# import pandas as pd\n\n# After (example when only array and DataFrame are used in specific functions):\n\ndef some_computation(...):\n    import numpy as np  # lazy import only when needed\n    ...\n\ndef build_table(...):\n    from pandas import DataFrame  # import only required symbol\n    ...",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 39970,
+        "completion_tokens": 18073,
+        "estimated_cost_usd": 0.470945
+    },
+    "maestro_score": 0
+}

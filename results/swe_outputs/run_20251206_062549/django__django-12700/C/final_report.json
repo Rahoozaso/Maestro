@@ -1,0 +1,166 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 100,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 30
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.7857142857142856, complexities=[{'type': 'function', 'rank': 'C', 'lineno': 26, 'col_offset': 0, 'endline': 79, 'name': 'cleanse_setting', 'complexity': 20, 'closures': []}, {'type': 'method', 'rank': 'B', 'lineno': 113, 'col_offset': 4, 'endline': 132, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_safe_request', 'complexity': 7, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 82, 'col_offset': 0, 'endline': 155, 'name': 'SafeExceptionReporterFilter', 'complexity': 4, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 90, 'col_offset': 4, 'endline': 93, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_post_parameters', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 95, 'col_offset': 4, 'endline': 98, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_cookies', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 100, 'col_offset': 4, 'endline': 103, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_meta', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 105, 'col_offset': 4, 'endline': 111, 'classname': 'SafeExceptionReporterFilter', 'name': 'is_active', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'B', 'lineno': 113, 'col_offset': 4, 'endline': 132, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_safe_request', 'complexity': 7, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 134, 'col_offset': 4, 'endline': 142, 'classname': 'SafeExceptionReporterFilter', 'name': '_clone_request', 'complexity': 4, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 144, 'col_offset': 4, 'endline': 155, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_safe_settings', 'complexity': 3, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 134, 'col_offset': 4, 'endline': 142, 'classname': 'SafeExceptionReporterFilter', 'name': '_clone_request', 'complexity': 4, 'closures': []}, {'type': 'function', 'rank': 'A', 'lineno': 158, 'col_offset': 0, 'endline': 170, 'name': 'technical_500_response', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 144, 'col_offset': 4, 'endline': 155, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_safe_settings', 'complexity': 3, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 90, 'col_offset': 4, 'endline': 93, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_post_parameters', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 95, 'col_offset': 4, 'endline': 98, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_cookies', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 100, 'col_offset': 4, 'endline': 103, 'classname': 'SafeExceptionReporterFilter', 'name': 'get_meta', 'complexity': 2, 'closures': []}, {'type': 'class', 'rank': 'A', 'lineno': 173, 'col_offset': 0, 'endline': 188, 'name': 'ExceptionReporter', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'lineno': 181, 'col_offset': 4, 'endline': 182, 'classname': 'ExceptionReporter', 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 184, 'col_offset': 4, 'endline': 185, 'classname': 'ExceptionReporter', 'name': 'get_traceback_text', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 187, 'col_offset': 4, 'endline': 188, 'classname': 'ExceptionReporter', 'name': 'get_traceback_html', 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'lineno': 105, 'col_offset': 4, 'endline': 111, 'classname': 'SafeExceptionReporterFilter', 'name': 'is_active', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 181, 'col_offset': 4, 'endline': 182, 'classname': 'ExceptionReporter', 'name': '__init__', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 184, 'col_offset': 4, 'endline': 185, 'classname': 'ExceptionReporter', 'name': 'get_traceback_text', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'lineno': 187, 'col_offset': 4, 'endline': 188, 'classname': 'ExceptionReporter', 'name': 'get_traceback_html', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1e-06, modified_avg_time=3.999999999976245e-07, improvement_percentage=60.00000000023755, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206093132",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-008: Use early returns to flatten deeply nested control flow",
+                "action": "REPLACE",
+                "target_code_block": "any_generated_module.py#L180-L230",
+                "new_code": "Refactor functions with multiple nested conditionals by adding guard clauses and early returns (e.g., return early on invalid input or edge cases) to keep the core logic at the top indentation level.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-008"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] READ-007: Split multi-purpose functions to respect the Single Responsibility Principle",
+                "action": "REPLACE",
+                "target_code_block": "any_generated_module.py#L100-L180",
+                "new_code": "Identify functions that both validate data, perform core computation, and handle I/O or formatting, then extract each concern into a dedicated helper function with a descriptive name (e.g., 'validate_user_data', 'compute_access_rights', 'format_response').",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-007"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] READ-006: Simplify or refactor complex list comprehensions",
+                "action": "REPLACE",
+                "target_code_block": "any_generated_module.py#L60-L100",
+                "new_code": "Identify list comprehensions that contain multiple nested loops or complex conditional logic and refactor them into small, well-named helper functions or equivalent for-loops, optionally breaking intermediate steps into named variables.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-006"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 4,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership tests with set/dict-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(...):\n    # Hypothetical precomputation: convert frequently-queried lists to sets/dicts once\n    # Example pattern: assume we previously had:\n    # for item in items:\n    #     if item in allowed_list:\n    #         ...\n\n    allowed_set = set(allowed_list)  # O(m) one-time cost\n\n    for item in items:\n        if item in allowed_set:\n            ...  # unchanged logic\n\n    # Similarly, if we frequently search objects by an attribute, build an index:\n    # id_to_obj = {obj.id: obj for obj in objects}\n    # for req in requests:\n    #     obj = id_to_obj.get(req.id)\n    #     if obj is not None:\n    #         ...",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 5,
+                "description": "[규칙 기반] READ-005: Add docstrings to public functions and classes",
+                "action": "REPLACE",
+                "target_code_block": "any_generated_module.py#L1-L200",
+                "new_code": "For each public function and class, add a concise docstring that explains its purpose, parameters, return values, side effects, and possible exceptions, following PEP 257 and a consistent style (e.g., Google or NumPy).",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 6,
+                "description": "[규칙 기반] READ-004: Avoid usage of 'typing.Any' in type hints",
+                "action": "REPLACE",
+                "target_code_block": "any_generated_module.py#L10-L40",
+                "new_code": "Identify each function or variable annotated with 'Any' and replace it with the most specific appropriate type (e.g., 'Dict[str, str]', 'List[int]', 'Callable[[Request], Response]'), based on how the value is used.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-004"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 7,
+                "description": "[규칙 기반] READ-003: Avoid using overly short variable names like 'ol' and 'ml'",
+                "action": "REPLACE",
+                "target_code_block": "any_generated_module.py#L1-L50",
+                "new_code": "For each short variable name (e.g., 'ol', 'ml', 'd', 'x'), rename it to a descriptive alternative that reflects its role, such as 'output_list', 'model_loader', 'user_data', or 'index', and update all usages consistently.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-003"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 8,
+                "description": "[규칙 기반] READ-002: Replace magic number '5' with a named constant",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L2-L3",
+                "new_code": "Introduce a module-level constant such as 'ADMIN_LEVEL_THRESHOLD = 5' and replace the comparison 'if user[\"level\"] > 5:' with 'if user[\"level\"] > ADMIN_LEVEL_THRESHOLD:'.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-002"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 9,
+                "description": "[규칙 기반] READ-001: Ambiguous variable name 'd' should be renamed to a descriptive name",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L1",
+                "new_code": "Rename the parameter 'd' in the function signature to a descriptive name such as 'user' or 'user_data', and update all references accordingly.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Medium) suggestion selected."
+            },
+            {
+                "step": 10,
+                "description": "[규칙 기반] SEC-001: No Code Provided for Security Review",
+                "action": "REPLACE",
+                "target_code_block": "v_gen#L1-L1",
+                "new_code": "Provide the actual implementation code and associated unit tests in the `v_gen` and `unit_test_suite` fields. For example:\n\nv_gen:\n\"\"\"\n# main.py\n\ndef process_input(user_input: str) -> str:\n    # TODO: implementation here\n    return user_input\n\"\"\"\n\nunit_test_suite:\n\"\"\"\n# test_main.py\n\nfrom main import process_input\n\ndef test_process_input_round_trip():\n    assert process_input(\"test\") == \"test\"\n\"\"\"\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "SEC-001"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            },
+            {
+                "step": 11,
+                "description": "[규칙 기반] PERF-005: Optimize imports by making them specific and, where appropriate, lazy",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Before (hypothetical):\n# from some_heavy_module import *\n# import pandas as pd\n\n# After: specific and optionally lazy imports\nfrom some_heavy_module import HeavyClass, heavy_function\n\n# Lazy import pattern for rarely-used tools\ndef optional_export_to_excel(df, path):\n    import pandas as pd  # imported only if this function is called\n    df.to_excel(path)\n",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-005"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 43755,
+        "completion_tokens": 20111,
+        "estimated_cost_usd": 0.52044
+    },
+    "maestro_score": 100
+}

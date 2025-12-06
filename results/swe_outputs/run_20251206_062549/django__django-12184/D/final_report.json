@@ -1,0 +1,38 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4545454545454546, complexities=[{'type': 'method', 'rank': 'B', 'endline': 127, 'classname': 'BaseHandler', 'complexity': 9, 'col_offset': 4, 'name': '_get_response_async', 'lineno': 81, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 211, 'classname': 'BaseHandler', 'complexity': 9, 'col_offset': 4, 'name': '_normalize_callback_args_kwargs', 'lineno': 140, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 71, 'classname': 'BaseHandler', 'complexity': 8, 'col_offset': 4, 'name': 'load_middleware', 'lineno': 44, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 237, 'complexity': 4, 'col_offset': 0, 'name': 'BaseHandler', 'lineno': 22, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 38, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': '__init__', 'lineno': 34, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 42, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': 'resolver', 'lineno': 41, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 71, 'classname': 'BaseHandler', 'complexity': 8, 'col_offset': 4, 'name': 'load_middleware', 'lineno': 44, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 79, 'classname': 'BaseHandler', 'complexity': 2, 'col_offset': 4, 'name': 'get_response_async', 'lineno': 73, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 127, 'classname': 'BaseHandler', 'complexity': 9, 'col_offset': 4, 'name': '_get_response_async', 'lineno': 81, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 135, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': 'handle_uncaught_exception', 'lineno': 129, 'closures': []}, {'type': 'method', 'rank': 'B', 'endline': 211, 'classname': 'BaseHandler', 'complexity': 9, 'col_offset': 4, 'name': '_normalize_callback_args_kwargs', 'lineno': 140, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 224, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': '_invoke_view', 'lineno': 213, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 237, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': '_invoke_view_async', 'lineno': 226, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 79, 'classname': 'BaseHandler', 'complexity': 2, 'col_offset': 4, 'name': 'get_response_async', 'lineno': 73, 'closures': []}, {'type': 'function', 'rank': 'A', 'endline': 19, 'complexity': 1, 'col_offset': 0, 'name': '_get_response_async', 'lineno': 17, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 38, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': '__init__', 'lineno': 34, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 42, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': 'resolver', 'lineno': 41, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 135, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': 'handle_uncaught_exception', 'lineno': 129, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 224, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': '_invoke_view', 'lineno': 213, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 237, 'classname': 'BaseHandler', 'complexity': 1, 'col_offset': 4, 'name': '_invoke_view_async', 'lineno': 226, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=1.9999999997799556e-07, modified_avg_time=6.000000000172534e-07, improvement_percentage=-200.00000004163337, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nHTTP: line 24: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement inspect (from versions: none)\nERROR: No matching distribution found for inspect\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-django-optional-url-params-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the optional URL params crash. The provided v_gen already embeds a fix strategy via _normalize_callback_args_kwargs using the standard library inspect module. The only expert report (READ-001) is non-actionable because it claims input code is missing, which is inconsistent with the actual presence of full source; it contains no concrete, line-level suggestions. [Phase 2] With only READ-001 and no concrete target_code_block or change, there are no real conflict points. [Phase 3] No SecurityExpert or PerformanceExpert reports are present. No Critical security items to enforce. The current implementation relies on the standard library inspect, which is always present in the Python runtime, so no extra dependency should be installed. Prior failure feedback shows an incorrect attempt to pip install inspect, causing a runtime error. Installing inspect is both unnecessary and harmful in this environment. [Phase 4] Conflict resolution: there is an implicit conflict between the current correct use of the stdlib inspect module and the previous pipeline behavior that tried to treat it as an external dependency. To preserve functionality and resolve the failure, we must ensure no external installation step for inspect is introduced; the code itself does not need changing. Based on the Principle of Functionality Preservation and Minimal Invasiveness, we do not modify the Python code and instead clarify that no additional dependency is required. [Phase 5] Execution plan: no refactors or replacements are applied to source files. The developer should keep the existing v_gen code as-is and avoid adding any dependency management steps that attempt to install inspect. [Phase 6] Final plan: since there are no actionable code changes, the instructions list is empty and the existing implementation is considered the final integrated plan.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Received execution plan with no code changes required.",
+        "Step 2: Returned the existing BaseHandler implementation unchanged, ensuring all imports (including inspect) are present."
+    ],
+    "feedback_used": "Functional Error: Runtime Error in Docker:\nHTTP: line 23: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement inspect (from versions: none)\nERROR: No matching distribution found for inspect\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip",
+    "cost_analysis": {
+        "prompt_tokens": 19062,
+        "completion_tokens": 8014,
+        "estimated_cost_usd": 0.21552
+    },
+    "maestro_score": 0
+}

@@ -1,0 +1,51 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.5, complexities=[{'type': 'class', 'rank': 'A', 'endline': 30, 'lineno': 5, 'name': 'IsNull', 'complexity': 3, 'col_offset': 0, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 30, 'lineno': 8, 'name': 'get_prep_lookup', 'complexity': 2, 'classname': 'IsNull', 'col_offset': 4, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 30, 'lineno': 8, 'name': 'get_prep_lookup', 'complexity': 2, 'classname': 'IsNull', 'col_offset': 4, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=7.999999999987184e-07, modified_avg_time=9.00000000001594e-07, improvement_percentage=-12.50000000037947, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-django-isnull-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is 'Resolve Issue' for Django's IsNull lookup: enforce that __isnull only accepts boolean RHS values. v_gen already contains a focused implementation of IsNull.get_prep_lookup with a strict bool check and a descriptive FieldError. Expert performance/readability suggestions are generic and reference nonexistent 'main.py' or abstract 'v_gen#...' anchors, so they are not directly applicable to this concrete snippet. No SecurityExpert report is present, so no Critical security items to mandate.\n[Phase 2] Grouping by target_code_block: all Performance suggestions (PERF-001..005) refer to main.py ranges or imports unrelated to the provided code; all Readability suggestions (READ-001..007) are repository-wide/generic and not bound to specific line ranges in this file. There is effectively a single focal point: the IsNull.get_prep_lookup method.\n[Phase 3] Applying absolute principles: (1) Security Primacy: no security suggestions; nothing to auto-apply. (2) Functionality Preservation: current code already enforces the boolean-only requirement and raises FieldError on non-bool RHS, exactly matching the described issue resolution, so any change must not weaken that constraint or change the exception type. None of the generic performance/readability suggestions can be safely mapped to this method without risking behavior change, so they are rejected for this work order.\n[Phase 4] Conflict Resolution & Integration: since all concrete suggestions are misaligned with this code fragment (wrong file, wrong concerns), there are no direct conflicts to resolve at the IsNull level. The main architectural decision is to preserve the existing implementation as the correct fix for the issue. Any further refactoring would be purely stylistic and may reduce clarity or risk deviating from Django's established patterns, conflicting with the Minimal Invasiveness principle.\n[Phase 5] Execution Plan Synthesis: with no adopted external suggestions and functionality already matching the issue requirements, the safest plan is a no-op for this code. However, to comply with the MAESTRO workflow, we emit a single REPLACE step that reaffirms the current implementation verbatim, making the intended final state explicit for the Developer agent. No ordering dependencies exist.\n[Phase 6] Final Plan Generation: final JSON contains a single instruction that retains the current get_prep_lookup implementation unchanged. This respects Security Primacy (no changes to exception type), Functionality Preservation (bool-only semantics retained), Synergistic Integration (no incompatible or irrelevant external suggestions forced in), and Minimal Invasiveness (no structural changes without concrete benefit).",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "Preserve the current strict boolean-only implementation of IsNull.get_prep_lookup that raises FieldError for non-bool values, as it already resolves the '__isnull' misuse issue.",
+                "action": "REPLACE",
+                "target_code_block": "lookups.py#IsNull.get_prep_lookup",
+                "new_code": null,
+                "details": {
+                    "refactor_type": "SIMPLE_MODIFICATION",
+                    "replacement_code": "from django.core.exceptions import FieldError\nfrom django.db.models import Lookup\n\n\nclass IsNull(Lookup):\n    lookup_name = 'isnull'\n\n    def get_prep_lookup(self):\n        \"\"\"Prepare the right-hand side value for the __isnull lookup.\n\n        Only boolean values (True or False) are allowed. Using other\n        truthy/falsey values was previously accepted but undocumented and\n        may lead to confusing behavior, so it now raises FieldError.\n        \"\"\"\n        # Let the parent class perform its normal preparation first,\n        # in case it normalizes or validates in a generic way.\n        rhs_value = super().get_prep_lookup()\n\n        # Enforce that __isnull only accepts bools. Reject all other\n        # types (e.g., 0, 1, '', [], 'true', etc.).\n        if not isinstance(rhs_value, bool):\n            raise FieldError(\n                \"The '__isnull' lookup only accepts boolean values (True or False). \"\n                \"Got %r (%s).\" % (rhs_value, type(rhs_value).__name__)\n            )\n\n        # Existing semantics are preserved:\n        #   True  -> IS NULL\n        #   False -> IS NOT NULL\n        return rhs_value\n"
+                },
+                "source_suggestion_ids": [],
+                "rationale": "Under the Principle of Functionality Preservation and Minimal Invasiveness, the existing implementation already enforces the required behavior for __isnull (rejecting all non-bool RHS values via FieldError) and matches the issue description. Generic performance/readability suggestions cannot be safely applied here, so the correct strategy is to keep this logic intact."
+            }
+        ]
+    },
+    "developer_log": [
+        "Step 1: Replaced lookups.py#IsNull.get_prep_lookup with the strict boolean-only implementation that raises FieldError for non-boolean values, preserving existing semantics for True/False."
+    ],
+    "feedback_used": "NFR Score Low (70).",
+    "cost_analysis": {
+        "prompt_tokens": 16969,
+        "completion_tokens": 5526,
+        "estimated_cost_usd": 0.167735
+    },
+    "maestro_score": 70
+}

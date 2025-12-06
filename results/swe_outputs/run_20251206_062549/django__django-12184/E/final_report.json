@@ -1,0 +1,48 @@
+{
+    "run_id": "E",
+    "status": "ATTEMPT_1",
+    "quality_analysis": {
+        "total_score": 90,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 20
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=3.4545454545454546, complexities=[{'type': 'method', 'rank': 'B', 'name': '_get_response_async', 'complexity': 9, 'lineno': 80, 'col_offset': 4, 'endline': 126, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_normalize_callback_args_kwargs', 'complexity': 9, 'lineno': 139, 'col_offset': 4, 'endline': 212, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'B', 'name': 'load_middleware', 'complexity': 8, 'lineno': 43, 'col_offset': 4, 'endline': 70, 'classname': 'BaseHandler', 'closures': []}, {'type': 'class', 'rank': 'A', 'name': 'BaseHandler', 'complexity': 4, 'lineno': 21, 'col_offset': 0, 'endline': 238, 'methods': [{'type': 'method', 'rank': 'A', 'name': '__init__', 'complexity': 1, 'lineno': 33, 'col_offset': 4, 'endline': 37, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'resolver', 'complexity': 1, 'lineno': 40, 'col_offset': 4, 'endline': 41, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'B', 'name': 'load_middleware', 'complexity': 8, 'lineno': 43, 'col_offset': 4, 'endline': 70, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'get_response_async', 'complexity': 2, 'lineno': 72, 'col_offset': 4, 'endline': 78, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_get_response_async', 'complexity': 9, 'lineno': 80, 'col_offset': 4, 'endline': 126, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'handle_uncaught_exception', 'complexity': 1, 'lineno': 128, 'col_offset': 4, 'endline': 134, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'B', 'name': '_normalize_callback_args_kwargs', 'complexity': 9, 'lineno': 139, 'col_offset': 4, 'endline': 212, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_invoke_view', 'complexity': 1, 'lineno': 214, 'col_offset': 4, 'endline': 225, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_invoke_view_async', 'complexity': 1, 'lineno': 227, 'col_offset': 4, 'endline': 238, 'classname': 'BaseHandler', 'closures': []}]}, {'type': 'method', 'rank': 'A', 'name': 'get_response_async', 'complexity': 2, 'lineno': 72, 'col_offset': 4, 'endline': 78, 'classname': 'BaseHandler', 'closures': []}, {'type': 'function', 'rank': 'A', 'name': '_get_response_async', 'complexity': 1, 'lineno': 16, 'col_offset': 0, 'endline': 18, 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '__init__', 'complexity': 1, 'lineno': 33, 'col_offset': 4, 'endline': 37, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'resolver', 'complexity': 1, 'lineno': 40, 'col_offset': 4, 'endline': 41, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': 'handle_uncaught_exception', 'complexity': 1, 'lineno': 128, 'col_offset': 4, 'endline': 134, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_invoke_view', 'complexity': 1, 'lineno': 214, 'col_offset': 4, 'endline': 225, 'classname': 'BaseHandler', 'closures': []}, {'type': 'method', 'rank': 'A', 'name': '_invoke_view_async', 'complexity': 1, 'lineno': 227, 'col_offset': 4, 'endline': 238, 'classname': 'BaseHandler', 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=5.000000000005e-07, modified_avg_time=3.999999999976245e-07, improvement_percentage=20.00000000055511, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": false,
+        "message": "Runtime Error in Docker:\nHTTP: line 23: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')\nERROR: Could not find a version that satisfies the requirement inspect (from versions: none)\nERROR: No matching distribution found for inspect\n\n[notice] A new release of pip is available: 23.0.1 -> 25.3\n[notice] To update, run: pip install --upgrade pip"
+    },
+    "expert_reports": [
+        {
+            "suggestion_id": "READ-001",
+            "agent_role": "ReadabilityExpert",
+            "title": "Input code is missing, preventing concrete line-level review",
+            "target_code_block": "unknown#L1-L1",
+            "severity": "High",
+            "reasoning": "No v_gen source code was provided, so specific code smells (e.g., poor naming, magic numbers, missing docstrings, Any usage, complex comprehensions) cannot be tied to actual lines. This obstructs the maintainability review process and prevents the Architect from making evidence-based decisions about technical debt.",
+            "proposed_change": "Provide the full v_gen source code (and optionally unit_test_suite) so that line-specific readability issues (naming, typing.Any usage, short variable names like 'd' or 'ml', missing docstrings, and complex list comprehensions) can be identified and documented with precise locations."
+        }
+    ],
+    "architect_plan": {
+        "work_order_id": "WO-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the reported Django issue where optional URL params cause duplicate positional/keyword arguments to be passed to view functions, leading to TypeError. Only one expert report (READ-001) is provided and it contains no concrete, line-level suggestions for this codebase. [Phase 2] Grouping by target_code_block reveals no actionable suggestions for the actual file; READ-001 points to 'unknown#L1-L1' and is effectively a meta-request for more input, not a refactor. [Phase 3] No SecurityExpert or PerformanceExpert reports are present, and there are no Critical security items; unit tests are N/A, so we must preserve the existing v_gen behavior and not introduce speculative changes. [Phase 4] There are no conflicting suggestions to integrate. The current v_gen already includes a normalization layer for callback args/kwargs, which appears designed to address the described issue, so no additional structural change is required. By the Principle of Functionality Preservation and Minimal Invasiveness, we avoid arbitrary edits without specific expert proposals. [Phase 5] As there are no concrete, adoptable suggestions, no refactor steps are scheduled. [Phase 6] Final plan is an empty instruction list; the Architect records that the necessary fix logic seems already present in v_gen and that READ-001 is non-actionable in this context.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: No architect instructions were provided; preserved existing BaseHandler implementation as-is.",
+        "Step 2: Returned the complete, current source code for the primary file in final_code."
+    ],
+    "cost_analysis": {
+        "prompt_tokens": 11739,
+        "completion_tokens": 5429,
+        "estimated_cost_usd": 0.14013
+    },
+    "maestro_score": 0
+}

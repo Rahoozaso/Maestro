@@ -1,0 +1,70 @@
+{
+    "run_id": "C",
+    "status": "DONE",
+    "quality_analysis": {
+        "total_score": 70,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 0
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=2.5, complexities=[{'type': 'function', 'rank': 'B', 'endline': 53, 'col_offset': 0, 'lineno': 20, 'name': 'add_script_name_prefix', 'complexity': 8, 'closures': []}, {'type': 'class', 'rank': 'B', 'endline': 121, 'col_offset': 0, 'lineno': 92, 'name': 'ScriptNameFileSystemStorage', 'complexity': 8, 'methods': [{'type': 'method', 'rank': 'B', 'endline': 121, 'classname': 'ScriptNameFileSystemStorage', 'col_offset': 4, 'lineno': 93, 'name': 'url', 'complexity': 7, 'closures': []}]}, {'type': 'method', 'rank': 'B', 'endline': 121, 'classname': 'ScriptNameFileSystemStorage', 'col_offset': 4, 'lineno': 93, 'name': 'url', 'complexity': 7, 'closures': []}, {'type': 'class', 'rank': 'B', 'endline': 77, 'col_offset': 0, 'lineno': 62, 'name': 'StaticNode', 'complexity': 6, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 77, 'classname': 'StaticNode', 'col_offset': 4, 'lineno': 63, 'name': 'render', 'complexity': 5, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 77, 'classname': 'StaticNode', 'col_offset': 4, 'lineno': 63, 'name': 'render', 'complexity': 5, 'closures': []}, {'type': 'class', 'rank': 'A', 'endline': 86, 'col_offset': 0, 'lineno': 83, 'name': 'StaticFilesStaticNode', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 86, 'classname': 'StaticFilesStaticNode', 'col_offset': 4, 'lineno': 84, 'name': 'render', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'endline': 141, 'col_offset': 0, 'lineno': 127, 'name': 'ScriptNameStaticFilesStorage', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 141, 'classname': 'ScriptNameStaticFilesStorage', 'col_offset': 4, 'lineno': 128, 'name': 'url', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'endline': 214, 'col_offset': 0, 'lineno': 151, 'name': 'ScriptNameStaticTests', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'endline': 153, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 152, 'name': 'setUp', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 160, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 155, 'name': 'render_template', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 166, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 162, 'name': 'test_static_tag_with_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 171, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 168, 'name': 'test_static_tag_without_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 175, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 173, 'name': 'test_static_tag_without_request', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 182, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 178, 'name': 'test_contrib_staticfiles_tag_with_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 187, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 184, 'name': 'test_filesystem_storage_url_without_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 193, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 189, 'name': 'test_filesystem_storage_url_with_script_name_via_request', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 198, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 195, 'name': 'test_filesystem_storage_url_with_explicit_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 203, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 200, 'name': 'test_staticfiles_storage_url_without_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 209, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 205, 'name': 'test_staticfiles_storage_url_with_script_name_via_request', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 214, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 211, 'name': 'test_staticfiles_storage_url_with_explicit_script_name', 'complexity': 1, 'closures': []}]}, {'type': 'method', 'rank': 'A', 'endline': 160, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 155, 'name': 'render_template', 'complexity': 2, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 86, 'classname': 'StaticFilesStaticNode', 'col_offset': 4, 'lineno': 84, 'name': 'render', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 141, 'classname': 'ScriptNameStaticFilesStorage', 'col_offset': 4, 'lineno': 128, 'name': 'url', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 153, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 152, 'name': 'setUp', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 166, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 162, 'name': 'test_static_tag_with_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 171, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 168, 'name': 'test_static_tag_without_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 175, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 173, 'name': 'test_static_tag_without_request', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 182, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 178, 'name': 'test_contrib_staticfiles_tag_with_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 187, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 184, 'name': 'test_filesystem_storage_url_without_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 193, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 189, 'name': 'test_filesystem_storage_url_with_script_name_via_request', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 198, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 195, 'name': 'test_filesystem_storage_url_with_explicit_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 203, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 200, 'name': 'test_staticfiles_storage_url_without_script_name', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 209, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 205, 'name': 'test_staticfiles_storage_url_with_script_name_via_request', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'endline': 214, 'classname': 'ScriptNameStaticTests', 'col_offset': 4, 'lineno': 211, 'name': 'test_staticfiles_storage_url_with_explicit_script_name', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=False, original_avg_time=0.0, modified_avg_time=0.0, improvement_percentage=0.0, error_message='Modified code execution failed (Runtime Error)')"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Docker execution failed (No closing quotation)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-RuleBased-20251206073529",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Rule-Based Logic] Generated automatically by sorting suggestions based on Severity.",
+        "instructions": [
+            {
+                "step": 1,
+                "description": "[규칙 기반] READ-001: Missing input code prevents concrete, location-specific review",
+                "action": "REPLACE",
+                "target_code_block": "unknown.py#L1-L999",
+                "new_code": "Provide the full v_gen source code (and optionally the unit_test_suite) so that each suggestion can reference precise file and line ranges, and code smells like weak naming, typing.Any usage, missing docstrings, magic numbers, and deep nesting can be assessed and fixed in context.",
+                "details": null,
+                "source_suggestion_ids": [
+                    "READ-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 2,
+                "description": "[규칙 기반] PERF-001: Replace repeated linear membership checks with hash-based lookups",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L200",
+                "new_code": "def optimized_function(list1, list2):\n    # Hypothetical original pattern:\n    # result = []\n    # for x in list1:\n    #     if x in list2:  # O(len(list2)) each time\n    #         result.append(x)\n    # return result\n\n    # Optimized pattern using a set for membership tests\n    set2 = set(list2)\n    result = []\n    for x in list1:\n        if x in set2:  # O(1) average\n            result.append(x)\n    return result",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-001"
+                ],
+                "rationale": "Rule-based: Highest severity (High) suggestion selected."
+            },
+            {
+                "step": 3,
+                "description": "[규칙 기반] PERF-006: Use more specific and lazy imports to reduce startup overhead",
+                "action": "REPLACE",
+                "target_code_block": "main.py#L1-L20",
+                "new_code": "# Hypothetical original pattern:\n# import pandas as pd\n# import numpy as np\n# from math import *\n#\n# def lightweight_function(x):\n#     return sqrt(x)\n\n# More specific and/or lazy imports\nfrom math import sqrt\n\ndef lightweight_function(x):\n    return sqrt(x)\n\n# Example of lazy import for heavy dependency:\n\ndef heavy_processing(data):\n    import pandas as pd  # imported only when needed\n    df = pd.DataFrame(data)\n    return df.describe()",
+                "details": null,
+                "source_suggestion_ids": [
+                    "PERF-006"
+                ],
+                "rationale": "Rule-based: Highest severity (Low) suggestion selected."
+            }
+        ]
+    },
+    "cost_analysis": {
+        "prompt_tokens": 45092,
+        "completion_tokens": 23099,
+        "estimated_cost_usd": 0.571945
+    },
+    "maestro_score": 70
+}

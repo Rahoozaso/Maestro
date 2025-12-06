@@ -1,0 +1,38 @@
+{
+    "run_id": "D",
+    "status": "SUCCESS_RETRO",
+    "quality_analysis": {
+        "total_score": 80,
+        "scores": {
+            "security": 40,
+            "readability": 30,
+            "performance": 10
+        },
+        "details": {
+            "security": "SecurityReport(success=True, highest_severity=None, issues=[], error_message=None)",
+            "readability": "ReadabilityReport(success=True, average_complexity=1.1428571428571428, complexities=[{'type': 'class', 'rank': 'A', 'endline': 52, 'lineno': 30, 'col_offset': 0, 'name': 'InheritedChoicesDisplayTests', 'complexity': 2, 'methods': [{'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'endline': 38, 'lineno': 33, 'col_offset': 4, 'name': 'test_inherited_choices_still_work', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'endline': 43, 'lineno': 40, 'col_offset': 4, 'name': 'test_extended_choices_on_child', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'endline': 52, 'lineno': 45, 'col_offset': 4, 'name': 'test_base_behavior_for_sibling_without_override', 'complexity': 1, 'closures': []}]}, {'type': 'class', 'rank': 'A', 'endline': 10, 'lineno': 5, 'col_offset': 0, 'name': 'AbstractBase', 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'endline': 22, 'lineno': 16, 'col_offset': 0, 'name': 'Child', 'complexity': 1, 'methods': []}, {'type': 'class', 'rank': 'A', 'endline': 27, 'lineno': 25, 'col_offset': 0, 'name': 'Sibling', 'complexity': 1, 'methods': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'endline': 38, 'lineno': 33, 'col_offset': 4, 'name': 'test_inherited_choices_still_work', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'endline': 43, 'lineno': 40, 'col_offset': 4, 'name': 'test_extended_choices_on_child', 'complexity': 1, 'closures': []}, {'type': 'method', 'rank': 'A', 'classname': 'InheritedChoicesDisplayTests', 'endline': 52, 'lineno': 45, 'col_offset': 4, 'name': 'test_base_behavior_for_sibling_without_override', 'complexity': 1, 'closures': []}], error_message=None)",
+            "performance": "PerformanceReport(success=True, original_avg_time=6.999999999993123e-07, modified_avg_time=5.999999999999062e-07, improvement_percentage=14.285714285643481, error_message=None)"
+        }
+    },
+    "functional_analysis": {
+        "success": true,
+        "message": "Execution Successful (Docker)"
+    },
+    "architect_plan": {
+        "work_order_id": "WO-django-inherited-choices-001",
+        "synthesis_goal": "Resolve Issue",
+        "reasoning_log": "[Phase 1] Goal is to resolve the functional bug: get_FOO_display() must respect overridden choices on inherited fields. v_gen is a minimal Django test module reproducing the issue; expert performance suggestions are generic templates not tailored to this code, and readability report indicates missing context. No unit_test_suite beyond embedded tests; they must keep passing. [Phase 2] All PERF suggestions target a broad range main.py#L1-L200 and don't refer to concrete constructs in this file. There are no loops, recursion, heavy imports, or expensive computations here; only model and test definitions. [Phase 3] No SecurityExpert report is present; thus no critical security issues to enforce. Applying any of the generic PERF changes (memoization, recursion refactor, vectorization, etc.) would require inventing new functions or altering imports unrelated to the bug and tests, risking functionality and violating minimal invasiveness. [Phase 4] There are effectively no overlapping or conflicting suggestions on specific code blocks in this file. The only relevant high-level constraint is to preserve current behavior of existing tests while depending on Django's internal fix for get_FOO_display with inherited choices. The proper resolution for this repository-level issue is to change Django's model field/choices resolution logic, not this test module. As the Architect for this snippet, the correct strategy is to leave v_gen as-is; it already encodes the intended behavior via tests and will validate the framework-level fix. [Phase 5] Therefore, no refactor or replacement instructions are safe or necessary for this file. Any arbitrary performance or structural changes would be speculative, not derived from expert reports tied to real code, and could break tests. [Phase 6] Final plan: produce an empty instructions list to communicate that no changes should be made to v_gen; the resolution of the issue lies elsewhere in the Django codebase.",
+        "instructions": []
+    },
+    "developer_log": [
+        "Step 1: Architect provided an empty instructions list; no modifications requested for the existing test module.",
+        "Step 2: Returned the original file content unchanged as the final_code."
+    ],
+    "feedback_used": "NFR Score Low (70).",
+    "cost_analysis": {
+        "prompt_tokens": 16639,
+        "completion_tokens": 4896,
+        "estimated_cost_usd": 0.156635
+    },
+    "maestro_score": 80
+}
